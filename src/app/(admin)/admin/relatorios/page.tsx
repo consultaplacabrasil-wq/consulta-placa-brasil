@@ -7,7 +7,7 @@ export const metadata = { title: "Relatórios - Admin ConsultaPlaca" };
 const reportStats = [
   { type: "Básico", count: 4521, percentage: 54, color: "bg-gray-400" },
   { type: "Completo", count: 2847, percentage: 34, color: "bg-[#FF4D30]" },
-  { type: "Premium", count: 979, percentage: 12, color: "bg-[#1A1A2E]" },
+  { type: "Premium", count: 979, percentage: 12, color: "bg-[#0F172A]" },
 ];
 
 const topPlates = [
@@ -35,7 +35,7 @@ export default function AdminRelatoriosPage() {
       <div className="grid gap-4 sm:grid-cols-3">
         <Card className="border-0 shadow-sm">
           <CardContent className="flex items-center gap-3 p-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF0ED]">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF5F3]">
               <FileText className="h-5 w-5 text-[#FF4D30]" />
             </div>
             <div>
@@ -109,7 +109,7 @@ export default function AdminRelatoriosPage() {
               {topPlates.map((p, i) => (
                 <div key={p.plate} className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#FFF0ED] text-sm font-bold text-[#FF4D30]">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#FFF5F3] text-sm font-bold text-[#FF4D30]">
                       {i + 1}
                     </div>
                     <div>
@@ -117,7 +117,7 @@ export default function AdminRelatoriosPage() {
                       <p className="text-xs text-[#94A3B8]">Última consulta: {p.lastQuery}</p>
                     </div>
                   </div>
-                  <span className="rounded-full bg-[#FFF0ED] px-3 py-1 text-sm font-bold text-[#FF4D30]">
+                  <span className="rounded-full bg-[#FFF5F3] px-3 py-1 text-sm font-bold text-[#FF4D30]">
                     {p.count}x
                   </span>
                 </div>

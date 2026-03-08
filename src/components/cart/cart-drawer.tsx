@@ -43,7 +43,7 @@ export function CartDrawer() {
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
-            <SheetTitle className="text-lg font-bold text-[#1A1A2E]">
+            <SheetTitle className="text-lg font-bold text-[#0F172A]">
               Meu carrinho
             </SheetTitle>
           </div>
@@ -60,10 +60,10 @@ export function CartDrawer() {
         {/* Steps indicator */}
         <div className="flex items-center justify-center gap-4 py-3 border-b border-gray-50">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F0F7F0] border-2 border-[#22C55E]">
-              <ShoppingCart className="h-4 w-4 text-[#22C55E]" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FFF5F3] border-2 border-[#FF4D30]">
+              <ShoppingCart className="h-4 w-4 text-[#FF4D30]" />
             </div>
-            <span className="text-xs font-medium text-[#22C55E]">Carrinho</span>
+            <span className="text-xs font-medium text-[#FF4D30]">Carrinho</span>
           </div>
           <div className="w-8 border-t border-gray-300" />
           <div className="flex items-center gap-2">
@@ -92,7 +92,7 @@ export function CartDrawer() {
                   className="flex items-start justify-between gap-3"
                 >
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[#1A1A2E] leading-tight">
+                    <p className="text-sm font-medium text-[#0F172A] leading-tight">
                       {item.name}
                     </p>
                     {item.originalPrice && item.originalPrice > item.price && (
@@ -100,7 +100,7 @@ export function CartDrawer() {
                         de {formatCurrency(item.originalPrice)} por
                       </p>
                     )}
-                    <p className="text-sm font-semibold text-[#22C55E]">
+                    <p className="text-sm font-semibold text-[#FF4D30]">
                       {formatCurrency(item.price)}
                     </p>
                   </div>
@@ -119,12 +119,12 @@ export function CartDrawer() {
                         <Minus className="h-3.5 w-3.5" />
                       )}
                     </button>
-                    <span className="w-6 text-center text-sm font-medium text-[#1A1A2E]">
+                    <span className="w-6 text-center text-sm font-medium text-[#0F172A]">
                       {item.quantity}
                     </span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="flex h-7 w-7 items-center justify-center rounded-full text-gray-400 hover:text-[#FF4D30] hover:bg-[#FFF0ED] transition-colors"
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-gray-400 hover:text-[#FF4D30] hover:bg-[#FFF5F3] transition-colors"
                     >
                       <Plus className="h-3.5 w-3.5" />
                     </button>
@@ -150,14 +150,14 @@ export function CartDrawer() {
                 />
                 <Tag className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300" />
               </div>
-              <button className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#1A6CB5] text-[#1A6CB5] hover:bg-[#1A6CB5] hover:text-white transition-colors">
+              <button className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#FF4D30] text-[#FF4D30] hover:bg-[#FF4D30] hover:text-white transition-colors">
                 <Search className="h-4 w-4" />
               </button>
             </div>
 
             {/* Order Summary */}
             <div className="space-y-2">
-              <p className="text-sm font-bold text-[#1A1A2E]">Resumo do Pedido:</p>
+              <p className="text-sm font-bold text-[#0F172A]">Resumo do Pedido:</p>
               {items.map((item) => (
                 <div key={item.id} className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">
@@ -172,8 +172,8 @@ export function CartDrawer() {
                 </div>
               ))}
               <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                <span className="text-base font-bold text-[#1A1A2E]">Valor Total</span>
-                <span className="text-base font-bold text-[#1A1A2E]">
+                <span className="text-base font-bold text-[#0F172A]">Valor Total</span>
+                <span className="text-base font-bold text-[#0F172A]">
                   {formatCurrency(total)}
                 </span>
               </div>
@@ -182,14 +182,14 @@ export function CartDrawer() {
             {/* CTA */}
             <Button
               onClick={() => { closeCart(); router.push("/checkout"); }}
-              className="w-full h-12 bg-[#1A6CB5] hover:bg-[#155A96] text-white font-bold rounded-full text-base"
+              className="w-full h-12 bg-[#FF4D30] hover:bg-[#E8432A] text-white font-bold rounded-full text-base"
             >
               IR PARA O PAGAMENTO
             </Button>
 
             <button
               onClick={closeCart}
-              className="w-full text-center text-sm text-[#1A6CB5] hover:underline"
+              className="w-full text-center text-sm text-[#FF4D30] hover:underline"
             >
               Adicionar mais itens ao carrinho
             </button>

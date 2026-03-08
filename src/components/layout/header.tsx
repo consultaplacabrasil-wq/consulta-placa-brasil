@@ -27,7 +27,7 @@ export function Header() {
   return (
     <>
       {/* Top bar */}
-      <div className="hidden md:block bg-[#1A1A2E] text-white text-sm">
+      <div className="hidden md:block bg-[#0F172A] text-white text-sm">
         <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-2">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-gray-300">
@@ -58,7 +58,7 @@ export function Header() {
               <Car className="h-5 w-5 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-bold leading-tight text-[#1A1A2E]">
+              <span className="text-lg font-bold leading-tight text-[#0F172A]">
                 Consulta<span className="text-[#FF4D30]">Placa</span>
               </span>
               <span className="text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
@@ -73,7 +73,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#475569] transition-colors hover:bg-[#FFF0ED] hover:text-[#FF4D30]"
+                className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#475569] transition-colors hover:bg-[#FFF5F3] hover:text-[#FF4D30]"
               >
                 {link.label}
               </Link>
@@ -84,7 +84,7 @@ export function Header() {
           <div className="hidden items-center gap-3 md:flex">
             <button
               onClick={openCart}
-              className="relative flex h-10 w-10 items-center justify-center rounded-lg text-[#475569] hover:bg-[#FFF0ED] hover:text-[#FF4D30] transition-colors"
+              className="relative flex h-10 w-10 items-center justify-center rounded-lg text-[#475569] hover:bg-[#FFF5F3] hover:text-[#FF4D30] transition-colors"
             >
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
@@ -134,7 +134,7 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="rounded-lg px-4 py-3 text-base font-medium text-[#1A1A2E] transition-colors hover:bg-[#FFF0ED] hover:text-[#FF4D30]"
+                    className="rounded-lg px-4 py-3 text-base font-medium text-[#0F172A] transition-colors hover:bg-[#FFF5F3] hover:text-[#FF4D30]"
                   >
                     {link.label}
                   </Link>

@@ -169,7 +169,7 @@ export default function AdminDashboardPage() {
               {recentConsultas.map((c, i) => (
                 <div key={i} className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FFF0ED]">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FFF5F3]">
                       <Search className="h-4 w-4 text-[#FF4D30]" />
                     </div>
                     <div>
@@ -193,7 +193,7 @@ export default function AdminDashboardPage() {
         <Card className="border-0 shadow-sm">
           <CardContent className="p-5">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF0ED]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF5F3]">
                 <FileText className="h-5 w-5 text-[#FF4D30]" />
               </div>
               <div>

@@ -63,7 +63,7 @@ const reportData = {
     price: REPORT_PRICES.complete,
     priceLabel: formatCurrency(REPORT_PRICES.complete),
     color: "#FF4D30",
-    colorBg: "#FFF0ED",
+    colorBg: "#FFF5F3",
     icon: Shield,
     features: REPORT_FEATURES.complete,
     detailedFeatures: [
@@ -107,7 +107,7 @@ const reportData = {
     subtitle: "O mais completo do mercado: tudo do Completo + análise inteligente",
     price: REPORT_PRICES.premium,
     priceLabel: formatCurrency(REPORT_PRICES.premium),
-    color: "#1A1A2E",
+    color: "#0F172A",
     colorBg: "#EEF2FF",
     icon: Award,
     features: REPORT_FEATURES.premium,
@@ -178,8 +178,8 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#1A1A2E] px-4 py-16 md:py-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A2E] via-[#2D2D4E] to-[#1A1A2E]" />
+      <section className="relative overflow-hidden bg-[#0F172A] px-4 py-16 md:py-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A]" />
         <div className="relative mx-auto max-w-4xl text-center text-white">
           <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl" style={{ backgroundColor: data.colorBg }}>
             <Icon className="h-10 w-10" style={{ color: data.color }} />
@@ -188,7 +188,7 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
           <p className="mx-auto mb-6 max-w-xl text-lg text-gray-300">{data.subtitle}</p>
           <div className="mb-8">
             {data.price === 0 ? (
-              <span className="text-5xl font-bold text-[#22C55E]">Grátis</span>
+              <span className="text-5xl font-bold text-[#FF4D30]">Grátis</span>
             ) : (
               <div>
                 <span className="text-5xl font-bold text-[#FF4D30]">{data.priceLabel}</span>
@@ -213,7 +213,7 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
             <span className="inline-block text-sm font-semibold uppercase tracking-wider mb-2" style={{ color: data.color }}>
               O que está incluso
             </span>
-            <h2 className="text-3xl font-bold text-[#1A1A2E]">
+            <h2 className="text-3xl font-bold text-[#0F172A]">
               Itens do {data.title}
             </h2>
           </div>
@@ -221,8 +221,8 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mb-12">
             {data.features.map((feature) => (
               <div key={feature} className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
-                <CheckCircle className="h-5 w-5 shrink-0 text-[#22C55E]" />
-                <span className="text-sm font-medium text-[#1A1A2E]">{feature}</span>
+                <CheckCircle className="h-5 w-5 shrink-0 text-[#FF4D30]" />
+                <span className="text-sm font-medium text-[#0F172A]">{feature}</span>
               </div>
             ))}
           </div>
@@ -233,7 +233,7 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
       <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
         <div className="mx-auto max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1A1A2E]">Detalhes de cada item</h2>
+            <h2 className="text-3xl font-bold text-[#0F172A]">Detalhes de cada item</h2>
             <p className="mt-3 text-[#64748B]">Entenda exatamente o que você recebe</p>
           </div>
 
@@ -247,7 +247,7 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
                       <DfIcon className="h-6 w-6" style={{ color: data.color }} />
                     </div>
                     <div>
-                      <h3 className="mb-1 font-semibold text-[#1A1A2E]">{df.title}</h3>
+                      <h3 className="mb-1 font-semibold text-[#0F172A]">{df.title}</h3>
                       <p className="text-sm text-[#64748B] leading-relaxed">{df.description}</p>
                     </div>
                   </CardContent>
@@ -261,7 +261,7 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
       {/* CTA */}
       <section className="bg-white px-4 py-16 md:py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl font-bold text-[#1A1A2E] mb-4">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-4">
             Pronto para consultar?
           </h2>
           <p className="text-[#64748B] mb-8">
@@ -279,7 +279,7 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
       {/* Other Reports */}
       <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-center text-2xl font-bold text-[#1A1A2E] mb-8">
+          <h2 className="text-center text-2xl font-bold text-[#0F172A] mb-8">
             Compare com outros relatórios
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -294,7 +294,7 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
                           <RIcon className="h-5 w-5" style={{ color: report.color }} />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-[#1A1A2E]">{report.title}</h3>
+                          <h3 className="font-semibold text-[#0F172A]">{report.title}</h3>
                           <p className="text-sm font-bold" style={{ color: report.color }}>
                             {report.priceLabel}
                           </p>
@@ -304,7 +304,7 @@ export default async function ReportTypePage({ params }: { params: Promise<{ tip
                       <div className="flex flex-wrap gap-1.5">
                         {report.features.slice(0, 3).map((f) => (
                           <span key={f} className="inline-flex items-center gap-1 rounded-full bg-gray-50 px-2.5 py-1 text-xs text-[#475569]">
-                            <CheckCircle className="h-3 w-3 text-[#22C55E]" />
+                            <CheckCircle className="h-3 w-3 text-[#FF4D30]" />
                             {f}
                           </span>
                         ))}

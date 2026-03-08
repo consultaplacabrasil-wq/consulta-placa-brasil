@@ -97,7 +97,7 @@ export function ConsultasPacotes() {
     <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-[#1B4D6E] md:text-4xl">
+          <h2 className="text-3xl font-bold text-[#0F172A] md:text-4xl">
             Veja nossas outras consultas
           </h2>
           <p className="mt-4 text-[#64748B] max-w-2xl mx-auto">
@@ -116,8 +116,8 @@ export function ConsultasPacotes() {
               onClick={() => setActiveTab("consultas")}
               className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-colors ${
                 activeTab === "consultas"
-                  ? "bg-[#1A6CB5] text-white"
-                  : "text-[#1A1A2E] hover:bg-gray-50"
+                  ? "bg-[#FF4D30] text-white"
+                  : "text-[#0F172A] hover:bg-gray-50"
               }`}
             >
               CONSULTAS
@@ -126,8 +126,8 @@ export function ConsultasPacotes() {
               onClick={() => setActiveTab("pacotes")}
               className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-colors ${
                 activeTab === "pacotes"
-                  ? "bg-[#1A6CB5] text-white"
-                  : "text-[#1A1A2E] hover:bg-gray-50"
+                  ? "bg-[#FF4D30] text-white"
+                  : "text-[#0F172A] hover:bg-gray-50"
               }`}
             >
               PACOTES
@@ -143,24 +143,24 @@ export function ConsultasPacotes() {
                 key={item.id}
                 className={`relative flex flex-col rounded-2xl border-2 bg-white p-6 transition-all hover:shadow-lg ${
                   item.popular
-                    ? "border-[#22C55E] shadow-md"
+                    ? "border-[#FF4D30] shadow-md"
                     : "border-gray-200 shadow-sm"
                 }`}
               >
                 <a
                   href={item.detailsLink}
-                  className="text-sm font-medium text-[#1A6CB5] hover:underline mb-3 inline-flex items-center gap-1"
+                  className="text-sm font-medium text-[#FF4D30] hover:underline mb-3 inline-flex items-center gap-1"
                 >
                   Ver mais detalhes <ChevronRight className="h-3 w-3" />
                 </a>
 
                 {item.popular && (
-                  <span className="inline-flex self-start items-center rounded-full bg-[#F0FDF4] px-3 py-1 text-xs font-medium text-[#22C55E] mb-2">
+                  <span className="inline-flex self-start items-center rounded-full bg-[#FFF5F3] px-3 py-1 text-xs font-medium text-[#FF4D30] mb-2">
                     Popular
                   </span>
                 )}
 
-                <h3 className="text-xl font-bold text-[#1A1A2E] mb-2">
+                <h3 className="text-xl font-bold text-[#0F172A] mb-2">
                   {item.name}
                 </h3>
                 <p className="text-sm text-[#64748B] mb-4 flex-1">
@@ -171,7 +171,7 @@ export function ConsultasPacotes() {
                   <p className="text-sm text-red-400 line-through">
                     de {formatCurrency(item.originalPrice)} por
                   </p>
-                  <p className="text-3xl font-bold text-[#22681A]">
+                  <p className="text-3xl font-bold text-[#0F172A]">
                     {formatCurrency(item.price)}
                     <span className="text-sm font-normal text-[#64748B] ml-1">
                       /consulta
@@ -189,7 +189,7 @@ export function ConsultasPacotes() {
                       price: item.price,
                     })
                   }
-                  className="w-full rounded-lg bg-[#1A6CB5] py-3 text-sm font-bold uppercase text-white transition-colors hover:bg-[#155A96]"
+                  className="w-full rounded-lg bg-[#FF4D30] py-3 text-sm font-bold uppercase text-white transition-colors hover:bg-[#E8432A]"
                 >
                   COMPRAR CONSULTA
                 </button>
@@ -206,17 +206,17 @@ export function ConsultasPacotes() {
                 key={item.id}
                 className={`relative flex flex-col rounded-2xl border-2 bg-white p-6 transition-all hover:shadow-lg ${
                   item.popular
-                    ? "border-[#22C55E] shadow-md"
+                    ? "border-[#FF4D30] shadow-md"
                     : "border-gray-200 shadow-sm"
                 }`}
               >
                 {item.popular && (
-                  <span className="inline-flex self-start items-center rounded-full bg-[#F0FDF4] px-3 py-1 text-xs font-medium text-[#22C55E] mb-3">
+                  <span className="inline-flex self-start items-center rounded-full bg-[#FFF5F3] px-3 py-1 text-xs font-medium text-[#FF4D30] mb-3">
                     Popular
                   </span>
                 )}
 
-                <h3 className="text-xl font-bold text-[#1A1A2E] mb-4">
+                <h3 className="text-xl font-bold text-[#0F172A] mb-4">
                   {item.name}
                 </h3>
 
@@ -226,7 +226,7 @@ export function ConsultasPacotes() {
                     {formatCurrency(item.originalPrice)}
                   </p>
                   <p className="text-sm text-gray-500">e pague</p>
-                  <p className="text-3xl font-bold text-[#22681A]">
+                  <p className="text-3xl font-bold text-[#0F172A]">
                     {formatCurrency(item.price)}
                   </p>
                 </div>
@@ -241,7 +241,7 @@ export function ConsultasPacotes() {
                       price: item.price,
                     })
                   }
-                  className="mt-auto w-full rounded-lg bg-[#1A6CB5] py-3 text-sm font-bold text-white transition-colors hover:bg-[#155A96]"
+                  className="mt-auto w-full rounded-lg bg-[#FF4D30] py-3 text-sm font-bold text-white transition-colors hover:bg-[#E8432A]"
                 >
                   Comprar pacote
                 </button>

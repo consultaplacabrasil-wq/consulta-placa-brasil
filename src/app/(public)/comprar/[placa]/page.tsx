@@ -170,7 +170,7 @@ export default function ComprarPage() {
           <Card>
             <CardContent className="p-6 md:p-8">
               <div className="text-center mb-6">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FFF0ED]">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FFF5F3]">
                   <QrCode className="h-8 w-8 text-[#FF4D30]" />
                 </div>
                 <h2 className="text-xl font-bold text-[#0F172A]">Pagamento via Pix</h2>
@@ -290,7 +290,7 @@ export default function ComprarPage() {
                     onClick={() => setSelectedReport(option.type)}
                     className={`w-full rounded-xl border-2 p-5 text-left transition-all ${
                       selectedReport === option.type
-                        ? "border-[#FF4D30] bg-[#FFF0ED] shadow-sm"
+                        ? "border-[#FF4D30] bg-[#FFF5F3] shadow-sm"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
@@ -306,7 +306,7 @@ export default function ComprarPage() {
                         <div className="mt-3 flex flex-wrap gap-2">
                           {REPORT_FEATURES[option.type].slice(0, 4).map((f) => (
                             <span key={f} className="inline-flex items-center gap-1 text-xs text-[#475569] bg-white rounded-full px-2 py-1 border border-gray-100">
-                              <CheckCircle className="h-3 w-3 text-[#22C55E]" />
+                              <CheckCircle className="h-3 w-3 text-[#FF4D30]" />
                               {f}
                             </span>
                           ))}
@@ -338,7 +338,7 @@ export default function ComprarPage() {
                     onClick={() => setPaymentMethod("pix")}
                     className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all ${
                       paymentMethod === "pix"
-                        ? "border-[#FF4D30] bg-[#FFF0ED]"
+                        ? "border-[#FF4D30] bg-[#FFF5F3]"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
@@ -348,14 +348,14 @@ export default function ComprarPage() {
                       <p className="text-xs text-[#475569]">Instantâneo</p>
                     </div>
                     {paymentMethod === "pix" && (
-                      <Badge className="ml-auto bg-[#22C55E] text-white text-[10px]">-5%</Badge>
+                      <Badge className="ml-auto bg-[#FF4D30] text-white text-[10px]">-5%</Badge>
                     )}
                   </button>
                   <button
                     onClick={() => setPaymentMethod("card")}
                     className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all ${
                       paymentMethod === "card"
-                        ? "border-[#FF4D30] bg-[#FFF0ED]"
+                        ? "border-[#FF4D30] bg-[#FFF5F3]"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
@@ -448,7 +448,7 @@ export default function ComprarPage() {
                   </Button>
                 </div>
                 {couponApplied && (
-                  <div className="flex items-center gap-2 text-sm text-[#22C55E]">
+                  <div className="flex items-center gap-2 text-sm text-[#FF4D30]">
                     <CheckCircle className="h-4 w-4" />
                     Cupom aplicado! 10% de desconto.
                   </div>
@@ -464,7 +464,7 @@ export default function ComprarPage() {
                 <CardTitle className="text-lg">Resumo do Pedido</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center gap-3 rounded-xl bg-[#FFF0ED] p-3">
+                <div className="flex items-center gap-3 rounded-xl bg-[#FFF5F3] p-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#FF4D30]">
                     <Car className="h-5 w-5 text-white" />
                   </div>
@@ -481,7 +481,7 @@ export default function ComprarPage() {
                   <ul className="space-y-1.5">
                     {REPORT_FEATURES[selectedReport].map((f) => (
                       <li key={f} className="flex items-start gap-2">
-                        <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#22C55E]" />
+                        <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#FF4D30]" />
                         <span className="text-xs text-[#475569]">{f}</span>
                       </li>
                     ))}
@@ -495,14 +495,14 @@ export default function ComprarPage() {
                   </div>
                   {couponApplied && (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-[#22C55E]">Desconto (10%)</span>
-                      <span className="text-[#22C55E]">-{formatCurrency(discount)}</span>
+                      <span className="text-[#FF4D30]">Desconto (10%)</span>
+                      <span className="text-[#FF4D30]">-{formatCurrency(discount)}</span>
                     </div>
                   )}
                   {paymentMethod === "pix" && (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-[#22C55E]">Desconto Pix (5%)</span>
-                      <span className="text-[#22C55E]">-{formatCurrency(total * 0.05)}</span>
+                      <span className="text-[#FF4D30]">Desconto Pix (5%)</span>
+                      <span className="text-[#FF4D30]">-{formatCurrency(total * 0.05)}</span>
                     </div>
                   )}
                   <div className="flex items-center justify-between pt-2 border-t border-[#E2E8F0]">

@@ -56,7 +56,7 @@ export function FaqSection() {
           <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
             Dúvidas Frequentes
           </span>
-          <h2 className="text-3xl font-bold text-[#1A1A2E]">
+          <h2 className="text-3xl font-bold text-[#0F172A]">
             Perguntas e Respostas
           </h2>
           <p className="mt-3 text-[#64748B]">
@@ -76,7 +76,7 @@ export function FaqSection() {
                 }
                 className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left"
               >
-                <h3 className="text-sm font-semibold text-[#1A1A2E] md:text-base">
+                <h3 className="text-sm font-semibold text-[#0F172A] md:text-base">
                   {faq.question}
                 </h3>
                 <ChevronDown

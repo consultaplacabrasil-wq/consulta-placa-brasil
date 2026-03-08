@@ -69,8 +69,8 @@ const recentPayments = [
 ];
 
 const typeColors: Record<string, string> = {
-  "Premium": "bg-[#EEF2FF] text-[#1A1A2E]",
-  "Completo": "bg-[#FFF0ED] text-[#FF4D30]",
+  "Premium": "bg-[#EEF2FF] text-[#0F172A]",
+  "Completo": "bg-[#FFF5F3] text-[#FF4D30]",
   "Básico": "bg-gray-100 text-gray-700",
 };
 
@@ -152,7 +152,7 @@ export default function PainelPage() {
               {recentConsultas.map((c) => (
                 <div key={c.plate} className="flex items-center justify-between rounded-xl bg-gray-50 p-3.5">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#FFF0ED]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#FFF5F3]">
                       <Car className="h-5 w-5 text-[#FF4D30]" />
                     </div>
                     <div>
@@ -225,7 +225,7 @@ export default function PainelPage() {
             <CardContent>
               <div className="grid gap-2">
                 <Link href="/consultas" className="group">
-                  <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF0ED]">
+                  <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF5F3]">
                     <div className="flex items-center gap-3">
                       <Search className="h-5 w-5 text-[#FF4D30]" />
                       <span className="text-sm font-medium text-[#0F172A]">Nova Consulta</span>
@@ -234,7 +234,7 @@ export default function PainelPage() {
                   </div>
                 </Link>
                 <Link href="/creditos" className="group">
-                  <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF0ED]">
+                  <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF5F3]">
                     <div className="flex items-center gap-3">
                       <Coins className="h-5 w-5 text-green-600" />
                       <span className="text-sm font-medium text-[#0F172A]">Comprar Créditos</span>
@@ -243,7 +243,7 @@ export default function PainelPage() {
                   </div>
                 </Link>
                 <Link href="/relatorios" className="group">
-                  <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF0ED]">
+                  <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF5F3]">
                     <div className="flex items-center gap-3">
                       <FileText className="h-5 w-5 text-orange-600" />
                       <span className="text-sm font-medium text-[#0F172A]">Meus Relatórios</span>

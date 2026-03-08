@@ -33,7 +33,7 @@ const sidebarLinks = [
 
 function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {
   return (
-    <div className="flex h-full flex-col bg-[#1A1A2E]">
+    <div className="flex h-full flex-col bg-[#0F172A]">
       <Link
         href="/admin"
         className="flex items-center gap-2.5 px-6 py-5 border-b border-white/10"
@@ -133,7 +133,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               </span>
             </button>
             <div className="flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-gray-100 cursor-pointer transition-colors">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1A1A2E] text-white text-sm font-semibold">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F172A] text-white text-sm font-semibold">
                 A
               </div>
               <div className="hidden sm:block">

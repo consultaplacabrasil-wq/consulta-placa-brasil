@@ -52,13 +52,13 @@ const steps = [
     icon: FileText,
     title: "Veja o preview",
     description: "Confira os dados básicos gratuitamente",
-    color: "bg-[#FF8C00]",
+    color: "bg-[#FF4D30]",
   },
   {
     icon: CreditCard,
     title: "Compre o relatório",
     description: "Escolha o tipo de relatório e pague com Pix ou cartão",
-    color: "bg-[#22C55E]",
+    color: "bg-[#FF4D30]",
   },
 ];
 
@@ -124,7 +124,7 @@ const reportTypes = [
     features: REPORT_FEATURES.premium,
     popular: false,
     cta: "Comprar Premium",
-    accent: "border-[#1A1A2E]",
+    accent: "border-[#0F172A]",
   },
 ];
 
@@ -153,10 +153,10 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#1A1A2E] px-4 py-20 md:py-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A2E] via-[#2D2D4E] to-[#1A1A2E]" />
+      <section className="relative overflow-hidden bg-[#0F172A] px-4 py-20 md:py-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A]" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF4D30]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#FF8C00]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#FF4D30]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
         <div className="relative mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -176,15 +176,15 @@ export default function HomePage() {
               </p>
               <div className="flex flex-wrap gap-6 text-sm text-gray-400">
                 <span className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-[#22C55E]" />
+                  <CheckCircle className="h-4 w-4 text-[#FF4D30]" />
                   Consulta básica grátis
                 </span>
                 <span className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-[#22C55E]" />
+                  <CheckCircle className="h-4 w-4 text-[#FF4D30]" />
                   Sem cadastro necessário
                 </span>
                 <span className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-[#22C55E]" />
+                  <CheckCircle className="h-4 w-4 text-[#FF4D30]" />
                   Dados atualizados
                 </span>
               </div>
@@ -204,11 +204,11 @@ export default function HomePage() {
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
             {stats.map((stat) => (
               <div key={stat.label} className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FFF0ED]">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FFF5F3]">
                   <stat.icon className="h-5 w-5 text-[#FF4D30]" />
                 </div>
                 <div>
-                  <p className="text-xl font-bold text-[#1A1A2E]">{stat.value}</p>
+                  <p className="text-xl font-bold text-[#0F172A]">{stat.value}</p>
                   <p className="text-xs text-[#94A3B8]">{stat.label}</p>
                 </div>
               </div>
@@ -221,13 +221,13 @@ export default function HomePage() {
       <ConsultasPacotes />
 
       {/* How it works */}
-      <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
+      <section className="bg-[#F8FAFC] px-4 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
               Simples e rápido
             </span>
-            <h2 className="text-3xl font-bold text-[#1A1A2E]">
+            <h2 className="text-3xl font-bold text-[#0F172A]">
               Como funciona
             </h2>
             <p className="mt-3 text-[#64748B] max-w-xl mx-auto">
@@ -246,7 +246,7 @@ export default function HomePage() {
                 <div className="mb-2 inline-flex items-center justify-center h-6 w-6 rounded-full bg-gray-100 text-xs font-bold text-[#64748B]">
                   {i + 1}
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-[#1A1A2E]">
+                <h3 className="mb-2 text-lg font-semibold text-[#0F172A]">
                   {step.title}
                 </h3>
                 <p className="text-sm text-[#64748B]">{step.description}</p>
@@ -263,7 +263,7 @@ export default function HomePage() {
             <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
               Planos e preços
             </span>
-            <h2 className="text-3xl font-bold text-[#1A1A2E]">
+            <h2 className="text-3xl font-bold text-[#0F172A]">
               Tipos de Relatório
             </h2>
             <p className="mt-3 text-[#64748B] max-w-xl mx-auto">
@@ -287,7 +287,7 @@ export default function HomePage() {
                   </div>
                 )}
                 <div className="text-center mb-6 pt-2">
-                  <h3 className="text-xl font-bold text-[#1A1A2E]">{report.title}</h3>
+                  <h3 className="text-xl font-bold text-[#0F172A]">{report.title}</h3>
                   <p className="text-sm text-[#64748B] mt-1">{report.description}</p>
                   <p className="mt-4 text-4xl font-bold text-[#FF4D30]">
                     {report.price}
@@ -296,7 +296,7 @@ export default function HomePage() {
                 <ul className="space-y-3 mb-6">
                   {report.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5">
-                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#22C55E]" />
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#FF4D30]" />
                       <span className="text-sm text-[#475569]">{feature}</span>
                     </li>
                   ))}
@@ -306,7 +306,7 @@ export default function HomePage() {
                     className={`w-full h-11 font-semibold rounded-xl ${
                       report.popular
                         ? "bg-[#FF4D30] hover:bg-[#E8432A] text-white shadow-md shadow-[#FF4D30]/20"
-                        : "bg-[#1A1A2E] hover:bg-[#2D2D4E] text-white"
+                        : "bg-[#0F172A] hover:bg-[#1E293B] text-white"
                     }`}
                   >
                     {report.cta}
@@ -320,13 +320,13 @@ export default function HomePage() {
       </section>
 
       {/* Benefits */}
-      <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
+      <section className="bg-[#F8FAFC] px-4 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
               Vantagens
             </span>
-            <h2 className="text-3xl font-bold text-[#1A1A2E]">
+            <h2 className="text-3xl font-bold text-[#0F172A]">
               Por que escolher o Consulta Placa Brasil?
             </h2>
             <p className="mt-3 text-[#64748B] max-w-xl mx-auto">
@@ -337,11 +337,11 @@ export default function HomePage() {
             {benefits.map((benefit) => (
               <Card key={benefit.title} className="border-0 shadow-sm rounded-xl hover:shadow-md transition-shadow">
                 <CardContent className="flex gap-4 p-5">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#FFF0ED]">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#FFF5F3]">
                     <benefit.icon className="h-6 w-6 text-[#FF4D30]" />
                   </div>
                   <div>
-                    <h3 className="mb-1 font-semibold text-[#1A1A2E]">
+                    <h3 className="mb-1 font-semibold text-[#0F172A]">
                       {benefit.title}
                     </h3>
                     <p className="text-sm text-[#64748B]">
@@ -362,7 +362,7 @@ export default function HomePage() {
             <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
               Depoimentos
             </span>
-            <h2 className="text-3xl font-bold text-[#1A1A2E]">
+            <h2 className="text-3xl font-bold text-[#0F172A]">
               O que nossos clientes dizem
             </h2>
           </div>
@@ -374,7 +374,7 @@ export default function HomePage() {
                     {Array.from({ length: testimonial.rating }).map((_, i) => (
                       <Star
                         key={i}
-                        className="h-4 w-4 fill-[#FF8C00] text-[#FF8C00]"
+                        className="h-4 w-4 fill-[#FF4D30] text-[#FF4D30]"
                       />
                     ))}
                   </div>
@@ -382,7 +382,7 @@ export default function HomePage() {
                     &ldquo;{testimonial.text}&rdquo;
                   </p>
                   <div>
-                    <p className="text-sm font-semibold text-[#1A1A2E]">
+                    <p className="text-sm font-semibold text-[#0F172A]">
                       {testimonial.name}
                     </p>
                     <p className="text-xs text-[#94A3B8]">{testimonial.role}</p>

@@ -32,8 +32,8 @@ const statusMap: Record<string, { label: string; class: string }> = {
 
 const typeMap: Record<string, string> = {
   "Básico": "bg-gray-100 text-gray-700",
-  "Completo": "bg-[#FFF0ED] text-[#FF4D30]",
-  "Premium": "bg-[#EEF2FF] text-[#1A1A2E]",
+  "Completo": "bg-[#FFF5F3] text-[#FF4D30]",
+  "Premium": "bg-[#EEF2FF] text-[#0F172A]",
 };
 
 export default function AdminConsultasPage() {

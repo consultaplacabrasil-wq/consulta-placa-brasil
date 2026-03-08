@@ -23,7 +23,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-[#1A1A2E] text-white">
+    <footer className="bg-[#0F172A] text-white">
       <div className="mx-auto max-w-6xl px-4 py-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}

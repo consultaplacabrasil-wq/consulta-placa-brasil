@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APIs de Consulta de Placa Veicular - Brasil</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1a1a2e; line-height: 1.6; padding: 40px; max-width: 1100px; margin: 0 auto; background: #fff; }
+    h1 { font-size: 28px; color: #1a1a2e; border-bottom: 3px solid #FF4D30; padding-bottom: 10px; margin-bottom: 30px; }
+    h2 { font-size: 22px; color: #FF4D30; margin-top: 40px; margin-bottom: 15px; border-left: 4px solid #FF4D30; padding-left: 12px; }
+    h3 { font-size: 18px; color: #1a1a2e; margin-top: 25px; margin-bottom: 10px; }
+    h4 { font-size: 15px; color: #475569; margin-top: 15px; margin-bottom: 8px; }
+    p { margin-bottom: 10px; color: #334155; }
+    ul { margin-left: 20px; margin-bottom: 15px; }
+    li { margin-bottom: 6px; color: #334155; }
+    strong { color: #1a1a2e; }
+    a { color: #FF4D30; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0 25px 0; font-size: 14px; }
+    th { background: #1a1a2e; color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; }
+    td { padding: 9px 12px; border-bottom: 1px solid #e2e8f0; }
+    tr:nth-child(even) { background: #f8fafc; }
+    tr:hover { background: #fff0ed; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-yellow { background: #fef9c3; color: #854d0e; }
+    .badge-purple { background: #f3e8ff; color: #6b21a8; }
+    .card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px; background: #fff; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .card-title { font-size: 18px; font-weight: 700; color: #1a1a2e; }
+    .highlight { background: #fff0ed; border: 1px solid #FF4D30; border-radius: 8px; padding: 15px; margin: 15px 0; }
+    .section-divider { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
+    .recommendation { background: linear-gradient(135deg, #1a1a2e, #2d2d4e); color: #fff; border-radius: 12px; padding: 25px; margin: 25px 0; }
+    .recommendation h3 { color: #FF4D30; }
+    .recommendation p, .recommendation li { color: #e2e8f0; }
+    .recommendation strong { color: #fff; }
+    .tag { display: inline-block; background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-size: 12px; color: #475569; margin-right: 4px; }
+    .price { font-size: 20px; font-weight: 700; color: #FF4D30; }
+    .subtitle { font-size: 16px; color: #64748b; margin-bottom: 30px; }
+    @media print { body { padding: 20px; } }
+  </style>
+</head>
+<body>
+
+  <h1>APIs de Consulta de Placa Veicular - Brasil</h1>
+  <p class="subtitle">Documento de pesquisa - Mapeamento completo de provedores de APIs para consulta veicular no mercado brasileiro. Atualizado em Março/2026.</p>
+
+  <!-- ============================================ -->
+  <!-- ANALISE DOS CONCORRENTES -->
+  <!-- ============================================ -->
+
+  <h2>1. Analise dos Concorrentes - De onde vem os dados</h2>
+
+  <h3>1.1 Olho no Carro (olhonocarro.com.br)</h3>
+  <p><strong>Modelo:</strong> Agregador via empresas parceiras privadas (nao acessa governo diretamente)</p>
+  <table>
+    <tr><th>Fonte de Dados</th><th>O que fornece</th></tr>
+    <tr><td><strong>SENATRAN</strong></td><td>Dados cadastrais nacionais do veiculo</td></tr>
+    <tr><td><strong>DETRAN</strong> (estaduais)</td><td>Modificacoes, cor, motor, chassi</td></tr>
+    <tr><td><strong>RENAJUD</strong></td><td>Restricoes/bloqueios judiciais</td></tr>
+    <tr><td><strong>Tabela FIPE</strong></td><td>Precificacao e valorizacao</td></tr>
+    <tr><td><strong>Hexagon Automotive</strong></td><td>Fotos de veiculos, dados agregados (parceiro principal - identificado via buckets S3 na AWS)</td></tr>
+    <tr><td><strong>Parceiros de leilao</strong></td><td>Historico de leilao com vistorias em patios</td></tr>
+  </table>
+  <p><strong>Tech Stack:</strong> Next.js (React SSR), MongoDB, AWS S3 (sa-east-1), New Relic</p>
+  <p><strong>Obs:</strong> Debitos disponiveis apenas para 10 estados: BA, ES, GO, MA, MS, MG, PR, RS, RO, SP</p>
+
+  <h3>1.2 Zapay (usezapay.com.br)</h3>
+  <p><strong>Modelo:</strong> Intermediario credenciado pelo governo (fintech autorizada)</p>
+  <table>
+    <tr><th>Fonte de Dados</th><th>O que fornece</th><th>Credencial</th></tr>
+    <tr><td><strong>SENATRAN</strong></td><td>Dados nacionais do veiculo</td><td>Portaria N. 62/2023</td></tr>
+    <tr><td><strong>DENATRAN</strong></td><td>Registro nacional</td><td>Portaria N. 750/2018</td></tr>
+    <tr><td><strong>DETRAN</strong> (27 estados)</td><td>Dados estaduais, debitos, licenciamento</td><td>-</td></tr>
+    <tr><td><strong>SEFAZ</strong> (Sec. Fazenda)</td><td>IPVA (imposto veicular)</td><td>-</td></tr>
+    <tr><td><strong>RENAINF</strong></td><td>Multas de transito interestaduais</td><td>-</td></tr>
+    <tr><td><strong>DNIT</strong></td><td>Multas de rodovias federais</td><td>-</td></tr>
+    <tr><td><strong>PRF</strong></td><td>Multas da Policia Rodoviaria Federal</td><td>-</td></tr>
+    <tr><td><strong>DER</strong></td><td>Multas de rodovias estaduais</td><td>-</td></tr>
+    <tr><td><strong>FIPE</strong></td><td>Tabela de valorizacao (subdominio: fipe.usezapay.com.br)</td><td>-</td></tr>
+  </table>
+  <p><strong>Tech Stack:</strong> Next.js, Tailwind CSS, Strapi CMS, Banco Rendimento (pagamentos)</p>
+  <p><strong>Destaque:</strong> Tem autorizacao oficial do SENATRAN para acessar diretamente as bases governamentais.</p>
+
+  <h3>1.3 AnyCar (anycar.com.br)</h3>
+  <p><strong>Modelo:</strong> Agregador de fontes publicas e privadas</p>
+  <table>
+    <tr><th>Fonte de Dados</th><th>O que fornece</th></tr>
+    <tr><td><strong>SENATRAN</strong></td><td>Dados nacionais do veiculo</td></tr>
+    <tr><td><strong>DETRAN</strong> (estaduais)</td><td>Dados estaduais, restricoes</td></tr>
+    <tr><td><strong>Receita Federal</strong></td><td>Dados fiscais/tributarios</td></tr>
+    <tr><td><strong>Parceiros privados</strong></td><td>Sinistro, leilao, roubo/furto (nao nomeados)</td></tr>
+    <tr><td><strong>FIPE</strong></td><td>Valorizacao (calculadora de IPVA)</td></tr>
+  </table>
+  <p><strong>Tech Stack:</strong> Next.js 13+ com Server Components, AWS/Google Cloud</p>
+  <p><strong>Numeros:</strong> 5.2M+ consultas, 1.641 empresas parceiras, 1.223 afiliados</p>
+
+  <h3>1.4 Tabela Comparativa - Fontes de Dados dos Concorrentes</h3>
+  <table>
+    <tr><th>Base de Dados</th><th>Olho no Carro</th><th>Zapay</th><th>AnyCar</th></tr>
+    <tr><td>SENATRAN/DENATRAN</td><td>via parceiros</td><td><span class="badge badge-green">acesso direto</span></td><td>via parceiros</td></tr>
+    <tr><td>DETRAN (27 estados)</td><td>via parceiros</td><td><span class="badge badge-green">acesso direto</span></td><td>via parceiros</td></tr>
+    <tr><td>SEFAZ (IPVA)</td><td>-</td><td><span class="badge badge-green">acesso direto</span></td><td>-</td></tr>
+    <tr><td>RENAINF (multas)</td><td>-</td><td><span class="badge badge-green">acesso direto</span></td><td>-</td></tr>
+    <tr><td>RENAJUD (judicial)</td><td>via parceiros</td><td>-</td><td>-</td></tr>
+    <tr><td>Receita Federal</td><td>-</td><td>-</td><td>via parceiros</td></tr>
+    <tr><td>PRF / DNIT / DER</td><td>-</td><td><span class="badge badge-green">acesso direto</span></td><td>-</td></tr>
+    <tr><td>Tabela FIPE</td><td>Sim</td><td>Sim</td><td>Sim</td></tr>
+    <tr><td>Hexagon Automotive</td><td>Sim (principal)</td><td>-</td><td>-</td></tr>
+    <tr><td>Parceiros privados</td><td>Sim</td><td>-</td><td>Sim</td></tr>
+  </table>
+
+  <hr class="section-divider">
+
+  <!-- ============================================ -->
+  <!-- APIS DISPONIVEIS -->
+  <!-- ============================================ -->
+
+  <h2>2. APIs Disponiveis no Mercado Brasileiro</h2>
+
+  <h3>2.1 Top 3 Recomendadas</h3>
+  <table>
+    <tr><th></th><th>API Brasil</th><th>Consultar Placa</th><th>FIPE API</th></tr>
+    <tr><td><strong>Melhor para</strong></td><td>Desenvolvimento/teste</td><td>Producao (dados completos)</td><td>FIPE + dados basicos</td></tr>
+    <tr><td><strong>Free tier</strong></td><td><span class="badge badge-green">100 consultas/dia</span></td><td><span class="badge badge-red">Nao</span></td><td><span class="badge badge-red">Nao</span></td></tr>
+    <tr><td><strong>Custo</strong></td><td>Gratis a pago</td><td>R$ 0,12 a R$ 16,90/consulta</td><td>R$ 0,008 a R$ 0,65/consulta</td></tr>
+    <tr><td><strong>Formato</strong></td><td>JSON</td><td>JSON + PDF</td><td>JSON</td></tr>
+    <tr><td><strong>SDK Node.js</strong></td><td><span class="badge badge-green">Sim</span></td><td><span class="badge badge-red">Nao</span></td><td><span class="badge badge-red">Nao</span></td></tr>
+    <tr><td><strong>Endpoint</strong></td><td>POST gateway.apibrasil.io/api/v2/vehicles/dados</td><td>docs.consultarplaca.com.br</td><td>GET placas.fipeapi.com.br/placas/{placa}</td></tr>
+  </table>
+
+  <hr class="section-divider">
+
+  <!-- API 1 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.2 API Brasil</span>
+      <span class="badge badge-green">FREE TIER</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://www.apibrasil.com.br">apibrasil.com.br</a> | Dashboard: <a href="https://app.apibrasil.io">app.apibrasil.io</a></p>
+    <h4>Dados fornecidos:</h4>
+    <ul>
+      <li>Marca, modelo, versao, ano, chassi, combustivel, preco FIPE</li>
+      <li>Cobertura: ~92% da frota nacional</li>
+    </ul>
+    <h4>Precos:</h4>
+    <ul>
+      <li><strong>Gratis:</strong> 100 consultas/dia (renovacao automatica)</li>
+      <li>Planos premium para maior volume (contato)</li>
+    </ul>
+    <h4>Como acessar:</h4>
+    <ol>
+      <li>Cadastro em app.apibrasil.io</li>
+      <li>Ir em "Minhas APIs" > "API Placa Dados"</li>
+      <li>Copiar DeviceToken e BearerToken</li>
+    </ol>
+    <h4>Endpoint:</h4>
+    <p><code>POST https://gateway.apibrasil.io/api/v2/vehicles/dados</code></p>
+    <h4>SDK Node.js:</h4>
+    <p><code>npm i apigratis-sdk-nodejs</code></p>
+    <h4>Documentacao:</h4>
+    <p><a href="https://sinesp-v3.apibrasil.com.br/">sinesp-v3.apibrasil.com.br</a> | <a href="https://apibrasil.blog/">apibrasil.blog</a></p>
+    <p><strong>Limitacao:</strong> Placas recem-emitidas e veiculos militares podem nao ter dados.</p>
+  </div>
+
+  <!-- API 2 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.3 Consultar Placa</span>
+      <span class="badge badge-purple">MAIS COMPLETA</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://docs.consultarplaca.com.br/">docs.consultarplaca.com.br</a></p>
+    <h4>Dados fornecidos (o mais completo do mercado):</h4>
+    <ul>
+      <li>Base estadual (DETRANS) - registro e restricoes</li>
+      <li>Infracoes nacionais (RENAINF)</li>
+      <li>Historico de roubo/furto</li>
+      <li>Historico de leilao</li>
+      <li>Sinistro / perda total</li>
+      <li>Restricoes federais (DENATRAN) - financeiras e judiciais</li>
+      <li>Tabela FIPE</li>
+      <li>Historico de recall</li>
+      <li>Geracao de relatorio em PDF</li>
+    </ul>
+    <h4>Tabela de precos (por consulta, com 20% desconto em pacotes):</h4>
+    <table>
+      <tr><th>Tipo de Consulta</th><th>1-1.000/mes</th><th>1.001-5.000/mes</th><th>5.001-10.000/mes</th><th>10.001-20.000/mes</th></tr>
+      <tr><td>Dados basicos do veiculo</td><td>R$ 0,31</td><td>R$ 0,25</td><td>R$ 0,18</td><td>R$ 0,12</td></tr>
+      <tr><td>FIPE</td><td>R$ 0,99</td><td>R$ 0,80</td><td>R$ 0,68</td><td>R$ 0,56</td></tr>
+      <tr><td>RENAINF (multas)</td><td>R$ 4,50</td><td>R$ 3,80</td><td>R$ 3,40</td><td>R$ 3,04</td></tr>
+      <tr><td>Proprietario atual</td><td>R$ 6,90</td><td>R$ 5,90</td><td>R$ 5,30</td><td>R$ 4,88</td></tr>
+      <tr><td>Sinistro/leilao/roubo</td><td>R$ 16,90</td><td>R$ 12,00</td><td>R$ 8,00</td><td>R$ 4,60</td></tr>
+    </table>
+    <p>Acima de 20.000 consultas/mes: preco customizado via WhatsApp/email.</p>
+    <h4>Formato:</h4>
+    <p>JSON + PDF</p>
+  </div>
+
+  <!-- API 3 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.4 FIPE API</span>
+      <span class="badge badge-blue">MELHOR CUSTO FIPE</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://fipeapi.com.br/">fipeapi.com.br</a></p>
+    <h4>Dados fornecidos:</h4>
+    <ul>
+      <li>Dados cadastrais (placa, chassi, motor)</li>
+      <li>Especificacoes tecnicas (combustivel, cilindrada, potencia, cambio)</li>
+      <li>Atributos fisicos (cor, carroceria, assentos)</li>
+      <li>Preco FIPE com codigos do modelo</li>
+      <li>Localizacao (estado, municipio)</li>
+    </ul>
+    <h4>Planos mensais:</h4>
+    <table>
+      <tr><th>Plano</th><th>Consultas/mes</th><th>Sites</th><th>Preco/mes</th></tr>
+      <tr><td>Standard</td><td>250</td><td>1</td><td>R$ 162,25</td></tr>
+      <tr><td>Master</td><td>500</td><td>1</td><td>R$ 312,27</td></tr>
+      <tr><td>Classic</td><td>1.000</td><td>1</td><td>R$ 590,00</td></tr>
+      <tr><td>Mega</td><td>2.000</td><td>3</td><td>R$ 1.085,60</td></tr>
+      <tr><td>Business</td><td>5.000</td><td>5</td><td>R$ 2.358,82</td></tr>
+      <tr><td>Custom (3.001+)</td><td>-</td><td>-</td><td>R$ 0,07/consulta</td></tr>
+      <tr><td>Custom (1.000.001+)</td><td>-</td><td>-</td><td>R$ 0,008/consulta</td></tr>
+    </table>
+    <h4>Endpoint:</h4>
+    <p><code>GET https://placas.fipeapi.com.br/placas/{placa}?key={apikey}</code></p>
+    <h4>Documentacao:</h4>
+    <p><a href="https://fipeapi.com.br/documentacao-placa.php">fipeapi.com.br/documentacao-placa.php</a></p>
+  </div>
+
+  <!-- API 4 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.5 API Placas</span>
+      <span class="badge badge-yellow">300M+ REGISTROS</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://apiplacas.com.br/">apiplacas.com.br</a></p>
+    <h4>Dados fornecidos:</h4>
+    <ul>
+      <li>Marca, modelo, ano, UF, municipio, cor, situacao</li>
+      <li>Base com 300+ milhoes de registros</li>
+    </ul>
+    <h4>Precos:</h4>
+    <p>Nao listados publicamente. Requer criacao de conta e contato via WhatsApp (horario comercial 9h-18h).</p>
+    <h4>Endpoint:</h4>
+    <p>GET com parametros placa + token. Formato de placa: AAA0X00 ou AAA9999</p>
+    <h4>Documentacao:</h4>
+    <p><a href="https://apiplacas.com.br/doc.php">apiplacas.com.br/doc.php</a></p>
+  </div>
+
+  <!-- API 5 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.6 Placas.app.br</span>
+      <span class="badge badge-green">FREE TIER</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://www.placas.app.br/">placas.app.br</a></p>
+    <h4>Dados fornecidos:</h4>
+    <p>Consulta por placa + dados FIPE</p>
+    <h4>Precos:</h4>
+    <table>
+      <tr><th>Plano</th><th>Consultas Placa</th><th>Consultas FIPE</th><th>Preco/mes</th></tr>
+      <tr><td>Gratis</td><td>50</td><td>50</td><td>R$ 0</td></tr>
+      <tr><td>Essencial</td><td>2.500</td><td>20.000</td><td>R$ 499</td></tr>
+      <tr><td>Profissional</td><td>10.000</td><td>60.000</td><td>R$ 999</td></tr>
+    </table>
+  </div>
+
+  <!-- API 6 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.7 PlacaAPI.com</span>
+      <span class="badge badge-green">10 GRATIS</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://www.placaapi.com/">placaapi.com</a></p>
+    <h4>Dados fornecidos:</h4>
+    <p>20+ campos de dados. Consulta em tempo real as bases governamentais.</p>
+    <h4>Precos:</h4>
+    <ul>
+      <li>R$ 0,80 por consulta (compra minima: 100 consultas)</li>
+      <li>10% desconto para 1.000+ consultas</li>
+      <li>10 consultas gratis no cadastro</li>
+    </ul>
+    <h4>Formatos:</h4>
+    <p>XML e JSON</p>
+    <h4>Documentacao:</h4>
+    <p>PDF disponivel em /data/doc.aspx</p>
+    <p><strong>Compatibilidade:</strong> C#, VB.NET, PHP (NuSOAP), Python, Ruby, Java</p>
+  </div>
+
+  <!-- API 7 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.8 API Full</span>
+      <span class="badge badge-blue">PAY-AS-YOU-GO</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://apifull.com.br/consultas/">apifull.com.br</a></p>
+    <h4>Dados fornecidos:</h4>
+    <ul>
+      <li>Historico de leilao</li>
+      <li>Sinistros</li>
+      <li>Roubo/furto</li>
+      <li>Multas</li>
+      <li>Gravames (alienacao fiduciaria)</li>
+      <li>Historico completo do veiculo</li>
+    </ul>
+    <h4>Precos:</h4>
+    <ul>
+      <li>Sem franquia minima</li>
+      <li>Pre-pago com creditos</li>
+      <li>Recarga minima: R$ 5,00</li>
+    </ul>
+    <h4>Documentacao:</h4>
+    <p><a href="https://doc.apifull.com.br/">doc.apifull.com.br</a> + Colecao Postman disponivel</p>
+  </div>
+
+  <!-- API 8 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.9 Infosimples</span>
+      <span class="badge badge-yellow">R$100 CREDITO INICIAL</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://infosimples.com/">infosimples.com</a></p>
+    <h4>Dados fornecidos:</h4>
+    <ul>
+      <li>Consultas SENATRAN</li>
+      <li>CRLV digital</li>
+      <li>Infracoes de transito</li>
+      <li>Restricoes (DETRAN)</li>
+      <li>Dados do proprietario</li>
+      <li>200+ tipos de API disponiveis na plataforma</li>
+    </ul>
+    <h4>Precos (creditos pre-pagos):</h4>
+    <table>
+      <tr><th>Volume mensal</th><th>Preco por consulta</th></tr>
+      <tr><td>1 - 500</td><td>R$ 0,20</td></tr>
+      <tr><td>501 - 5.000</td><td>R$ 0,15</td></tr>
+      <tr><td>5.001 - 20.000</td><td>R$ 0,10</td></tr>
+      <tr><td>20.001 - 100.000</td><td>R$ 0,07</td></tr>
+      <tr><td>100.001+</td><td>R$ 0,05</td></tr>
+    </table>
+    <ul>
+      <li>Credito de boas-vindas: R$ 100</li>
+      <li>Cobranca minima mensal: R$ 100</li>
+      <li>Saldo expira apos 12 meses sem recarga</li>
+    </ul>
+    <h4>Documentacao:</h4>
+    <p><a href="https://infosimples.com/consultas/">infosimples.com/consultas</a></p>
+  </div>
+
+  <!-- API 9 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.10 Credify APIs</span>
+      <span class="badge badge-purple">DADOS DO PROPRIETARIO</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://credifyapis.readme.io/">credifyapis.readme.io</a></p>
+    <h4>Dados fornecidos:</h4>
+    <ul>
+      <li>Dados completos do veiculo (chassi, RENAVAM, modelo, especificacoes)</li>
+      <li><strong>Dados completos do proprietario:</strong> nome, CPF/CNPJ, data nascimento, filiacao, endereco, telefones, e-mail</li>
+    </ul>
+    <h4>Endpoint:</h4>
+    <p><code>POST https://api.credify.com.br/veiculoproprietarioplaca</code></p>
+    <h4>Precos:</h4>
+    <p>Nao listados publicamente. Requer conta.</p>
+    <h4>Documentacao:</h4>
+    <p><a href="https://credifyapis.readme.io/reference/post_veiculoproprietarioplaca">credifyapis.readme.io/reference</a></p>
+  </div>
+
+  <!-- API 10 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.11 Checktudo</span>
+      <span class="badge badge-blue">B2B</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://www.checktudo.com.br/solucoes/consulta-veicular">checktudo.com.br</a></p>
+    <h4>Dados fornecidos:</h4>
+    <p>100+ pontos de dados: leilao, roubo, sinistro, restricoes, multas, acidentes, FIPE</p>
+    <h4>Planos mensais:</h4>
+    <table>
+      <tr><th>Plano</th><th>Preco/mes</th><th>Inclui</th></tr>
+      <tr><td>Check Basico</td><td>R$ 99</td><td>Consultas individuais a partir de R$ 15</td></tr>
+      <tr><td>Check Pro</td><td>R$ 299</td><td>Mais popular</td></tr>
+      <tr><td>Check Premium</td><td>R$ 599</td><td>Completo</td></tr>
+    </table>
+    <p>Servicos adicionais: CRLV R$ 14,99/placa | ATPV-e R$ 29,90/placa</p>
+    <p><strong>Diferenciais:</strong> Dashboard, treinamento, gerente de conta dedicado</p>
+  </div>
+
+  <!-- API 11 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.12 SERPRO / WSDenatran (API Oficial do Governo)</span>
+      <span class="badge badge-green">FONTE OFICIAL</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://www.gov.br/conecta/catalogo/apis/wsdenatran">gov.br/conecta/catalogo/apis/wsdenatran</a> | <a href="https://loja.serpro.gov.br/consultasenatran">loja.serpro.gov.br</a></p>
+    <h4>Dados fornecidos:</h4>
+    <ul>
+      <li><strong>52 tipos de consulta</strong> em 3 categorias:</li>
+      <li>Veiculos (RENAVAM): registro, roubo, restricoes judiciais, recall, proprietario</li>
+      <li>Infracoes (RENAINF): multas, status de pagamento</li>
+      <li>Condutores (RENACH): dados da CNH, restricoes</li>
+    </ul>
+    <h4>Como acessar:</h4>
+    <ol>
+      <li>Obter autorizacao do DENATRAN</li>
+      <li>Contratar servicos via SERPRO</li>
+      <li>Requer certificado digital (CNPJ)</li>
+      <li>Empresas privadas podem acessar via Portaria DENATRAN 15/2016</li>
+    </ol>
+    <h4>Precos:</h4>
+    <p>Tabelados por volume (Portaria Senatran 215/2018). Ambiente de homologacao gratuito.</p>
+    <h4>Documentacao:</h4>
+    <p><a href="https://centraldeajuda.serpro.gov.br/consultasenatran/documentacao/">centraldeajuda.serpro.gov.br/consultasenatran/documentacao</a></p>
+    <p><strong>Confiabilidade:</strong> A MAIS ALTA - fonte oficial do governo. Disponibilidade 24/7. Criptografia SSL. Processo burocratico para obter acesso.</p>
+  </div>
+
+  <!-- API 12 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.13 AutoData API</span>
+      <span class="badge badge-green">GRATIS (BETA)</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://www.apiautodata.com.br/">apiautodata.com.br</a></p>
+    <h4>Dados fornecidos:</h4>
+    <ul>
+      <li>Dados INMETRO: especificacoes do motor, combustivel, consumo (urbano/estrada), emissoes CO2, autonomia eletrica</li>
+      <li><strong>NAO e consulta por placa</strong> - e dado tecnico complementar</li>
+    </ul>
+    <h4>Precos:</h4>
+    <ul>
+      <li>Gratis: 300-1.000 consultas/mes</li>
+      <li>Sem cartao de credito necessario</li>
+      <li>Em fase Beta</li>
+    </ul>
+    <h4>Documentacao:</h4>
+    <p>Swagger em api.apiautodata.com.br/swagger-ui/index.html</p>
+  </div>
+
+  <!-- API 13 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">2.14 CarsXE (Internacional)</span>
+      <span class="badge badge-yellow">USD</span>
+    </div>
+    <p><strong>URL:</strong> <a href="https://api.carsxe.com/brazilian-vehicle-plate-decoder">api.carsxe.com</a></p>
+    <h4>Dados fornecidos:</h4>
+    <p>Marca, modelo, ano, VIN, combustivel, motor, cambio. Cobre 50+ paises incluindo Brasil.</p>
+    <h4>Precos:</h4>
+    <ul>
+      <li>$99 USD/mes + custo por chamada de API</li>
+      <li>Trial 7 dias gratis (sem cartao)</li>
+      <li>Faturamento anual: 1 mes gratis</li>
+    </ul>
+    <h4>Documentacao:</h4>
+    <p><a href="https://api.carsxe.com/docs/">api.carsxe.com/docs</a></p>
+  </div>
+
+  <!-- API 14 - NAO RECOMENDADA -->
+  <div class="card" style="border-color: #fee2e2; background: #fef2f2;">
+    <div class="card-header">
+      <span class="card-title">2.15 SINESP Cidadao (Nao-oficial)</span>
+      <span class="badge badge-red">NAO RECOMENDADO</span>
+    </div>
+    <p><strong>Pacotes:</strong></p>
+    <ul>
+      <li>Node.js: <code>npm: sinesp-api</code> (GitHub: Sorackb/sinesp-api)</li>
+      <li>Python: <code>pip: sinesp-client</code> (GitHub: victor-torres/sinesp-client)</li>
+      <li>PHP: <code>composer: chapeupreto/sinesp</code></li>
+    </ul>
+    <h4>Dados fornecidos:</h4>
+    <p>Modelo, marca, cor, ano, status, UF, municipio</p>
+    <h4>Preco:</h4>
+    <p>Gratis (open source)</p>
+    <div class="highlight" style="background: #fee2e2; border-color: #ef4444;">
+      <p><strong>POR QUE NAO USAR:</strong></p>
+      <ul>
+        <li>Ultima atualizacao em 2020/2021</li>
+        <li>Wrappers nao-oficiais que fazem engenharia reversa do app SINESP</li>
+        <li>Quebram frequentemente quando o governo muda os endpoints</li>
+        <li>Nao recomendado para uso em producao</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ============================================ -->
+  <!-- TABELA COMPARATIVA GERAL -->
+  <!-- ============================================ -->
+
+  <h2>3. Tabela Comparativa Geral</h2>
+
+  <table>
+    <tr>
+      <th>Provedor</th>
+      <th>Free Tier</th>
+      <th>Faixa de Preco</th>
+      <th>Melhor Para</th>
+    </tr>
+    <tr>
+      <td><strong>API Brasil</strong></td>
+      <td><span class="badge badge-green">100/dia</span></td>
+      <td>Gratis a pago</td>
+      <td>Prototipagem, projetos pequenos</td>
+    </tr>
+    <tr>
+      <td><strong>Consultar Placa</strong></td>
+      <td><span class="badge badge-red">Nao</span></td>
+      <td>R$ 0,12 - R$ 16,90/consulta</td>
+      <td>Dados mais completos, producao</td>
+    </tr>
+    <tr>
+      <td><strong>FIPE API</strong></td>
+      <td><span class="badge badge-red">Nao</span></td>
+      <td>R$ 0,008 - R$ 0,65/consulta</td>
+      <td>FIPE + especificacoes</td>
+    </tr>
+    <tr>
+      <td><strong>PlacaAPI.com</strong></td>
+      <td><span class="badge badge-green">10 consultas</span></td>
+      <td>R$ 0,80/consulta</td>
+      <td>Integracao rapida, multi-formato</td>
+    </tr>
+    <tr>
+      <td><strong>Placas.app.br</strong></td>
+      <td><span class="badge badge-green">50 consultas</span></td>
+      <td>R$ 499 - R$ 999/mes</td>
+      <td>Medio volume</td>
+    </tr>
+    <tr>
+      <td><strong>API Placas</strong></td>
+      <td><span class="badge badge-yellow">Contato</span></td>
+      <td>Sob consulta</td>
+      <td>Base grande (300M+)</td>
+    </tr>
+    <tr>
+      <td><strong>Infosimples</strong></td>
+      <td><span class="badge badge-green">R$ 100 credito</span></td>
+      <td>R$ 0,05 - R$ 0,20/consulta</td>
+      <td>Plataforma multi-proposito</td>
+    </tr>
+    <tr>
+      <td><strong>API Full</strong></td>
+      <td><span class="badge badge-red">Nao</span></td>
+      <td>R$ 5 recarga minima</td>
+      <td>Pay-as-you-go</td>
+    </tr>
+    <tr>
+      <td><strong>SERPRO/WSDenatran</strong></td>
+      <td><span class="badge badge-green">Homolog</span></td>
+      <td>Tabelado por volume</td>
+      <td>Dados oficiais, enterprise</td>
+    </tr>
+    <tr>
+      <td><strong>Credify</strong></td>
+      <td><span class="badge badge-red">Nao</span></td>
+      <td>Sob consulta</td>
+      <td>Dados do proprietario</td>
+    </tr>
+    <tr>
+      <td><strong>Checktudo</strong></td>
+      <td><span class="badge badge-red">Nao</span></td>
+      <td>R$ 99 - R$ 599/mes</td>
+      <td>B2B com dashboard</td>
+    </tr>
+    <tr>
+      <td><strong>CarsXE</strong></td>
+      <td><span class="badge badge-green">7 dias trial</span></td>
+      <td>$99 USD/mes</td>
+      <td>Internacional, docs em ingles</td>
+    </tr>
+    <tr>
+      <td><strong>AutoData</strong></td>
+      <td><span class="badge badge-green">300-1000/mes</span></td>
+      <td>Gratis (Beta)</td>
+      <td>Dados tecnicos complementares</td>
+    </tr>
+    <tr>
+      <td style="color: #991b1b;"><strong>SINESP (nao-oficial)</strong></td>
+      <td><span class="badge badge-green">Gratis</span></td>
+      <td>Gratis</td>
+      <td><span style="color: #991b1b;">NAO RECOMENDADO</span></td>
+    </tr>
+  </table>
+
+  <hr class="section-divider">
+
+  <!-- ============================================ -->
+  <!-- CAMINHOS DE ACESSO -->
+  <!-- ============================================ -->
+
+  <h2>4. Como Conseguir Acesso aos Dados Veiculares</h2>
+
+  <div class="card">
+    <h3>Caminho 1: Credenciamento direto no SENATRAN</h3>
+    <ul>
+      <li>Requer CNPJ ativo</li>
+      <li>Justificativa formal de uso</li>
+      <li>Contrato com o SERPRO</li>
+      <li>Certificado digital</li>
+      <li><strong>Exemplo:</strong> E o que a Zapay fez (Portarias 750/2018 e 62/2023)</li>
+      <li><strong>Prós:</strong> Dados oficiais, maior confiabilidade</li>
+      <li><strong>Contras:</strong> Processo burocratico e demorado</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Caminho 2: APIs de agregadores privados</h3>
+    <ul>
+      <li>Empresas como Consultar Placa, API Brasil, FIPE API, Infosimples revendem dados consolidados via API REST</li>
+      <li><strong>Prós:</strong> Rapido para integrar, sem burocracia</li>
+      <li><strong>Contras:</strong> Custo por consulta, dependencia do provedor</li>
+      <li><strong>Melhor opcao para comecar rapidamente</strong></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Caminho 3: Parceria B2B</h3>
+    <ul>
+      <li>AnyCar oferece API para parceiros</li>
+      <li>Olho no Carro usa Hexagon Automotive</li>
+      <li>Checktudo oferece integracao com dashboard</li>
+      <li><strong>Prós:</strong> Negociacao de precos, suporte dedicado</li>
+      <li><strong>Contras:</strong> Requer volume minimo, contrato</li>
+    </ul>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ============================================ -->
+  <!-- RECOMENDACAO -->
+  <!-- ============================================ -->
+
+  <h2>5. Recomendacao para o Consulta Placa Brasil</h2>
+
+  <div class="recommendation">
+    <h3>Estrategia em 2 camadas</h3>
+    <table style="color: #e2e8f0;">
+      <tr style="background: rgba(255,255,255,0.1);"><th style="background: rgba(255,255,255,0.15);">Camada</th><th style="background: rgba(255,255,255,0.15);">API</th><th style="background: rgba(255,255,255,0.15);">Uso</th><th style="background: rgba(255,255,255,0.15);">Custo</th></tr>
+      <tr style="background: transparent;"><td>Desenvolvimento</td><td><strong>API Brasil</strong></td><td>Testar e validar fluxo</td><td>Gratis (100/dia)</td></tr>
+      <tr style="background: rgba(255,255,255,0.05);"><td>Producao - dados basicos</td><td><strong>Consultar Placa (basico)</strong></td><td>Consulta gratuita do usuario</td><td>~R$ 0,15/consulta</td></tr>
+      <tr style="background: transparent;"><td>Producao - relatorio completo</td><td><strong>Consultar Placa (completo)</strong></td><td>Relatorio pago R$ 24,90</td><td>~R$ 5-8/consulta</td></tr>
+      <tr style="background: rgba(255,255,255,0.05);"><td>Producao - FIPE</td><td><strong>FIPE API ou Consultar Placa</strong></td><td>Preco de mercado</td><td>~R$ 0,50/consulta</td></tr>
+    </table>
+    <br>
+    <p><strong>Margem estimada:</strong> Vendendo relatorio completo a R$ 24,90 com custo de ~R$ 8 em APIs = <strong style="color: #22C55E; font-size: 18px;">~R$ 17 de margem por venda</strong></p>
+  </div>
+
+  <hr class="section-divider">
+
+  <p style="text-align: center; color: #94a3b8; font-size: 13px; margin-top: 40px;">
+    Documento gerado em Marco/2026 para o projeto Consulta Placa Brasil.<br>
+    Todas as informacoes foram coletadas de fontes publicas e podem estar sujeitas a alteracoes pelos provedores.
+  </p>
+
+</body>
+</html>

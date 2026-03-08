@@ -136,7 +136,7 @@ export default function AdminUsuariosPage() {
                     <tr key={user.id} className="border-b border-gray-50 last:border-0">
                       <td className="py-3">
                         <div className="flex items-center gap-3">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1A1A2E] text-white text-xs font-semibold">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F172A] text-white text-xs font-semibold">
                             {user.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
                           </div>
                           <div>

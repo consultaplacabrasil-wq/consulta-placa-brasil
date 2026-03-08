@@ -55,7 +55,7 @@ export function PlateSearch({ size = "default", variant = "default", className }
         className={`rounded-2xl bg-white p-6 shadow-xl shadow-black/5 ${className || ""}`}
       >
         <div className="mb-4">
-          <label className="block text-sm font-semibold text-[#1A1A2E] mb-2">
+          <label className="block text-sm font-semibold text-[#0F172A] mb-2">
             Placa do veículo
           </label>
           <Input

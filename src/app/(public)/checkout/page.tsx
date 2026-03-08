@@ -195,7 +195,7 @@ export default function CheckoutPage() {
           <Card className="border-0 shadow-sm">
             <CardContent className="p-6 md:p-8">
               <div className="text-center mb-6">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FFF0ED]">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FFF5F3]">
                   <QrCode className="h-8 w-8 text-[#FF4D30]" />
                 </div>
                 <h2 className="text-xl font-bold text-[#0F172A]">Pagamento via Pix</h2>
@@ -321,7 +321,7 @@ export default function CheckoutPage() {
                     <button
                       onClick={() => setPaymentMethod("pix")}
                       className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all ${
-                        paymentMethod === "pix" ? "border-[#FF4D30] bg-[#FFF0ED]" : "border-gray-200 hover:border-gray-300"
+                        paymentMethod === "pix" ? "border-[#FF4D30] bg-[#FFF5F3]" : "border-gray-200 hover:border-gray-300"
                       }`}
                     >
                       <QrCode className="h-6 w-6 text-[#FF4D30]" />
@@ -329,12 +329,12 @@ export default function CheckoutPage() {
                         <p className="font-semibold text-[#0F172A] text-sm">Pix</p>
                         <p className="text-xs text-[#475569]">Instantâneo</p>
                       </div>
-                      {paymentMethod === "pix" && <Badge className="ml-auto bg-[#22C55E] text-white text-[10px]">-5%</Badge>}
+                      {paymentMethod === "pix" && <Badge className="ml-auto bg-[#FF4D30] text-white text-[10px]">-5%</Badge>}
                     </button>
                     <button
                       onClick={() => setPaymentMethod("card")}
                       className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all ${
-                        paymentMethod === "card" ? "border-[#FF4D30] bg-[#FFF0ED]" : "border-gray-200 hover:border-gray-300"
+                        paymentMethod === "card" ? "border-[#FF4D30] bg-[#FFF5F3]" : "border-gray-200 hover:border-gray-300"
                       }`}
                     >
                       <CreditCard className="h-6 w-6 text-[#475569]" />
@@ -407,14 +407,14 @@ export default function CheckoutPage() {
                     </div>
                     {couponApplied && (
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-[#22C55E]">Cupom (10%)</span>
-                        <span className="text-[#22C55E]">-{formatCurrency(discount)}</span>
+                        <span className="text-[#FF4D30]">Cupom (10%)</span>
+                        <span className="text-[#FF4D30]">-{formatCurrency(discount)}</span>
                       </div>
                     )}
                     {paymentMethod === "pix" && (
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-[#22C55E]">Desconto Pix (5%)</span>
-                        <span className="text-[#22C55E]">-{formatCurrency(pixDiscount)}</span>
+                        <span className="text-[#FF4D30]">Desconto Pix (5%)</span>
+                        <span className="text-[#FF4D30]">-{formatCurrency(pixDiscount)}</span>
                       </div>
                     )}
                     <div className="flex items-center justify-between pt-2 border-t border-[#E2E8F0]">
@@ -487,14 +487,14 @@ export default function CheckoutPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <p className="font-semibold text-[#0F172A]">{item.name}</p>
-                          <span className="inline-flex rounded-full bg-[#FFF0ED] px-2 py-0.5 text-[10px] font-medium text-[#FF4D30] capitalize">
+                          <span className="inline-flex rounded-full bg-[#FFF5F3] px-2 py-0.5 text-[10px] font-medium text-[#FF4D30] capitalize">
                             {item.type}
                           </span>
                         </div>
                         {item.originalPrice && item.originalPrice > item.price && (
                           <p className="text-xs text-gray-400 line-through">de {formatCurrency(item.originalPrice)}</p>
                         )}
-                        <p className="text-lg font-bold text-[#22681A]">
+                        <p className="text-lg font-bold text-[#0F172A]">
                           {formatCurrency(item.price)}
                           <span className="text-xs font-normal text-[#64748B] ml-1">/{item.type === "consulta" ? "consulta" : "pacote"}</span>
                         </p>
@@ -510,7 +510,7 @@ export default function CheckoutPage() {
                           <span className="w-6 text-center text-sm font-medium text-[#0F172A]">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="flex h-7 w-7 items-center justify-center rounded-full text-gray-400 hover:text-[#FF4D30] hover:bg-[#FFF0ED]"
+                            className="flex h-7 w-7 items-center justify-center rounded-full text-gray-400 hover:text-[#FF4D30] hover:bg-[#FFF5F3]"
                           >
                             <Plus className="h-3.5 w-3.5" />
                           </button>
@@ -544,7 +544,7 @@ export default function CheckoutPage() {
                   </Button>
                 </div>
                 {couponApplied && (
-                  <div className="flex items-center gap-2 text-sm text-[#22C55E]">
+                  <div className="flex items-center gap-2 text-sm text-[#FF4D30]">
                     <CheckCircle className="h-4 w-4" />
                     Cupom aplicado! 10% de desconto.
                   </div>
@@ -557,8 +557,8 @@ export default function CheckoutPage() {
                   </div>
                   {couponApplied && (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-[#22C55E]">Desconto (10%)</span>
-                      <span className="text-[#22C55E]">-{formatCurrency(discount)}</span>
+                      <span className="text-[#FF4D30]">Desconto (10%)</span>
+                      <span className="text-[#FF4D30]">-{formatCurrency(discount)}</span>
                     </div>
                   )}
                   <div className="flex items-center justify-between pt-2 border-t border-[#E2E8F0]">
