@@ -52,7 +52,7 @@ export function PlateSearch({ size = "default", variant = "default", className }
     return (
       <form
         onSubmit={handleSubmit}
-        className={`rounded-2xl bg-white p-6 shadow-xl shadow-black/5 ${className || ""}`}
+        className={`rounded-2xl bg-[#F8FAFC] border border-gray-200 p-6 shadow-lg shadow-black/5 ${className || ""}`}
       >
         <div className="mb-4">
           <label className="block text-sm font-semibold text-[#0F172A] mb-2">

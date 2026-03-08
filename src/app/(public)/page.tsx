@@ -153,28 +153,27 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#0F172A] px-4 py-20 md:py-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A]" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF4D30]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#FF4D30]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      <section className="relative bg-white px-4 py-16 md:py-24 border-b border-gray-100">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FFF5F3] rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#F8FAFC] rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
         <div className="relative mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left - Text */}
-            <div className="text-white">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D30]/15 px-4 py-1.5 text-sm font-medium text-[#FF4D30] mb-6">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#FFF5F3] px-4 py-1.5 text-sm font-medium text-[#FF4D30] mb-6">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF4D30] animate-pulse" />
                 Cobertura Nacional - 27 Estados + DF
               </div>
-              <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
+              <h1 className="mb-6 text-4xl font-bold leading-tight text-[#0F172A] md:text-5xl">
                 Descubra tudo sobre{" "}
                 <span className="text-[#FF4D30]">qualquer veículo</span>
               </h1>
-              <p className="mb-8 text-lg text-gray-300 leading-relaxed max-w-xl">
+              <p className="mb-8 text-lg text-[#64748B] leading-relaxed max-w-xl">
                 Relatório completo com histórico, sinistro, leilão, débitos, multas
                 e mais. Resultado em menos de 10 segundos.
               </p>
-              <div className="flex flex-wrap gap-6 text-sm text-gray-400">
+              <div className="flex flex-wrap gap-6 text-sm text-[#64748B]">
                 <span className="flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-[#FF4D30]" />
                   Consulta básica grátis
