@@ -217,6 +217,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Consultas & Pacotes */}
+      <ConsultasPacotes />
+
       {/* How it works */}
       <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
@@ -390,9 +393,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Consultas & Pacotes */}
-      <ConsultasPacotes />
 
       {/* FAQ */}
       <FaqSection />
