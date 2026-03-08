@@ -63,9 +63,9 @@ export function Footer() {
 
           {/* Plataforma */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#FF4D30]">
+            <span className="mb-4 block text-sm font-semibold uppercase tracking-wider text-[#FF4D30]">
               Plataforma
-            </h3>
+            </span>
             <ul className="space-y-2.5">
               {footerLinks.plataforma.map((link) => (
                 <li key={link.href}>
@@ -82,9 +82,9 @@ export function Footer() {
 
           {/* Empresa */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#FF4D30]">
+            <span className="mb-4 block text-sm font-semibold uppercase tracking-wider text-[#FF4D30]">
               Empresa
-            </h3>
+            </span>
             <ul className="space-y-2.5">
               {footerLinks.empresa.map((link) => (
                 <li key={link.href}>
@@ -101,9 +101,9 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#FF4D30]">
+            <span className="mb-4 block text-sm font-semibold uppercase tracking-wider text-[#FF4D30]">
               Legal
-            </h3>
+            </span>
             <ul className="space-y-2.5">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>

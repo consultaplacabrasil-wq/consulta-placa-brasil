@@ -25,6 +25,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { REPORT_FEATURES, formatCurrency, REPORT_PRICES } from "@/constants";
+import { ConsultasPacotes } from "@/components/home/consultas-pacotes";
+import { FaqSection } from "@/components/home/faq-section";
 
 export const metadata: Metadata = {
   title: "Consulta Placa Brasil — Descubra tudo sobre qualquer veículo",
@@ -388,6 +390,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Consultas & Pacotes */}
+      <ConsultasPacotes />
+
+      {/* FAQ */}
+      <FaqSection />
 
       {/* CTA Final */}
       <section className="bg-gradient-to-r from-[#FF4D30] to-[#E8432A] px-4 py-16 text-white md:py-20">

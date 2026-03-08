@@ -8,7 +8,8 @@ import {
   SheetContent,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Menu, Search, User, Car, Phone } from "lucide-react";
+import { Menu, Search, User, Car, Phone, ShoppingCart } from "lucide-react";
+import { useCartStore } from "@/store/cart-store";
 
 const navLinks = [
   { href: "/", label: "Início" },
@@ -20,6 +21,8 @@ const navLinks = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { openCart, totalItems } = useCartStore();
+  const cartCount = totalItems();
 
   return (
     <>
@@ -79,6 +82,17 @@ export function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden items-center gap-3 md:flex">
+            <button
+              onClick={openCart}
+              className="relative flex h-10 w-10 items-center justify-center rounded-lg text-[#475569] hover:bg-[#FFF0ED] hover:text-[#FF4D30] transition-colors"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF4D30] text-[10px] font-bold text-white">
+                  {cartCount}
+                </span>
+              )}
+            </button>
             <Link href="/consulta">
               <Button
                 size="sm"
@@ -90,15 +104,27 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Mobile Menu */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setOpen(true)}
-          >
-            <Menu className="h-5 w-5" />
-          </Button>
+          {/* Mobile Actions */}
+          <div className="flex items-center gap-1 md:hidden">
+            <button
+              onClick={openCart}
+              className="relative flex h-10 w-10 items-center justify-center rounded-lg text-[#475569]"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF4D30] text-[10px] font-bold text-white">
+                  {cartCount}
+                </span>
+              )}
+            </button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setOpen(true)}
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetContent side="right" className="w-[300px]">
               <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
