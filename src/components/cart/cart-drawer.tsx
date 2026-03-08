@@ -19,11 +19,13 @@ import {
   Search,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, clearCart, totalPrice } =
     useCartStore();
+  const router = useRouter();
   const [coupon, setCoupon] = useState("");
 
   const total = totalPrice();
@@ -178,7 +180,10 @@ export function CartDrawer() {
             </div>
 
             {/* CTA */}
-            <Button className="w-full h-12 bg-[#1A6CB5] hover:bg-[#155A96] text-white font-bold rounded-full text-base">
+            <Button
+              onClick={() => { closeCart(); router.push("/checkout"); }}
+              className="w-full h-12 bg-[#1A6CB5] hover:bg-[#155A96] text-white font-bold rounded-full text-base"
+            >
               IR PARA O PAGAMENTO
             </Button>
 
