@@ -39,12 +39,12 @@ export default function SobrePage() {
   return (
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="bg-[#0066FF] text-white py-20">
+      <section className="bg-[#FF4D30] text-white py-20">
         <div className="container mx-auto px-4 max-w-5xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Sobre a Consulta Placa Brasil
           </h1>
-          <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-red-100 max-w-3xl mx-auto leading-relaxed">
             Somos a plataforma líder em consulta veicular no Brasil. Nossa missão é
             oferecer informações confiáveis e acessíveis para que você tome decisões
             seguras na compra e venda de veículos.
@@ -58,8 +58,8 @@ export default function SobrePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#0066FF]/10 mb-4">
-                  <stat.icon className="w-6 h-6 text-[#0066FF]" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#FF4D30]/10 mb-4">
+                  <stat.icon className="w-6 h-6 text-[#FF4D30]" />
                 </div>
                 <p className="text-3xl font-bold text-[#0F172A]">{stat.value}</p>
                 <p className="text-sm text-[#475569] mt-1">{stat.label}</p>
@@ -74,7 +74,7 @@ export default function SobrePage() {
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid md:grid-cols-2 gap-12">
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[#0066FF] mb-6">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[#FF4D30] mb-6">
                 <Target className="w-7 h-7 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-[#0F172A] mb-4">Nossa Missão</h2>
@@ -86,7 +86,7 @@ export default function SobrePage() {
               </p>
             </div>
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[#0066FF] mb-6">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[#FF4D30] mb-6">
                 <Eye className="w-7 h-7 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-[#0F172A] mb-4">Nossa Visão</h2>
@@ -116,8 +116,8 @@ export default function SobrePage() {
                 key={value.title}
                 className="text-center p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow"
               >
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#0066FF]/10 mb-5">
-                  <value.icon className="w-7 h-7 text-[#0066FF]" />
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#FF4D30]/10 mb-5">
+                  <value.icon className="w-7 h-7 text-[#FF4D30]" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#0F172A] mb-3">
                   {value.title}
@@ -150,7 +150,7 @@ export default function SobrePage() {
                 key={badge.label}
                 className="flex flex-col items-center gap-3 p-6 bg-white rounded-xl border border-gray-100 shadow-sm"
               >
-                <badge.icon className="w-10 h-10 text-[#0066FF]" />
+                <badge.icon className="w-10 h-10 text-[#FF4D30]" />
                 <span className="text-sm font-medium text-[#0F172A]">
                   {badge.label}
                 </span>

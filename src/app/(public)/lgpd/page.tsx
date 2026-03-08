@@ -80,10 +80,10 @@ export default function LgpdPage() {
   return (
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="bg-[#0066FF] text-white py-16">
+      <section className="bg-[#FF4D30] text-white py-16">
         <div className="container mx-auto px-4 max-w-5xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">LGPD</h1>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto">
+          <p className="text-lg text-red-100 max-w-2xl mx-auto">
             Conheça como tratamos seus dados e exerça seus direitos conforme a Lei
             Geral de Proteção de Dados (Lei nº 13.709/2018).
           </p>
@@ -94,8 +94,8 @@ export default function LgpdPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#0066FF]/10 mb-6">
-              <Shield className="w-8 h-8 text-[#0066FF]" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#FF4D30]/10 mb-6">
+              <Shield className="w-8 h-8 text-[#FF4D30]" />
             </div>
             <h2 className="text-3xl font-bold text-[#0F172A] mb-4">
               Tratamento de Dados Pessoais
@@ -114,15 +114,15 @@ export default function LgpdPage() {
               </h3>
               <ul className="space-y-3 text-[#475569]">
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] mt-2 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D30] mt-2 shrink-0" />
                   Dados cadastrais (nome, e-mail, CPF, telefone)
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] mt-2 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D30] mt-2 shrink-0" />
                   Dados de navegação (IP, cookies, páginas visitadas)
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] mt-2 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D30] mt-2 shrink-0" />
                   Dados de transações (histórico de consultas e pagamentos)
                 </li>
               </ul>
@@ -134,15 +134,15 @@ export default function LgpdPage() {
               </h3>
               <ul className="space-y-3 text-[#475569]">
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] mt-2 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D30] mt-2 shrink-0" />
                   Prestação e melhoria dos serviços contratados
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] mt-2 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D30] mt-2 shrink-0" />
                   Cumprimento de obrigações legais e fiscais
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] mt-2 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D30] mt-2 shrink-0" />
                   Prevenção de fraudes e segurança da plataforma
                 </li>
               </ul>
@@ -151,8 +151,8 @@ export default function LgpdPage() {
 
           {/* Rights */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#0066FF]/10 mb-6">
-              <UserCheck className="w-8 h-8 text-[#0066FF]" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#FF4D30]/10 mb-6">
+              <UserCheck className="w-8 h-8 text-[#FF4D30]" />
             </div>
             <h2 className="text-3xl font-bold text-[#0F172A] mb-4">
               Seus Direitos como Titular
@@ -169,8 +169,8 @@ export default function LgpdPage() {
                 key={right.title}
                 className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#0066FF]/10 mb-4">
-                  <right.icon className="w-6 h-6 text-[#0066FF]" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#FF4D30]/10 mb-4">
+                  <right.icon className="w-6 h-6 text-[#FF4D30]" />
                 </div>
                 <h3 className="text-lg font-semibold text-[#0F172A] mb-2">
                   {right.title}
@@ -183,10 +183,10 @@ export default function LgpdPage() {
           </div>
 
           {/* DPO Contact */}
-          <div className="bg-[#0066FF]/5 rounded-2xl p-8 border border-[#0066FF]/10 mb-20">
+          <div className="bg-[#FF4D30]/5 rounded-2xl p-8 border border-[#FF4D30]/10 mb-20">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#0066FF]/10 shrink-0">
-                <Shield className="w-8 h-8 text-[#0066FF]" />
+              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#FF4D30]/10 shrink-0">
+                <Shield className="w-8 h-8 text-[#FF4D30]" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-[#0F172A] mb-2">
@@ -201,7 +201,7 @@ export default function LgpdPage() {
                   <strong>E-mail:</strong>{" "}
                   <a
                     href="mailto:dpo@consultaplacabrasil.com.br"
-                    className="text-[#0066FF] hover:underline"
+                    className="text-[#FF4D30] hover:underline"
                   >
                     dpo@consultaplacabrasil.com.br
                   </a>
@@ -236,7 +236,7 @@ export default function LgpdPage() {
                     contato em até 15 dias úteis.
                   </p>
                   <Button
-                    className="bg-[#0066FF] hover:bg-[#0052CC]"
+                    className="bg-[#FF4D30] hover:bg-[#E8432A]"
                     onClick={() => {
                       setSubmitted(false);
                       setFormData({
@@ -329,7 +329,7 @@ export default function LgpdPage() {
 
                   <Button
                     type="submit"
-                    className="w-full bg-[#0066FF] hover:bg-[#0052CC] h-12 text-base"
+                    className="w-full bg-[#FF4D30] hover:bg-[#E8432A] h-12 text-base"
                   >
                     <Send className="w-4 h-4 mr-2" />
                     Enviar Solicitação

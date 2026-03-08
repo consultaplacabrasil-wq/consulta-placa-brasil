@@ -35,11 +35,11 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
         className="flex items-center gap-2 px-6 py-5 border-b border-gray-100"
         onClick={onNavigate}
       >
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0066FF]">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FF4D30]">
           <Car className="h-5 w-5 text-white" />
         </div>
         <span className="text-lg font-bold text-[#0F172A]">
-          Consulta<span className="text-[#0066FF]">Placa</span>
+          Consulta<span className="text-[#FF4D30]">Placa</span>
         </span>
       </Link>
 
@@ -54,7 +54,7 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
               onClick={onNavigate}
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                 isActive
-                  ? "bg-[#0066FF] text-white"
+                  ? "bg-[#FF4D30] text-white"
                   : "text-gray-600 hover:bg-gray-100 hover:text-[#0F172A]"
               }`}
             >
@@ -115,7 +115,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="lg:hidden" />
 
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0066FF] text-white text-sm font-semibold">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FF4D30] text-white text-sm font-semibold">
               U
             </div>
           </div>

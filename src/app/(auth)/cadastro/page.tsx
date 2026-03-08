@@ -177,11 +177,11 @@ export default function CadastroPage() {
             />
             <Label htmlFor="terms" className="text-sm text-gray-600 leading-tight cursor-pointer">
               Li e aceito os{" "}
-              <Link href="/termos" className="text-[#0066FF] hover:underline">
+              <Link href="/termos" className="text-[#FF4D30] hover:underline">
                 Termos de Uso
               </Link>{" "}
               e a{" "}
-              <Link href="/privacidade" className="text-[#0066FF] hover:underline">
+              <Link href="/privacidade" className="text-[#FF4D30] hover:underline">
                 Politica de Privacidade
               </Link>
             </Label>
@@ -189,7 +189,7 @@ export default function CadastroPage() {
 
           <Button
             type="submit"
-            className="w-full bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold"
+            className="w-full bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold"
             disabled={isLoading || !acceptedTerms}
           >
             {isLoading ? "Criando conta..." : "Criar conta"}
@@ -200,7 +200,7 @@ export default function CadastroPage() {
       <CardFooter className="justify-center">
         <p className="text-sm text-gray-500">
           Ja tem uma conta?{" "}
-          <Link href="/login" className="text-[#0066FF] font-semibold hover:underline">
+          <Link href="/login" className="text-[#FF4D30] font-semibold hover:underline">
             Entrar
           </Link>
         </p>

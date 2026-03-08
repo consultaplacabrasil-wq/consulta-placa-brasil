@@ -54,7 +54,7 @@ function StatusIcon({ status }: { status: string }) {
     case "danger":
       return <XCircle className="h-5 w-5 text-[#FF1744]" />;
     default:
-      return <CheckCircle className="h-5 w-5 text-[#0066FF]" />;
+      return <CheckCircle className="h-5 w-5 text-[#FF4D30]" />;
   }
 }
 
@@ -66,12 +66,12 @@ export default async function RelatorioPage({ params }: Props) {
       <div className="container mx-auto max-w-3xl">
         {/* Header */}
         <Card className="mb-6 overflow-hidden">
-          <div className="bg-gradient-to-r from-[#0066FF] to-[#0052CC] p-6 text-white">
+          <div className="bg-gradient-to-r from-[#FF4D30] to-[#E8432A] p-6 text-white">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Car className="h-8 w-8" />
                 <div>
-                  <p className="text-sm text-blue-100">Relatório Veicular</p>
+                  <p className="text-sm text-red-100">Relatório Veicular</p>
                   <h1 className="text-2xl font-bold tracking-wider">
                     ABC1D23
                   </h1>
@@ -79,7 +79,7 @@ export default async function RelatorioPage({ params }: Props) {
               </div>
               <Badge className="bg-white/20 text-white">Premium</Badge>
             </div>
-            <div className="mt-4 flex items-center gap-4 text-sm text-blue-100">
+            <div className="mt-4 flex items-center gap-4 text-sm text-red-100">
               <span>Gerado em: {new Date().toLocaleDateString("pt-BR")}</span>
               <span>ID: {id}</span>
             </div>
@@ -119,7 +119,7 @@ export default async function RelatorioPage({ params }: Props) {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-[#0066FF]" />
+              <Shield className="h-5 w-5 text-[#FF4D30]" />
               Resultado da Análise
             </CardTitle>
           </CardHeader>
@@ -157,7 +157,7 @@ export default async function RelatorioPage({ params }: Props) {
 
         {/* Actions */}
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button className="flex-1 gap-2 bg-[#0066FF] hover:bg-[#0052CC]">
+          <Button className="flex-1 gap-2 bg-[#FF4D30] hover:bg-[#E8432A]">
             <Download className="h-4 w-4" />
             Baixar PDF
           </Button>

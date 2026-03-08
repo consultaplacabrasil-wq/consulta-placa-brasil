@@ -19,8 +19,8 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100 text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#0066FF]/10 mb-8">
-              <FileX className="w-10 h-10 text-[#0066FF]" />
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#FF4D30]/10 mb-8">
+              <FileX className="w-10 h-10 text-[#FF4D30]" />
             </div>
 
             <h1 className="text-3xl font-bold text-[#0F172A] mb-4">
@@ -36,7 +36,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/blog"
-                className="inline-flex items-center justify-center h-11 px-6 rounded-lg bg-[#0066FF] text-white font-medium hover:bg-[#0052CC] transition-colors"
+                className="inline-flex items-center justify-center h-11 px-6 rounded-lg bg-[#FF4D30] text-white font-medium hover:bg-[#E8432A] transition-colors"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Voltar ao Blog

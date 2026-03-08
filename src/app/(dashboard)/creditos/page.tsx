@@ -18,15 +18,15 @@ export default function CreditosPage() {
       </div>
 
       {/* Current balance */}
-      <Card className="border-0 shadow-sm bg-gradient-to-r from-[#0066FF] to-[#0052CC] text-white">
+      <Card className="border-0 shadow-sm bg-gradient-to-r from-[#FF4D30] to-[#E8432A] text-white">
         <CardContent className="flex items-center gap-4 py-6">
           <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/20">
             <Coins className="h-7 w-7 text-white" />
           </div>
           <div>
-            <p className="text-sm text-blue-100">Saldo atual</p>
+            <p className="text-sm text-red-100">Saldo atual</p>
             <p className="text-4xl font-bold">0</p>
-            <p className="text-sm text-blue-100">creditos disponiveis</p>
+            <p className="text-sm text-red-100">creditos disponiveis</p>
           </div>
         </CardContent>
       </Card>
@@ -41,17 +41,17 @@ export default function CreditosPage() {
               <Card
                 key={pkg.credits}
                 className={`border shadow-sm transition-shadow hover:shadow-md ${
-                  index === 1 ? "border-[#0066FF] ring-1 ring-[#0066FF]" : "border-gray-200"
+                  index === 1 ? "border-[#FF4D30] ring-1 ring-[#FF4D30]" : "border-gray-200"
                 }`}
               >
                 {index === 1 && (
-                  <div className="bg-[#0066FF] text-white text-center text-xs font-semibold py-1 rounded-t-lg">
+                  <div className="bg-[#FF4D30] text-white text-center text-xs font-semibold py-1 rounded-t-lg">
                     Mais Popular
                   </div>
                 )}
                 <CardHeader className="text-center pb-2">
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 mb-2">
-                    <Icon className="h-6 w-6 text-[#0066FF]" />
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-50 mb-2">
+                    <Icon className="h-6 w-6 text-[#FF4D30]" />
                   </div>
                   <CardTitle className="text-lg font-bold text-[#0F172A]">
                     Pacote {pkg.credits} créditos
@@ -72,8 +72,8 @@ export default function CreditosPage() {
                   <Button
                     className={`w-full font-semibold ${
                       index === 1
-                        ? "bg-[#0066FF] hover:bg-[#0052CC] text-white"
-                        : "bg-white border border-[#0066FF] text-[#0066FF] hover:bg-blue-50"
+                        ? "bg-[#FF4D30] hover:bg-[#E8432A] text-white"
+                        : "bg-white border border-[#FF4D30] text-[#FF4D30] hover:bg-red-50"
                     }`}
                   >
                     Comprar

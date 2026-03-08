@@ -59,7 +59,7 @@ export default function ComprarPage() {
           </h1>
           <p className="mt-2 text-[#475569]">
             Relatório veicular para a placa{" "}
-            <span className="font-semibold text-[#0066FF]">{placa}</span>
+            <span className="font-semibold text-[#FF4D30]">{placa}</span>
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export default function ComprarPage() {
                     onClick={() => setSelectedReport(option.type)}
                     className={`w-full rounded-lg border-2 p-4 text-left transition-all ${
                       selectedReport === option.type
-                        ? "border-[#0066FF] bg-blue-50"
+                        ? "border-[#FF4D30] bg-red-50"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
@@ -91,7 +91,7 @@ export default function ComprarPage() {
                           {option.description}
                         </p>
                       </div>
-                      <p className="text-xl font-bold text-[#0066FF]">
+                      <p className="text-xl font-bold text-[#FF4D30]">
                         {formatCurrency(option.price)}
                       </p>
                     </div>
@@ -112,11 +112,11 @@ export default function ComprarPage() {
                   onClick={() => setPaymentMethod("pix")}
                   className={`flex w-full items-center gap-3 rounded-lg border-2 p-4 text-left transition-all ${
                     paymentMethod === "pix"
-                      ? "border-[#0066FF] bg-blue-50"
+                      ? "border-[#FF4D30] bg-red-50"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <QrCode className="h-6 w-6 text-[#0066FF]" />
+                  <QrCode className="h-6 w-6 text-[#FF4D30]" />
                   <div>
                     <p className="font-semibold text-[#0F172A]">Pix</p>
                     <p className="text-sm text-[#475569]">
@@ -131,7 +131,7 @@ export default function ComprarPage() {
                   onClick={() => setPaymentMethod("card")}
                   className={`flex w-full items-center gap-3 rounded-lg border-2 p-4 text-left transition-all ${
                     paymentMethod === "card"
-                      ? "border-[#0066FF] bg-blue-50"
+                      ? "border-[#FF4D30] bg-red-50"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
@@ -171,7 +171,7 @@ export default function ComprarPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center gap-3 rounded-lg bg-gray-50 p-3">
-                  <Car className="h-5 w-5 text-[#0066FF]" />
+                  <Car className="h-5 w-5 text-[#FF4D30]" />
                   <div>
                     <p className="text-sm text-[#475569]">Veículo</p>
                     <p className="font-semibold text-[#0F172A]">{placa}</p>
@@ -190,7 +190,7 @@ export default function ComprarPage() {
                       </li>
                     ))}
                     {REPORT_FEATURES[selectedReport].length > 6 && (
-                      <li className="text-xs text-[#0066FF]">
+                      <li className="text-xs text-[#FF4D30]">
                         +{REPORT_FEATURES[selectedReport].length - 6} itens
                         inclusos
                       </li>
@@ -207,13 +207,13 @@ export default function ComprarPage() {
                   </div>
                   <div className="mt-2 flex items-center justify-between text-lg">
                     <span className="font-bold text-[#0F172A]">Total</span>
-                    <span className="font-bold text-[#0066FF]">
+                    <span className="font-bold text-[#FF4D30]">
                       {formatCurrency(selected.price)}
                     </span>
                   </div>
                 </div>
 
-                <Button className="w-full gap-2 bg-[#0066FF] py-6 text-lg hover:bg-[#0052CC]">
+                <Button className="w-full gap-2 bg-[#FF4D30] py-6 text-lg hover:bg-[#E8432A]">
                   <Lock className="h-5 w-5" />
                   Pagar Agora
                 </Button>

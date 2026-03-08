@@ -73,13 +73,13 @@ export default async function ConsultaPage({ params }: Props) {
       <div className="container mx-auto max-w-4xl">
         {/* Vehicle Info Header */}
         <Card className="mb-6 overflow-hidden">
-          <div className="bg-gradient-to-r from-[#0066FF] to-[#0052CC] p-6 text-white">
+          <div className="bg-gradient-to-r from-[#FF4D30] to-[#E8432A] p-6 text-white">
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/20">
                 <Car className="h-7 w-7" />
               </div>
               <div>
-                <p className="text-sm text-blue-100">Placa</p>
+                <p className="text-sm text-red-100">Placa</p>
                 <h1 className="text-2xl font-bold tracking-wider">{placa}</h1>
               </div>
               <Badge className="ml-auto bg-white/20 text-white hover:bg-white/30">
@@ -138,7 +138,7 @@ export default async function ConsultaPage({ params }: Props) {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
-              <Shield className="h-5 w-5 text-[#0066FF]" />
+              <Shield className="h-5 w-5 text-[#FF4D30]" />
               Indicadores de Status
             </CardTitle>
           </CardHeader>
@@ -200,9 +200,9 @@ export default async function ConsultaPage({ params }: Props) {
         </Card>
 
         {/* CTA */}
-        <Card className="border-2 border-[#0066FF] bg-gradient-to-r from-blue-50 to-white">
+        <Card className="border-2 border-[#FF4D30] bg-gradient-to-r from-red-50 to-white">
           <CardContent className="flex flex-col items-center gap-4 p-8 text-center">
-            <FileText className="h-10 w-10 text-[#0066FF]" />
+            <FileText className="h-10 w-10 text-[#FF4D30]" />
             <h3 className="text-xl font-bold text-[#0F172A]">
               Desbloqueie o Relatório Completo
             </h3>
@@ -214,7 +214,7 @@ export default async function ConsultaPage({ params }: Props) {
               <Link href={`/comprar/${placa}`}>
                 <Button
                   size="lg"
-                  className="gap-2 bg-[#0066FF] hover:bg-[#0052CC]"
+                  className="gap-2 bg-[#FF4D30] hover:bg-[#E8432A]"
                 >
                   Relatório Completo — R$ 24,90
                 </Button>

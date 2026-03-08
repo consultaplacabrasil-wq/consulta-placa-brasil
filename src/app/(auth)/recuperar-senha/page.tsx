@@ -37,14 +37,14 @@ export default function RecuperarSenhaPage() {
         </CardHeader>
         <CardFooter className="flex flex-col gap-3">
           <Button
-            className="w-full bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold"
+            className="w-full bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold"
             onClick={() => setSent(false)}
           >
             Enviar novamente
           </Button>
           <Link
             href="/login"
-            className="flex items-center justify-center gap-1 text-sm text-[#0066FF] hover:underline"
+            className="flex items-center justify-center gap-1 text-sm text-[#FF4D30] hover:underline"
           >
             <ArrowLeft className="h-4 w-4" />
             Voltar para o login
@@ -83,7 +83,7 @@ export default function RecuperarSenhaPage() {
 
           <Button
             type="submit"
-            className="w-full bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold"
+            className="w-full bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold"
             disabled={isLoading}
           >
             {isLoading ? "Enviando..." : "Enviar link de recuperacao"}
@@ -94,7 +94,7 @@ export default function RecuperarSenhaPage() {
       <CardFooter className="justify-center">
         <Link
           href="/login"
-          className="flex items-center gap-1 text-sm text-[#0066FF] hover:underline"
+          className="flex items-center gap-1 text-sm text-[#FF4D30] hover:underline"
         >
           <ArrowLeft className="h-4 w-4" />
           Voltar para o login

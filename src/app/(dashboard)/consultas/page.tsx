@@ -14,7 +14,7 @@ export default function ConsultasPage() {
           <h1 className="text-2xl font-bold text-[#0F172A]">Consultas</h1>
           <p className="text-gray-500 text-sm">Historico de consultas realizadas</p>
         </div>
-        <Button className="bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold gap-2">
+        <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
           <Search className="h-4 w-4" />
           Nova Consulta
         </Button>
@@ -47,7 +47,7 @@ export default function ConsultasPage() {
             <p className="text-sm text-gray-500 max-w-sm mb-6">
               Voce ainda nao realizou nenhuma consulta. Comece pesquisando uma placa para obter informacoes detalhadas do veiculo.
             </p>
-            <Button className="bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold gap-2">
+            <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
               <Search className="h-4 w-4" />
               Realizar primeira consulta
             </Button>

@@ -76,10 +76,10 @@ export default function BlogPage() {
   return (
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="bg-[#0066FF] text-white py-16">
+      <section className="bg-[#FF4D30] text-white py-16">
         <div className="container mx-auto px-4 max-w-5xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Blog</h1>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto">
+          <p className="text-lg text-red-100 max-w-2xl mx-auto">
             Dicas, notícias e informações sobre o mercado automotivo brasileiro e
             consulta veicular.
           </p>
@@ -89,8 +89,8 @@ export default function BlogPage() {
       {/* Coming Soon Banner */}
       <section className="py-8">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="bg-[#0066FF]/5 border border-[#0066FF]/10 rounded-xl p-6 text-center">
-            <p className="text-[#0066FF] font-semibold text-lg mb-1">
+          <div className="bg-[#FF4D30]/5 border border-[#FF4D30]/10 rounded-xl p-6 text-center">
+            <p className="text-[#FF4D30] font-semibold text-lg mb-1">
               Em breve!
             </p>
             <p className="text-[#475569]">
@@ -111,9 +111,9 @@ export default function BlogPage() {
                 className="group overflow-hidden border-gray-100 shadow-sm hover:shadow-md transition-shadow bg-white"
               >
                 {/* Placeholder image area */}
-                <div className="h-48 bg-gradient-to-br from-[#0066FF]/10 to-[#0066FF]/5 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-[#0066FF]/10 flex items-center justify-center">
-                    <span className="text-2xl text-[#0066FF]/40 font-bold">
+                <div className="h-48 bg-gradient-to-br from-[#FF4D30]/10 to-[#FF4D30]/5 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-[#FF4D30]/10 flex items-center justify-center">
+                    <span className="text-2xl text-[#FF4D30]/40 font-bold">
                       {index + 1}
                     </span>
                   </div>
@@ -134,7 +134,7 @@ export default function BlogPage() {
                       {post.readTime}
                     </span>
                   </div>
-                  <h2 className="text-lg font-bold text-[#0F172A] leading-tight group-hover:text-[#0066FF] transition-colors">
+                  <h2 className="text-lg font-bold text-[#0F172A] leading-tight group-hover:text-[#FF4D30] transition-colors">
                     {post.title}
                   </h2>
                 </CardHeader>
@@ -146,7 +146,7 @@ export default function BlogPage() {
                 </CardContent>
 
                 <CardFooter className="pt-0">
-                  <span className="text-sm text-[#0066FF] font-medium flex items-center gap-1 opacity-50">
+                  <span className="text-sm text-[#FF4D30] font-medium flex items-center gap-1 opacity-50">
                     Em breve
                     <ArrowRight className="w-4 h-4" />
                   </span>

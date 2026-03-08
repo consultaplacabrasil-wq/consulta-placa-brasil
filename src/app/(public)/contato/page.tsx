@@ -31,10 +31,10 @@ export default function ContatoPage() {
   return (
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="bg-[#0066FF] text-white py-16">
+      <section className="bg-[#FF4D30] text-white py-16">
         <div className="container mx-auto px-4 max-w-5xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contato</h1>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto">
+          <p className="text-lg text-red-100 max-w-2xl mx-auto">
             Tem dúvidas ou precisa de ajuda? Entre em contato conosco. Nossa equipe
             está pronta para atendê-lo.
           </p>
@@ -58,14 +58,14 @@ export default function ContatoPage() {
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#0066FF]/10 shrink-0">
-                    <Mail className="w-5 h-5 text-[#0066FF]" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/10 shrink-0">
+                    <Mail className="w-5 h-5 text-[#FF4D30]" />
                   </div>
                   <div>
                     <p className="font-semibold text-[#0F172A]">E-mail</p>
                     <a
                       href="mailto:contato@consultaplacabrasil.com.br"
-                      className="text-[#0066FF] hover:underline text-sm"
+                      className="text-[#FF4D30] hover:underline text-sm"
                     >
                       contato@consultaplacabrasil.com.br
                     </a>
@@ -73,14 +73,14 @@ export default function ContatoPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#0066FF]/10 shrink-0">
-                    <Phone className="w-5 h-5 text-[#0066FF]" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/10 shrink-0">
+                    <Phone className="w-5 h-5 text-[#FF4D30]" />
                   </div>
                   <div>
                     <p className="font-semibold text-[#0F172A]">Telefone</p>
                     <a
                       href="tel:+5511999999999"
-                      className="text-[#0066FF] hover:underline text-sm"
+                      className="text-[#FF4D30] hover:underline text-sm"
                     >
                       (11) 99999-9999
                     </a>
@@ -88,8 +88,8 @@ export default function ContatoPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#0066FF]/10 shrink-0">
-                    <MessageCircle className="w-5 h-5 text-[#0066FF]" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/10 shrink-0">
+                    <MessageCircle className="w-5 h-5 text-[#FF4D30]" />
                   </div>
                   <div>
                     <p className="font-semibold text-[#0F172A]">WhatsApp</p>
@@ -97,7 +97,7 @@ export default function ContatoPage() {
                       href="https://wa.me/5511999999999"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#0066FF] hover:underline text-sm"
+                      className="text-[#FF4D30] hover:underline text-sm"
                     >
                       (11) 99999-9999
                     </a>
@@ -105,8 +105,8 @@ export default function ContatoPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#0066FF]/10 shrink-0">
-                    <MapPin className="w-5 h-5 text-[#0066FF]" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/10 shrink-0">
+                    <MapPin className="w-5 h-5 text-[#FF4D30]" />
                   </div>
                   <div>
                     <p className="font-semibold text-[#0F172A]">Endereço</p>
@@ -133,7 +133,7 @@ export default function ContatoPage() {
                       Obrigado pelo contato. Retornaremos em até 24 horas úteis.
                     </p>
                     <Button
-                      className="mt-6 bg-[#0066FF] hover:bg-[#0052CC]"
+                      className="mt-6 bg-[#FF4D30] hover:bg-[#E8432A]"
                       onClick={() => {
                         setSubmitted(false);
                         setFormData({ name: "", email: "", subject: "", message: "" });
@@ -201,7 +201,7 @@ export default function ContatoPage() {
 
                     <Button
                       type="submit"
-                      className="w-full bg-[#0066FF] hover:bg-[#0052CC] h-12 text-base"
+                      className="w-full bg-[#FF4D30] hover:bg-[#E8432A] h-12 text-base"
                     >
                       <Send className="w-4 h-4 mr-2" />
                       Enviar Mensagem

@@ -50,14 +50,20 @@ export const REPORT_FEATURES = {
 } as const;
 
 export const COLORS = {
-  primary: "#0066FF",
-  success: "#00C853",
-  warning: "#FF6D00",
-  danger: "#FF1744",
-  textPrimary: "#0F172A",
-  textSecondary: "#475569",
-  border: "#E2E8F0",
-  background: "#F8FAFC",
+  primary: "#FF4D30",
+  primaryDark: "#E8432A",
+  primaryLight: "#FFF0ED",
+  secondary: "#1A1A2E",
+  accent: "#FF8C00",
+  success: "#22C55E",
+  warning: "#F59E0B",
+  danger: "#EF4444",
+  textPrimary: "#1A1A2E",
+  textSecondary: "#64748B",
+  textMuted: "#94A3B8",
+  border: "#E5E7EB",
+  background: "#FFFFFF",
+  backgroundAlt: "#F9FAFB",
   surface: "#FFFFFF",
 } as const;
 

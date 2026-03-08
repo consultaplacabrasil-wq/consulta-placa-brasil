@@ -180,7 +180,7 @@ export default function PerfilPage() {
 
             <Button
               type="submit"
-              className="bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold"
+              className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold"
               disabled={isLoading}
             >
               {isLoading ? "Salvando..." : "Alterar senha"}
@@ -247,7 +247,7 @@ export default function PerfilPage() {
             </div>
           </div>
 
-          <Button className="bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold">
+          <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold">
             Salvar preferencias
           </Button>
         </CardContent>

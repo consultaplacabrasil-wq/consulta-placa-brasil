@@ -87,12 +87,12 @@ export default function FaqPage() {
       />
 
       {/* Hero */}
-      <section className="bg-[#0066FF] text-white py-16">
+      <section className="bg-[#FF4D30] text-white py-16">
         <div className="container mx-auto px-4 max-w-5xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Perguntas Frequentes
           </h1>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto">
+          <p className="text-lg text-red-100 max-w-2xl mx-auto">
             Encontre respostas para as dúvidas mais comuns sobre nossos serviços de
             consulta veicular.
           </p>
@@ -109,7 +109,7 @@ export default function FaqPage() {
                 value={`item-${index}`}
                 className="bg-white rounded-xl border border-gray-100 shadow-sm px-6"
               >
-                <AccordionTrigger className="text-left text-[#0F172A] font-semibold hover:text-[#0066FF] hover:no-underline py-5">
+                <AccordionTrigger className="text-left text-[#0F172A] font-semibold hover:text-[#FF4D30] hover:no-underline py-5">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-[#475569] leading-relaxed pb-5">
@@ -130,7 +130,7 @@ export default function FaqPage() {
             </p>
             <a
               href="/contato"
-              className="inline-flex items-center justify-center h-11 px-8 rounded-lg bg-[#0066FF] text-white font-medium hover:bg-[#0052CC] transition-colors"
+              className="inline-flex items-center justify-center h-11 px-8 rounded-lg bg-[#FF4D30] text-white font-medium hover:bg-[#E8432A] transition-colors"
             >
               Fale Conosco
             </a>

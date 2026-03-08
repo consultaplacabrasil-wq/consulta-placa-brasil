@@ -10,12 +10,12 @@ export default function PrivacidadePage() {
   return (
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="bg-[#0066FF] text-white py-16">
+      <section className="bg-[#FF4D30] text-white py-16">
         <div className="container mx-auto px-4 max-w-5xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Política de Privacidade
           </h1>
-          <p className="text-lg text-blue-100">
+          <p className="text-lg text-red-100">
             Última atualização: 07 de março de 2026
           </p>
         </div>
@@ -24,7 +24,7 @@ export default function PrivacidadePage() {
       {/* Content */}
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100 prose prose-slate max-w-none prose-headings:text-[#0F172A] prose-p:text-[#475569] prose-li:text-[#475569] prose-a:text-[#0066FF]">
+          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100 prose prose-slate max-w-none prose-headings:text-[#0F172A] prose-p:text-[#475569] prose-li:text-[#475569] prose-a:text-[#FF4D30]">
             <p>
               A Consulta Placa Brasil (&ldquo;nós&rdquo;, &ldquo;nosso&rdquo; ou
               &ldquo;Plataforma&rdquo;) está comprometida com a proteção da sua

@@ -8,12 +8,12 @@ import {
   SheetContent,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Menu, Search, User, Car } from "lucide-react";
+import { Menu, Search, User, Car, Phone } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Início" },
-  { href: "/blog", label: "Blog" },
   { href: "/sobre", label: "Sobre" },
+  { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
   { href: "/contato", label: "Contato" },
 ];
@@ -22,91 +22,116 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#E2E8F0] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0066FF]">
-            <Car className="h-5 w-5 text-white" />
+    <>
+      {/* Top bar */}
+      <div className="hidden md:block bg-[#1A1A2E] text-white text-sm">
+        <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-2">
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1.5 text-gray-300">
+              <Phone className="h-3.5 w-3.5" />
+              (11) 4002-8922
+            </span>
+            <span className="text-gray-500">|</span>
+            <span className="text-gray-300">contato@consultaplacabrasil.com.br</span>
           </div>
-          <span className="text-lg font-bold text-[#0F172A]">
-            Consulta<span className="text-[#0066FF]">Placa</span>
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-[#475569] transition-colors hover:text-[#0066FF]"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Desktop Actions */}
-        <div className="hidden items-center gap-3 md:flex">
-          <Link href="/login">
-            <Button variant="ghost" size="sm" className="gap-2">
-              <User className="h-4 w-4" />
+          <div className="flex items-center gap-3">
+            <Link href="/login" className="text-gray-300 hover:text-white transition-colors">
               Entrar
-            </Button>
-          </Link>
-          <Link href="/cadastro">
-            <Button
-              size="sm"
-              className="gap-2 bg-[#0066FF] hover:bg-[#0052CC]"
-            >
-              <Search className="h-4 w-4" />
-              Consultar Placa
-            </Button>
-          </Link>
+            </Link>
+            <span className="text-gray-500">|</span>
+            <Link href="/cadastro" className="text-gray-300 hover:text-white transition-colors">
+              Criar conta
+            </Link>
+          </div>
         </div>
-
-        {/* Mobile Menu */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={() => setOpen(true)}
-        >
-          <Menu className="h-5 w-5" />
-        </Button>
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetContent side="right" className="w-[300px]">
-            <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
-            <div className="flex flex-col gap-4 pt-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-lg font-medium text-[#0F172A] transition-colors hover:text-[#0066FF]"
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="mt-4 flex flex-col gap-2 border-t border-[#E2E8F0] pt-4">
-                <Link href="/login" onClick={() => setOpen(false)}>
-                  <Button variant="outline" className="w-full gap-2">
-                    <User className="h-4 w-4" />
-                    Entrar
-                  </Button>
-                </Link>
-                <Link href="/cadastro" onClick={() => setOpen(false)}>
-                  <Button className="w-full gap-2 bg-[#0066FF] hover:bg-[#0052CC]">
-                    <Search className="h-4 w-4" />
-                    Consultar Placa
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
       </div>
-    </header>
+
+      {/* Main header */}
+      <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
+        <div className="mx-auto max-w-6xl flex h-16 items-center justify-between px-4">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF4D30]">
+              <Car className="h-5 w-5 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg font-bold leading-tight text-[#1A1A2E]">
+                Consulta<span className="text-[#FF4D30]">Placa</span>
+              </span>
+              <span className="text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
+                Brasil
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden items-center gap-1 md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#475569] transition-colors hover:bg-[#FFF0ED] hover:text-[#FF4D30]"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop Actions */}
+          <div className="hidden items-center gap-3 md:flex">
+            <Link href="/consulta">
+              <Button
+                size="sm"
+                className="gap-2 bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold rounded-lg px-5 h-10 shadow-sm shadow-[#FF4D30]/20"
+              >
+                <Search className="h-4 w-4" />
+                Consultar Placa
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile Menu */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setOpen(true)}
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetContent side="right" className="w-[300px]">
+              <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
+              <div className="flex flex-col gap-1 pt-8">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-lg px-4 py-3 text-base font-medium text-[#1A1A2E] transition-colors hover:bg-[#FFF0ED] hover:text-[#FF4D30]"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <div className="mt-4 flex flex-col gap-2 border-t border-gray-100 pt-4">
+                  <Link href="/login" onClick={() => setOpen(false)}>
+                    <Button variant="outline" className="w-full gap-2 border-gray-200">
+                      <User className="h-4 w-4" />
+                      Entrar
+                    </Button>
+                  </Link>
+                  <Link href="/consulta" onClick={() => setOpen(false)}>
+                    <Button className="w-full gap-2 bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold">
+                      <Search className="h-4 w-4" />
+                      Consultar Placa
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </header>
+    </>
   );
 }

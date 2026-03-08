@@ -57,7 +57,7 @@ export default function LoginPage() {
               <Label htmlFor="password" className="text-[#0F172A]">Senha</Label>
               <Link
                 href="/recuperar-senha"
-                className="text-sm text-[#0066FF] hover:underline"
+                className="text-sm text-[#FF4D30] hover:underline"
               >
                 Esqueceu a senha?
               </Link>
@@ -85,7 +85,7 @@ export default function LoginPage() {
 
           <Button
             type="submit"
-            className="w-full bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold"
+            className="w-full bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold"
             disabled={isLoading}
           >
             {isLoading ? "Entrando..." : "Entrar"}
@@ -131,7 +131,7 @@ export default function LoginPage() {
       <CardFooter className="justify-center">
         <p className="text-sm text-gray-500">
           Ainda nao tem conta?{" "}
-          <Link href="/cadastro" className="text-[#0066FF] font-semibold hover:underline">
+          <Link href="/cadastro" className="text-[#FF4D30] font-semibold hover:underline">
             Criar conta
           </Link>
         </p>

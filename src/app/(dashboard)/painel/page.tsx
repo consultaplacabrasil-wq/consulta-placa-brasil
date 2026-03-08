@@ -14,7 +14,7 @@ export default function PainelPage() {
       value: "0",
       description: "consultas realizadas",
       icon: Search,
-      color: "bg-blue-100 text-[#0066FF]",
+      color: "bg-blue-100 text-[#FF4D30]",
     },
     {
       title: "Creditos Disponiveis",
@@ -40,7 +40,7 @@ export default function PainelPage() {
           <p className="text-gray-500 text-sm">Bem-vindo ao seu painel de controle</p>
         </div>
         <Link href="/consultas">
-          <Button className="bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold gap-2">
+          <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
             <Search className="h-4 w-4" />
             Nova Consulta
           </Button>
@@ -76,30 +76,30 @@ export default function PainelPage() {
         <CardContent>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <Link href="/consultas" className="group">
-              <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4 transition-colors hover:border-[#0066FF] hover:bg-blue-50">
+              <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4 transition-colors hover:border-[#FF4D30] hover:bg-red-50">
                 <div className="flex items-center gap-3">
-                  <Search className="h-5 w-5 text-[#0066FF]" />
+                  <Search className="h-5 w-5 text-[#FF4D30]" />
                   <span className="text-sm font-medium text-[#0F172A]">Nova Consulta</span>
                 </div>
-                <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#0066FF]" />
+                <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#FF4D30]" />
               </div>
             </Link>
             <Link href="/creditos" className="group">
-              <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4 transition-colors hover:border-[#0066FF] hover:bg-blue-50">
+              <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4 transition-colors hover:border-[#FF4D30] hover:bg-red-50">
                 <div className="flex items-center gap-3">
                   <Coins className="h-5 w-5 text-green-600" />
                   <span className="text-sm font-medium text-[#0F172A]">Comprar Creditos</span>
                 </div>
-                <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#0066FF]" />
+                <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#FF4D30]" />
               </div>
             </Link>
             <Link href="/relatorios" className="group">
-              <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4 transition-colors hover:border-[#0066FF] hover:bg-blue-50">
+              <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4 transition-colors hover:border-[#FF4D30] hover:bg-red-50">
                 <div className="flex items-center gap-3">
                   <FileText className="h-5 w-5 text-orange-600" />
                   <span className="text-sm font-medium text-[#0F172A]">Ver Relatorios</span>
                 </div>
-                <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#0066FF]" />
+                <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#FF4D30]" />
               </div>
             </Link>
           </div>
