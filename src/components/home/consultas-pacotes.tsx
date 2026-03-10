@@ -26,10 +26,70 @@ interface Pacote {
   active: boolean;
 }
 
+const defaultConsultas: ConsultaType[] = [
+  {
+    id: "consulta-completa",
+    name: "Veículo Completo",
+    description: "A consulta mais completa do mercado, com informações e dados exclusivos sobre o veículo!",
+    price: "64.90",
+    originalPrice: "74.90",
+    benefits: [],
+    popular: true,
+    active: true,
+  },
+  {
+    id: "consulta-essencial",
+    name: "Veículo Essencial",
+    description: "Informações essenciais sobre o veículo, que te ajudam a negociar com mais segurança e acertar na escolha do seu próximo carro.",
+    price: "45.90",
+    originalPrice: "52.90",
+    benefits: [],
+    popular: false,
+    active: true,
+  },
+  {
+    id: "consulta-leilao",
+    name: "Leilão + Dados do Veículo",
+    description: "Informações sobre o veículo de leilão, que te ajudam a negociar o melhor valor e evitar prejuízos!",
+    price: "34.90",
+    originalPrice: "40.90",
+    benefits: [],
+    popular: false,
+    active: true,
+  },
+  {
+    id: "consulta-gravame",
+    name: "Gravame",
+    description: "Informações sobre o status de financiamento do veículo que te ajudam a evitar problemas na hora da transferência!",
+    price: "14.90",
+    originalPrice: "17.90",
+    benefits: [],
+    popular: false,
+    active: true,
+  },
+  {
+    id: "consulta-cadastral",
+    name: "Dados Cadastrais do Veículo",
+    description: "Informações sobre a situação do veículo que te ajudam a validar dados cadastrais nacionais e estaduais!",
+    price: "13.90",
+    originalPrice: "15.90",
+    benefits: [],
+    popular: false,
+    active: true,
+  },
+];
+
+const defaultPacotes: Pacote[] = [
+  { id: "pacote-1000", name: "PACOTE 1000", description: null, price: "800.00", originalPrice: "1000.00", popular: true, active: true },
+  { id: "pacote-500", name: "PACOTE 500", description: null, price: "425.00", originalPrice: "500.00", popular: false, active: true },
+  { id: "pacote-300", name: "PACOTE 300", description: null, price: "270.00", originalPrice: "300.00", popular: false, active: true },
+  { id: "pacote-150", name: "PACOTE 150", description: null, price: "142.50", originalPrice: "150.00", popular: false, active: true },
+];
+
 export function ConsultasPacotes() {
   const [activeTab, setActiveTab] = useState<"consultas" | "pacotes">("consultas");
-  const [consultas, setConsultas] = useState<ConsultaType[]>([]);
-  const [pacotesList, setPacotesList] = useState<Pacote[]>([]);
+  const [consultas, setConsultas] = useState<ConsultaType[]>(defaultConsultas);
+  const [pacotesList, setPacotesList] = useState<Pacote[]>(defaultPacotes);
   const [loading, setLoading] = useState(true);
   const { addItem } = useCartStore();
 
@@ -42,14 +102,16 @@ export function ConsultasPacotes() {
         ]);
         if (consultasRes.ok) {
           const data = await consultasRes.json();
-          setConsultas(data.filter((c: ConsultaType) => c.active));
+          const active = data.filter((c: ConsultaType) => c.active);
+          if (active.length > 0) setConsultas(active);
         }
         if (pacotesRes.ok) {
           const data = await pacotesRes.json();
-          setPacotesList(data.filter((p: Pacote) => p.active));
+          const active = data.filter((p: Pacote) => p.active);
+          if (active.length > 0) setPacotesList(active);
         }
       } catch {
-        // Fallback silently
+        // Keep default data on error
       } finally {
         setLoading(false);
       }
@@ -66,8 +128,6 @@ export function ConsultasPacotes() {
       </section>
     );
   }
-
-  if (consultas.length === 0 && pacotesList.length === 0) return null;
 
   return (
     <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
