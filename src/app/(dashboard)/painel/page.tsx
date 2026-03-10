@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   Search,
-  Coins,
   FileText,
   ArrowRight,
   CreditCard,
@@ -9,10 +8,7 @@ import {
   Car,
   Eye,
   Download,
-  Plus,
-  Star,
   CheckCircle,
-  Clock,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -27,14 +23,6 @@ const stats = [
     icon: Search,
     color: "bg-blue-100 text-blue-600",
     trend: "+3 esta semana",
-  },
-  {
-    title: "Créditos Disponíveis",
-    value: "8",
-    description: "créditos restantes",
-    icon: Coins,
-    color: "bg-green-100 text-green-600",
-    trend: null,
   },
   {
     title: "Relatórios Gerados",
@@ -65,7 +53,7 @@ const recentConsultas = [
 const recentPayments = [
   { id: "PAY-007", desc: "Relatório Premium - ABC1D23", amount: "R$ 39,90", date: "08/03", status: "confirmed" },
   { id: "PAY-006", desc: "Relatório Completo - XYZ9A87", amount: "R$ 24,90", date: "07/03", status: "confirmed" },
-  { id: "PAY-005", desc: "Pacote 5 créditos", amount: "R$ 99,90", date: "01/03", status: "confirmed" },
+  { id: "PAY-005", desc: "Consulta Completa - DEF4G56", amount: "R$ 64,90", date: "01/03", status: "confirmed" },
 ];
 
 const typeColors: Record<string, string> = {
@@ -116,27 +104,6 @@ export default function PainelPage() {
           );
         })}
       </div>
-
-      {/* Alert Card */}
-      <Card className="border-0 shadow-sm bg-gradient-to-r from-[#FF4D30] to-[#E8432A]">
-        <CardContent className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5">
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20">
-              <Star className="h-6 w-6 text-white" />
-            </div>
-            <div>
-              <p className="font-semibold text-white">Economize com pacotes de créditos!</p>
-              <p className="text-sm text-white/80">A partir de R$ 11,99 por consulta no pacote de 100 créditos.</p>
-            </div>
-          </div>
-          <Link href="/creditos">
-            <Button className="bg-white text-[#FF4D30] hover:bg-white/90 font-semibold gap-2 shrink-0">
-              <Plus className="h-4 w-4" />
-              Comprar Créditos
-            </Button>
-          </Link>
-        </CardContent>
-      </Card>
 
       <div className="grid gap-6 xl:grid-cols-3">
         {/* Recent Consultas */}
@@ -233,11 +200,11 @@ export default function PainelPage() {
                     <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#FF4D30]" />
                   </div>
                 </Link>
-                <Link href="/creditos" className="group">
+                <Link href="/pagamentos" className="group">
                   <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF5F3]">
                     <div className="flex items-center gap-3">
-                      <Coins className="h-5 w-5 text-green-600" />
-                      <span className="text-sm font-medium text-[#0F172A]">Comprar Créditos</span>
+                      <CreditCard className="h-5 w-5 text-green-600" />
+                      <span className="text-sm font-medium text-[#0F172A]">Pagamentos</span>
                     </div>
                     <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#FF4D30]" />
                   </div>

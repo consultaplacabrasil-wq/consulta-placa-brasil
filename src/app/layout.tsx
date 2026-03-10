@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { AnalyticsScripts } from "@/components/layout/analytics-scripts";
 import "./globals.css";
 
 const lexend = Lexend({
@@ -49,6 +50,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
+      <head>
+        <AnalyticsScripts />
+      </head>
       <body className={`${lexend.variable} font-sans antialiased`}>
         {children}
         <Toaster />

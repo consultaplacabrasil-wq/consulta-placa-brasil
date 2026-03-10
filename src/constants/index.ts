@@ -9,13 +9,6 @@ export const REPORT_PRICES = {
   premium: 39.9,
 } as const;
 
-export const CREDIT_PACKAGES = [
-  { credits: 5, price: 99.9, unitPrice: 19.98 },
-  { credits: 10, price: 179.9, unitPrice: 17.99 },
-  { credits: 25, price: 399.9, unitPrice: 15.99 },
-  { credits: 50, price: 699.9, unitPrice: 13.99 },
-  { credits: 100, price: 1199.9, unitPrice: 11.99 },
-] as const;
 
 export const REPORT_FEATURES = {
   basic: [
@@ -67,15 +60,21 @@ export const COLORS = {
   surface: "#FFFFFF",
 } as const;
 
-export const PLATE_REGEX = /^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$/;
+// Placa antiga: AAA0000 ou AAA-0000 → normalizada para AAA0000
+export const PLATE_REGEX_OLD = /^[A-Z]{3}[0-9]{4}$/;
+// Placa Mercosul: AAA0A00
+export const PLATE_REGEX_MERCOSUL = /^[A-Z]{3}[0-9][A-Z][0-9]{2}$/;
 
 export function formatPlate(plate: string): string {
   return plate.toUpperCase().replace(/[^A-Z0-9]/g, "");
 }
 
 export function validatePlate(plate: string): boolean {
-  return PLATE_REGEX.test(formatPlate(plate));
+  const formatted = formatPlate(plate);
+  return PLATE_REGEX_OLD.test(formatted) || PLATE_REGEX_MERCOSUL.test(formatted);
 }
+
+export const PLATE_ERROR_MESSAGE = "Placa inválida. Verifique o formato informado.";
 
 export function formatCurrency(value: number): string {
   return new Intl.NumberFormat("pt-BR", {

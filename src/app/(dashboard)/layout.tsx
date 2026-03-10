@@ -8,12 +8,10 @@ import {
   LayoutDashboard,
   Search,
   FileText,
-  Coins,
   CreditCard,
   UserCircle,
   LogOut,
   Menu,
-  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
@@ -21,8 +19,7 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 const sidebarLinks = [
   { href: "/painel", label: "Painel", icon: LayoutDashboard },
   { href: "/consultas", label: "Consultas", icon: Search },
-  { href: "/relatorios", label: "Relatorios", icon: FileText },
-  { href: "/creditos", label: "Creditos", icon: Coins },
+  { href: "/relatorios", label: "Relatórios", icon: FileText },
   { href: "/pagamentos", label: "Pagamentos", icon: CreditCard },
   { href: "/perfil", label: "Perfil", icon: UserCircle },
 ];

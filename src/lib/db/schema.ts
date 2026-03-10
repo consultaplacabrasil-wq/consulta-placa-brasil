@@ -13,7 +13,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 // Enums
-export const userRoleEnum = pgEnum("user_role", ["user", "admin", "partner"]);
+export const userRoleEnum = pgEnum("user_role", ["user", "admin", "editor"]);
 export const reportTypeEnum = pgEnum("report_type", [
   "basic",
   "complete",
@@ -23,7 +23,6 @@ export const paymentMethodEnum = pgEnum("payment_method", [
   "pix",
   "credit_card",
   "debit_card",
-  "credits",
 ]);
 export const paymentStatusEnum = pgEnum("payment_status", [
   "pending",
@@ -44,7 +43,7 @@ export const requestStatusEnum = pgEnum("request_status", [
 export const postStatusEnum = pgEnum("post_status", [
   "draft",
   "published",
-  "scheduled",
+  "inactive",
 ]);
 
 // Users
@@ -95,7 +94,7 @@ export const vehicles = pgTable(
   (table) => [uniqueIndex("vehicles_plate_idx").on(table.plate)]
 );
 
-// Payments (declared before report_requests due to FK reference)
+// Payments
 export const payments = pgTable(
   "payments",
   {
@@ -111,6 +110,8 @@ export const payments = pgTable(
     status: paymentStatusEnum("status").default("pending").notNull(),
     installments: integer("installments").default(1),
     externalRef: varchar("external_ref", { length: 100 }),
+    couponId: text("coupon_id"),
+    discountAmount: decimal("discount_amount", { precision: 10, scale: 2 }),
     paidAt: timestamp("paid_at"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },
@@ -132,7 +133,6 @@ export const reportRequests = pgTable("report_requests", {
   reportType: reportTypeEnum("report_type").notNull(),
   status: requestStatusEnum("status").default("pending_payment").notNull(),
   paymentId: text("payment_id").references(() => payments.id),
-  creditsUsed: integer("credits_used").default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -160,35 +160,52 @@ export const reports = pgTable(
   ]
 );
 
-// Transactions
-export const transactions = pgTable("transactions", {
+// Consulta Types (dynamic, managed via admin)
+export const consultaTypes = pgTable("consulta_types", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  userId: text("user_id")
-    .references(() => users.id)
-    .notNull(),
-  type: varchar("type", { length: 50 }).notNull(),
-  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  name: varchar("name", { length: 200 }).notNull(),
   description: text("description"),
-  referenceId: text("reference_id"),
+  price: decimal("price", { precision: 10, scale: 2 }).notNull(),
+  originalPrice: decimal("original_price", { precision: 10, scale: 2 }),
+  benefits: jsonb("benefits").$type<string[]>().default([]),
+  popular: boolean("popular").default(false),
+  active: boolean("active").default(true),
+  sortOrder: integer("sort_order").default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-// Credits
-export const credits = pgTable(
-  "credits",
+// Pacotes (packages, managed via admin)
+export const pacotes = pgTable("pacotes", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: varchar("name", { length: 200 }).notNull(),
+  description: text("description"),
+  price: decimal("price", { precision: 10, scale: 2 }).notNull(),
+  originalPrice: decimal("original_price", { precision: 10, scale: 2 }),
+  popular: boolean("popular").default(false),
+  active: boolean("active").default(true),
+  sortOrder: integer("sort_order").default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Blog Categories
+export const blogCategories = pgTable(
+  "blog_categories",
   {
     id: text("id")
       .primaryKey()
       .$defaultFn(() => crypto.randomUUID()),
-    userId: text("user_id")
-      .references(() => users.id)
-      .notNull(),
-    balance: integer("balance").default(0).notNull(),
-    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+    name: varchar("name", { length: 100 }).notNull(),
+    slug: varchar("slug", { length: 120 }).notNull(),
+    description: text("description"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
   },
-  (table) => [uniqueIndex("credits_user_idx").on(table.userId)]
+  (table) => [uniqueIndex("blog_categories_slug_idx").on(table.slug)]
 );
 
 // Blog Posts
@@ -207,11 +224,20 @@ export const blogPosts = pgTable(
     tags: text("tags").array(),
     author: varchar("author", { length: 100 }),
     status: postStatusEnum("status").default("draft").notNull(),
+    // SEO Tab
     seoTitle: varchar("seo_title", { length: 70 }),
     seoDescription: varchar("seo_description", { length: 160 }),
-    seoKeyword: varchar("seo_keyword", { length: 100 }),
+    seoCanonical: text("seo_canonical"),
+    seoRobots: varchar("seo_robots", { length: 50 }).default("index, follow"),
+    // Open Graph Tab
+    ogTitle: varchar("og_title", { length: 100 }),
+    ogDescription: varchar("og_description", { length: 200 }),
+    ogImage: text("og_image"),
+    ogUrl: text("og_url"),
+    // Dates & Stats
     publishedAt: timestamp("published_at"),
     viewCount: integer("view_count").default(0),
+    deletedAt: timestamp("deleted_at"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
@@ -222,20 +248,91 @@ export const blogPosts = pgTable(
   ]
 );
 
-// Blog Categories
-export const blogCategories = pgTable(
-  "blog_categories",
+// FAQs (managed via admin)
+export const faqs = pgTable("faqs", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  question: text("question").notNull(),
+  answer: text("answer").notNull(),
+  sortOrder: integer("sort_order").default(0),
+  active: boolean("active").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Pages (institutional pages, managed via admin)
+export const pages = pgTable(
+  "pages",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    title: varchar("title", { length: 255 }).notNull(),
+    slug: varchar("slug", { length: 300 }).notNull(),
+    content: text("content").notNull(),
+    // SEO
+    seoTitle: varchar("seo_title", { length: 70 }),
+    seoDescription: varchar("seo_description", { length: 160 }),
+    seoCanonical: text("seo_canonical"),
+    seoRobots: varchar("seo_robots", { length: 50 }).default("index, follow"),
+    // Open Graph
+    ogTitle: varchar("og_title", { length: 100 }),
+    ogDescription: varchar("og_description", { length: 200 }),
+    ogImage: text("og_image"),
+    ogUrl: text("og_url"),
+    // Status
+    published: boolean("published").default(true),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => [uniqueIndex("pages_slug_idx").on(table.slug)]
+);
+
+// Coupons
+export const coupons = pgTable(
+  "coupons",
   {
     id: text("id")
       .primaryKey()
       .$defaultFn(() => crypto.randomUUID()),
     name: varchar("name", { length: 100 }).notNull(),
-    slug: varchar("slug", { length: 120 }).notNull(),
-    description: text("description"),
+    code: varchar("code", { length: 50 }).notNull(),
+    discountPercent: integer("discount_percent").notNull(),
+    active: boolean("active").default(true),
+    usageCount: integer("usage_count").default(0),
+    maxUsage: integer("max_usage"),
+    expiresAt: timestamp("expires_at"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },
-  (table) => [uniqueIndex("blog_categories_slug_idx").on(table.slug)]
+  (table) => [uniqueIndex("coupons_code_idx").on(table.code)]
 );
+
+// Site Settings (key-value store)
+export const siteSettings = pgTable("site_settings", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  key: varchar("key", { length: 100 }).notNull(),
+  value: text("value"),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// FAQ Page SEO (single row for FAQ page-level SEO)
+export const faqPageSeo = pgTable("faq_page_seo", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  seoTitle: varchar("seo_title", { length: 70 }),
+  seoDescription: varchar("seo_description", { length: 160 }),
+  seoCanonical: text("seo_canonical"),
+  seoRobots: varchar("seo_robots", { length: 50 }).default("index, follow"),
+  ogTitle: varchar("og_title", { length: 100 }),
+  ogDescription: varchar("og_description", { length: 200 }),
+  ogImage: text("og_image"),
+  ogUrl: text("og_url"),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
 
 // Admin Logs
 export const adminLogs = pgTable(

@@ -1,97 +1,73 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCartStore } from "@/store/cart-store";
 import { formatCurrency } from "@/constants";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Loader2 } from "lucide-react";
 
-const consultas = [
-  {
-    id: "consulta-completa",
-    name: "Veículo Completo",
-    description:
-      "A consulta mais completa do mercado, com informações e dados exclusivos sobre o veículo!",
-    originalPrice: 74.9,
-    price: 64.9,
-    popular: true,
-    detailsLink: "#",
-  },
-  {
-    id: "consulta-essencial",
-    name: "Veículo Essencial",
-    description:
-      "Informações essenciais sobre o veículo, que te ajudam a negociar com mais segurança e acertar na escolha do seu próximo carro.",
-    originalPrice: 52.9,
-    price: 45.9,
-    popular: false,
-    detailsLink: "#",
-  },
-  {
-    id: "consulta-leilao",
-    name: "Leilão + Dados do Veículo",
-    description:
-      "Informações sobre o veículo de leilão, que te ajudam a negociar o melhor valor e evitar prejuízos!",
-    originalPrice: 40.9,
-    price: 34.9,
-    popular: false,
-    detailsLink: "#",
-  },
-  {
-    id: "consulta-gravame",
-    name: "Gravame",
-    description:
-      "Informações sobre o status de financiamento do veículo que te ajudam a evitar problemas na hora da transferência!",
-    originalPrice: 17.9,
-    price: 14.9,
-    popular: false,
-    detailsLink: "#",
-  },
-  {
-    id: "consulta-cadastral",
-    name: "Dados Cadastrais do Veículo",
-    description:
-      "Informações sobre a situação do veículo que te ajudam a validar dados cadastrais nacionais e estaduais!",
-    originalPrice: 15.9,
-    price: 13.9,
-    popular: false,
-    detailsLink: "#",
-  },
-];
+interface ConsultaType {
+  id: string;
+  name: string;
+  description: string | null;
+  price: string;
+  originalPrice: string | null;
+  benefits: string[];
+  popular: boolean;
+  active: boolean;
+}
 
-const pacotes = [
-  {
-    id: "pacote-1000",
-    name: "PACOTE 1000",
-    originalPrice: 1000.0,
-    price: 800.0,
-    popular: true,
-  },
-  {
-    id: "pacote-500",
-    name: "PACOTE 500",
-    originalPrice: 500.0,
-    price: 425.0,
-    popular: false,
-  },
-  {
-    id: "pacote-300",
-    name: "PACOTE 300",
-    originalPrice: 300.0,
-    price: 270.0,
-    popular: false,
-  },
-  {
-    id: "pacote-150",
-    name: "PACOTE 150",
-    originalPrice: 150.0,
-    price: 142.5,
-    popular: false,
-  },
-];
+interface Pacote {
+  id: string;
+  name: string;
+  description: string | null;
+  price: string;
+  originalPrice: string | null;
+  popular: boolean;
+  active: boolean;
+}
 
 export function ConsultasPacotes() {
   const [activeTab, setActiveTab] = useState<"consultas" | "pacotes">("consultas");
+  const [consultas, setConsultas] = useState<ConsultaType[]>([]);
+  const [pacotesList, setPacotesList] = useState<Pacote[]>([]);
+  const [loading, setLoading] = useState(true);
   const { addItem } = useCartStore();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [consultasRes, pacotesRes] = await Promise.all([
+          fetch("/api/admin/consultas-types"),
+          fetch("/api/admin/pacotes"),
+        ]);
+        if (consultasRes.ok) {
+          const data = await consultasRes.json();
+          setConsultas(data.filter((c: ConsultaType) => c.active));
+        }
+        if (pacotesRes.ok) {
+          const data = await pacotesRes.json();
+          setPacotesList(data.filter((p: Pacote) => p.active));
+        }
+      } catch {
+        // Fallback silently
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl flex justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-[#FF4D30]" />
+        </div>
+      </section>
+    );
+  }
+
+  if (consultas.length === 0 && pacotesList.length === 0) return null;
 
   return (
     <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
@@ -112,26 +88,30 @@ export function ConsultasPacotes() {
         {/* Tabs */}
         <div className="flex justify-center mb-10">
           <div className="inline-flex rounded-full border border-gray-200 bg-white p-1">
-            <button
-              onClick={() => setActiveTab("consultas")}
-              className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-colors ${
-                activeTab === "consultas"
-                  ? "bg-[#FF4D30] text-white"
-                  : "text-[#0F172A] hover:bg-gray-50"
-              }`}
-            >
-              CONSULTAS
-            </button>
-            <button
-              onClick={() => setActiveTab("pacotes")}
-              className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-colors ${
-                activeTab === "pacotes"
-                  ? "bg-[#FF4D30] text-white"
-                  : "text-[#0F172A] hover:bg-gray-50"
-              }`}
-            >
-              PACOTES
-            </button>
+            {consultas.length > 0 && (
+              <button
+                onClick={() => setActiveTab("consultas")}
+                className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-colors ${
+                  activeTab === "consultas"
+                    ? "bg-[#FF4D30] text-white"
+                    : "text-[#0F172A] hover:bg-gray-50"
+                }`}
+              >
+                CONSULTAS
+              </button>
+            )}
+            {pacotesList.length > 0 && (
+              <button
+                onClick={() => setActiveTab("pacotes")}
+                className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-colors ${
+                  activeTab === "pacotes"
+                    ? "bg-[#FF4D30] text-white"
+                    : "text-[#0F172A] hover:bg-gray-50"
+                }`}
+              >
+                PACOTES
+              </button>
+            )}
           </div>
         </div>
 
@@ -147,13 +127,6 @@ export function ConsultasPacotes() {
                     : "border-gray-200 shadow-sm"
                 }`}
               >
-                <a
-                  href={item.detailsLink}
-                  className="text-sm font-medium text-[#FF4D30] hover:underline mb-3 inline-flex items-center gap-1"
-                >
-                  Ver mais detalhes <ChevronRight className="h-3 w-3" />
-                </a>
-
                 {item.popular && (
                   <span className="inline-flex self-start items-center rounded-full bg-[#FFF5F3] px-3 py-1 text-xs font-medium text-[#FF4D30] mb-2">
                     Popular
@@ -163,16 +136,29 @@ export function ConsultasPacotes() {
                 <h3 className="text-xl font-bold text-[#0F172A] mb-2">
                   {item.name}
                 </h3>
-                <p className="text-sm text-[#64748B] mb-4 flex-1">
+                <p className="text-sm text-[#64748B] mb-3 flex-1">
                   {item.description}
                 </p>
 
+                {item.benefits && item.benefits.length > 0 && (
+                  <ul className="mb-4 space-y-1.5">
+                    {item.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-center gap-2 text-sm text-[#475569]">
+                        <ChevronRight className="h-3 w-3 text-[#FF4D30] shrink-0" />
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
                 <div className="mb-4">
-                  <p className="text-sm text-red-400 line-through">
-                    de {formatCurrency(item.originalPrice)} por
-                  </p>
+                  {item.originalPrice && (
+                    <p className="text-sm text-red-400 line-through">
+                      de {formatCurrency(Number(item.originalPrice))} por
+                    </p>
+                  )}
                   <p className="text-3xl font-bold text-[#0F172A]">
-                    {formatCurrency(item.price)}
+                    {formatCurrency(Number(item.price))}
                     <span className="text-sm font-normal text-[#64748B] ml-1">
                       /consulta
                     </span>
@@ -185,8 +171,8 @@ export function ConsultasPacotes() {
                       id: item.id,
                       name: item.name,
                       type: "consulta",
-                      originalPrice: item.originalPrice,
-                      price: item.price,
+                      originalPrice: Number(item.originalPrice || item.price),
+                      price: Number(item.price),
                     })
                   }
                   className="w-full rounded-lg bg-[#FF4D30] py-3 text-sm font-bold uppercase text-white transition-colors hover:bg-[#E8432A]"
@@ -201,7 +187,7 @@ export function ConsultasPacotes() {
         {/* Pacotes Grid */}
         {activeTab === "pacotes" && (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {pacotes.map((item) => (
+            {pacotesList.map((item) => (
               <div
                 key={item.id}
                 className={`relative flex flex-col rounded-2xl border-2 bg-white p-6 transition-all hover:shadow-lg ${
@@ -216,18 +202,27 @@ export function ConsultasPacotes() {
                   </span>
                 )}
 
-                <h3 className="text-xl font-bold text-[#0F172A] mb-4">
+                <h3 className="text-xl font-bold text-[#0F172A] mb-2">
                   {item.name}
                 </h3>
+                {item.description && (
+                  <p className="text-sm text-[#64748B] mb-4 flex-1">
+                    {item.description}
+                  </p>
+                )}
 
                 <div className="mb-6">
-                  <p className="text-sm text-gray-500">Compre</p>
-                  <p className="text-base text-red-400 line-through">
-                    {formatCurrency(item.originalPrice)}
-                  </p>
-                  <p className="text-sm text-gray-500">e pague</p>
+                  {item.originalPrice && (
+                    <>
+                      <p className="text-sm text-gray-500">Compre</p>
+                      <p className="text-base text-red-400 line-through">
+                        {formatCurrency(Number(item.originalPrice))}
+                      </p>
+                      <p className="text-sm text-gray-500">e pague</p>
+                    </>
+                  )}
                   <p className="text-3xl font-bold text-[#0F172A]">
-                    {formatCurrency(item.price)}
+                    {formatCurrency(Number(item.price))}
                   </p>
                 </div>
 
@@ -237,8 +232,8 @@ export function ConsultasPacotes() {
                       id: item.id,
                       name: item.name,
                       type: "pacote",
-                      originalPrice: item.originalPrice,
-                      price: item.price,
+                      originalPrice: Number(item.originalPrice || item.price),
+                      price: Number(item.price),
                     })
                   }
                   className="mt-auto w-full rounded-lg bg-[#FF4D30] py-3 text-sm font-bold text-white transition-colors hover:bg-[#E8432A]"

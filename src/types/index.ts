@@ -97,14 +97,27 @@ export interface ReportData {
 }
 
 // Payment types
-export type PaymentMethod = "pix" | "credit_card" | "debit_card" | "credits";
+export type PaymentMethod = "pix" | "credit_card" | "debit_card";
 
 export interface PaymentRequest {
   plate: string;
   reportType: ReportType;
   method: PaymentMethod;
   installments?: number;
+  couponCode?: string;
 }
 
 // User types
-export type UserRole = "user" | "admin" | "partner";
+export type UserRole = "user" | "admin" | "editor";
+
+// Blog types
+export type PostStatus = "draft" | "published" | "inactive";
+
+// Coupon types
+export interface Coupon {
+  id: string;
+  name: string;
+  code: string;
+  discountPercent: number;
+  active: boolean;
+}

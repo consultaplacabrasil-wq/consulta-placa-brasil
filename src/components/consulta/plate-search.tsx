@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Loader2 } from "lucide-react";
-import { formatPlate, validatePlate } from "@/constants";
+import { formatPlate, validatePlate, PLATE_ERROR_MESSAGE } from "@/constants";
 
 interface PlateSearchProps {
   size?: "default" | "large";
@@ -40,7 +40,7 @@ export function PlateSearch({ size = "default", variant = "default", className }
     }
 
     if (!validatePlate(formatted)) {
-      setError("Placa inválida. Use o formato ABC1D23 ou ABC1234");
+      setError(PLATE_ERROR_MESSAGE);
       return;
     }
 

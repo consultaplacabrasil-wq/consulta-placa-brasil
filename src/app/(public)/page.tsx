@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { PlateSearch } from "@/components/consulta/plate-search";
 import {
   Card,
@@ -8,7 +7,6 @@ import {
 import {
   Shield,
   Zap,
-  FileText,
   CheckCircle,
   Star,
   Search,
@@ -18,13 +16,9 @@ import {
   Lock,
   Car,
   Receipt,
-  ChevronRight,
   Users,
-  BarChart3,
-  Award,
+  FileText,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { REPORT_FEATURES, formatCurrency, REPORT_PRICES } from "@/constants";
 import { ConsultasPacotes } from "@/components/home/consultas-pacotes";
 import { FaqSection } from "@/components/home/faq-section";
 
@@ -95,39 +89,6 @@ const benefits = [
   },
 ];
 
-const reportTypes = [
-  {
-    title: "Básico",
-    price: "Grátis",
-    priceValue: REPORT_PRICES.basic,
-    description: "Dados cadastrais e situação geral",
-    features: REPORT_FEATURES.basic,
-    popular: false,
-    cta: "Consultar Grátis",
-    accent: "border-gray-200",
-  },
-  {
-    title: "Completo",
-    price: formatCurrency(REPORT_PRICES.complete),
-    priceValue: REPORT_PRICES.complete,
-    description: "Todos os dados disponíveis",
-    features: REPORT_FEATURES.complete,
-    popular: true,
-    cta: "Comprar Relatório",
-    accent: "border-[#FF4D30]",
-  },
-  {
-    title: "Premium",
-    price: formatCurrency(REPORT_PRICES.premium),
-    priceValue: REPORT_PRICES.premium,
-    description: "Completo + análise de risco",
-    features: REPORT_FEATURES.premium,
-    popular: false,
-    cta: "Comprar Premium",
-    accent: "border-[#0F172A]",
-  },
-];
-
 const testimonials = [
   {
     name: "Carlos M.",
@@ -138,7 +99,7 @@ const testimonials = [
   {
     name: "Ana Paula S.",
     role: "Lojista de usados",
-    text: "Uso diariamente na minha loja de usados. Os pacotes de crédito valem muito a pena.",
+    text: "Uso diariamente na minha loja de usados. As consultas são rápidas e completas.",
     rating: 5,
   },
   {
@@ -216,7 +177,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Consultas & Pacotes */}
+      {/* Consultas & Pacotes (dinâmicos do banco) */}
       <ConsultasPacotes />
 
       {/* How it works */}
@@ -255,71 +216,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Report Types */}
-      <section className="bg-white px-4 py-16 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
-              Planos e preços
-            </span>
-            <h2 className="text-3xl font-bold text-[#0F172A]">
-              Tipos de Relatório
-            </h2>
-            <p className="mt-3 text-[#64748B] max-w-xl mx-auto">
-              Escolha o nível de detalhamento ideal para sua necessidade
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {reportTypes.map((report) => (
-              <div
-                key={report.title}
-                className={`relative rounded-2xl border-2 bg-white p-6 transition-all hover:shadow-xl ${report.accent} ${
-                  report.popular ? "shadow-lg scale-[1.02]" : "shadow-sm"
-                }`}
-              >
-                {report.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-[#FF4D30] px-4 py-1.5 text-xs font-semibold text-white shadow-md shadow-[#FF4D30]/25">
-                      <Award className="h-3.5 w-3.5" />
-                      Mais Popular
-                    </span>
-                  </div>
-                )}
-                <div className="text-center mb-6 pt-2">
-                  <h3 className="text-xl font-bold text-[#0F172A]">{report.title}</h3>
-                  <p className="text-sm text-[#64748B] mt-1">{report.description}</p>
-                  <p className="mt-4 text-4xl font-bold text-[#FF4D30]">
-                    {report.price}
-                  </p>
-                </div>
-                <ul className="space-y-3 mb-6">
-                  {report.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5">
-                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#FF4D30]" />
-                      <span className="text-sm text-[#475569]">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/consulta">
-                  <Button
-                    className={`w-full h-11 font-semibold rounded-xl ${
-                      report.popular
-                        ? "bg-[#FF4D30] hover:bg-[#E8432A] text-white shadow-md shadow-[#FF4D30]/20"
-                        : "bg-[#0F172A] hover:bg-[#1E293B] text-white"
-                    }`}
-                  >
-                    {report.cta}
-                    <ChevronRight className="h-4 w-4 ml-1" />
-                  </Button>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Benefits */}
-      <section className="bg-[#F8FAFC] px-4 py-16 md:py-20">
+      <section className="bg-white px-4 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
@@ -355,7 +253,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-white px-4 py-16 md:py-20">
+      <section className="bg-[#F8FAFC] px-4 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">

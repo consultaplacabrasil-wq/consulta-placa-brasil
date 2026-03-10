@@ -1,4 +1,7 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
+import { db } from "@/lib/db";
+import { faqs, faqPageSeo } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 import {
   Accordion,
   AccordionContent,
@@ -6,79 +9,84 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export const metadata: Metadata = {
-  title: "Perguntas Frequentes",
-  description:
-    "Tire suas dúvidas sobre a Consulta Placa Brasil. Veja as perguntas mais frequentes sobre consultas veiculares, preços, segurança e mais.",
-};
-
-const faqs = [
+const defaultFaqs = [
   {
     question: "O que é a Consulta Placa Brasil?",
-    answer:
-      "A Consulta Placa Brasil é uma plataforma online que permite consultar informações detalhadas sobre veículos a partir da placa. Nosso serviço reúne dados de diversas fontes oficiais para oferecer um relatório completo sobre o histórico do veículo, incluindo situação cadastral, débitos, restrições, sinistros e muito mais.",
+    answer: "A Consulta Placa Brasil é uma plataforma online que permite consultar informações detalhadas sobre veículos a partir da placa.",
   },
   {
     question: "Como funciona a consulta veicular?",
-    answer:
-      "O processo é simples e rápido: basta informar a placa do veículo no campo de consulta, escolher o tipo de relatório desejado e realizar o pagamento. Em poucos segundos, você recebe um relatório completo com todas as informações disponíveis sobre o veículo consultado.",
-  },
-  {
-    question: "Quais tipos de relatório estão disponíveis?",
-    answer:
-      "Oferecemos diferentes tipos de relatório para atender às suas necessidades: Relatório Básico (dados cadastrais e situação do veículo), Relatório Completo (inclui histórico de sinistros, débitos, restrições, recalls e leilões) e Relatório Premium (todas as informações anteriores mais score de confiabilidade e análise de mercado).",
-  },
-  {
-    question: "Quanto custa uma consulta?",
-    answer:
-      "Os valores variam conforme o tipo de relatório escolhido. O Relatório Básico tem um valor acessível a partir de R$ 9,90, o Relatório Completo a partir de R$ 29,90 e o Relatório Premium a partir de R$ 49,90. Também oferecemos pacotes com desconto para múltiplas consultas.",
+    answer: "O processo é simples: informe a placa do veículo, escolha o tipo de consulta e realize o pagamento. Em poucos segundos, você recebe o relatório completo.",
   },
   {
     question: "Quais formas de pagamento são aceitas?",
-    answer:
-      "Aceitamos diversas formas de pagamento para sua conveniência: cartão de crédito (Visa, Mastercard, Elo, American Express), cartão de débito, PIX (pagamento instantâneo com desconto), e boleto bancário. Todos os pagamentos são processados de forma segura.",
+    answer: "Aceitamos Pix (com confirmação instantânea) e cartão de crédito. O Pix é a forma mais rápida.",
   },
   {
     question: "Meus dados estão seguros?",
-    answer:
-      "Sim, a segurança dos seus dados é nossa prioridade máxima. Utilizamos criptografia SSL/TLS de 256 bits em todas as transações, nossos servidores são protegidos por firewalls de última geração e seguimos rigorosamente todas as diretrizes da Lei Geral de Proteção de Dados (LGPD). Seus dados pessoais nunca são compartilhados com terceiros sem sua autorização.",
-  },
-  {
-    question: "Posso solicitar reembolso?",
-    answer:
-      "Sim. Caso o relatório não contenha as informações esperadas ou haja algum erro nos dados apresentados, você pode solicitar reembolso em até 7 dias após a compra, conforme o Código de Defesa do Consumidor. Basta entrar em contato com nosso suporte informando o motivo da solicitação.",
+    answer: "Sim! Utilizamos criptografia e estamos em conformidade com a LGPD. Seus dados pessoais são protegidos com os mais altos padrões de segurança.",
   },
   {
     question: "A consulta cobre todos os estados do Brasil?",
-    answer:
-      "Sim! Nossa plataforma oferece cobertura nacional completa, abrangendo todos os 27 estados brasileiros, incluindo o Distrito Federal. Independentemente de onde o veículo esteja registrado, conseguimos fornecer informações detalhadas e atualizadas.",
+    answer: "Sim! Cobertura nacional completa: todos os 27 estados e Distrito Federal.",
   },
   {
-    question: "De onde vêm os dados das consultas?",
-    answer:
-      "Nossos dados são obtidos de fontes oficiais e confiáveis, incluindo bases do DETRAN, DENATRAN, Secretaria da Fazenda, seguradoras, leiloeiros credenciados e outros órgãos governamentais. As informações são atualizadas regularmente para garantir a máxima precisão dos relatórios.",
-  },
-  {
-    question: "Como a Consulta Placa Brasil trata meus dados conforme a LGPD?",
-    answer:
-      "Estamos em total conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018). Coletamos apenas os dados estritamente necessários para a prestação do serviço, oferecemos total transparência sobre o uso dos dados, garantimos seus direitos de acesso, correção e exclusão, e contamos com um Encarregado de Proteção de Dados (DPO) dedicado. Você pode exercer seus direitos a qualquer momento através da nossa página de LGPD.",
+    question: "Posso consultar placas no formato Mercosul?",
+    answer: "Sim! Aceitamos tanto o formato antigo (AAA-0000) quanto o formato Mercosul (AAA0A00).",
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-};
+async function getFaqData() {
+  try {
+    const faqList = await db.select().from(faqs).where(eq(faqs.active, true)).orderBy(faqs.sortOrder);
+    return faqList.length > 0 ? faqList : null;
+  } catch {
+    return null;
+  }
+}
 
-export default function FaqPage() {
+async function getSeoData() {
+  try {
+    const [seo] = await db.select().from(faqPageSeo).limit(1);
+    return seo || null;
+  } catch {
+    return null;
+  }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getSeoData();
+  return {
+    title: seo?.seoTitle || "Perguntas Frequentes - Consulta Placa Brasil",
+    description: seo?.seoDescription || "Tire suas dúvidas sobre a Consulta Placa Brasil.",
+    alternates: { canonical: seo?.seoCanonical || undefined },
+    robots: seo?.seoRobots || "index, follow",
+    openGraph: {
+      title: seo?.ogTitle || "Perguntas Frequentes",
+      description: seo?.ogDescription || "Tire suas dúvidas sobre a Consulta Placa Brasil.",
+      images: seo?.ogImage ? [seo.ogImage] : undefined,
+      url: seo?.ogUrl || "https://consultaplacabrasil.com.br/faq",
+    },
+  };
+}
+
+export default async function FaqPage() {
+  const dbFaqs = await getFaqData();
+  const faqList = dbFaqs || defaultFaqs.map((f, i) => ({ ...f, id: String(i), sortOrder: i, active: true }));
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <div className="bg-[#F8FAFC]">
       <script
@@ -87,12 +95,12 @@ export default function FaqPage() {
       />
 
       {/* Hero */}
-      <section className="bg-[#FF4D30] text-white py-16">
+      <section className="bg-[#0F172A] text-white py-16">
         <div className="container mx-auto px-4 max-w-5xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Perguntas Frequentes
           </h1>
-          <p className="text-lg text-red-100 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             Encontre respostas para as dúvidas mais comuns sobre nossos serviços de
             consulta veicular.
           </p>
@@ -103,9 +111,9 @@ export default function FaqPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-3xl">
           <Accordion className="space-y-4">
-            {faqs.map((faq, index) => (
+            {faqList.map((faq, index) => (
               <AccordionItem
-                key={index}
+                key={faq.id || index}
                 value={`item-${index}`}
                 className="bg-white rounded-xl border border-gray-100 shadow-sm px-6"
               >
@@ -125,8 +133,7 @@ export default function FaqPage() {
               Ainda tem dúvidas?
             </h2>
             <p className="text-[#475569] mb-6">
-              Entre em contato com nossa equipe de suporte. Estamos prontos para
-              ajudá-lo.
+              Entre em contato com nossa equipe de suporte.
             </p>
             <a
               href="/contato"

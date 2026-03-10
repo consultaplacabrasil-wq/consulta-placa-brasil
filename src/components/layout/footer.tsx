@@ -4,19 +4,18 @@ import { Car, Phone, Mail, MapPin } from "lucide-react";
 const footerLinks = {
   plataforma: [
     { href: "/", label: "Consultar Placa" },
-    { href: "/relatorios/basico", label: "Relatório Básico" },
-    { href: "/relatorios/completo", label: "Relatório Completo" },
-    { href: "/relatorios/premium", label: "Relatório Premium" },
+    { href: "/blog", label: "Blog" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/contato", label: "Contato" },
   ],
   empresa: [
     { href: "/sobre", label: "Sobre Nós" },
-    { href: "/blog", label: "Blog" },
     { href: "/contato", label: "Contato" },
-    { href: "/faq", label: "FAQ" },
   ],
   legal: [
     { href: "/termos", label: "Termos de Uso" },
     { href: "/privacidade", label: "Política de Privacidade" },
+    { href: "/cookies", label: "Política de Cookies" },
     { href: "/lgpd", label: "LGPD" },
   ],
 };

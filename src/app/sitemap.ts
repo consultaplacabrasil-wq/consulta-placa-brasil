@@ -1,8 +1,12 @@
 import { MetadataRoute } from "next";
+import { db } from "@/lib/db";
+import { blogPosts, blogCategories, pages } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://consultaplacabrasil.com.br";
 
+  // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -29,6 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
     {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/termos`,
       lastModified: new Date(),
       changeFrequency: "yearly",
@@ -41,21 +51,73 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/lgpd`,
+      url: `${baseUrl}/cookies`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/lgpd`,
       lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.7,
+      changeFrequency: "yearly",
+      priority: 0.3,
     },
   ];
 
-  // TODO: Add dynamic blog posts from database
-  // const blogPosts = await db.select().from(blogPostsTable).where(eq(status, 'published'));
+  // Dynamic blog posts
+  let blogPostEntries: MetadataRoute.Sitemap = [];
+  try {
+    const publishedPosts = await db
+      .select({ slug: blogPosts.slug, updatedAt: blogPosts.updatedAt })
+      .from(blogPosts)
+      .where(eq(blogPosts.status, "published"));
 
-  return staticPages;
+    blogPostEntries = publishedPosts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.updatedAt,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    }));
+  } catch {
+    // DB not available, skip dynamic entries
+  }
+
+  // Dynamic blog categories
+  let categoryEntries: MetadataRoute.Sitemap = [];
+  try {
+    const categories = await db
+      .select({ slug: blogCategories.slug })
+      .from(blogCategories);
+
+    categoryEntries = categories.map((cat) => ({
+      url: `${baseUrl}/blog/categoria/${cat.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    }));
+  } catch {
+    // DB not available, skip
+  }
+
+  // Dynamic institutional pages
+  let pageEntries: MetadataRoute.Sitemap = [];
+  try {
+    const publishedPages = await db
+      .select({ slug: pages.slug, updatedAt: pages.updatedAt })
+      .from(pages)
+      .where(eq(pages.published, true));
+
+    pageEntries = publishedPages
+      .filter((p) => !["sobre", "termos", "privacidade", "cookies", "lgpd"].includes(p.slug))
+      .map((page) => ({
+        url: `${baseUrl}/${page.slug}`,
+        lastModified: page.updatedAt,
+        changeFrequency: "monthly" as const,
+        priority: 0.4,
+      }));
+  } catch {
+    // DB not available, skip
+  }
+
+  return [...staticPages, ...blogPostEntries, ...categoryEntries, ...pageEntries];
 }

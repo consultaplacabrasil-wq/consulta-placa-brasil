@@ -1,53 +1,68 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
-const faqs = [
+interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+const defaultFaqs: FaqItem[] = [
   {
+    id: "1",
     question: "Como funciona a consulta de placa veicular?",
-    answer:
-      "Basta digitar a placa do veículo no campo de busca e clicar em consultar. Nosso sistema acessa diversas bases de dados oficiais e retorna um relatório completo com todas as informações disponíveis sobre o veículo em poucos segundos.",
+    answer: "Basta digitar a placa do veículo no campo de busca e clicar em consultar. Nosso sistema acessa diversas bases de dados oficiais e retorna um relatório completo em poucos segundos.",
   },
   {
+    id: "2",
     question: "Quais informações estão disponíveis no relatório?",
-    answer:
-      "O relatório pode incluir dados cadastrais, histórico de proprietários, registro de sinistros, leilão, roubo/furto, gravames, débitos, multas, recall pendente, quilometragem, tabela FIPE, entre outros. As informações variam conforme o tipo de consulta escolhida.",
+    answer: "O relatório pode incluir dados cadastrais, histórico de proprietários, registro de sinistros, leilão, roubo/furto, gravames, débitos, multas, recall pendente, quilometragem e tabela FIPE.",
   },
   {
-    question: "A consulta básica é realmente gratuita?",
-    answer:
-      "Sim! A consulta básica é totalmente gratuita e não requer cadastro. Ela mostra dados cadastrais gerais, situação do veículo, tipo, UF de registro e indicadores de sinistro e leilão. Para informações mais detalhadas, você pode adquirir um relatório completo ou premium.",
-  },
-  {
+    id: "3",
     question: "Quais formas de pagamento são aceitas?",
-    answer:
-      "Aceitamos pagamento via Pix (com confirmação instantânea) e cartão de crédito. O Pix é a forma mais rápida, pois o relatório é liberado imediatamente após a confirmação do pagamento.",
+    answer: "Aceitamos pagamento via Pix (com confirmação instantânea) e cartão de crédito. O Pix é a forma mais rápida.",
   },
   {
-    question: "Os dados do relatório são confiáveis e atualizados?",
-    answer:
-      "Sim, nossas informações são obtidas de bases de dados oficiais e atualizadas regularmente. Trabalhamos com fontes como DETRAN, DENATRAN, Secretarias da Fazenda e outros órgãos governamentais para garantir a máxima precisão dos dados.",
+    id: "4",
+    question: "Os dados são confiáveis e atualizados?",
+    answer: "Sim, nossas informações são obtidas de bases de dados oficiais como DETRAN, DENATRAN e Secretarias da Fazenda.",
   },
   {
-    question: "Como funcionam os pacotes de consultas?",
-    answer:
-      "Os pacotes permitem comprar múltiplas consultas com desconto. Quanto maior o pacote, maior a economia por consulta. São ideais para lojistas, revendedores e profissionais que realizam consultas frequentes. Os créditos não expiram.",
+    id: "5",
+    question: "Posso consultar veículos de qualquer estado?",
+    answer: "Sim! Cobertura nacional completa: todos os 27 estados e Distrito Federal, tanto placa antiga quanto Mercosul.",
   },
   {
-    question: "Posso consultar veículos de qualquer estado do Brasil?",
-    answer:
-      "Sim! Nossa plataforma tem cobertura nacional, abrangendo todos os 27 estados brasileiros e o Distrito Federal. Você pode consultar qualquer veículo registrado em território nacional, tanto no formato de placa antigo quanto no padrão Mercosul.",
-  },
-  {
-    question: "Meus dados pessoais estão seguros na plataforma?",
-    answer:
-      "Absolutamente. Utilizamos criptografia de ponta a ponta e estamos em total conformidade com a LGPD (Lei Geral de Proteção de Dados). Seus dados pessoais e de pagamento são protegidos com os mais altos padrões de segurança do mercado.",
+    id: "6",
+    question: "Meus dados pessoais estão seguros?",
+    answer: "Utilizamos criptografia de ponta a ponta e estamos em conformidade com a LGPD.",
   },
 ];
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [faqList, setFaqList] = useState<FaqItem[]>(defaultFaqs);
+
+  useEffect(() => {
+    async function fetchFaqs() {
+      try {
+        const res = await fetch("/api/admin/faq");
+        if (res.ok) {
+          const data = await res.json();
+          const activeFaqs = data.filter((f: { active: boolean }) => f.active);
+          if (activeFaqs.length > 0) {
+            setFaqList(activeFaqs);
+          }
+        }
+      } catch {
+        // Use defaults
+      }
+    }
+    fetchFaqs();
+  }, []);
 
   return (
     <section className="bg-white px-4 py-16 md:py-20">
@@ -65,9 +80,9 @@ export function FaqSection() {
         </div>
 
         <div className="space-y-3">
-          {faqs.map((faq, index) => (
+          {faqList.map((faq, index) => (
             <div
-              key={index}
+              key={faq.id}
               className="rounded-xl border border-gray-200 bg-white overflow-hidden transition-shadow hover:shadow-sm"
             >
               <button

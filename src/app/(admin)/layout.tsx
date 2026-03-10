@@ -17,17 +17,26 @@ import {
   Shield,
   Bell,
   ChevronDown,
+  HelpCircle,
+  Globe,
+  Tag,
+  ShoppingBag,
+  Layers,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 const sidebarLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/consultas-pacotes", label: "Consultas/Pacotes", icon: ShoppingBag },
   { href: "/admin/usuarios", label: "Usuários", icon: Users },
-  { href: "/admin/consultas", label: "Consultas", icon: Search },
-  { href: "/admin/relatorios", label: "Relatórios", icon: FileText },
+  { href: "/admin/consultas", label: "Consultas Clientes", icon: Search },
   { href: "/admin/pagamentos", label: "Pagamentos", icon: CreditCard },
   { href: "/admin/blog", label: "Blog", icon: PenSquare },
+  { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
+  { href: "/admin/paginas", label: "Páginas", icon: Layers },
+  { href: "/admin/cupons", label: "Cupons", icon: Tag },
+  { href: "/admin/seo", label: "SEO", icon: Globe },
   { href: "/admin/configuracoes", label: "Configurações", icon: Settings },
 ];
 
