@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,16 +14,41 @@ export default function LoginPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({ email: "", password: "" });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsLoading(true);
-    // TODO: integrate with auth
-    setTimeout(() => {
+    setError("");
+
+    try {
+      const result = await signIn("credentials", {
+        email: form.email,
+        password: form.password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError("E-mail ou senha incorretos.");
+        setIsLoading(false);
+        return;
+      }
+
+      // Fetch session to check role
+      const sessionRes = await fetch("/api/auth/session");
+      const session = await sessionRes.json();
+      const role = session?.user?.role;
+
+      if (role === "admin" || role === "editor") {
+        router.push("/admin");
+      } else {
+        router.push("/painel");
+      }
+    } catch {
+      setError("Erro ao fazer login. Tente novamente.");
       setIsLoading(false);
-      router.push("/painel");
-    }, 1000);
+    }
   }
 
   return (
@@ -83,6 +109,10 @@ export default function LoginPage() {
             </div>
           </div>
 
+          {error && (
+            <p className="text-sm text-red-500 text-center">{error}</p>
+          )}
+
           <Button
             type="submit"
             className="w-full bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold"
@@ -104,7 +134,7 @@ export default function LoginPage() {
         <Button
           variant="outline"
           className="w-full border-gray-300 text-[#0F172A] font-medium"
-          onClick={() => {/* TODO: Google login */}}
+          onClick={() => signIn("google", { callbackUrl: "/painel" })}
         >
           <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
             <path
