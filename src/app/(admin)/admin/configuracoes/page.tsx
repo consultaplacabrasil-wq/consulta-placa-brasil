@@ -17,6 +17,10 @@ import {
   Image as ImageIcon,
   Eye,
   EyeOff,
+  CreditCard,
+  ExternalLink,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 
 export default function AdminConfiguracoesPage() {
@@ -32,6 +36,12 @@ export default function AdminConfiguracoesPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
+
+  // Asaas
+  const [showAsaasKey, setShowAsaasKey] = useState(false);
+  const [showWebhookToken, setShowWebhookToken] = useState(false);
+  const [testingConnection, setTestingConnection] = useState(false);
+  const [connectionStatus, setConnectionStatus] = useState<"idle" | "success" | "error">("idle");
 
   // File previews
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
@@ -169,9 +179,44 @@ export default function AdminConfiguracoesPage() {
     }
   }
 
+  async function testAsaasConnection() {
+    setTestingConnection(true);
+    setConnectionStatus("idle");
+    try {
+      const apiKey = settings.asaas_api_key;
+      const environment = settings.asaas_environment || "sandbox";
+      if (!apiKey) {
+        showMsg("error", "Informe a API Key do Asaas");
+        setTestingConnection(false);
+        return;
+      }
+      const baseUrl = environment === "production"
+        ? "https://api.asaas.com/v3"
+        : "https://sandbox.asaas.com/api/v3";
+      const res = await fetch("/api/admin/asaas/test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ apiKey, baseUrl }),
+      });
+      if (res.ok) {
+        setConnectionStatus("success");
+        showMsg("success", "Conexão com Asaas realizada com sucesso!");
+      } else {
+        setConnectionStatus("error");
+        showMsg("error", "Falha ao conectar com Asaas. Verifique a API Key.");
+      }
+    } catch {
+      setConnectionStatus("error");
+      showMsg("error", "Erro ao testar conexão com Asaas");
+    } finally {
+      setTestingConnection(false);
+    }
+  }
+
   const tabs = [
     { id: "informacoes", label: "Informações", icon: Info },
     { id: "identidade", label: "Identidade Visual", icon: Palette },
+    { id: "pagamentos", label: "Pagamentos", icon: CreditCard },
     { id: "redes", label: "Redes Sociais", icon: Share2 },
     { id: "integracoes", label: "Integrações", icon: Code },
     { id: "seguranca", label: "Segurança", icon: Shield },
@@ -369,6 +414,260 @@ export default function AdminConfiguracoesPage() {
             </Button>
           </CardContent>
         </Card>
+      )}
+
+      {/* Tab: Pagamentos (Asaas) */}
+      {activeTab === "pagamentos" && (
+        <div className="space-y-6">
+          <Card className="border-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-base font-semibold flex items-center gap-2">
+                <CreditCard className="h-5 w-5 text-[#FF4D30]" />
+                Integração Asaas
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="rounded-xl bg-blue-50 border border-blue-200 p-4">
+                <p className="text-sm font-medium text-blue-800">
+                  O Asaas é o gateway de pagamento utilizado para processar Pix, cartão de crédito e boleto.
+                </p>
+                <a
+                  href="https://www.asaas.com/customerRegistration"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-blue-600 hover:underline mt-1"
+                >
+                  Criar conta no Asaas <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+
+              {/* Ambiente */}
+              <div>
+                <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
+                  Ambiente
+                </label>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => updateSetting("asaas_environment", "sandbox")}
+                    className={`flex-1 rounded-lg border-2 p-3 text-sm font-medium transition-colors ${
+                      (settings.asaas_environment || "sandbox") === "sandbox"
+                        ? "border-[#FF4D30] bg-[#FFF5F3] text-[#FF4D30]"
+                        : "border-gray-200 text-[#475569] hover:border-gray-300"
+                    }`}
+                  >
+                    <div className="font-semibold">Sandbox</div>
+                    <div className="text-xs mt-0.5 opacity-75">Testes e desenvolvimento</div>
+                  </button>
+                  <button
+                    onClick={() => updateSetting("asaas_environment", "production")}
+                    className={`flex-1 rounded-lg border-2 p-3 text-sm font-medium transition-colors ${
+                      settings.asaas_environment === "production"
+                        ? "border-green-500 bg-green-50 text-green-700"
+                        : "border-gray-200 text-[#475569] hover:border-gray-300"
+                    }`}
+                  >
+                    <div className="font-semibold">Produção</div>
+                    <div className="text-xs mt-0.5 opacity-75">Pagamentos reais</div>
+                  </button>
+                </div>
+                {settings.asaas_environment === "production" && (
+                  <div className="flex items-center gap-2 mt-2 text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded-lg p-2">
+                    <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+                    Atenção: pagamentos reais serão processados neste modo.
+                  </div>
+                )}
+              </div>
+
+              {/* API Key */}
+              <div>
+                <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
+                  API Key
+                </label>
+                <div className="relative">
+                  <Input
+                    type={showAsaasKey ? "text" : "password"}
+                    value={settings.asaas_api_key || ""}
+                    onChange={(e) => updateSetting("asaas_api_key", e.target.value)}
+                    placeholder="$aact_..."
+                    className="pr-10 font-mono text-sm"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowAsaasKey(!showAsaasKey)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] hover:text-[#475569]"
+                  >
+                    {showAsaasKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
+                <p className="text-xs text-[#94A3B8] mt-1">
+                  Encontre em: Asaas → Configurações → Integrações → Chave de API
+                </p>
+              </div>
+
+              {/* Webhook Token */}
+              <div>
+                <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
+                  Token do Webhook
+                </label>
+                <div className="relative">
+                  <Input
+                    type={showWebhookToken ? "text" : "password"}
+                    value={settings.asaas_webhook_token || ""}
+                    onChange={(e) => updateSetting("asaas_webhook_token", e.target.value)}
+                    placeholder="Token de autenticação do webhook"
+                    className="pr-10 font-mono text-sm"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowWebhookToken(!showWebhookToken)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] hover:text-[#475569]"
+                  >
+                    {showWebhookToken ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
+                <p className="text-xs text-[#94A3B8] mt-1">
+                  Defina um token seguro e configure no Asaas → Integrações → Webhooks
+                </p>
+              </div>
+
+              {/* Webhook URL */}
+              <div>
+                <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
+                  URL do Webhook (configure no Asaas)
+                </label>
+                <div className="flex items-center gap-2">
+                  <Input
+                    readOnly
+                    value="https://consultaplacabrasil.com/api/pagamento/webhook"
+                    className="bg-gray-50 font-mono text-sm text-[#475569]"
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      navigator.clipboard.writeText("https://consultaplacabrasil.com/api/pagamento/webhook");
+                      showMsg("success", "URL copiada!");
+                    }}
+                    className="shrink-0"
+                  >
+                    Copiar
+                  </Button>
+                </div>
+                <p className="text-xs text-[#94A3B8] mt-1">
+                  Copie esta URL e cadastre no painel do Asaas como endpoint de webhook
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3 pt-2">
+                <Button
+                  onClick={() => saveSettings(["asaas_api_key", "asaas_webhook_token", "asaas_environment"])}
+                  disabled={saving}
+                  className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2"
+                >
+                  {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+                  Salvar Configurações
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={testAsaasConnection}
+                  disabled={testingConnection || !settings.asaas_api_key}
+                  className="gap-2"
+                >
+                  {testingConnection ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : connectionStatus === "success" ? (
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                  ) : connectionStatus === "error" ? (
+                    <AlertCircle className="h-4 w-4 text-red-500" />
+                  ) : (
+                    <CreditCard className="h-4 w-4" />
+                  )}
+                  Testar Conexão
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Métodos de Pagamento */}
+          <Card className="border-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-base font-semibold">Métodos de Pagamento Aceitos</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100">
+                    <span className="text-lg">💠</span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-[#0F172A]">Pix</p>
+                    <p className="text-xs text-[#94A3B8]">Pagamento instantâneo</p>
+                  </div>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={settings.payment_pix !== "false"}
+                    onChange={(e) => updateSetting("payment_pix", e.target.checked ? "true" : "false")}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#FF4D30]" />
+                </label>
+              </div>
+
+              <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
+                    <CreditCard className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-[#0F172A]">Cartão de Crédito</p>
+                    <p className="text-xs text-[#94A3B8]">Até 12x com juros</p>
+                  </div>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={settings.payment_credit_card !== "false"}
+                    onChange={(e) => updateSetting("payment_credit_card", e.target.checked ? "true" : "false")}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#FF4D30]" />
+                </label>
+              </div>
+
+              <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100">
+                    <span className="text-lg">📄</span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-[#0F172A]">Boleto Bancário</p>
+                    <p className="text-xs text-[#94A3B8]">Compensação em até 3 dias</p>
+                  </div>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={settings.payment_boleto === "true"}
+                    onChange={(e) => updateSetting("payment_boleto", e.target.checked ? "true" : "false")}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#FF4D30]" />
+                </label>
+              </div>
+
+              <Button
+                onClick={() => saveSettings(["payment_pix", "payment_credit_card", "payment_boleto"])}
+                disabled={saving}
+                className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2 mt-2"
+              >
+                {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+                Salvar Métodos
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       )}
 
       {/* Tab: Redes Sociais */}
