@@ -127,8 +127,8 @@ export default function HomePage() {
                 Cobertura Nacional - 27 Estados + DF
               </div>
               <h1 className="mb-6 text-4xl font-bold leading-tight text-[#0F172A] md:text-5xl">
-                Descubra tudo sobre{" "}
-                <span className="text-[#FF4D30]">qualquer veículo</span>
+                Consulta Placa{" "}
+                <span className="text-[#FF4D30]">Brasil</span>
               </h1>
               <p className="mb-8 text-lg text-[#64748B] leading-relaxed max-w-xl">
                 Relatório completo com histórico, sinistro, leilão, débitos, multas
