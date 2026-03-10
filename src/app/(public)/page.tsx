@@ -131,8 +131,7 @@ export default function HomePage() {
                 <span className="text-[#FF4D30]">Brasil</span>
               </h1>
               <p className="mb-8 text-lg text-[#64748B] leading-relaxed max-w-xl">
-                Relatório completo com histórico, sinistro, leilão, débitos, multas
-                e mais. Resultado em menos de 10 segundos.
+                Maior portal para consulta de placas e veículos dos Detrans do Brasil, com informações completas, atualizadas e confiáveis para proprietários, despachantes e profissionais do setor automotivo.
               </p>
               <div className="flex flex-wrap gap-6 text-sm text-[#64748B]">
                 <span className="flex items-center gap-2">
