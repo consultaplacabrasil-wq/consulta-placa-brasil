@@ -27,7 +27,7 @@ export default function PerfilPage() {
   function handlePasswordSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (passwordForm.newPassword !== passwordForm.confirm) {
-      alert("As novas senhas nao coincidem.");
+      alert("As novas senhas não coincidem.");
       return;
     }
     setIsLoading(true);
@@ -43,14 +43,14 @@ export default function PerfilPage() {
     <div className="space-y-6 max-w-2xl">
       <div>
         <h1 className="text-2xl font-bold text-[#0F172A]">Perfil</h1>
-        <p className="text-gray-500 text-sm">Gerencie suas informacoes pessoais e preferencias</p>
+        <p className="text-gray-500 text-sm">Gerencie suas informações pessoais e preferências</p>
       </div>
 
       {/* Personal info */}
       <Card className="border-0 shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg font-semibold text-[#0F172A]">
-            Informacoes Pessoais
+            Informações Pessoais
           </CardTitle>
           <CardDescription>Seus dados cadastrais</CardDescription>
         </CardHeader>
@@ -194,9 +194,9 @@ export default function PerfilPage() {
         <CardHeader>
           <CardTitle className="text-lg font-semibold text-[#0F172A] flex items-center gap-2">
             <Bell className="h-5 w-5" />
-            Notificacoes
+            Notificações
           </CardTitle>
-          <CardDescription>Configure suas preferencias de notificacao</CardDescription>
+          <CardDescription>Configure suas preferências de notificação</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-start space-x-3">
@@ -209,9 +209,9 @@ export default function PerfilPage() {
             />
             <div>
               <Label htmlFor="emailNotif" className="text-sm font-medium text-[#0F172A] cursor-pointer">
-                Notificacoes por e-mail
+                Notificações por e-mail
               </Label>
-              <p className="text-xs text-gray-500">Receba alertas sobre suas consultas e creditos</p>
+              <p className="text-xs text-gray-500">Receba alertas sobre suas consultas e créditos</p>
             </div>
           </div>
 
@@ -225,9 +225,9 @@ export default function PerfilPage() {
             />
             <div>
               <Label htmlFor="reportNotif" className="text-sm font-medium text-[#0F172A] cursor-pointer">
-                Relatorios prontos
+                Relatórios prontos
               </Label>
-              <p className="text-xs text-gray-500">Seja notificado quando um relatorio estiver pronto</p>
+              <p className="text-xs text-gray-500">Seja notificado quando um relatório estiver pronto</p>
             </div>
           </div>
 
@@ -241,14 +241,14 @@ export default function PerfilPage() {
             />
             <div>
               <Label htmlFor="marketingNotif" className="text-sm font-medium text-[#0F172A] cursor-pointer">
-                Promocoes e novidades
+                Promoções e novidades
               </Label>
-              <p className="text-xs text-gray-500">Receba ofertas especiais e novidades do servico</p>
+              <p className="text-xs text-gray-500">Receba ofertas especiais e novidades do serviço</p>
             </div>
           </div>
 
           <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold">
-            Salvar preferencias
+            Salvar preferências
           </Button>
         </CardContent>
       </Card>
@@ -257,21 +257,21 @@ export default function PerfilPage() {
       <Card className="border border-red-200 shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg font-semibold text-red-600">Zona de Perigo</CardTitle>
-          <CardDescription>Acoes irreversiveis na sua conta</CardDescription>
+          <CardDescription>Ações irreversíveis na sua conta</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-lg border border-red-200 bg-red-50 p-4">
             <div>
               <p className="text-sm font-medium text-red-800">Excluir conta</p>
               <p className="text-xs text-red-600">
-                Ao excluir sua conta, todos os dados serao permanentemente removidos. Esta acao nao pode ser desfeita.
+                Ao excluir sua conta, todos os dados serão permanentemente removidos. Esta ação não pode ser desfeita.
               </p>
             </div>
             <Button
               variant="destructive"
               className="shrink-0 gap-2"
               onClick={() => {
-                if (confirm("Tem certeza que deseja excluir sua conta? Esta acao nao pode ser desfeita.")) {
+                if (confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.")) {
                   // TODO: integrate with account deletion
                 }
               }}

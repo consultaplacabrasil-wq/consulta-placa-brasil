@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
 
     if (!title) {
       return NextResponse.json(
-        { error: "Titulo e obrigatorio" },
+        { error: "Título é obrigatório" },
         { status: 400 }
       );
     }
@@ -123,7 +123,7 @@ export async function PUT(req: NextRequest) {
 
     if (!id) {
       return NextResponse.json(
-        { error: "ID e obrigatorio" },
+        { error: "ID é obrigatório" },
         { status: 400 }
       );
     }
@@ -155,7 +155,7 @@ export async function PUT(req: NextRequest) {
 
     if (!updated) {
       return NextResponse.json(
-        { error: "Post nao encontrado" },
+        { error: "Post não encontrado" },
         { status: 404 }
       );
     }
@@ -177,7 +177,7 @@ export async function DELETE(req: NextRequest) {
 
     if (!id) {
       return NextResponse.json(
-        { error: "ID e obrigatorio" },
+        { error: "ID é obrigatório" },
         { status: 400 }
       );
     }

@@ -388,7 +388,7 @@ export default function AdminConsultasPacotesPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
-                      Preco (R$)
+                      Preço (R$)
                     </label>
                     <Input
                       type="number"
@@ -405,7 +405,7 @@ export default function AdminConsultasPacotesPage() {
                   </div>
                   <div>
                     <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
-                      Preco Original (R$)
+                      Preço Original (R$)
                     </label>
                     <Input
                       type="number"
@@ -427,10 +427,10 @@ export default function AdminConsultasPacotesPage() {
 
                 <div>
                   <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
-                    Descricao
+                    Descrição
                   </label>
                   <Input
-                    placeholder="Breve descricao da consulta"
+                    placeholder="Breve descrição da consulta"
                     value={consultaForm.descricao}
                     onChange={(e) =>
                       setConsultaForm((prev) => ({ ...prev, descricao: e.target.value }))
@@ -438,14 +438,14 @@ export default function AdminConsultasPacotesPage() {
                   />
                 </div>
 
-                {/* Beneficios */}
+                {/* Benefícios */}
                 <div>
                   <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
-                    Beneficios
+                    Benefícios
                   </label>
                   <div className="flex gap-2">
                     <Input
-                      placeholder="Adicionar beneficio..."
+                      placeholder="Adicionar benefício..."
                       value={newBeneficio}
                       onChange={(e) => setNewBeneficio(e.target.value)}
                       onKeyDown={(e) => {
@@ -594,7 +594,7 @@ export default function AdminConsultasPacotesPage() {
                         </p>
                         {consulta.beneficios && consulta.beneficios.length > 0 && (
                           <p className="text-xs text-[#94A3B8] mt-1">
-                            {consulta.beneficios.length} beneficio
+                            {consulta.beneficios.length} benefício
                             {consulta.beneficios.length !== 1 ? "s" : ""}
                           </p>
                         )}
@@ -750,10 +750,10 @@ export default function AdminConsultasPacotesPage() {
 
                 <div>
                   <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
-                    Descricao
+                    Descrição
                   </label>
                   <Input
-                    placeholder="Breve descricao do pacote"
+                    placeholder="Breve descrição do pacote"
                     value={pacoteForm.descricao}
                     onChange={(e) =>
                       setPacoteForm((prev) => ({ ...prev, descricao: e.target.value }))

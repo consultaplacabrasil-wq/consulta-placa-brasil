@@ -61,7 +61,7 @@ const emptyForm: PostForm = {
 type Tab = "conteudo" | "seo" | "opengraph" | "schema" | "preview";
 
 const tabs: { key: Tab; label: string; icon: typeof FileText }[] = [
-  { key: "conteudo", label: "Conteudo", icon: FileText },
+  { key: "conteudo", label: "Conteúdo", icon: FileText },
   { key: "seo", label: "SEO", icon: Search },
   { key: "opengraph", label: "Open Graph", icon: Share2 },
   { key: "schema", label: "Schema", icon: Code },
@@ -114,7 +114,7 @@ export default function EditBlogPostPage({
 
         const post = posts.find((p: { id: string }) => p.id === id);
         if (!post) {
-          setError("Artigo nao encontrado");
+          setError("Artigo não encontrado");
           setLoadingPost(false);
           return;
         }
@@ -152,11 +152,11 @@ export default function EditBlogPostPage({
 
   async function handleSave() {
     if (!form.title.trim()) {
-      setError("O titulo e obrigatorio");
+      setError("O título é obrigatório");
       return;
     }
     if (!form.content.trim()) {
-      setError("O conteudo e obrigatorio");
+      setError("O conteúdo é obrigatório");
       return;
     }
 
@@ -193,9 +193,9 @@ export default function EditBlogPostPage({
     const schema = {
       "@context": "https://schema.org",
       "@type": "Article",
-      headline: form.seoTitle || form.title || "Titulo do artigo",
+      headline: form.seoTitle || form.title || "Título do artigo",
       description:
-        form.seoDescription || form.excerpt || "Descricao do artigo",
+        form.seoDescription || form.excerpt || "Descrição do artigo",
       image: form.ogImage || form.featuredImage || "",
       datePublished: form.publishedAt || new Date().toISOString().split("T")[0],
       dateModified: new Date().toISOString().split("T")[0],
@@ -261,7 +261,7 @@ export default function EditBlogPostPage({
           className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#FF4D30] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#E8432A] disabled:opacity-50"
         >
           <Save className="h-4 w-4" />
-          {saving ? "Salvando..." : "Salvar alteracoes"}
+          {saving ? "Salvando..." : "Salvar alterações"}
         </button>
       </div>
 
@@ -340,13 +340,13 @@ function ContentTab({
     <div className="space-y-5">
       <div>
         <label className="mb-1.5 block text-sm font-medium text-[#0F172A]">
-          Titulo *
+          Título *
         </label>
         <input
           type="text"
           value={form.title}
           onChange={(e) => updateField("title", e.target.value)}
-          placeholder="Titulo do artigo"
+          placeholder="Título do artigo"
           className="h-10 w-full rounded-lg border border-gray-200 px-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
         />
       </div>
@@ -366,12 +366,12 @@ function ContentTab({
 
       <div>
         <label className="mb-1.5 block text-sm font-medium text-[#0F172A]">
-          Conteudo *
+          Conteúdo *
         </label>
         <textarea
           value={form.content}
           onChange={(e) => updateField("content", e.target.value)}
-          placeholder="Escreva o conteudo do artigo aqui..."
+          placeholder="Escreva o conteúdo do artigo aqui..."
           rows={16}
           className="w-full rounded-lg border border-gray-200 px-3 py-2 font-mono text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
         />
@@ -436,7 +436,7 @@ function ContentTab({
 
         <div>
           <label className="mb-1.5 block text-sm font-medium text-[#0F172A]">
-            Data de publicacao
+            Data de publicação
           </label>
           <input
             type="date"
@@ -494,7 +494,7 @@ function SeoTab({
           type="text"
           value={form.seoTitle}
           onChange={(e) => updateField("seoTitle", e.target.value)}
-          placeholder="Titulo para mecanismos de busca"
+          placeholder="Título para mecanismos de busca"
           maxLength={70}
           className="h-10 w-full rounded-lg border border-gray-200 px-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
         />
@@ -518,7 +518,7 @@ function SeoTab({
         <textarea
           value={form.seoDescription}
           onChange={(e) => updateField("seoDescription", e.target.value)}
-          placeholder="Descricao para mecanismos de busca"
+          placeholder="Descrição para mecanismos de busca"
           maxLength={160}
           rows={3}
           className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
@@ -527,7 +527,7 @@ function SeoTab({
 
       <div>
         <label className="mb-1.5 block text-sm font-medium text-[#0F172A]">
-          URL Canonica
+          URL Canônica
         </label>
         <div className="relative">
           <Globe className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#94A3B8]" />
@@ -543,7 +543,7 @@ function SeoTab({
 
       <div>
         <label className="mb-1.5 block text-sm font-medium text-[#0F172A]">
-          Diretivas para robos
+          Diretivas para robôs
         </label>
         <input
           type="text"
@@ -577,7 +577,7 @@ function OpenGraphTab({
           type="text"
           value={form.ogTitle}
           onChange={(e) => updateField("ogTitle", e.target.value)}
-          placeholder="Titulo para redes sociais"
+          placeholder="Título para redes sociais"
           className="h-10 w-full rounded-lg border border-gray-200 px-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
         />
       </div>
@@ -589,7 +589,7 @@ function OpenGraphTab({
         <textarea
           value={form.ogDescription}
           onChange={(e) => updateField("ogDescription", e.target.value)}
-          placeholder="Descricao para redes sociais"
+          placeholder="Descrição para redes sociais"
           rows={3}
           className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
         />
@@ -657,7 +657,7 @@ function SchemaTab({ schema }: { schema: string }) {
         </h3>
         <p className="mt-1 text-xs text-[#94A3B8]">
           Schema gerado automaticamente com base nos dados do artigo. Este
-          JSON sera inserido na pagina do artigo para SEO estruturado.
+          JSON será inserido na página do artigo para SEO estruturado.
         </p>
       </div>
       <textarea
@@ -677,12 +677,12 @@ function PreviewTab({
   form: PostForm;
   previewUrl: string;
 }) {
-  const googleTitle = form.seoTitle || form.title || "Titulo do artigo";
+  const googleTitle = form.seoTitle || form.title || "Título do artigo";
   const googleDesc =
-    form.seoDescription || form.excerpt || "Descricao do artigo aparecera aqui...";
-  const ogTitle = form.ogTitle || form.title || "Titulo do artigo";
+    form.seoDescription || form.excerpt || "Descrição do artigo aparecera aqui...";
+  const ogTitle = form.ogTitle || form.title || "Título do artigo";
   const ogDesc =
-    form.ogDescription || form.excerpt || "Descricao do artigo para redes sociais";
+    form.ogDescription || form.excerpt || "Descrição do artigo para redes sociais";
   const ogImg = form.ogImage || form.featuredImage || "";
 
   return (

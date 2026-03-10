@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
     if (!name) {
       return NextResponse.json(
-        { error: "Nome e obrigatorio" },
+        { error: "Nome é obrigatório" },
         { status: 400 }
       );
     }
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
 
     if (existing.length > 0) {
       return NextResponse.json(
-        { error: "Categoria com esse nome ja existe" },
+        { error: "Categoria com esse nome já existe" },
         { status: 409 }
       );
     }
@@ -80,7 +80,7 @@ export async function PUT(req: NextRequest) {
 
     if (!id) {
       return NextResponse.json(
-        { error: "ID e obrigatorio" },
+        { error: "ID é obrigatório" },
         { status: 400 }
       );
     }
@@ -98,7 +98,7 @@ export async function PUT(req: NextRequest) {
 
       if (existing.length > 0 && existing[0].id !== id) {
         return NextResponse.json(
-          { error: "Categoria com esse nome ja existe" },
+          { error: "Categoria com esse nome já existe" },
           { status: 409 }
         );
       }
@@ -116,7 +116,7 @@ export async function PUT(req: NextRequest) {
 
     if (!updated) {
       return NextResponse.json(
-        { error: "Categoria nao encontrada" },
+        { error: "Categoria não encontrada" },
         { status: 404 }
       );
     }
@@ -137,7 +137,7 @@ export async function DELETE(req: NextRequest) {
 
     if (!id) {
       return NextResponse.json(
-        { error: "ID e obrigatorio" },
+        { error: "ID é obrigatório" },
         { status: 400 }
       );
     }

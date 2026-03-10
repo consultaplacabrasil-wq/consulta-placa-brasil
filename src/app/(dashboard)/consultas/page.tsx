@@ -12,7 +12,7 @@ export default function ConsultasPage() {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold text-[#0F172A]">Consultas</h1>
-          <p className="text-gray-500 text-sm">Historico de consultas realizadas</p>
+          <p className="text-gray-500 text-sm">Histórico de consultas realizadas</p>
         </div>
         <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
           <Search className="h-4 w-4" />
@@ -23,7 +23,7 @@ export default function ConsultasPage() {
       <Card className="border-0 shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg font-semibold text-[#0F172A]">
-            Historico de Consultas
+            Histórico de Consultas
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -33,7 +33,7 @@ export default function ConsultasPage() {
             <span>Tipo</span>
             <span>Data</span>
             <span>Status</span>
-            <span className="text-right">Acoes</span>
+            <span className="text-right">Ações</span>
           </div>
 
           {/* Empty state */}
@@ -45,7 +45,7 @@ export default function ConsultasPage() {
               Nenhuma consulta realizada
             </h3>
             <p className="text-sm text-gray-500 max-w-sm mb-6">
-              Voce ainda nao realizou nenhuma consulta. Comece pesquisando uma placa para obter informacoes detalhadas do veiculo.
+              Você ainda não realizou nenhuma consulta. Comece pesquisando uma placa para obter informações detalhadas do veículo.
             </p>
             <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
               <Search className="h-4 w-4" />

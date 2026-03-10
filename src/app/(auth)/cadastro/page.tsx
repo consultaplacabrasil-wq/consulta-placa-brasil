@@ -46,11 +46,11 @@ export default function CadastroPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (form.password !== form.confirmPassword) {
-      alert("As senhas nao coincidem.");
+      alert("As senhas não coincidem.");
       return;
     }
     if (!acceptedTerms) {
-      alert("Voce precisa aceitar os termos de uso.");
+      alert("Você precisa aceitar os termos de uso.");
       return;
     }
     setIsLoading(true);
@@ -182,7 +182,7 @@ export default function CadastroPage() {
               </Link>{" "}
               e a{" "}
               <Link href="/privacidade" className="text-[#FF4D30] hover:underline">
-                Politica de Privacidade
+                Política de Privacidade
               </Link>
             </Label>
           </div>
@@ -199,7 +199,7 @@ export default function CadastroPage() {
 
       <CardFooter className="justify-center">
         <p className="text-sm text-gray-500">
-          Ja tem uma conta?{" "}
+          Já tem uma conta?{" "}
           <Link href="/login" className="text-[#FF4D30] font-semibold hover:underline">
             Entrar
           </Link>

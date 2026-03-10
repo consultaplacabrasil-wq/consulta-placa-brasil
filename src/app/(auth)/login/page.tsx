@@ -160,7 +160,7 @@ export default function LoginPage() {
 
       <CardFooter className="justify-center">
         <p className="text-sm text-gray-500">
-          Ainda nao tem conta?{" "}
+          Ainda não tem conta?{" "}
           <Link href="/cadastro" className="text-[#FF4D30] font-semibold hover:underline">
             Criar conta
           </Link>

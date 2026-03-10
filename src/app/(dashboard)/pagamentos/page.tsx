@@ -10,21 +10,21 @@ export default function PagamentosPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-[#0F172A]">Pagamentos</h1>
-        <p className="text-gray-500 text-sm">Historico de pagamentos e transacoes</p>
+        <p className="text-gray-500 text-sm">Histórico de pagamentos e transações</p>
       </div>
 
       <Card className="border-0 shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg font-semibold text-[#0F172A]">
-            Historico de Pagamentos
+            Histórico de Pagamentos
           </CardTitle>
         </CardHeader>
         <CardContent>
           {/* Table headers */}
           <div className="hidden sm:grid sm:grid-cols-5 gap-4 pb-3 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
             <span>Data</span>
-            <span>Descricao</span>
-            <span>Metodo</span>
+            <span>Descrição</span>
+            <span>Método</span>
             <span>Valor</span>
             <span className="text-right">Status</span>
           </div>
@@ -38,7 +38,7 @@ export default function PagamentosPage() {
               Nenhum pagamento encontrado
             </h3>
             <p className="text-sm text-gray-500 max-w-sm">
-              Seu historico de pagamentos aparecera aqui apos a compra de creditos ou assinatura de planos.
+              Seu histórico de pagamentos aparecerá aqui após a compra de créditos ou assinatura de planos.
             </p>
           </div>
         </CardContent>
