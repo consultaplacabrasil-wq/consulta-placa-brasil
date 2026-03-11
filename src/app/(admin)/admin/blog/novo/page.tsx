@@ -16,6 +16,8 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 
+import ImageUpload from "@/components/admin/image-upload";
+
 const RichEditor = dynamic(() => import("@/components/admin/rich-editor"), {
   ssr: false,
   loading: () => (
@@ -364,55 +366,24 @@ function ContentTab({
         </div>
       </div>
 
-      {/* Row: Featured Image + Publish Date */}
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label className="mb-1.5 block text-sm font-medium text-[#0F172A]">
-            Imagem destaque (URL)
-          </label>
-          <div className="relative">
-            <ImageIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#94A3B8]" />
-            <input
-              type="url"
-              value={form.featuredImage}
-              onChange={(e) => updateField("featuredImage", e.target.value)}
-              placeholder="https://exemplo.com/imagem.jpg"
-              className="h-10 w-full rounded-lg border border-gray-200 pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
-            />
-          </div>
-        </div>
+      {/* Featured Image Upload */}
+      <ImageUpload
+        value={form.featuredImage}
+        onChange={(url) => updateField("featuredImage", url)}
+      />
 
-        <div>
-          <label className="mb-1.5 block text-sm font-medium text-[#0F172A]">
-            Data de publicação
-          </label>
-          <input
-            type="date"
-            value={form.publishedAt}
-            onChange={(e) => updateField("publishedAt", e.target.value)}
-            className="h-10 w-full rounded-lg border border-gray-200 px-3 text-sm text-[#0F172A] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
-          />
-        </div>
+      {/* Publish Date */}
+      <div className="max-w-xs">
+        <label className="mb-1.5 block text-sm font-medium text-[#0F172A]">
+          Data de publicação
+        </label>
+        <input
+          type="date"
+          value={form.publishedAt}
+          onChange={(e) => updateField("publishedAt", e.target.value)}
+          className="h-10 w-full rounded-lg border border-gray-200 px-3 text-sm text-[#0F172A] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
+        />
       </div>
-
-      {/* Featured Image Preview */}
-      {form.featuredImage && (
-        <div>
-          <p className="mb-1.5 text-sm font-medium text-[#0F172A]">
-            Preview da imagem
-          </p>
-          <div className="overflow-hidden rounded-lg border border-gray-200">
-            <img
-              src={form.featuredImage}
-              alt="Preview"
-              className="h-48 w-full object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
-              }}
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
