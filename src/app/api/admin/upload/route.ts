@@ -37,9 +37,12 @@ export async function POST(req: NextRequest) {
     const ext = file.name.split(".").pop() || "jpg";
     const filename = `blog/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
+    const token = process.env.BLOB_READ_WRITE_TOKEN || process.env.consulta_placa_blog_READ_WRITE_TOKEN;
+
     const blob = await put(filename, file, {
       access: "public",
       addRandomSuffix: false,
+      token,
     });
 
     return NextResponse.json({ url: blob.url });
