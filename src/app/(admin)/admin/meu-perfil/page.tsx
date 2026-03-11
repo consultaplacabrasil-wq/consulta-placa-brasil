@@ -170,7 +170,7 @@ export default function MeuPerfilPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mínimo 8 caracteres"
+              placeholder="Maiúscula, número e especial (!@#$%)"
             />
             {password && password.length > 0 && (() => {
               const err = validatePasswordStrength(password);

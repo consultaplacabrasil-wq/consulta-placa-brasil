@@ -297,7 +297,7 @@ export default function AdminUsuariosPage() {
                   type="password"
                   value={form.password}
                   onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
-                  placeholder={editingId ? "Nova senha (opcional)" : "Mínimo 8 caracteres"}
+                  placeholder={editingId ? "Nova senha (opcional)" : "Maiúscula, número e especial (!@#$%)"}
                 />
                 {form.password && form.password.length > 0 && (() => {
                   const err = validatePasswordStrength(form.password);
