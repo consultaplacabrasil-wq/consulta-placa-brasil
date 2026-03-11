@@ -19,7 +19,7 @@ function slugify(text: string): string {
 }
 
 export async function GET() {
-  const { error } = await requireRole("admin", "editor");
+  const { error } = await requireRole("admin");
   if (error) return error;
   try {
     const categories = await db
@@ -37,7 +37,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const { error } = await requireRole("admin", "editor");
+  const { error } = await requireRole("admin");
   if (error) return error;
   try {
     const body = await req.json();
@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  const { error } = await requireRole("admin", "editor");
+  const { error } = await requireRole("admin");
   if (error) return error;
   try {
     const body = await req.json();
@@ -138,7 +138,7 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const { error } = await requireRole("admin", "editor");
+  const { error } = await requireRole("admin");
   if (error) return error;
   try {
     const { searchParams } = new URL(req.url);

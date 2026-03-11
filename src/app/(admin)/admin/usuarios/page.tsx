@@ -28,7 +28,7 @@ interface User {
 
 const roleBadges: Record<string, { label: string; className: string }> = {
   admin: { label: "Admin", className: "bg-purple-100 text-purple-700" },
-  editor: { label: "Editor", className: "bg-blue-100 text-blue-700" },
+  editor: { label: "Atendente", className: "bg-blue-100 text-blue-700" },
   user: { label: "Usuário", className: "bg-gray-100 text-gray-700" },
 };
 
@@ -234,7 +234,7 @@ export default function AdminUsuariosPage() {
             </div>
             <div>
               <p className="text-xl font-bold text-[#0F172A]">{editorCount}</p>
-              <p className="text-xs text-[#94A3B8]">Editores</p>
+              <p className="text-xs text-[#94A3B8]">Atendentes</p>
             </div>
           </CardContent>
         </Card>
@@ -302,20 +302,20 @@ export default function AdminUsuariosPage() {
                   className="w-full h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/20 focus:border-[#FF4D30]"
                 >
                   <option value="admin">Administrador</option>
-                  <option value="editor">Editor</option>
+                  <option value="editor">Atendente</option>
                 </select>
               </div>
             </div>
 
-            {/* Editor permissions note */}
+            {/* Atendente permissions note */}
             <div className="rounded-xl bg-amber-50 border border-amber-200 p-4">
               <div className="flex items-start gap-2">
                 <Info className="h-4 w-4 text-amber-600 mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-amber-800">Permissões de Editor</p>
+                  <p className="text-sm font-medium text-amber-800">Permissões de Atendente</p>
                   <p className="text-xs text-amber-700 mt-1">
-                    Editores podem acessar: consultas de clientes, situação do cliente, pagamentos
-                    realizados, relatórios de consultas. Não podem alterar configurações.
+                    Atendentes podem acessar: consultas de clientes e editar seu próprio perfil
+                    (nome, e-mail e senha). Não têm acesso a outras áreas do painel.
                   </p>
                 </div>
               </div>

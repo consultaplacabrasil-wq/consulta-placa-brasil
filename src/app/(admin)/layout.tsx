@@ -23,6 +23,7 @@ import {
   Layers,
   ShieldAlert,
   Loader2,
+  UserCog,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
@@ -40,25 +41,24 @@ const sidebarLinks: SidebarLink[] = [
   { href: "/admin/usuarios", label: "Usuários", icon: Users, adminOnly: true },
   { href: "/admin/consultas", label: "Consultas Clientes", icon: Search },
   { href: "/admin/pagamentos", label: "Pagamentos", icon: CreditCard, adminOnly: true },
-  { href: "/admin/blog", label: "Blog", icon: PenSquare },
+  { href: "/admin/blog", label: "Blog", icon: PenSquare, adminOnly: true },
   { href: "/admin/faq", label: "FAQ", icon: HelpCircle, adminOnly: true },
   { href: "/admin/paginas", label: "Páginas", icon: Layers, adminOnly: true },
   { href: "/admin/cupons", label: "Cupons", icon: Tag, adminOnly: true },
   { href: "/admin/seo", label: "SEO", icon: Globe, adminOnly: true },
   { href: "/admin/configuracoes", label: "Configurações", icon: Settings, adminOnly: true },
+  { href: "/admin/meu-perfil", label: "Meu Perfil", icon: UserCog },
 ];
 
 function SidebarContent({
   pathname,
   onNavigate,
   links,
-  userName,
   userRole,
 }: {
   pathname: string;
   onNavigate?: () => void;
   links: SidebarLink[];
-  userName: string;
   userRole: string;
 }) {
   return (
@@ -73,7 +73,7 @@ function SidebarContent({
         </div>
         <div>
           <span className="text-base font-bold text-white">
-            {userRole === "admin" ? "Admin" : "Editor"}
+            {userRole === "admin" ? "Admin" : "Atendente"}
           </span>
           <span className="text-[10px] text-gray-400 block">ConsultaPlaca</span>
         </div>
@@ -122,13 +122,12 @@ function SidebarContent({
   );
 }
 
-// Routes the editor is allowed to access
-const editorAllowedPrefixes = ["/admin/consultas", "/admin/blog"];
+// Routes the atendente (editor) is allowed to access
+const atendenteAllowedPrefixes = ["/admin/consultas", "/admin/meu-perfil"];
 
-function isEditorAllowed(pathname: string): boolean {
-  // Block /admin/consultas-pacotes (starts with /admin/consultas but is admin-only)
+function isAtendenteAllowed(pathname: string): boolean {
   if (pathname.startsWith("/admin/consultas-pacotes")) return false;
-  return editorAllowedPrefixes.some((prefix) => pathname.startsWith(prefix));
+  return atendenteAllowedPrefixes.some((prefix) => pathname.startsWith(prefix));
 }
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -171,8 +170,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     ? sidebarLinks
     : sidebarLinks.filter((link) => !link.adminOnly);
 
-  // Check if editor is trying to access a restricted page
-  const isRestricted = userRole === "editor" && !isEditorAllowed(pathname);
+  // Check if atendente is trying to access a restricted page
+  const isRestricted = userRole === "editor" && !isAtendenteAllowed(pathname);
 
   if (loading) {
     return (
@@ -189,7 +188,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <SidebarContent
           pathname={pathname}
           links={filteredLinks}
-          userName={userName}
+
           userRole={userRole || "editor"}
         />
       </aside>
@@ -213,7 +212,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   pathname={pathname}
                   onNavigate={() => setSheetOpen(false)}
                   links={filteredLinks}
-                  userName={userName}
+        
                   userRole={userRole || "editor"}
                 />
               </SheetContent>
@@ -240,7 +239,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               </div>
               {userRole === "editor" && (
                 <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full font-medium">
-                  Editor
+                  Atendente
                 </span>
               )}
               <ChevronDown className="h-4 w-4 text-[#94A3B8]" />
@@ -256,7 +255,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <h2 className="text-2xl font-bold text-[#0F172A] mb-2">Acesso Restrito</h2>
               <p className="text-[#64748B] mb-6 text-center max-w-md">
                 Você não tem permissão para acessar esta página.
-                Como editor, você pode acessar Consultas Clientes e Blog.
+                Como atendente, você pode acessar Consultas Clientes e Meu Perfil.
               </p>
               <Link
                 href="/admin/consultas"
