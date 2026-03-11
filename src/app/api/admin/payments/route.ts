@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { payments, users } from "@/lib/db/schema";
 import { eq, sql, and, gte, count, or, ilike, desc } from "drizzle-orm";
+import { requireRole } from "@/lib/auth/admin-guard";
 
 export async function GET(req: NextRequest) {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search") || "";

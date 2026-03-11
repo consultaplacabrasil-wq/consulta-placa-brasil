@@ -1,14 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Car,
   LayoutDashboard,
   Users,
   Search,
-  FileText,
   CreditCard,
   PenSquare,
   Settings,
@@ -22,29 +21,50 @@ import {
   Tag,
   ShoppingBag,
   Layers,
+  ShieldAlert,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 
-const sidebarLinks = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/consultas-pacotes", label: "Consultas/Pacotes", icon: ShoppingBag },
-  { href: "/admin/usuarios", label: "Usuários", icon: Users },
+interface SidebarLink {
+  href: string;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  adminOnly?: boolean;
+}
+
+const sidebarLinks: SidebarLink[] = [
+  { href: "/admin", label: "Dashboard", icon: LayoutDashboard, adminOnly: true },
+  { href: "/admin/consultas-pacotes", label: "Consultas/Pacotes", icon: ShoppingBag, adminOnly: true },
+  { href: "/admin/usuarios", label: "Usuários", icon: Users, adminOnly: true },
   { href: "/admin/consultas", label: "Consultas Clientes", icon: Search },
-  { href: "/admin/pagamentos", label: "Pagamentos", icon: CreditCard },
+  { href: "/admin/pagamentos", label: "Pagamentos", icon: CreditCard, adminOnly: true },
   { href: "/admin/blog", label: "Blog", icon: PenSquare },
-  { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
-  { href: "/admin/paginas", label: "Páginas", icon: Layers },
-  { href: "/admin/cupons", label: "Cupons", icon: Tag },
-  { href: "/admin/seo", label: "SEO", icon: Globe },
-  { href: "/admin/configuracoes", label: "Configurações", icon: Settings },
+  { href: "/admin/faq", label: "FAQ", icon: HelpCircle, adminOnly: true },
+  { href: "/admin/paginas", label: "Páginas", icon: Layers, adminOnly: true },
+  { href: "/admin/cupons", label: "Cupons", icon: Tag, adminOnly: true },
+  { href: "/admin/seo", label: "SEO", icon: Globe, adminOnly: true },
+  { href: "/admin/configuracoes", label: "Configurações", icon: Settings, adminOnly: true },
 ];
 
-function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {
+function SidebarContent({
+  pathname,
+  onNavigate,
+  links,
+  userName,
+  userRole,
+}: {
+  pathname: string;
+  onNavigate?: () => void;
+  links: SidebarLink[];
+  userName: string;
+  userRole: string;
+}) {
   return (
     <div className="flex h-full flex-col bg-[#0F172A]">
       <Link
-        href="/admin"
+        href={userRole === "admin" ? "/admin" : "/admin/consultas"}
         className="flex items-center gap-2.5 px-6 py-5 border-b border-white/10"
         onClick={onNavigate}
       >
@@ -52,13 +72,15 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
           <Shield className="h-5 w-5 text-white" />
         </div>
         <div>
-          <span className="text-base font-bold text-white">Admin</span>
+          <span className="text-base font-bold text-white">
+            {userRole === "admin" ? "Admin" : "Editor"}
+          </span>
           <span className="text-[10px] text-gray-400 block">ConsultaPlaca</span>
         </div>
       </Link>
 
       <nav className="flex-1 space-y-0.5 px-3 py-4">
-        {sidebarLinks.map((link) => {
+        {links.map((link) => {
           const isActive = pathname === link.href || (link.href !== "/admin" && pathname.startsWith(link.href));
           const Icon = link.icon;
           return (
@@ -100,15 +122,76 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
   );
 }
 
+// Routes the editor is allowed to access
+const editorAllowedPrefixes = ["/admin/consultas", "/admin/blog"];
+
+function isEditorAllowed(pathname: string): boolean {
+  // Block /admin/consultas-pacotes (starts with /admin/consultas but is admin-only)
+  if (pathname.startsWith("/admin/consultas-pacotes")) return false;
+  return editorAllowedPrefixes.some((prefix) => pathname.startsWith(prefix));
+}
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function checkSession() {
+      try {
+        const res = await fetch("/api/auth/session");
+        const session = await res.json();
+        if (!session?.user) {
+          router.replace("/login");
+          return;
+        }
+        const role = session.user.role || "user";
+        if (role !== "admin" && role !== "editor") {
+          router.replace("/painel");
+          return;
+        }
+        setUserRole(role);
+        setUserName(session.user.name || "Usuário");
+        setUserEmail(session.user.email || "");
+      } catch {
+        router.replace("/login");
+      } finally {
+        setLoading(false);
+      }
+    }
+    checkSession();
+  }, [router]);
+
+  // Filter sidebar links based on role
+  const filteredLinks = userRole === "admin"
+    ? sidebarLinks
+    : sidebarLinks.filter((link) => !link.adminOnly);
+
+  // Check if editor is trying to access a restricted page
+  const isRestricted = userRole === "editor" && !isEditorAllowed(pathname);
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#F1F5F9]">
+        <Loader2 className="h-8 w-8 animate-spin text-[#FF4D30]" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen bg-[#F1F5F9]">
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex lg:w-64 lg:flex-col">
-        <SidebarContent pathname={pathname} />
+        <SidebarContent
+          pathname={pathname}
+          links={filteredLinks}
+          userName={userName}
+          userRole={userRole || "editor"}
+        />
       </aside>
 
       {/* Main area */}
@@ -126,7 +209,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </Button>
             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
               <SheetContent side="left" className="w-64 p-0">
-                <SidebarContent pathname={pathname} onNavigate={() => setSheetOpen(false)} />
+                <SidebarContent
+                  pathname={pathname}
+                  onNavigate={() => setSheetOpen(false)}
+                  links={filteredLinks}
+                  userName={userName}
+                  userRole={userRole || "editor"}
+                />
               </SheetContent>
             </Sheet>
             <h2 className="text-sm font-medium text-[#475569] hidden lg:block">
@@ -143,19 +232,43 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </button>
             <div className="flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-gray-100 cursor-pointer transition-colors">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F172A] text-white text-sm font-semibold">
-                A
+                {userName.charAt(0).toUpperCase()}
               </div>
               <div className="hidden sm:block">
-                <p className="text-sm font-medium text-[#0F172A]">Admin</p>
-                <p className="text-[10px] text-[#94A3B8]">admin@consultaplacabrasil.com.br</p>
+                <p className="text-sm font-medium text-[#0F172A]">{userName}</p>
+                <p className="text-[10px] text-[#94A3B8]">{userEmail}</p>
               </div>
+              {userRole === "editor" && (
+                <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full font-medium">
+                  Editor
+                </span>
+              )}
               <ChevronDown className="h-4 w-4 text-[#94A3B8]" />
             </div>
           </div>
         </header>
 
         {/* Page content */}
-        <main className="flex-1 p-4 lg:p-8">{children}</main>
+        <main className="flex-1 p-4 lg:p-8">
+          {isRestricted ? (
+            <div className="flex flex-col items-center justify-center py-20">
+              <ShieldAlert className="h-16 w-16 text-red-400 mb-4" />
+              <h2 className="text-2xl font-bold text-[#0F172A] mb-2">Acesso Restrito</h2>
+              <p className="text-[#64748B] mb-6 text-center max-w-md">
+                Você não tem permissão para acessar esta página.
+                Como editor, você pode acessar Consultas Clientes e Blog.
+              </p>
+              <Link
+                href="/admin/consultas"
+                className="rounded-lg bg-[#FF4D30] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#E8432A] transition-colors"
+              >
+                Ir para Consultas
+              </Link>
+            </div>
+          ) : (
+            children
+          )}
+        </main>
       </div>
     </div>
   );

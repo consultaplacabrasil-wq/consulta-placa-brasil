@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { coupons } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { requireRole } from "@/lib/auth/admin-guard";
 
 export async function GET() {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const items = await db.select().from(coupons).orderBy(coupons.createdAt);
     return NextResponse.json(items);
@@ -16,6 +19,8 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const body = await req.json();
 
@@ -52,6 +57,8 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const body = await req.json();
     const { id, ...data } = body;
@@ -94,6 +101,8 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");

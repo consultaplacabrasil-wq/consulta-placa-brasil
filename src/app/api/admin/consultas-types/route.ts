@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { consultaTypes } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { requireRole } from "@/lib/auth/admin-guard";
 
 // Mapeia do frontend (pt) para o schema do banco (en)
 function mapToDb(body: Record<string, unknown>) {
@@ -48,6 +49,8 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const body = await req.json();
     const dbData = mapToDb(body);
@@ -63,6 +66,8 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const body = await req.json();
     const { id } = body;
@@ -83,6 +88,8 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");

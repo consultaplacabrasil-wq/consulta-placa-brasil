@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { blogPosts, blogCategories } from "@/lib/db/schema";
 import { eq, desc, isNull, sql } from "drizzle-orm";
+import { requireRole } from "@/lib/auth/admin-guard";
 
 function slugify(text: string): string {
   return text
@@ -18,6 +19,8 @@ function slugify(text: string): string {
 }
 
 export async function GET() {
+  const { error } = await requireRole("admin", "editor");
+  if (error) return error;
   try {
     const posts = await db
       .select({
@@ -60,6 +63,8 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const { error } = await requireRole("admin", "editor");
+  if (error) return error;
   try {
     const body = await req.json();
     const { title, ...rest } = body;
@@ -117,6 +122,8 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
+  const { error } = await requireRole("admin", "editor");
+  if (error) return error;
   try {
     const body = await req.json();
     const { id, ...data } = body;
@@ -170,6 +177,8 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  const { error } = await requireRole("admin", "editor");
+  if (error) return error;
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");

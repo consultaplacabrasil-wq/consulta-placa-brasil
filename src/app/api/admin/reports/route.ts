@@ -2,8 +2,11 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { reports, reportRequests } from "@/lib/db/schema";
 import { eq, sql, gte, count, desc } from "drizzle-orm";
+import { requireRole } from "@/lib/auth/admin-guard";
 
 export async function GET() {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const now = new Date();
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
