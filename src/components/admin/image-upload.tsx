@@ -80,24 +80,34 @@ export default function ImageUpload({
       </label>
 
       {value ? (
-        <div className="relative overflow-hidden rounded-lg border border-gray-200">
+        <div className="relative inline-block max-w-sm rounded-lg border border-gray-200 overflow-hidden bg-gray-50">
           <img
             src={value}
             alt="Preview"
-            className="h-48 w-full object-cover"
+            className="max-h-56 w-auto object-contain"
             onError={(e) => {
               (e.target as HTMLImageElement).src = "";
               (e.target as HTMLImageElement).style.display = "none";
             }}
           />
-          <button
-            type="button"
-            onClick={handleRemove}
-            className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80"
-            title="Remover imagem"
-          >
-            <X className="h-4 w-4" />
-          </button>
+          <div className="absolute right-2 top-2 flex gap-1.5">
+            <button
+              type="button"
+              onClick={() => inputRef.current?.click()}
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80"
+              title="Trocar imagem"
+            >
+              <Upload className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={handleRemove}
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80"
+              title="Remover imagem"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
         </div>
       ) : (
         <div
