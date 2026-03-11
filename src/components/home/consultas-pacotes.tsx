@@ -7,83 +7,82 @@ import { ChevronRight, Loader2 } from "lucide-react";
 
 interface ConsultaType {
   id: string;
-  name: string;
-  description: string | null;
-  price: string;
-  originalPrice: string | null;
-  benefits: string[];
+  nome: string;
+  descricao: string;
+  preco: number;
+  precoOriginal: number;
+  beneficios: string[];
   popular: boolean;
-  active: boolean;
+  ativo: boolean;
 }
 
 interface Pacote {
   id: string;
-  name: string;
-  description: string | null;
-  price: string;
-  originalPrice: string | null;
+  nome: string;
+  descricao: string;
+  valor: number;
+  valorOriginal: number;
   popular: boolean;
-  active: boolean;
 }
 
 const defaultConsultas: ConsultaType[] = [
   {
     id: "consulta-completa",
-    name: "Veículo Completo",
-    description: "A consulta mais completa do mercado, com informações e dados exclusivos sobre o veículo!",
-    price: "64.90",
-    originalPrice: "74.90",
-    benefits: [],
+    nome: "Veículo Completo",
+    descricao: "A consulta mais completa do mercado, com informações e dados exclusivos sobre o veículo!",
+    preco: 64.90,
+    precoOriginal: 74.90,
+    beneficios: [],
     popular: true,
-    active: true,
+    ativo: true,
   },
   {
     id: "consulta-essencial",
-    name: "Veículo Essencial",
-    description: "Informações essenciais sobre o veículo, que te ajudam a negociar com mais segurança e acertar na escolha do seu próximo carro.",
-    price: "45.90",
-    originalPrice: "52.90",
-    benefits: [],
+    nome: "Veículo Essencial",
+    descricao: "Informações essenciais sobre o veículo, que te ajudam a negociar com mais segurança e acertar na escolha do seu próximo carro.",
+    preco: 45.90,
+    precoOriginal: 52.90,
+    beneficios: [],
     popular: false,
-    active: true,
+    ativo: true,
   },
   {
     id: "consulta-leilao",
-    name: "Leilão + Dados do Veículo",
-    description: "Informações sobre o veículo de leilão, que te ajudam a negociar o melhor valor e evitar prejuízos!",
-    price: "34.90",
-    originalPrice: "40.90",
-    benefits: [],
+    nome: "Leilão + Dados do Veículo",
+    descricao: "Informações sobre o veículo de leilão, que te ajudam a negociar o melhor valor e evitar prejuízos!",
+    preco: 34.90,
+    precoOriginal: 40.90,
+    beneficios: [],
     popular: false,
-    active: true,
+    ativo: true,
   },
   {
     id: "consulta-gravame",
-    name: "Gravame",
-    description: "Informações sobre o status de financiamento do veículo que te ajudam a evitar problemas na hora da transferência!",
-    price: "14.90",
-    originalPrice: "17.90",
-    benefits: [],
+    nome: "Gravame",
+    descricao: "Informações sobre o status de financiamento do veículo que te ajudam a evitar problemas na hora da transferência!",
+    preco: 14.90,
+    precoOriginal: 17.90,
+    beneficios: [],
     popular: false,
-    active: true,
+    ativo: true,
   },
   {
     id: "consulta-cadastral",
-    name: "Dados Cadastrais do Veículo",
-    description: "Informações sobre a situação do veículo que te ajudam a validar dados cadastrais nacionais e estaduais!",
-    price: "13.90",
-    originalPrice: "15.90",
-    benefits: [],
+    nome: "Dados Cadastrais do Veículo",
+    descricao: "Informações sobre a situação do veículo que te ajudam a validar dados cadastrais nacionais e estaduais!",
+    preco: 13.90,
+    precoOriginal: 15.90,
+    beneficios: [],
     popular: false,
-    active: true,
+    ativo: true,
   },
 ];
 
 const defaultPacotes: Pacote[] = [
-  { id: "pacote-1000", name: "PACOTE 1000", description: null, price: "800.00", originalPrice: "1000.00", popular: true, active: true },
-  { id: "pacote-500", name: "PACOTE 500", description: null, price: "425.00", originalPrice: "500.00", popular: false, active: true },
-  { id: "pacote-300", name: "PACOTE 300", description: null, price: "270.00", originalPrice: "300.00", popular: false, active: true },
-  { id: "pacote-150", name: "PACOTE 150", description: null, price: "142.50", originalPrice: "150.00", popular: false, active: true },
+  { id: "pacote-1000", nome: "PACOTE 1000", descricao: "", valor: 800.00, valorOriginal: 1000.00, popular: true },
+  { id: "pacote-500", nome: "PACOTE 500", descricao: "", valor: 425.00, valorOriginal: 500.00, popular: false },
+  { id: "pacote-300", nome: "PACOTE 300", descricao: "", valor: 270.00, valorOriginal: 300.00, popular: false },
+  { id: "pacote-150", nome: "PACOTE 150", descricao: "", valor: 142.50, valorOriginal: 150.00, popular: false },
 ];
 
 export function ConsultasPacotes() {
@@ -102,13 +101,12 @@ export function ConsultasPacotes() {
         ]);
         if (consultasRes.ok) {
           const data = await consultasRes.json();
-          const active = data.filter((c: ConsultaType) => c.active);
+          const active = data.filter((c: ConsultaType) => c.ativo !== false);
           if (active.length > 0) setConsultas(active);
         }
         if (pacotesRes.ok) {
           const data = await pacotesRes.json();
-          const active = data.filter((p: Pacote) => p.active);
-          if (active.length > 0) setPacotesList(active);
+          if (data.length > 0) setPacotesList(data);
         }
       } catch {
         // Keep default data on error
@@ -194,15 +192,15 @@ export function ConsultasPacotes() {
                 )}
 
                 <h3 className="text-xl font-bold text-[#0F172A] mb-2">
-                  {item.name}
+                  {item.nome}
                 </h3>
                 <p className="text-sm text-[#64748B] mb-3 flex-1">
-                  {item.description}
+                  {item.descricao}
                 </p>
 
-                {item.benefits && item.benefits.length > 0 && (
+                {item.beneficios && item.beneficios.length > 0 && (
                   <ul className="mb-4 space-y-1.5">
-                    {item.benefits.map((benefit, i) => (
+                    {item.beneficios.map((benefit, i) => (
                       <li key={i} className="flex items-center gap-2 text-sm text-[#475569]">
                         <ChevronRight className="h-3 w-3 text-[#FF4D30] shrink-0" />
                         {benefit}
@@ -212,13 +210,13 @@ export function ConsultasPacotes() {
                 )}
 
                 <div className="mb-4">
-                  {item.originalPrice && (
+                  {item.precoOriginal > 0 && (
                     <p className="text-sm text-red-400 line-through">
-                      de {formatCurrency(Number(item.originalPrice))} por
+                      de {formatCurrency(item.precoOriginal)} por
                     </p>
                   )}
                   <p className="text-3xl font-bold text-[#0F172A]">
-                    {formatCurrency(Number(item.price))}
+                    {formatCurrency(item.preco)}
                     <span className="text-sm font-normal text-[#64748B] ml-1">
                       /consulta
                     </span>
@@ -229,10 +227,10 @@ export function ConsultasPacotes() {
                   onClick={() =>
                     addItem({
                       id: item.id,
-                      name: item.name,
+                      name: item.nome,
                       type: "consulta",
-                      originalPrice: Number(item.originalPrice || item.price),
-                      price: Number(item.price),
+                      originalPrice: item.precoOriginal || item.preco,
+                      price: item.preco,
                     })
                   }
                   className="w-full rounded-lg bg-[#FF4D30] py-3 text-sm font-bold uppercase text-white transition-colors hover:bg-[#E8432A]"
@@ -263,26 +261,26 @@ export function ConsultasPacotes() {
                 )}
 
                 <h3 className="text-xl font-bold text-[#0F172A] mb-2">
-                  {item.name}
+                  {item.nome}
                 </h3>
-                {item.description && (
+                {item.descricao && (
                   <p className="text-sm text-[#64748B] mb-4 flex-1">
-                    {item.description}
+                    {item.descricao}
                   </p>
                 )}
 
                 <div className="mb-6">
-                  {item.originalPrice && (
+                  {item.valorOriginal > 0 && (
                     <>
                       <p className="text-sm text-gray-500">Compre</p>
                       <p className="text-base text-red-400 line-through">
-                        {formatCurrency(Number(item.originalPrice))}
+                        {formatCurrency(item.valorOriginal)}
                       </p>
                       <p className="text-sm text-gray-500">e pague</p>
                     </>
                   )}
                   <p className="text-3xl font-bold text-[#0F172A]">
-                    {formatCurrency(Number(item.price))}
+                    {formatCurrency(item.valor)}
                   </p>
                 </div>
 
@@ -290,10 +288,10 @@ export function ConsultasPacotes() {
                   onClick={() =>
                     addItem({
                       id: item.id,
-                      name: item.name,
+                      name: item.nome,
                       type: "pacote",
-                      originalPrice: Number(item.originalPrice || item.price),
-                      price: Number(item.price),
+                      originalPrice: item.valorOriginal || item.valor,
+                      price: item.valor,
                     })
                   }
                   className="mt-auto w-full rounded-lg bg-[#FF4D30] py-3 text-sm font-bold text-white transition-colors hover:bg-[#E8432A]"
