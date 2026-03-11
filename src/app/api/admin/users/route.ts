@@ -4,6 +4,7 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { requireRole } from "@/lib/auth/admin-guard";
+import { validatePasswordStrength } from "@/lib/utils/password-validator";
 
 export async function GET() {
   const { error } = await requireRole("admin");
@@ -44,11 +45,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (body.password.length < 8) {
-      return NextResponse.json(
-        { error: "A senha deve ter no mínimo 8 caracteres" },
-        { status: 400 }
-      );
+    const passwordError = validatePasswordStrength(body.password);
+    if (passwordError) {
+      return NextResponse.json({ error: passwordError }, { status: 400 });
     }
 
     // Check if email already exists
@@ -109,11 +108,9 @@ export async function PUT(req: NextRequest) {
     };
 
     if (password) {
-      if (password.length < 8) {
-        return NextResponse.json(
-          { error: "A senha deve ter no mínimo 8 caracteres" },
-          { status: 400 }
-        );
+      const passwordError = validatePasswordStrength(password);
+      if (passwordError) {
+        return NextResponse.json({ error: passwordError }, { status: 400 });
       }
       updateData.password = await bcrypt.hash(password, 12);
     }

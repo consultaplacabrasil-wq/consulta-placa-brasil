@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { UserCog, Save, Loader2, CheckCircle, AlertCircle } from "lucide-react";
+import { validatePasswordStrength } from "@/lib/utils/password-validator";
 
 export default function MeuPerfilPage() {
   const [loading, setLoading] = useState(true);
@@ -45,9 +46,12 @@ export default function MeuPerfilPage() {
       return;
     }
 
-    if (password && password.length < 8) {
-      showMsg("error", "A senha deve ter no mínimo 8 caracteres");
-      return;
+    if (password) {
+      const passwordError = validatePasswordStrength(password);
+      if (passwordError) {
+        showMsg("error", passwordError);
+        return;
+      }
     }
 
     if (password && password !== confirmPassword) {
@@ -168,9 +172,10 @@ export default function MeuPerfilPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Mínimo 8 caracteres"
             />
-            {password && password.length > 0 && password.length < 8 && (
-              <p className="text-xs text-red-500 mt-1">A senha deve ter no mínimo 8 caracteres</p>
-            )}
+            {password && password.length > 0 && (() => {
+              const err = validatePasswordStrength(password);
+              return err ? <p className="text-xs text-red-500 mt-1">{err}</p> : null;
+            })()}
           </div>
           <div>
             <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">Confirmar Senha</label>

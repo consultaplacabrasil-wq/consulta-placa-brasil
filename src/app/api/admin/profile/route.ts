@@ -4,6 +4,7 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import bcrypt from "bcryptjs";
+import { validatePasswordStrength } from "@/lib/utils/password-validator";
 
 export async function GET() {
   const session = await auth();
@@ -51,11 +52,11 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    if (password && password.length < 8) {
-      return NextResponse.json(
-        { error: "A senha deve ter no mínimo 8 caracteres" },
-        { status: 400 }
-      );
+    if (password) {
+      const passwordError = validatePasswordStrength(password);
+      if (passwordError) {
+        return NextResponse.json({ error: passwordError }, { status: 400 });
+      }
     }
 
     const updateData: Record<string, unknown> = {

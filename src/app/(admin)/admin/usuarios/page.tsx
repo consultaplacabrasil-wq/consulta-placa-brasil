@@ -16,6 +16,7 @@ import {
   Shield,
   Info,
 } from "lucide-react";
+import { validatePasswordStrength } from "@/lib/utils/password-validator";
 
 interface User {
   id: string;
@@ -101,14 +102,24 @@ export default function AdminUsuariosPage() {
       return;
     }
 
-    if (!editingId && (!form.password || form.password.length < 8)) {
-      showMsg("error", "A senha deve ter no mínimo 8 caracteres");
-      return;
+    if (!editingId) {
+      if (!form.password) {
+        showMsg("error", "A senha é obrigatória");
+        return;
+      }
+      const passwordError = validatePasswordStrength(form.password);
+      if (passwordError) {
+        showMsg("error", passwordError);
+        return;
+      }
     }
 
-    if (editingId && form.password && form.password.length < 8) {
-      showMsg("error", "A senha deve ter no mínimo 8 caracteres");
-      return;
+    if (editingId && form.password) {
+      const passwordError = validatePasswordStrength(form.password);
+      if (passwordError) {
+        showMsg("error", passwordError);
+        return;
+      }
     }
 
     setSaving(true);
@@ -288,9 +299,10 @@ export default function AdminUsuariosPage() {
                   onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
                   placeholder={editingId ? "Nova senha (opcional)" : "Mínimo 8 caracteres"}
                 />
-                {form.password && form.password.length > 0 && form.password.length < 8 && (
-                  <p className="text-xs text-red-500 mt-1">A senha deve ter no mínimo 8 caracteres</p>
-                )}
+                {form.password && form.password.length > 0 && (() => {
+                  const err = validatePasswordStrength(form.password);
+                  return err ? <p className="text-xs text-red-500 mt-1">{err}</p> : null;
+                })()}
               </div>
               <div>
                 <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">Tipo</label>
