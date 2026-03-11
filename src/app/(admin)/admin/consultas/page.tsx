@@ -46,11 +46,37 @@ const typeMap: Record<string, { label: string; class: string }> = {
 
 export default function AdminConsultasPage() {
   const [data, setData] = useState<ConsultasData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const [initialLoading, setInitialLoading] = useState(true);
+
+  // Check user role
+  useEffect(() => {
+    async function checkRole() {
+      try {
+        const res = await fetch("/api/auth/session");
+        const session = await res.json();
+        setUserRole(session?.user?.role || "user");
+      } catch {
+        setUserRole("user");
+      } finally {
+        setInitialLoading(false);
+      }
+    }
+    checkRole();
+  }, []);
+
+  const isAtendente = userRole === "editor";
 
   const fetchData = useCallback(async () => {
+    // Atendente must search to see results
+    if (isAtendente && !searchTerm.trim()) {
+      setData(null);
+      return;
+    }
+
     setLoading(true);
     try {
       const params = new URLSearchParams({ page: String(page), limit: "10" });
@@ -64,12 +90,13 @@ export default function AdminConsultasPage() {
     } finally {
       setLoading(false);
     }
-  }, [page, searchTerm]);
+  }, [page, searchTerm, isAtendente]);
 
   useEffect(() => {
+    if (initialLoading) return;
     const timeout = setTimeout(fetchData, 300);
     return () => clearTimeout(timeout);
-  }, [fetchData]);
+  }, [fetchData, initialLoading]);
 
   function formatDate(dateStr: string) {
     return new Date(dateStr).toLocaleString("pt-BR", {
@@ -85,57 +112,74 @@ export default function AdminConsultasPage() {
   const consultas = data?.consultas || [];
   const pagination = data?.pagination;
 
+  if (initialLoading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <Loader2 className="h-8 w-8 animate-spin text-[#FF4D30]" />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-[#0F172A]">Consultas</h1>
-        <p className="text-sm text-[#64748B]">Monitore todas as consultas realizadas</p>
+        <p className="text-sm text-[#64748B]">
+          {isAtendente
+            ? "Busque por placa, nome, e-mail ou CPF para encontrar consultas"
+            : "Monitore todas as consultas realizadas"}
+        </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
-        <Card className="border-0 shadow-sm">
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100">
-              <Search className="h-5 w-5 text-blue-600" />
-            </div>
-            <div>
-              <p className="text-xl font-bold text-[#0F172A]">
-                {stats?.totalMonth?.toLocaleString("pt-BR") || "0"}
-              </p>
-              <p className="text-xs text-[#94A3B8]">Total este mês</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="border-0 shadow-sm">
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100">
-              <Activity className="h-5 w-5 text-green-600" />
-            </div>
-            <div>
-              <p className="text-xl font-bold text-[#0F172A]">{stats?.successRate || "0.0"}%</p>
-              <p className="text-xs text-[#94A3B8]">Taxa de sucesso</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="border-0 shadow-sm">
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100">
-              <Clock className="h-5 w-5 text-orange-600" />
-            </div>
-            <div>
-              <p className="text-xl font-bold text-[#0F172A]">
-                {(stats?.total || 0).toLocaleString("pt-BR")}
-              </p>
-              <p className="text-xs text-[#94A3B8]">Total geral</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Stats - only for admin */}
+      {!isAtendente && (
+        <div className="grid gap-4 sm:grid-cols-3">
+          <Card className="border-0 shadow-sm">
+            <CardContent className="flex items-center gap-3 p-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100">
+                <Search className="h-5 w-5 text-blue-600" />
+              </div>
+              <div>
+                <p className="text-xl font-bold text-[#0F172A]">
+                  {stats?.totalMonth?.toLocaleString("pt-BR") || "0"}
+                </p>
+                <p className="text-xs text-[#94A3B8]">Total este mês</p>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="border-0 shadow-sm">
+            <CardContent className="flex items-center gap-3 p-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100">
+                <Activity className="h-5 w-5 text-green-600" />
+              </div>
+              <div>
+                <p className="text-xl font-bold text-[#0F172A]">{stats?.successRate || "0.0"}%</p>
+                <p className="text-xs text-[#94A3B8]">Taxa de sucesso</p>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="border-0 shadow-sm">
+            <CardContent className="flex items-center gap-3 p-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100">
+                <Clock className="h-5 w-5 text-orange-600" />
+              </div>
+              <div>
+                <p className="text-xl font-bold text-[#0F172A]">
+                  {(stats?.total || 0).toLocaleString("pt-BR")}
+                </p>
+                <p className="text-xs text-[#94A3B8]">Total geral</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-3">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <CardTitle className="text-base font-semibold">Histórico de Consultas</CardTitle>
+            <CardTitle className="text-base font-semibold">
+              {isAtendente ? "Buscar Consultas" : "Histórico de Consultas"}
+            </CardTitle>
             <div className="relative w-full sm:w-80">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#94A3B8]" />
               <Input
@@ -151,7 +195,18 @@ export default function AdminConsultasPage() {
           </div>
         </CardHeader>
         <CardContent>
-          {loading ? (
+          {/* Atendente: show prompt when no search */}
+          {isAtendente && !searchTerm.trim() ? (
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <Search className="h-10 w-10 text-[#94A3B8] mb-3" />
+              <p className="text-sm font-medium text-[#475569]">
+                Digite no campo de busca para encontrar consultas
+              </p>
+              <p className="text-xs text-[#94A3B8] mt-1">
+                Busque por placa, nome, e-mail ou CPF do cliente
+              </p>
+            </div>
+          ) : loading ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-6 w-6 animate-spin text-[#FF4D30]" />
             </div>
@@ -159,7 +214,9 @@ export default function AdminConsultasPage() {
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Search className="h-10 w-10 text-[#94A3B8] mb-3" />
               <p className="text-sm font-medium text-[#475569]">Nenhuma consulta encontrada</p>
-              <p className="text-xs text-[#94A3B8] mt-1">As consultas realizadas aparecerão aqui</p>
+              <p className="text-xs text-[#94A3B8] mt-1">
+                {searchTerm ? "Tente buscar com outros termos" : "As consultas realizadas aparecerão aqui"}
+              </p>
             </div>
           ) : (
             <>
