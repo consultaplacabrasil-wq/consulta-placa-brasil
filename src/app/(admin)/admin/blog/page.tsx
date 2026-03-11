@@ -15,6 +15,7 @@ import {
   MoreVertical,
   ExternalLink,
   AlertTriangle,
+  Tag,
 } from "lucide-react";
 
 interface BlogPost {
@@ -165,13 +166,22 @@ export default function AdminBlogPage() {
             Gerencie os artigos do blog
           </p>
         </div>
-        <Link
-          href="/admin/blog/novo"
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#FF4D30] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#E8432A]"
-        >
-          <Plus className="h-4 w-4" />
-          Novo Artigo
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/admin/blog/categorias"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50"
+          >
+            <Tag className="h-4 w-4" />
+            Categorias
+          </Link>
+          <Link
+            href="/admin/blog/novo"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#FF4D30] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#E8432A]"
+          >
+            <Plus className="h-4 w-4" />
+            Novo Artigo
+          </Link>
+        </div>
       </div>
 
       {/* Stats Cards */}
