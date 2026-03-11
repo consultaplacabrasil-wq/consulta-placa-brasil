@@ -3,6 +3,7 @@
 import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   ArrowLeft,
   Save,
@@ -15,6 +16,15 @@ import {
   Image as ImageIcon,
   Loader2,
 } from "lucide-react";
+
+const RichEditor = dynamic(() => import("@/components/admin/rich-editor"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[400px] rounded-lg border border-gray-200 flex items-center justify-center text-sm text-[#94A3B8]">
+      Carregando editor...
+    </div>
+  ),
+});
 
 interface Category {
   id: string;
@@ -368,12 +378,9 @@ function ContentTab({
         <label className="mb-1.5 block text-sm font-medium text-[#0F172A]">
           Conteúdo *
         </label>
-        <textarea
-          value={form.content}
-          onChange={(e) => updateField("content", e.target.value)}
-          placeholder="Escreva o conteúdo do artigo aqui..."
-          rows={16}
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 font-mono text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
+        <RichEditor
+          content={form.content}
+          onChange={(html) => updateField("content", html)}
         />
       </div>
 
