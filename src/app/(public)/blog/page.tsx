@@ -1,159 +1,280 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Clock, ArrowRight } from "lucide-react";
+  Clock,
+  ArrowRight,
+  ChevronRight,
+  Search,
+  Tag,
+  CalendarDays,
+  User,
+  Loader2,
+} from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Blog da Consulta Placa Brasil. Dicas, notícias e informações sobre o mercado automotivo brasileiro.",
-};
+interface Post {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  featuredImage: string | null;
+  categoryName: string | null;
+  categorySlug: string | null;
+  author: string | null;
+  publishedAt: string | null;
+  createdAt: string;
+}
 
-const placeholderPosts = [
-  {
-    title: "Como verificar o histórico completo de um veículo usado",
-    excerpt:
-      "Descubra os passos essenciais para consultar o histórico de um veículo antes de fechar negócio e evitar surpresas desagradáveis.",
-    category: "Dicas",
-    date: "Em breve",
-    readTime: "5 min",
-  },
-  {
-    title: "Entenda a diferença entre as placas Mercosul e o modelo antigo",
-    excerpt:
-      "Saiba tudo sobre o novo padrão de placas Mercosul, suas vantagens e como identificar cada tipo de placa no Brasil.",
-    category: "Educativo",
-    date: "Em breve",
-    readTime: "4 min",
-  },
-  {
-    title: "Os 10 golpes mais comuns na compra de veículos usados",
-    excerpt:
-      "Conheça os golpes mais frequentes na compra de carros usados e aprenda como se proteger com uma consulta veicular.",
-    category: "Segurança",
-    date: "Em breve",
-    readTime: "7 min",
-  },
-  {
-    title: "O que é o score de confiabilidade de um veículo?",
-    excerpt:
-      "Entenda como funciona o score de confiabilidade do nosso relatório premium e como ele pode ajudar na sua decisão de compra.",
-    category: "Produto",
-    date: "Em breve",
-    readTime: "3 min",
-  },
-  {
-    title: "LGPD e consulta veicular: como seus dados são protegidos",
-    excerpt:
-      "Saiba como a Consulta Placa Brasil trata seus dados em conformidade com a Lei Geral de Proteção de Dados.",
-    category: "Privacidade",
-    date: "Em breve",
-    readTime: "6 min",
-  },
-  {
-    title: "Recalls: por que verificar antes de comprar um veículo",
-    excerpt:
-      "Entenda a importância de verificar recalls pendentes e como isso pode afetar a segurança e o valor do veículo.",
-    category: "Segurança",
-    date: "Em breve",
-    readTime: "4 min",
-  },
-];
+interface Category {
+  name: string;
+  slug: string;
+  count: number;
+}
 
-const categoryColors: Record<string, string> = {
-  Dicas: "bg-blue-100 text-blue-700",
-  Educativo: "bg-purple-100 text-purple-700",
-  Segurança: "bg-red-100 text-red-700",
-  Produto: "bg-green-100 text-green-700",
-  Privacidade: "bg-amber-100 text-amber-700",
-};
+function formatDate(dateStr: string | null) {
+  if (!dateStr) return "";
+  return new Date(dateStr).toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+function estimateReadTime(excerpt: string | null) {
+  const words = (excerpt || "").split(/\s+/).length;
+  return Math.max(2, Math.ceil(words / 40)) + " min de leitura";
+}
 
 export default function BlogPage() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    fetchPosts();
+    fetchCategories();
+  }, [activeCategory, page]);
+
+  async function fetchPosts() {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams({ page: String(page), limit: "9" });
+      if (activeCategory) params.set("category", activeCategory);
+      const res = await fetch(`/api/blog?${params}`);
+      const data = await res.json();
+      setPosts(data.posts || []);
+      setTotalPages(data.totalPages || 1);
+    } catch {
+      setPosts([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function fetchCategories() {
+    try {
+      const res = await fetch("/api/blog/categories");
+      const data = await res.json();
+      setCategories(data || []);
+    } catch {
+      setCategories([]);
+    }
+  }
+
+  const filtered = search
+    ? posts.filter(
+        (p) =>
+          p.title.toLowerCase().includes(search.toLowerCase()) ||
+          (p.excerpt || "").toLowerCase().includes(search.toLowerCase())
+      )
+    : posts;
+
   return (
-    <div className="bg-[#F8FAFC]">
+    <div className="bg-[#F8FAFC] min-h-screen">
+      {/* Breadcrumbs */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 max-w-6xl py-3">
+          <nav className="flex items-center gap-1.5 text-sm text-[#94A3B8]">
+            <Link href="/" className="hover:text-[#FF4D30] transition-colors">
+              Inicio
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-[#0F172A] font-medium">Blog</span>
+          </nav>
+        </div>
+      </div>
+
       {/* Hero */}
       <section className="bg-[#FF4D30] text-white py-16">
-        <div className="container mx-auto px-4 max-w-5xl text-center">
+        <div className="container mx-auto px-4 max-w-6xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Blog</h1>
           <p className="text-lg text-red-100 max-w-2xl mx-auto">
-            Dicas, notícias e informações sobre o mercado automotivo brasileiro e
-            consulta veicular.
+            Dicas, noticias e informacoes sobre o mercado automotivo brasileiro
+            e consulta veicular.
           </p>
         </div>
       </section>
 
-      {/* Coming Soon Banner */}
+      {/* Search + Categories */}
       <section className="py-8">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="bg-[#FF4D30]/5 border border-[#FF4D30]/10 rounded-xl p-6 text-center">
-            <p className="text-[#FF4D30] font-semibold text-lg mb-1">
-              Em breve!
-            </p>
-            <p className="text-[#475569]">
-              Estamos preparando conteúdos incríveis para você. Confira abaixo uma
-              prévia dos artigos que estão por vir.
-            </p>
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+            {/* Search */}
+            <div className="relative w-full md:w-80">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94A3B8]" />
+              <input
+                type="text"
+                placeholder="Buscar artigos..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 bg-white text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/20 focus:border-[#FF4D30]"
+              />
+            </div>
+
+            {/* Category filters */}
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => {
+                  setActiveCategory(null);
+                  setPage(1);
+                }}
+                className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  !activeCategory
+                    ? "bg-[#FF4D30] text-white"
+                    : "bg-white text-[#475569] border border-gray-200 hover:border-[#FF4D30] hover:text-[#FF4D30]"
+                }`}
+              >
+                Todos
+              </button>
+              {categories.map((cat) => (
+                <button
+                  key={cat.slug}
+                  onClick={() => {
+                    setActiveCategory(cat.slug);
+                    setPage(1);
+                  }}
+                  className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                    activeCategory === cat.slug
+                      ? "bg-[#FF4D30] text-white"
+                      : "bg-white text-[#475569] border border-gray-200 hover:border-[#FF4D30] hover:text-[#FF4D30]"
+                  }`}
+                >
+                  {cat.name} ({cat.count})
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Blog Grid */}
-      <section className="py-12 pb-20">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {placeholderPosts.map((post, index) => (
-              <Card
-                key={index}
-                className="group overflow-hidden border-gray-100 shadow-sm hover:shadow-md transition-shadow bg-white"
-              >
-                {/* Placeholder image area */}
-                <div className="h-48 bg-gradient-to-br from-[#FF4D30]/10 to-[#FF4D30]/5 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-[#FF4D30]/10 flex items-center justify-center">
-                    <span className="text-2xl text-[#FF4D30]/40 font-bold">
-                      {index + 1}
-                    </span>
-                  </div>
+      <section className="pb-20">
+        <div className="container mx-auto px-4 max-w-6xl">
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <Loader2 className="w-8 h-8 animate-spin text-[#FF4D30]" />
+            </div>
+          ) : filtered.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-[#475569] text-lg">
+                Nenhum artigo encontrado.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filtered.map((post) => (
+                  <Link
+                    key={post.id}
+                    href={`/blog/${post.slug}`}
+                    className="group bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all"
+                  >
+                    {/* Image */}
+                    <div className="relative h-48 bg-gradient-to-br from-[#FF4D30]/10 to-[#FF4D30]/5 overflow-hidden">
+                      {post.featuredImage ? (
+                        <img
+                          src={post.featuredImage}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-[#FF4D30]/10 flex items-center justify-center">
+                            <Tag className="w-7 h-7 text-[#FF4D30]/40" />
+                          </div>
+                        </div>
+                      )}
+                      {post.categoryName && (
+                        <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#FF4D30] text-xs font-semibold px-2.5 py-1 rounded-full">
+                          {post.categoryName}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-5">
+                      <div className="flex items-center gap-3 text-xs text-[#94A3B8] mb-3">
+                        {post.publishedAt && (
+                          <span className="flex items-center gap-1">
+                            <CalendarDays className="w-3 h-3" />
+                            {formatDate(post.publishedAt)}
+                          </span>
+                        )}
+                        {post.author && (
+                          <span className="flex items-center gap-1">
+                            <User className="w-3 h-3" />
+                            {post.author}
+                          </span>
+                        )}
+                      </div>
+
+                      <h2 className="text-lg font-bold text-[#0F172A] leading-tight mb-2 group-hover:text-[#FF4D30] transition-colors line-clamp-2">
+                        {post.title}
+                      </h2>
+
+                      {post.excerpt && (
+                        <p className="text-sm text-[#475569] leading-relaxed line-clamp-3 mb-4">
+                          {post.excerpt}
+                        </p>
+                      )}
+
+                      <span className="text-sm text-[#FF4D30] font-medium flex items-center gap-1">
+                        Ler artigo
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-12">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (p) => (
+                      <button
+                        key={p}
+                        onClick={() => setPage(p)}
+                        className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
+                          page === p
+                            ? "bg-[#FF4D30] text-white"
+                            : "bg-white text-[#475569] border border-gray-200 hover:border-[#FF4D30] hover:text-[#FF4D30]"
+                        }`}
+                      >
+                        {p}
+                      </button>
+                    )
+                  )}
                 </div>
-
-                <CardHeader className="pb-3">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span
-                      className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-                        categoryColors[post.category] ||
-                        "bg-gray-100 text-gray-700"
-                      }`}
-                    >
-                      {post.category}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs text-[#475569]">
-                      <Clock className="w-3 h-3" />
-                      {post.readTime}
-                    </span>
-                  </div>
-                  <h2 className="text-lg font-bold text-[#0F172A] leading-tight group-hover:text-[#FF4D30] transition-colors">
-                    {post.title}
-                  </h2>
-                </CardHeader>
-
-                <CardContent className="pb-4">
-                  <p className="text-sm text-[#475569] leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                </CardContent>
-
-                <CardFooter className="pt-0">
-                  <span className="text-sm text-[#FF4D30] font-medium flex items-center gap-1 opacity-50">
-                    Em breve
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+              )}
+            </>
+          )}
         </div>
       </section>
     </div>
