@@ -1,24 +1,52 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Download, BarChart3, PieChart } from "lucide-react";
+import { FileText, Download, BarChart3, PieChart, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Relatórios - Admin ConsultaPlaca" };
+interface ReportsData {
+  stats: { total: number; monthCount: number; avgPerDay: number; paidPercentage: number };
+  distribution: { type: string; count: number; percentage: number }[];
+  topPlates: { plate: string; count: number; lastQuery: string }[];
+}
 
-const reportStats = [
-  { type: "Básico", count: 4521, percentage: 54, color: "bg-gray-400" },
-  { type: "Completo", count: 2847, percentage: 34, color: "bg-[#FF4D30]" },
-  { type: "Premium", count: 979, percentage: 12, color: "bg-[#0F172A]" },
-];
+const typeLabels: Record<string, string> = {
+  basic: "Básico",
+  complete: "Completo",
+  premium: "Premium",
+};
 
-const topPlates = [
-  { plate: "ABC1D23", count: 8, lastQuery: "08/03/2026" },
-  { plate: "XYZ9A87", count: 6, lastQuery: "08/03/2026" },
-  { plate: "DEF4G56", count: 5, lastQuery: "07/03/2026" },
-  { plate: "GHI7H89", count: 4, lastQuery: "07/03/2026" },
-  { plate: "JKL2M34", count: 3, lastQuery: "06/03/2026" },
-];
+const typeColors: Record<string, string> = {
+  basic: "bg-gray-400",
+  complete: "bg-[#FF4D30]",
+  premium: "bg-[#0F172A]",
+};
 
 export default function AdminRelatoriosPage() {
+  const [data, setData] = useState<ReportsData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/admin/reports")
+      .then((res) => res.json())
+      .then((d) => { if (d.stats) setData(d); })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex min-h-[400px] items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-[#FF4D30]" />
+      </div>
+    );
+  }
+
+  const stats = data?.stats;
+  const distribution = data?.distribution || [];
+  const topPlates = data?.topPlates || [];
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -39,7 +67,7 @@ export default function AdminRelatoriosPage() {
               <FileText className="h-5 w-5 text-[#FF4D30]" />
             </div>
             <div>
-              <p className="text-xl font-bold text-[#0F172A]">8.347</p>
+              <p className="text-xl font-bold text-[#0F172A]">{(stats?.total || 0).toLocaleString("pt-BR")}</p>
               <p className="text-xs text-[#94A3B8]">Total de relatórios</p>
             </div>
           </CardContent>
@@ -50,7 +78,7 @@ export default function AdminRelatoriosPage() {
               <BarChart3 className="h-5 w-5 text-blue-600" />
             </div>
             <div>
-              <p className="text-xl font-bold text-[#0F172A]">278</p>
+              <p className="text-xl font-bold text-[#0F172A]">{stats?.avgPerDay || 0}</p>
               <p className="text-xs text-[#94A3B8]">Média por dia</p>
             </div>
           </CardContent>
@@ -61,7 +89,7 @@ export default function AdminRelatoriosPage() {
               <PieChart className="h-5 w-5 text-green-600" />
             </div>
             <div>
-              <p className="text-xl font-bold text-[#0F172A]">46%</p>
+              <p className="text-xl font-bold text-[#0F172A]">{stats?.paidPercentage || 0}%</p>
               <p className="text-xs text-[#94A3B8]">Pagos (Completo+Premium)</p>
             </div>
           </CardContent>
@@ -75,27 +103,36 @@ export default function AdminRelatoriosPage() {
             <CardTitle className="text-base font-semibold">Distribuição por Tipo</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {reportStats.map((r) => (
-                <div key={r.type}>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-sm font-medium text-[#0F172A]">{r.type}</span>
-                    <span className="text-sm text-[#475569]">{r.count.toLocaleString()} ({r.percentage}%)</span>
-                  </div>
-                  <div className="h-3 w-full rounded-full bg-gray-100">
-                    <div className={`h-3 rounded-full ${r.color}`} style={{ width: `${r.percentage}%` }} />
-                  </div>
+            {distribution.length === 0 ? (
+              <p className="text-sm text-[#94A3B8] text-center py-8">Nenhum relatório gerado ainda</p>
+            ) : (
+              <>
+                <div className="space-y-4">
+                  {distribution.map((r) => (
+                    <div key={r.type}>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-sm font-medium text-[#0F172A]">{typeLabels[r.type] || r.type}</span>
+                        <span className="text-sm text-[#475569]">{r.count.toLocaleString("pt-BR")} ({r.percentage}%)</span>
+                      </div>
+                      <div className="h-3 w-full rounded-full bg-gray-100">
+                        <div
+                          className={`h-3 rounded-full ${typeColors[r.type] || "bg-gray-400"}`}
+                          style={{ width: `${r.percentage}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className="mt-6 flex items-center gap-4">
-              {reportStats.map((r) => (
-                <div key={r.type} className="flex items-center gap-2">
-                  <div className={`h-3 w-3 rounded-full ${r.color}`} />
-                  <span className="text-xs text-[#475569]">{r.type}</span>
+                <div className="mt-6 flex items-center gap-4">
+                  {distribution.map((r) => (
+                    <div key={r.type} className="flex items-center gap-2">
+                      <div className={`h-3 w-3 rounded-full ${typeColors[r.type] || "bg-gray-400"}`} />
+                      <span className="text-xs text-[#475569]">{typeLabels[r.type] || r.type}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
           </CardContent>
         </Card>
 
@@ -105,24 +142,30 @@ export default function AdminRelatoriosPage() {
             <CardTitle className="text-base font-semibold">Placas Mais Consultadas</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {topPlates.map((p, i) => (
-                <div key={p.plate} className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#FFF5F3] text-sm font-bold text-[#FF4D30]">
-                      {i + 1}
+            {topPlates.length === 0 ? (
+              <p className="text-sm text-[#94A3B8] text-center py-8">Nenhuma placa consultada ainda</p>
+            ) : (
+              <div className="space-y-3">
+                {topPlates.map((p, i) => (
+                  <div key={p.plate} className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#FFF5F3] text-sm font-bold text-[#FF4D30]">
+                        {i + 1}
+                      </div>
+                      <div>
+                        <p className="font-mono font-semibold text-[#0F172A]">{p.plate}</p>
+                        <p className="text-xs text-[#94A3B8]">
+                          Última consulta: {new Date(p.lastQuery).toLocaleDateString("pt-BR")}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-mono font-semibold text-[#0F172A]">{p.plate}</p>
-                      <p className="text-xs text-[#94A3B8]">Última consulta: {p.lastQuery}</p>
-                    </div>
+                    <span className="rounded-full bg-[#FFF5F3] px-3 py-1 text-sm font-bold text-[#FF4D30]">
+                      {p.count}x
+                    </span>
                   </div>
-                  <span className="rounded-full bg-[#FFF5F3] px-3 py-1 text-sm font-bold text-[#FF4D30]">
-                    {p.count}x
-                  </span>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

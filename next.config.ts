@@ -25,6 +25,50 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/index.html",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/index.php",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/home",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/inicio",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/consultar",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/consulta-placa",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/consultar-placa",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/pesquisar",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
