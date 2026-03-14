@@ -98,11 +98,8 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative bg-white px-4 py-16 md:py-24 border-b border-gray-100">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FFF5F3] rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#F8FAFC] rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
-
-        <div className="relative mx-auto max-w-6xl">
+      <section className="bg-white px-4 py-16 md:py-24 border-b border-gray-100">
+        <div className="mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left - Text */}
             <div>
