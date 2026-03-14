@@ -190,10 +190,10 @@ export default function LgpdPage() {
                 <p className="text-[#0F172A]">
                   <strong>E-mail:</strong>{" "}
                   <a
-                    href="mailto:consultaplacabrasil@gmail.com"
+                    href="mailto:contato@consultaplacabrasil.com"
                     className="text-[#FF4D30] hover:underline"
                   >
-                    consultaplacabrasil@gmail.com
+                    contato@consultaplacabrasil.com
                   </a>
                 </p>
               </div>
