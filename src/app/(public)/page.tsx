@@ -20,12 +20,16 @@ import {
   FileText,
 } from "lucide-react";
 import { ConsultasPacotes } from "@/components/home/consultas-pacotes";
+import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { FaqSection } from "@/components/home/faq-section";
 
 export const metadata: Metadata = {
-  title: "Consulta Placa Brasil — Descubra tudo sobre qualquer veículo",
+  title: "Consulta Placa Brasil — Consultar Placa de Veículo, Carro e Moto",
   description:
-    "Consulte qualquer veículo pela placa. Relatório completo com histórico, sinistro, leilão, débitos, multas e mais. Resultado instantâneo.",
+    "Consulte qualquer veículo pela placa. Pesquise placa de carro, moto ou caminhão e receba relatório completo com histórico, sinistro, leilão, gravame, débitos e multas. Resultado instantâneo.",
+  alternates: {
+    canonical: "https://consultaplacabrasil.com.br",
+  },
 };
 
 const stats = [
@@ -89,26 +93,6 @@ const benefits = [
   },
 ];
 
-const testimonials = [
-  {
-    name: "Carlos M.",
-    role: "Comprador particular",
-    text: "Quase comprei um carro com sinistro grave. O relatório me salvou de um grande prejuízo!",
-    rating: 5,
-  },
-  {
-    name: "Ana Paula S.",
-    role: "Lojista de usados",
-    text: "Uso diariamente na minha loja de usados. As consultas são rápidas e completas.",
-    rating: 5,
-  },
-  {
-    name: "Roberto L.",
-    role: "Comprador particular",
-    text: "Relatório completo e rápido. Paguei com Pix e em segundos já tinha tudo.",
-    rating: 5,
-  },
-];
 
 export default function HomePage() {
   return (
@@ -252,43 +236,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-[#F8FAFC] px-4 py-16 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
-              Depoimentos
-            </span>
-            <h2 className="text-3xl font-bold text-[#0F172A]">
-              O que nossos clientes dizem
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.name} className="border-0 shadow-sm rounded-xl">
-                <CardContent className="p-6">
-                  <div className="mb-3 flex gap-1">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-4 w-4 fill-[#FF4D30] text-[#FF4D30]"
-                      />
-                    ))}
-                  </div>
-                  <p className="mb-4 text-sm text-[#475569] leading-relaxed">
-                    &ldquo;{testimonial.text}&rdquo;
-                  </p>
-                  <div>
-                    <p className="text-sm font-semibold text-[#0F172A]">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-xs text-[#94A3B8]">{testimonial.role}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       {/* FAQ */}
       <FaqSection />
@@ -340,6 +288,17 @@ export default function HomePage() {
             url: "https://consultaplacabrasil.com.br",
             description:
               "Plataforma de consulta veicular completa com relatórios detalhados.",
+            logo: "https://consultaplacabrasil.com.br/logo.png",
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+55-11-4002-8922",
+              contactType: "customer service",
+              availableLanguage: "Portuguese",
+            },
+            areaServed: {
+              "@type": "Country",
+              name: "Brazil",
+            },
           }),
         }}
       />
