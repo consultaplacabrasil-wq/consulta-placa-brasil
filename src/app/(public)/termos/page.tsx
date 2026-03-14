@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page?.seoTitle || "Termos de Uso - Consulta Placa Brasil",
     description: page?.seoDescription || defaultDesc,
-    alternates: { canonical: page?.seoCanonical || undefined },
+    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com.br/termos" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
       title: page?.ogTitle || "Termos de Uso",

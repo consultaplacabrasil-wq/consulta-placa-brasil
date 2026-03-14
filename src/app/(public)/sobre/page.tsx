@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page?.seoTitle || "Sobre Nós - Consulta Placa Brasil",
     description: page?.seoDescription || defaultDescription,
-    alternates: { canonical: page?.seoCanonical || undefined },
+    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com.br/sobre" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
       title: page?.ogTitle || "Sobre Nós",

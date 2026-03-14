@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page?.seoTitle || "Política de Privacidade - Consulta Placa Brasil",
     description: page?.seoDescription || defaultDesc,
-    alternates: { canonical: page?.seoCanonical || undefined },
+    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com.br/privacidade" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
       title: page?.ogTitle || "Política de Privacidade",

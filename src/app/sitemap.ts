@@ -90,7 +90,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .from(blogCategories);
 
     categoryEntries = categories.map((cat) => ({
-      url: `${baseUrl}/blog/categoria/${cat.slug}`,
+      url: `${baseUrl}/blog?category=${cat.slug}`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.5,

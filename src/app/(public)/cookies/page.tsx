@@ -20,8 +20,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage();
   return {
     title: page?.seoTitle || "Política de Cookies - Consulta Placa Brasil",
-    description: page?.seoDescription || "Política de cookies do Consulta Placa Brasil.",
-    alternates: { canonical: page?.seoCanonical || undefined },
+    description: page?.seoDescription || "Saiba como o Consulta Placa Brasil utiliza cookies essenciais, de análise e de preferências para melhorar sua experiência de navegação.",
+    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com.br/cookies" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
       title: page?.ogTitle || "Política de Cookies",

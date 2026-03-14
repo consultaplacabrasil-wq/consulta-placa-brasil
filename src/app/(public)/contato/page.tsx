@@ -1,33 +1,24 @@
-"use client";
+import { Metadata } from "next";
+import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
+import { ContactForm } from "@/components/contato/contact-form";
+import Link from "next/link";
 
-import type { Metadata } from "next";
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Mail, Phone, MessageCircle, MapPin, Send } from "lucide-react";
+export const metadata: Metadata = {
+  title: "Contato",
+  description:
+    "Entre em contato com a Consulta Placa Brasil. Atendimento por e-mail, telefone e WhatsApp de segunda a sexta, das 8h às 18h. Tire suas dúvidas sobre consulta veicular.",
+  alternates: {
+    canonical: "https://consultaplacabrasil.com.br/contato",
+  },
+  openGraph: {
+    title: "Contato | Consulta Placa Brasil",
+    description:
+      "Entre em contato com a Consulta Placa Brasil. Atendimento por e-mail, telefone e WhatsApp.",
+    url: "https://consultaplacabrasil.com.br/contato",
+  },
+};
 
 export default function ContatoPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitted(true);
-  }
-
   return (
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
@@ -79,10 +70,10 @@ export default function ContatoPage() {
                   <div>
                     <p className="font-semibold text-[#0F172A]">Telefone</p>
                     <a
-                      href="tel:+5511999999999"
+                      href="tel:+551140028922"
                       className="text-[#FF4D30] hover:underline text-sm"
                     >
-                      (11) 99999-9999
+                      (11) 4002-8922
                     </a>
                   </div>
                 </div>
@@ -94,12 +85,12 @@ export default function ContatoPage() {
                   <div>
                     <p className="font-semibold text-[#0F172A]">WhatsApp</p>
                     <a
-                      href="https://wa.me/5511999999999"
+                      href="https://wa.me/551140028922"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#FF4D30] hover:underline text-sm"
                     >
-                      (11) 99999-9999
+                      (11) 4002-8922
                     </a>
                   </div>
                 </div>
@@ -116,103 +107,53 @@ export default function ContatoPage() {
                   </div>
                 </div>
               </div>
+
+              <div className="pt-4 border-t border-gray-200">
+                <p className="text-sm text-[#475569]">
+                  Antes de entrar em contato, confira nossa{" "}
+                  <Link href="/faq" className="text-[#FF4D30] hover:underline">
+                    página de perguntas frequentes
+                  </Link>.
+                </p>
+              </div>
             </div>
 
             {/* Contact Form */}
             <div className="lg:col-span-3">
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                {submitted ? (
-                  <div className="text-center py-12">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-6">
-                      <Send className="w-8 h-8 text-green-600" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-[#0F172A] mb-2">
-                      Mensagem Enviada!
-                    </h3>
-                    <p className="text-[#475569]">
-                      Obrigado pelo contato. Retornaremos em até 24 horas úteis.
-                    </p>
-                    <Button
-                      className="mt-6 bg-[#FF4D30] hover:bg-[#E8432A]"
-                      onClick={() => {
-                        setSubmitted(false);
-                        setFormData({ name: "", email: "", subject: "", message: "" });
-                      }}
-                    >
-                      Enviar nova mensagem
-                    </Button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <h3 className="text-xl font-bold text-[#0F172A] mb-2">
-                      Envie sua mensagem
-                    </h3>
-
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Nome completo</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          placeholder="Seu nome"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">E-mail</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="seu@email.com"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="subject">Assunto</Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        placeholder="Sobre o que deseja falar?"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Mensagem</Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        placeholder="Escreva sua mensagem aqui..."
-                        rows={5}
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full bg-[#FF4D30] hover:bg-[#E8432A] h-12 text-base"
-                    >
-                      <Send className="w-4 h-4 mr-2" />
-                      Enviar Mensagem
-                    </Button>
-                  </form>
-                )}
+                <ContactForm />
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ContactPage Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contato - Consulta Placa Brasil",
+            description:
+              "Entre em contato com a Consulta Placa Brasil por e-mail, telefone ou WhatsApp.",
+            url: "https://consultaplacabrasil.com.br/contato",
+            mainEntity: {
+              "@type": "Organization",
+              name: "Consulta Placa Brasil",
+              telephone: "+55-11-4002-8922",
+              email: "contato@consultaplacabrasil.com.br",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "São Paulo",
+                addressRegion: "SP",
+                addressCountry: "BR",
+              },
+            },
+          }),
+        }}
+      />
     </div>
   );
 }

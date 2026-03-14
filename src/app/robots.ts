@@ -19,6 +19,8 @@ export default function robots(): MetadataRoute.Robots {
           "/recuperar-senha",
           "/comprar/",
           "/checkout/",
+          "/consulta/",
+          "/relatorio/",
         ],
       },
     ],
