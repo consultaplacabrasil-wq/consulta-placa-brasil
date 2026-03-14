@@ -11,6 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com/privacidade" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
+      type: "website",
       title: page?.ogTitle || "Política de Privacidade",
       description: page?.ogDescription || defaultDesc,
       images: page?.ogImage ? [page.ogImage] : undefined,

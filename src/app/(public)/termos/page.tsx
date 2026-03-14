@@ -11,6 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com/termos" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
+      type: "website",
       title: page?.ogTitle || "Termos de Uso",
       description: page?.ogDescription || defaultDesc,
       images: page?.ogImage ? [page.ogImage] : undefined,

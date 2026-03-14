@@ -24,6 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com/cookies" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
+      type: "website",
       title: page?.ogTitle || "Política de Cookies",
       description: page?.ogDescription || undefined,
       images: page?.ogImage ? [page.ogImage] : undefined,
