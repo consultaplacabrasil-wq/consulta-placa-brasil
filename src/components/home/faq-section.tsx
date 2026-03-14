@@ -141,7 +141,7 @@ export function FaqSection() {
     <section className="bg-white px-4 py-16 md:py-20">
       <div className="mx-auto max-w-3xl">
         <div className="text-center mb-12">
-          <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
+          <span className="inline-block text-sm font-semibold text-[#C73A1E] uppercase tracking-wider mb-2">
             Dúvidas Frequentes
           </span>
           <h2 className="text-3xl font-bold text-[#0F172A]">

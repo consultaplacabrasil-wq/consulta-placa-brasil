@@ -103,8 +103,8 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left - Text */}
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#FFF5F3] px-4 py-1.5 text-sm font-medium text-[#FF4D30] mb-6">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#FF4D30] animate-pulse" />
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D30] px-4 py-1.5 text-sm font-medium text-white mb-6">
+                <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
                 Cobertura Nacional | 27 Estados + DF
               </div>
               <h1 className="mb-6 text-4xl font-bold leading-tight text-[#0F172A] md:text-5xl">
@@ -149,7 +149,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-xl font-bold text-[#0F172A]">{stat.value}</p>
-                  <p className="text-xs text-[#94A3B8]">{stat.label}</p>
+                  <p className="text-xs text-[#64748B]">{stat.label}</p>
                 </div>
               </div>
             ))}
@@ -164,7 +164,7 @@ export default function HomePage() {
       <section className="bg-[#F8FAFC] px-4 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
+            <span className="inline-block text-sm font-semibold text-[#C73A1E] uppercase tracking-wider mb-2">
               Simples e rápido
             </span>
             <h2 className="text-3xl font-bold text-[#0F172A]">
@@ -200,7 +200,7 @@ export default function HomePage() {
       <section className="bg-white px-4 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
+            <span className="inline-block text-sm font-semibold text-[#C73A1E] uppercase tracking-wider mb-2">
               Vantagens
             </span>
             <h2 className="text-3xl font-bold text-[#0F172A]">

@@ -116,7 +116,7 @@ export function TestimonialsSection() {
     <section className="bg-[#F8FAFC] px-4 py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-12">
-          <span className="inline-block text-sm font-semibold text-[#FF4D30] uppercase tracking-wider mb-2">
+          <span className="inline-block text-sm font-semibold text-[#C73A1E] uppercase tracking-wider mb-2">
             Depoimentos
           </span>
           <h2 className="text-3xl font-bold text-[#0F172A]">
@@ -165,10 +165,10 @@ export function TestimonialsSection() {
                         <p className="text-sm font-semibold text-[#0F172A]">
                           {testimonial.name}
                         </p>
-                        <p className="text-xs text-[#94A3B8]">
+                        <p className="text-xs text-[#64748B]">
                           {testimonial.role}
                         </p>
-                        <p className="text-xs text-[#94A3B8]">
+                        <p className="text-xs text-[#64748B]">
                           {testimonial.city}
                         </p>
                       </div>

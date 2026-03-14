@@ -80,6 +80,7 @@ export function Header() {
           <div className="hidden items-center gap-3 md:flex">
             <button
               onClick={openCart}
+              aria-label="Carrinho de compras"
               className="relative flex h-10 w-10 items-center justify-center rounded-lg text-[#475569] hover:bg-[#FFF5F3] hover:text-[#FF4D30] transition-colors"
             >
               <ShoppingCart className="h-5 w-5" />
@@ -104,6 +105,7 @@ export function Header() {
           <div className="flex items-center gap-1 md:hidden">
             <button
               onClick={openCart}
+              aria-label="Carrinho de compras"
               className="relative flex h-10 w-10 items-center justify-center rounded-lg text-[#475569]"
             >
               <ShoppingCart className="h-5 w-5" />
@@ -117,6 +119,7 @@ export function Header() {
               variant="ghost"
               size="icon"
               onClick={() => setOpen(true)}
+              aria-label="Abrir menu de navegação"
             >
               <Menu className="h-5 w-5" />
             </Button>

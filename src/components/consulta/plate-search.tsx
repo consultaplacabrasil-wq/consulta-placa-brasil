@@ -83,7 +83,7 @@ export function PlateSearch({ size = "default", variant = "default", className }
           )}
           Consultar Agora
         </Button>
-        <p className="mt-3 text-center text-xs text-gray-400">
+        <p className="mt-3 text-center text-xs text-gray-600">
           Consulta básica gratuita - Sem cadastro
         </p>
       </form>
