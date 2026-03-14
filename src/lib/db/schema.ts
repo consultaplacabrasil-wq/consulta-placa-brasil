@@ -406,6 +406,33 @@ export const toolSuggestions = pgTable("tool_suggestions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// LGPD Requests
+export const lgpdRequests = pgTable("lgpd_requests", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  cpf: varchar("cpf", { length: 18 }).notNull(),
+  requestType: varchar("request_type", { length: 50 }).notNull(),
+  details: text("details"),
+  status: varchar("status", { length: 20 }).default("pendente").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Contact Messages
+export const contactMessages = pgTable("contact_messages", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  subject: varchar("subject", { length: 255 }).notNull(),
+  message: text("message").notNull(),
+  status: varchar("status", { length: 20 }).default("novo").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Vehicle Alerts
 export const vehicleAlerts = pgTable(
   "vehicle_alerts",

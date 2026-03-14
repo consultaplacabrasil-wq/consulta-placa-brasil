@@ -15,6 +15,8 @@ export function ContactForm() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [erro, setErro] = useState("");
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,9 +24,30 @@ export function ContactForm() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setErro("");
+    setEnviando(true);
+
+    try {
+      const res = await fetch("/api/contato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setErro(data.error || "Erro ao enviar. Tente novamente.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setErro("Erro de conexão. Verifique sua internet e tente novamente.");
+    } finally {
+      setEnviando(false);
+    }
   }
 
   if (submitted) {
@@ -109,12 +132,25 @@ export function ContactForm() {
         />
       </div>
 
+      {erro && (
+        <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+          {erro}
+        </div>
+      )}
+
       <Button
         type="submit"
-        className="w-full bg-[#FF4D30] hover:bg-[#E8432A] h-12 text-base"
+        disabled={enviando}
+        className="w-full bg-[#FF4D30] hover:bg-[#E8432A] h-12 text-base disabled:opacity-50"
       >
-        <Send className="w-4 h-4 mr-2" />
-        Enviar Mensagem
+        {enviando ? (
+          "Enviando..."
+        ) : (
+          <>
+            <Send className="w-4 h-4 mr-2" />
+            Enviar Mensagem
+          </>
+        )}
       </Button>
     </form>
   );
