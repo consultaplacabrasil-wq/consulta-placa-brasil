@@ -1,0 +1,241 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import CalculadoraFlex from "@/components/ferramentas/calculadora-flex";
+
+export const metadata: Metadata = {
+  title: "Gasolina ou Etanol? Calculadora Flex | Consulta Placa Brasil",
+  description:
+    "Descubra se é melhor abastecer com gasolina ou etanol no seu veículo flex. Calculadora gratuita com comparação de custo por km e economia mensal.",
+  alternates: {
+    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-flex",
+  },
+  openGraph: {
+    title: "Gasolina ou Etanol? Calculadora Flex | Consulta Placa Brasil",
+    description:
+      "Descubra se é melhor abastecer com gasolina ou etanol no seu veículo flex. Calculadora gratuita com comparação de custo por km e economia mensal.",
+    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-flex",
+  },
+};
+
+export default function CalculadoraFlexPage() {
+  return (
+    <div className="bg-[#F8FAFC]">
+      {/* Breadcrumb */}
+      <div className="bg-[#0F172A] border-b border-white/10">
+        <div className="container mx-auto px-4 max-w-6xl py-3">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-sm text-gray-400">
+            <Link href="/" className="hover:text-white transition-colors">
+              Início
+            </Link>
+            <ChevronRight className="w-3 h-3" />
+            <Link href="/ferramentas" className="hover:text-white transition-colors">
+              Ferramentas
+            </Link>
+            <ChevronRight className="w-3 h-3" />
+            <span className="text-white font-medium">Gasolina ou Etanol</span>
+          </nav>
+        </div>
+      </div>
+
+      {/* Hero */}
+      <section className="bg-[#0F172A] text-white py-12 pb-16">
+        <div className="container mx-auto px-4 max-w-6xl text-center">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">
+            Gasolina ou Etanol?
+          </h1>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Calculadora flex gratuita: descubra qual combustível é mais econômico para o seu
+            veículo e quanto você pode economizar por mês.
+          </p>
+        </div>
+      </section>
+
+      {/* Calculadora */}
+      <section className="py-12">
+        <div className="container mx-auto px-4 max-w-4xl -mt-8">
+          <CalculadoraFlex />
+        </div>
+      </section>
+
+      {/* Conteúdo SEO */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl prose prose-gray">
+          <h2 className="text-2xl font-bold text-[#0F172A]">
+            Como saber se vale mais a pena gasolina ou etanol?
+          </h2>
+          <p className="text-[#475569]">
+            A dúvida entre abastecer com gasolina ou etanol é uma das mais comuns entre os motoristas
+            brasileiros que possuem veículos flex. A resposta depende de uma conta simples, mas que
+            poucos fazem corretamente: é preciso comparar não apenas o preço por litro, mas o custo
+            real por quilômetro rodado, levando em conta a diferença de rendimento entre os dois
+            combustíveis.
+          </p>
+
+          <h3 className="text-xl font-bold text-[#0F172A]">
+            A regra dos 70% funciona mesmo?
+          </h3>
+          <p className="text-[#475569]">
+            A regra dos 70% é amplamente utilizada e recomendada por engenheiros automotivos e pelo
+            Inmetro. Ela funciona assim: divida o preço do litro do etanol pelo preço do litro da
+            gasolina. Se o resultado for menor que 0,70 (ou 70%), o etanol é mais vantajoso. Caso
+            contrário, abasteça com gasolina. Essa regra existe porque o etanol rende em média 30%
+            menos que a gasolina — ou seja, o motor consome mais etanol para percorrer a mesma
+            distância. Nossa calculadora aplica essa fórmula automaticamente e vai além, mostrando
+            o custo por quilômetro, a economia mensal e o preço máximo do etanol para que ele continue
+            compensando.
+          </p>
+
+          <h3 className="text-xl font-bold text-[#0F172A]">
+            Fatores que influenciam o consumo de combustível
+          </h3>
+          <p className="text-[#475569]">
+            O consumo real do seu veículo pode variar dependendo de diversos fatores: condições do
+            trânsito (cidade versus estrada), calibragem dos pneus, uso do ar-condicionado, peso
+            transportado, estado de manutenção do motor e estilo de condução. Veículos mais novos
+            com injeção eletrônica otimizada tendem a aproveitar melhor o etanol, enquanto modelos
+            mais antigos podem apresentar rendimento inferior. Para um resultado mais preciso, sugerimos
+            que você faça a medição real do consumo do seu carro: abasteça o tanque completo, zere o
+            hodômetro, rode normalmente e, no próximo abastecimento completo, divida os quilômetros
+            rodados pelos litros abastecidos.
+          </p>
+
+          <h3 className="text-xl font-bold text-[#0F172A]">
+            Vantagens ambientais do etanol
+          </h3>
+          <p className="text-[#475569]">
+            Além da questão econômica, o etanol é considerado um combustível mais sustentável. Por ser
+            produzido a partir da cana-de-açúcar, a emissão líquida de CO₂ é significativamente menor
+            em comparação à gasolina, que é um combustível fóssil derivado do petróleo. O Brasil é
+            referência mundial na produção de etanol, e abastecer com esse combustível contribui para
+            a redução da pegada de carbono do transporte nacional. Use nossa calculadora acima para
+            fazer a comparação com os preços atuais da sua região e descubra quanto você pode
+            economizar por mês e por ano.
+          </p>
+
+          <p className="text-[#475569]">
+            <Link
+              href="/ferramentas"
+              className="text-[#FF4D30] font-semibold hover:underline"
+            >
+              Veja todas as ferramentas veiculares gratuitas
+            </Link>{" "}
+            disponíveis no Consulta Placa Brasil, incluindo calculadora de IPVA, simulador de
+            financiamento, decodificador de chassi e muito mais.
+          </p>
+        </div>
+      </section>
+
+      {/* Schema: WebApplication */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Calculadora Flex: Gasolina ou Etanol?",
+            description:
+              "Calculadora gratuita para descobrir se é melhor abastecer com gasolina ou etanol no seu veículo flex. Compara custo por km e economia mensal.",
+            url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-flex",
+            applicationCategory: "UtilitiesApplication",
+            operatingSystem: "All",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "BRL",
+            },
+            author: {
+              "@type": "Organization",
+              name: "Consulta Placa Brasil",
+              url: "https://consultaplacabrasil.com.br",
+            },
+          }),
+        }}
+      />
+
+      {/* Schema: FAQPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "Como saber se é melhor abastecer com gasolina ou etanol?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Divida o preço do etanol pelo preço da gasolina. Se o resultado for menor que 0,70 (70%), o etanol é mais vantajoso. Caso contrário, abasteça com gasolina. Essa regra considera que o etanol rende cerca de 30% menos que a gasolina.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Por que o etanol rende menos que a gasolina?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "O etanol possui menor poder calorífico que a gasolina, ou seja, gera menos energia por litro queimado. Em média, um veículo flex consome 30% mais etanol para percorrer a mesma distância que percorreria com gasolina.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "A regra dos 70% é confiável?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Sim, a regra dos 70% é amplamente aceita por engenheiros automotivos e pelo Inmetro. Ela é uma simplificação eficaz que funciona para a maioria dos veículos flex. Para maior precisão, meça o consumo real do seu veículo com cada combustível.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Usar etanol estraga o motor?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Não. Veículos flex são projetados para funcionar com gasolina, etanol ou qualquer mistura dos dois. O sistema de injeção eletrônica ajusta automaticamente os parâmetros do motor para o combustível utilizado.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Posso misturar gasolina e etanol no tanque?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Sim, veículos flex podem rodar com qualquer proporção de gasolina e etanol no tanque. O sistema de injeção identifica a mistura e faz os ajustes necessários automaticamente. Não há risco de danos ao motor.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
+
+      {/* Schema: BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Início",
+                item: "https://consultaplacabrasil.com.br",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Ferramentas",
+                item: "https://consultaplacabrasil.com.br/ferramentas",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Gasolina ou Etanol",
+                item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-flex",
+              },
+            ],
+          }),
+        }}
+      />
+    </div>
+  );
+}

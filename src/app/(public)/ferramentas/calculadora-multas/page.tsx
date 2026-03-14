@@ -1,0 +1,231 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { CalculadoraMultas } from "@/components/ferramentas/calculadora-multas";
+
+export const metadata: Metadata = {
+  title: "Calculadora de Multas de Trânsito | Consulta Placa Brasil",
+  description:
+    "Consulte o valor das multas de trânsito do CTB, pontos na CNH e gravidade das infrações. Tabela atualizada com todas as multas de trânsito do Brasil.",
+  alternates: {
+    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-multas",
+  },
+  openGraph: {
+    title: "Calculadora de Multas de Trânsito | Consulta Placa Brasil",
+    description:
+      "Consulte o valor das multas de trânsito, pontos na CNH e gravidade das infrações. Tabela atualizada do CTB.",
+    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-multas",
+  },
+};
+
+export default function CalculadoraMultasPage() {
+  return (
+    <div className="bg-[#F8FAFC]">
+      {/* Hero */}
+      <section className="bg-[#0F172A] text-white py-16">
+        <div className="container mx-auto px-4 max-w-6xl text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Calculadora de Multas de Trânsito
+          </h1>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Consulte o valor das infrações de trânsito, pontos na CNH e
+            gravidade. Tabela atualizada conforme o Código de Trânsito
+            Brasileiro (CTB).
+          </p>
+        </div>
+      </section>
+
+      {/* Breadcrumb */}
+      <div className="container mx-auto px-4 max-w-6xl py-4">
+        <nav className="flex items-center gap-1 text-sm text-[#64748B]">
+          <Link href="/" className="hover:text-[#FF4D30] transition-colors">
+            Início
+          </Link>
+          <ChevronRight className="w-4 h-4" />
+          <Link
+            href="/ferramentas"
+            className="hover:text-[#FF4D30] transition-colors"
+          >
+            Ferramentas
+          </Link>
+          <ChevronRight className="w-4 h-4" />
+          <span className="text-[#0F172A] font-medium">
+            Calculadora de Multas
+          </span>
+        </nav>
+      </div>
+
+      {/* Calculadora */}
+      <section className="py-8 pb-16">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <CalculadoraMultas />
+        </div>
+      </section>
+
+      {/* SEO Content */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl prose prose-gray">
+          <h2 className="text-2xl font-bold text-[#0F172A]">
+            Tabela de Multas de Trânsito no Brasil
+          </h2>
+          <p className="text-[#475569]">
+            As multas de trânsito no Brasil são regulamentadas pelo Código de
+            Trânsito Brasileiro (CTB), Lei nº 9.503/1997. Cada infração possui
+            um valor específico, uma quantidade de pontos que é registrada na
+            Carteira Nacional de Habilitação (CNH) do condutor e uma
+            classificação de gravidade que determina a severidade da penalidade.
+          </p>
+          <p className="text-[#475569]">
+            As infrações são classificadas em quatro categorias de gravidade:
+            leve (3 pontos), média (4 pontos), grave (5 pontos) e gravíssima
+            (7 pontos). O condutor que acumular 40 pontos em um período de
+            12 meses terá a CNH suspensa, conforme a Lei nº 14.071/2020.
+            Para motoristas profissionais, esse limite pode chegar a 40 pontos
+            sem infração gravíssima.
+          </p>
+
+          <h3 className="text-xl font-bold text-[#0F172A]">
+            Como funciona o sistema de pontuação da CNH?
+          </h3>
+          <p className="text-[#475569]">
+            Cada vez que um motorista comete uma infração de trânsito, além do
+            valor da multa em dinheiro, pontos são registrados em seu
+            prontuário na CNH. A quantidade de pontos varia de acordo com a
+            gravidade da infração: infrações leves somam 3 pontos, médias somam
+            4 pontos, graves somam 5 pontos e gravíssimas somam 7 pontos.
+            Esses pontos ficam registrados pelo período de 12 meses e, ao
+            atingir o limite, o condutor tem o direito de dirigir suspenso.
+          </p>
+
+          <h3 className="text-xl font-bold text-[#0F172A]">
+            Valores atualizados das multas de trânsito
+          </h3>
+          <p className="text-[#475569]">
+            Os valores das multas de trânsito são atualizados periodicamente
+            pelo Conselho Nacional de Trânsito (CONTRAN). As infrações
+            gravíssimas, como dirigir sob influência de álcool, podem ter o
+            valor multiplicado por fatores agravantes, chegando a valores
+            significativamente mais altos. A infração por embriaguez ao
+            volante (Art. 165 do CTB), por exemplo, possui uma multa base de
+            R$ 2.934,70, sendo uma das mais severas do código.
+          </p>
+          <p className="text-[#475569]">
+            Além do valor da multa e dos pontos na CNH, algumas infrações
+            gravíssimas preveem medidas administrativas adicionais, como a
+            suspensão do direito de dirigir, a apreensão do veículo ou a
+            cassação da CNH. Por isso, é fundamental que todo motorista
+            conheça as principais infrações e seus valores para evitar
+            surpresas desagradáveis e, acima de tudo, dirigir com segurança
+            e responsabilidade nas vias brasileiras.
+          </p>
+
+          <h3 className="text-xl font-bold text-[#0F172A]">
+            Dicas para evitar multas de trânsito
+          </h3>
+          <p className="text-[#475569]">
+            Para evitar multas e manter a CNH limpa, respeite os limites de
+            velocidade, use sempre o cinto de segurança, não utilize o celular
+            enquanto dirige, mantenha o licenciamento do veículo em dia e
+            nunca dirija após consumir bebidas alcoólicas. Essas simples
+            atitudes podem poupar você de multas que variam de R$ 130,16 a
+            R$ 2.934,70, além de preservar vidas no trânsito.
+          </p>
+        </div>
+      </section>
+
+      {/* Schema: WebApplication + FAQPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "Calculadora de Multas de Trânsito",
+              description:
+                "Consulte o valor das multas de trânsito do CTB, pontos na CNH e gravidade das infrações.",
+              url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-multas",
+              applicationCategory: "UtilitiesApplication",
+              operatingSystem: "Web",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "BRL",
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Qual o valor da multa por dirigir sem CNH?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "A multa por dirigir sem CNH (Art. 162-I do CTB) é de R$ 880,41, classificada como infração gravíssima com 7 pontos na CNH.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Quantos pontos na CNH para suspensão?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Conforme a Lei nº 14.071/2020, o condutor que acumular 40 pontos em 12 meses terá a CNH suspensa. Se não houver infração gravíssima, o limite é de 40 pontos.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Qual a multa por avançar o sinal vermelho?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Avançar o sinal vermelho (Art. 173 do CTB) é infração gravíssima com multa de R$ 293,47 e 7 pontos na CNH.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Qual o valor da multa por excesso de velocidade?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "O valor varia conforme a faixa: até 20% acima do limite custa R$ 130,16 (média, 4 pontos), de 20% a 50% custa R$ 195,23 (grave, 5 pontos), e acima de 50% custa R$ 880,41 (gravíssima, 7 pontos).",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Qual a multa por usar celular ao volante?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Usar o celular ao dirigir (Art. 252-I do CTB) é infração grave com multa de R$ 293,47 e 5 pontos na CNH.",
+                  },
+                },
+              ],
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Início",
+                  item: "https://consultaplacabrasil.com.br",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Ferramentas",
+                  item: "https://consultaplacabrasil.com.br/ferramentas",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: "Calculadora de Multas",
+                  item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-multas",
+                },
+              ],
+            },
+          ]),
+        }}
+      />
+    </div>
+  );
+}
