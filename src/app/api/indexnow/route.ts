@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { requireRole } from "@/lib/auth/admin-guard";
 
 const INDEXNOW_KEY = "2f815bd9e26f6779b553623766204a94";
 const HOST = "consultaplacabrasil.com";
@@ -58,6 +59,8 @@ function getAllUrls(): string[] {
 
 // POST /api/indexnow — submit all URLs
 export async function POST() {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   try {
     const urlList = getAllUrls();
 
@@ -121,6 +124,8 @@ export async function POST() {
 
 // GET /api/indexnow — submit a single URL or all
 export async function GET(request: Request) {
+  const { error } = await requireRole("admin");
+  if (error) return error;
   const { searchParams } = new URL(request.url);
   const url = searchParams.get("url");
 

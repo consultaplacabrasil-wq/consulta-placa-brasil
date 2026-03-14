@@ -64,13 +64,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const allowedRoles = ["user", "editor", "admin"];
+    const role = allowedRoles.includes(body.role) ? body.role : "user";
+
     const hashedPassword = await bcrypt.hash(body.password, 12);
 
     const [created] = await db.insert(users).values({
       name: body.name,
       email: body.email,
       password: hashedPassword,
-      role: body.role || "user",
+      role,
     }).returning({
       id: users.id,
       name: users.name,
@@ -93,7 +96,7 @@ export async function PUT(req: NextRequest) {
   if (error) return error;
   try {
     const body = await req.json();
-    const { id, password, ...data } = body;
+    const { id, password } = body;
 
     if (!id) {
       return NextResponse.json(
@@ -102,10 +105,18 @@ export async function PUT(req: NextRequest) {
       );
     }
 
+    // Whitelist allowed fields to prevent mass assignment
     const updateData: Record<string, unknown> = {
-      ...data,
       updatedAt: new Date(),
     };
+    if (body.name !== undefined) updateData.name = body.name;
+    if (body.email !== undefined) updateData.email = body.email;
+    if (body.role !== undefined) {
+      const allowedRoles = ["user", "editor", "admin"];
+      if (allowedRoles.includes(body.role)) {
+        updateData.role = body.role;
+      }
+    }
 
     if (password) {
       const passwordError = validatePasswordStrength(password);
