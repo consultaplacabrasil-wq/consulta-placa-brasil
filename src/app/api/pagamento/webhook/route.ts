@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 
 // Asaas webhook events
 type AsaasEvent =
@@ -21,9 +22,15 @@ interface AsaasWebhookPayload {
 
 export async function POST(request: NextRequest) {
   try {
-    // Validate webhook token
-    const webhookToken = request.headers.get("asaas-access-token");
-    if (webhookToken !== process.env.ASAAS_WEBHOOK_TOKEN) {
+    // Validate webhook token (timing-safe comparison)
+    const webhookToken = request.headers.get("asaas-access-token") || "";
+    const expectedToken = process.env.ASAAS_WEBHOOK_TOKEN || "";
+    if (
+      !expectedToken ||
+      !webhookToken ||
+      webhookToken.length !== expectedToken.length ||
+      !timingSafeEqual(Buffer.from(webhookToken), Buffer.from(expectedToken))
+    ) {
       return NextResponse.json(
         { error: "Token inválido" },
         { status: 401 }
