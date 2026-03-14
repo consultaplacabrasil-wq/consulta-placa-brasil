@@ -105,7 +105,7 @@ export default function HomePage() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-[#FFF5F3] px-4 py-1.5 text-sm font-medium text-[#FF4D30] mb-6">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF4D30] animate-pulse" />
-                Cobertura Nacional - 27 Estados + DF
+                Cobertura Nacional | 27 Estados + DF
               </div>
               <h1 className="mb-6 text-4xl font-bold leading-tight text-[#0F172A] md:text-5xl">
                 Consulta Placa{" "}
