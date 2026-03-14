@@ -859,7 +859,7 @@ export default function AdminConfiguracoesPage() {
               <div className="grid grid-cols-2 gap-2 text-sm">
                 <div>
                   <p className="text-blue-600">E-mail:</p>
-                  <p className="font-mono text-blue-900">admin@consultaplacabrasil.com.br</p>
+                  <p className="font-mono text-blue-900">admin@consultaplacabrasil.com</p>
                 </div>
                 <div>
                   <p className="text-blue-600">Senha:</p>

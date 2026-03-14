@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Consulte recalls veiculares por marca no Brasil. Veja modelos afetados, riscos e orientações. Acesse também o portal oficial do SENATRAN para consulta por placa.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/consulta-recall",
+    canonical: "https://consultaplacabrasil.com/ferramentas/consulta-recall",
   },
   openGraph: {
     title: "Consulta de Recall Veicular | Consulta Placa",
     description:
       "Verifique os recalls mais recentes por marca, modelos afetados, riscos identificados e como proceder. Ferramenta informativa gratuita.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/consulta-recall",
+    url: "https://consultaplacabrasil.com/ferramentas/consulta-recall",
   },
 };
 
@@ -52,7 +52,7 @@ export default function ConsultaRecallPage() {
     name: "Consulta de Recall Veicular",
     description:
       "Ferramenta informativa gratuita para consultar recalls veiculares por marca no Brasil. Veja modelos afetados, riscos e orientações de reparo.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/consulta-recall",
+    url: "https://consultaplacabrasil.com/ferramentas/consulta-recall",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web",
     offers: {
@@ -83,19 +83,19 @@ export default function ConsultaRecallPage() {
         "@type": "ListItem",
         position: 1,
         name: "Início",
-        item: "https://consultaplacabrasil.com.br",
+        item: "https://consultaplacabrasil.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Ferramentas",
-        item: "https://consultaplacabrasil.com.br/ferramentas",
+        item: "https://consultaplacabrasil.com/ferramentas",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Consulta de Recall",
-        item: "https://consultaplacabrasil.com.br/ferramentas/consulta-recall",
+        item: "https://consultaplacabrasil.com/ferramentas/consulta-recall",
       },
     ],
   };

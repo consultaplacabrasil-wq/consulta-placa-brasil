@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Calcule o custo por quilômetro do seu caminhão: diesel, pneus, manutenção e depreciação. Compare com o piso da ANTT e descubra o frete mínimo ideal.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/custo-km-caminhao",
+    canonical: "https://consultaplacabrasil.com/ferramentas/custo-km-caminhao",
   },
   openGraph: {
     title: "Custo por Km do Caminhão | Consulta Placa Brasil",
     description:
       "Calculadora gratuita de custo por km para caminhões. Inclui diesel, pneus, manutenção, depreciação e comparação com o piso mínimo da ANTT.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/custo-km-caminhao",
+    url: "https://consultaplacabrasil.com/ferramentas/custo-km-caminhao",
     type: "website",
   },
 };
@@ -215,7 +215,7 @@ export default function CustoKmCaminhaoPage() {
             name: "Custo por Km do Caminhão",
             description:
               "Calculadora de custo por quilômetro para caminhões. Inclui diesel, pneus, manutenção e depreciação com comparação ao piso da ANTT.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/custo-km-caminhao",
+            url: "https://consultaplacabrasil.com/ferramentas/custo-km-caminhao",
             applicationCategory: "FinanceApplication",
             operatingSystem: "All",
             offers: {
@@ -226,7 +226,7 @@ export default function CustoKmCaminhaoPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -297,19 +297,19 @@ export default function CustoKmCaminhaoPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Custo por Km do Caminhão",
-                item: "https://consultaplacabrasil.com.br/ferramentas/custo-km-caminhao",
+                item: "https://consultaplacabrasil.com/ferramentas/custo-km-caminhao",
               },
             ],
           }),

@@ -608,7 +608,7 @@ export default function AdminFaqPage() {
                 type="url"
                 value={seo.seoCanonical}
                 onChange={(e) => setSeo({ ...seo, seoCanonical: e.target.value })}
-                placeholder="https://consultaplacabrasil.com.br/faq"
+                placeholder="https://consultaplacabrasil.com/faq"
                 className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-[#0F172A] placeholder:text-[#94A3B8] outline-none focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 transition-all"
               />
             </div>
@@ -704,7 +704,7 @@ export default function AdminFaqPage() {
                 type="url"
                 value={seo.ogImage}
                 onChange={(e) => setSeo({ ...seo, ogImage: e.target.value })}
-                placeholder="https://consultaplacabrasil.com.br/og-faq.png"
+                placeholder="https://consultaplacabrasil.com/og-faq.png"
                 className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-[#0F172A] placeholder:text-[#94A3B8] outline-none focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 transition-all"
               />
               {seo.ogImage && (
@@ -728,7 +728,7 @@ export default function AdminFaqPage() {
                 type="url"
                 value={seo.ogUrl}
                 onChange={(e) => setSeo({ ...seo, ogUrl: e.target.value })}
-                placeholder="https://consultaplacabrasil.com.br/faq"
+                placeholder="https://consultaplacabrasil.com/faq"
                 className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-[#0F172A] placeholder:text-[#94A3B8] outline-none focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 transition-all"
               />
             </div>
@@ -828,7 +828,7 @@ export default function AdminFaqPage() {
               <div className="rounded-xl border border-gray-200 bg-white p-5">
                 <div className="max-w-xl">
                   <p className="text-xs text-[#475569] mb-1">
-                    {seo.seoCanonical || "https://consultaplacabrasil.com.br/faq"}
+                    {seo.seoCanonical || "https://consultaplacabrasil.com/faq"}
                   </p>
                   <h3 className="text-lg font-medium text-blue-700 hover:underline cursor-pointer leading-snug">
                     {seo.seoTitle || "Perguntas Frequentes | Consulta Placa Brasil"}
@@ -902,9 +902,9 @@ export default function AdminFaqPage() {
                   <p className="text-xs uppercase text-[#94A3B8] tracking-wide">
                     {(() => {
                       try {
-                        return new URL(seo.ogUrl || seo.seoCanonical || "https://consultaplacabrasil.com.br").hostname;
+                        return new URL(seo.ogUrl || seo.seoCanonical || "https://consultaplacabrasil.com").hostname;
                       } catch {
-                        return "consultaplacabrasil.com.br";
+                        return "consultaplacabrasil.com";
                       }
                     })()}
                   </p>

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Consulte a Tabela FIPE 2026 atualizada para carros, motos e caminhões. Descubra o valor de mercado do seu veículo grátis, sem cadastro e em tempo real.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/consulta-fipe",
+    canonical: "https://consultaplacabrasil.com/ferramentas/consulta-fipe",
   },
   openGraph: {
     title: "Consulta Tabela FIPE 2026 | Consulta Placa Brasil",
     description:
       "Consulte o valor do seu veículo na Tabela FIPE 2026 atualizada. Carros, motos e caminhões, grátis e sem cadastro.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/consulta-fipe",
+    url: "https://consultaplacabrasil.com/ferramentas/consulta-fipe",
     type: "website",
   },
 };
@@ -183,7 +183,7 @@ export default function ConsultaFipePage() {
             name: "Consulta Tabela FIPE 2026",
             description:
               "Consulte a Tabela FIPE atualizada e descubra o valor de mercado de carros, motos e caminhões.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/consulta-fipe",
+            url: "https://consultaplacabrasil.com/ferramentas/consulta-fipe",
             applicationCategory: "FinanceApplication",
             operatingSystem: "All",
             offers: {
@@ -194,7 +194,7 @@ export default function ConsultaFipePage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -265,19 +265,19 @@ export default function ConsultaFipePage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Consulta Tabela FIPE",
-                item: "https://consultaplacabrasil.com.br/ferramentas/consulta-fipe",
+                item: "https://consultaplacabrasil.com/ferramentas/consulta-fipe",
               },
             ],
           }),

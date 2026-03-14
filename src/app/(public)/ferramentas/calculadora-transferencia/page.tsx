@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Calcule o custo para transferir um veículo entre estados, por doação ou herança. Taxas do Detran, vistoria e ITCMD.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-transferencia",
+    canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-transferencia",
   },
   openGraph: {
     title: "Calculadora de Transferência Veicular | Consulta Placa",
     description:
       "Simule os custos de transferência veicular: taxas do Detran, vistoria, emplacamento e ITCMD. Grátis e sem cadastro.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-transferencia",
+    url: "https://consultaplacabrasil.com/ferramentas/calculadora-transferencia",
     type: "website",
   },
 };
@@ -274,7 +274,7 @@ export default function CalculadoraTransferenciaPage() {
             name: "Calculadora de Transferência de Veículo",
             description:
               "Calcule o custo estimado para transferir um veículo entre estados, por doação ou herança. Taxas do Detran, vistoria, emplacamento e ITCMD.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-transferencia",
+            url: "https://consultaplacabrasil.com/ferramentas/calculadora-transferencia",
             applicationCategory: "FinanceApplication",
             operatingSystem: "All",
             offers: {
@@ -285,7 +285,7 @@ export default function CalculadoraTransferenciaPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -356,19 +356,19 @@ export default function CalculadoraTransferenciaPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Calculadora de Transferência de Veículo",
-                item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-transferencia",
+                item: "https://consultaplacabrasil.com/ferramentas/calculadora-transferencia",
               },
             ],
           }),

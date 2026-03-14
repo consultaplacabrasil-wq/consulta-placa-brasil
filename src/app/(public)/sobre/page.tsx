@@ -9,13 +9,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page?.seoTitle || "Sobre Nós - Consulta Placa Brasil",
     description: page?.seoDescription || defaultDescription,
-    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com.br/sobre" },
+    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com/sobre" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
       title: page?.ogTitle || "Sobre Nós",
       description: page?.ogDescription || defaultDescription,
       images: page?.ogImage ? [page.ogImage] : undefined,
-      url: page?.ogUrl || "https://consultaplacabrasil.com.br/sobre",
+      url: page?.ogUrl || "https://consultaplacabrasil.com/sobre",
     },
   };
 }
@@ -108,11 +108,11 @@ export default async function SobrePage() {
             "@type": "AboutPage",
             name: page?.seoTitle || "Sobre Nós - Consulta Placa Brasil",
             description: page?.seoDescription || defaultDescription,
-            url: "https://consultaplacabrasil.com.br/sobre",
+            url: "https://consultaplacabrasil.com/sobre",
             mainEntity: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}

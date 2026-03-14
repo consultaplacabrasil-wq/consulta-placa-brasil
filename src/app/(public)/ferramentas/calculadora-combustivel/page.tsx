@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Calcule o custo de combustível da sua viagem. Informe distância, consumo e preço do litro para saber litros necessários, custo total e por passageiro.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-combustivel",
+    canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-combustivel",
   },
   openGraph: {
     title: "Calculadora de Combustível por Viagem | Consulta Placa Brasil",
     description:
       "Calcule o custo de combustível da sua viagem. Informe distância, consumo e preço do litro para saber litros necessários, custo total e por passageiro.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-combustivel",
+    url: "https://consultaplacabrasil.com/ferramentas/calculadora-combustivel",
     type: "website",
   },
 };
@@ -183,7 +183,7 @@ export default function CalculadoraCombustivelPage() {
             name: "Calculadora de Combustível por Viagem",
             description:
               "Calculadora gratuita para calcular o custo de combustível de viagens de carro. Informe distância, consumo médio e preço do litro para obter o custo total, litros necessários e custo por passageiro.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-combustivel",
+            url: "https://consultaplacabrasil.com/ferramentas/calculadora-combustivel",
             applicationCategory: "UtilitiesApplication",
             operatingSystem: "All",
             offers: {
@@ -194,7 +194,7 @@ export default function CalculadoraCombustivelPage() {
             author: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -265,19 +265,19 @@ export default function CalculadoraCombustivelPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Calculadora de Combustível",
-                item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-combustivel",
+                item: "https://consultaplacabrasil.com/ferramentas/calculadora-combustivel",
               },
             ],
           }),

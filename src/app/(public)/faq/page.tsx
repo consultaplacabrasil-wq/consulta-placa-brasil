@@ -59,13 +59,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: seo?.seoTitle || "Perguntas Frequentes - Consulta Placa Brasil",
     description: seo?.seoDescription || "Tire suas dúvidas sobre consulta de placa, formas de pagamento, segurança dos dados e cobertura nacional. Respostas rápidas sobre a Consulta Placa Brasil.",
-    alternates: { canonical: seo?.seoCanonical || "https://consultaplacabrasil.com.br/faq" },
+    alternates: { canonical: seo?.seoCanonical || "https://consultaplacabrasil.com/faq" },
     robots: seo?.seoRobots || "index, follow",
     openGraph: {
       title: seo?.ogTitle || "Perguntas Frequentes",
       description: seo?.ogDescription || "Tire suas dúvidas sobre consulta de placa, pagamento e segurança dos dados.",
       images: seo?.ogImage ? [seo.ogImage] : undefined,
-      url: seo?.ogUrl || "https://consultaplacabrasil.com.br/faq",
+      url: seo?.ogUrl || "https://consultaplacabrasil.com/faq",
     },
   };
 }

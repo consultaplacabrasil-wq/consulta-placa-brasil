@@ -35,7 +35,7 @@ export function Header() {
               (11) 4002-8922
             </span>
             <span className="text-gray-500">|</span>
-            <span className="text-gray-300">contato@consultaplacabrasil.com.br</span>
+            <span className="text-gray-300">contato@consultaplacabrasil.com</span>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/login" className="text-gray-300 hover:text-white transition-colors">

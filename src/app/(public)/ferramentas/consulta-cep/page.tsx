@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Consulte CEPs de origem e destino para transferência de veículo. Descubra se a mudança exige novo emplacamento entre estados. Grátis e sem cadastro.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/consulta-cep",
+    canonical: "https://consultaplacabrasil.com/ferramentas/consulta-cep",
   },
   openGraph: {
     title: "Consulta CEP para Transferência Veicular | Consulta Placa",
     description:
       "Verifique CEPs de origem e destino para transferência veicular. Saiba se será necessário novo emplacamento ao mudar de estado.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/consulta-cep",
+    url: "https://consultaplacabrasil.com/ferramentas/consulta-cep",
     type: "website",
   },
 };
@@ -252,7 +252,7 @@ export default function ConsultaCepPage() {
             name: "Consulta CEP para Transferência Veicular",
             description:
               "Consulte CEPs de origem e destino para transferência de veículo. Verifique se a mudança exige novo emplacamento entre estados.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/consulta-cep",
+            url: "https://consultaplacabrasil.com/ferramentas/consulta-cep",
             applicationCategory: "UtilityApplication",
             operatingSystem: "All",
             offers: {
@@ -263,7 +263,7 @@ export default function ConsultaCepPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -334,19 +334,19 @@ export default function ConsultaCepPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Consulta CEP para Transferência Veicular",
-                item: "https://consultaplacabrasil.com.br/ferramentas/consulta-cep",
+                item: "https://consultaplacabrasil.com/ferramentas/consulta-cep",
               },
             ],
           }),

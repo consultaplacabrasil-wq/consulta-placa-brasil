@@ -8,13 +8,13 @@ export const metadata: Metadata = {
     "Gere a representação visual de placas nos padrões Mercosul e antigo. Escolha tipo, categoria e veja o resultado em tempo real. Grátis e sem cadastro.",
   alternates: {
     canonical:
-      "https://consultaplacabrasil.com.br/ferramentas/gerador-placa",
+      "https://consultaplacabrasil.com/ferramentas/gerador-placa",
   },
   openGraph: {
     title: "Gerador de Placa Mercosul e Antiga | Consulta Placa",
     description:
       "Ferramenta gratuita para gerar a visualização de placas veiculares brasileiras nos padrões Mercosul e antigo com validação automática.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/gerador-placa",
+    url: "https://consultaplacabrasil.com/ferramentas/gerador-placa",
     type: "website",
   },
 };
@@ -54,7 +54,7 @@ export default function GeradorPlacaPage() {
     name: "Gerador Visual de Placa Veicular",
     description:
       "Ferramenta gratuita para gerar a representação visual de placas veiculares brasileiras nos padrões Mercosul e antigo, com validação automática de formato.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/gerador-placa",
+    url: "https://consultaplacabrasil.com/ferramentas/gerador-placa",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web",
     offers: {
@@ -65,7 +65,7 @@ export default function GeradorPlacaPage() {
     provider: {
       "@type": "Organization",
       name: "Consulta Placa Brasil",
-      url: "https://consultaplacabrasil.com.br",
+      url: "https://consultaplacabrasil.com",
     },
   };
 
@@ -90,19 +90,19 @@ export default function GeradorPlacaPage() {
         "@type": "ListItem",
         position: 1,
         name: "Início",
-        item: "https://consultaplacabrasil.com.br",
+        item: "https://consultaplacabrasil.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Ferramentas",
-        item: "https://consultaplacabrasil.com.br/ferramentas",
+        item: "https://consultaplacabrasil.com/ferramentas",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Gerador Visual de Placa",
-        item: "https://consultaplacabrasil.com.br/ferramentas/gerador-placa",
+        item: "https://consultaplacabrasil.com/ferramentas/gerador-placa",
       },
     ],
   };

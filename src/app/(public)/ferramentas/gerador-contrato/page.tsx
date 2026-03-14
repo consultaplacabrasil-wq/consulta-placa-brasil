@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Gere gratuitamente um contrato de compra e venda de veículo completo e pronto para imprimir. Modelo com cláusulas, assinaturas e testemunhas.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/gerador-contrato",
+    canonical: "https://consultaplacabrasil.com/ferramentas/gerador-contrato",
   },
   openGraph: {
     title: "Gerador de Contrato de Compra e Venda de Veículo | Consulta Placa",
     description:
       "Crie seu contrato de compra e venda de veículo online, grátis e sem cadastro. Modelo completo com 10 cláusulas e pronto para impressão.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/gerador-contrato",
+    url: "https://consultaplacabrasil.com/ferramentas/gerador-contrato",
     type: "website",
   },
 };
@@ -254,7 +254,7 @@ export default function GeradorContratoPage() {
             name: "Gerador de Contrato de Compra e Venda de Veículo",
             description:
               "Gere gratuitamente um contrato particular de compra e venda de veículo automotor completo, com cláusulas de proteção, assinaturas e testemunhas. Pronto para imprimir.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/gerador-contrato",
+            url: "https://consultaplacabrasil.com/ferramentas/gerador-contrato",
             applicationCategory: "BusinessApplication",
             operatingSystem: "All",
             offers: {
@@ -265,7 +265,7 @@ export default function GeradorContratoPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -336,19 +336,19 @@ export default function GeradorContratoPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Gerador de Contrato de Compra e Venda",
-                item: "https://consultaplacabrasil.com.br/ferramentas/gerador-contrato",
+                item: "https://consultaplacabrasil.com/ferramentas/gerador-contrato",
               },
             ],
           }),

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
     "Converta placas veiculares do formato antigo (ABC-1234) para o padrão Mercosul (ABC1C34) e vice-versa. Ferramenta gratuita, rápida e sem cadastro.",
   alternates: {
     canonical:
-      "https://consultaplacabrasil.com.br/ferramentas/conversor-placa",
+      "https://consultaplacabrasil.com/ferramentas/conversor-placa",
   },
   openGraph: {
     title: "Conversor de Placa Antiga para Mercosul | Consulta Placa",
     description:
       "Ferramenta gratuita para converter placas veiculares entre o formato antigo brasileiro e o padrão Mercosul. Resultado instantâneo com visualização das placas.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/conversor-placa",
+    url: "https://consultaplacabrasil.com/ferramentas/conversor-placa",
     type: "website",
   },
 };
@@ -54,7 +54,7 @@ export default function ConversorPlacaPage() {
     name: "Conversor de Placa Antiga para Mercosul",
     description:
       "Ferramenta gratuita para converter placas veiculares brasileiras entre o formato antigo (ABC-1234) e o padrão Mercosul (ABC1D23), com visualização lado a lado.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/conversor-placa",
+    url: "https://consultaplacabrasil.com/ferramentas/conversor-placa",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web",
     offers: {
@@ -65,7 +65,7 @@ export default function ConversorPlacaPage() {
     provider: {
       "@type": "Organization",
       name: "Consulta Placa Brasil",
-      url: "https://consultaplacabrasil.com.br",
+      url: "https://consultaplacabrasil.com",
     },
   };
 
@@ -90,19 +90,19 @@ export default function ConversorPlacaPage() {
         "@type": "ListItem",
         position: 1,
         name: "Início",
-        item: "https://consultaplacabrasil.com.br",
+        item: "https://consultaplacabrasil.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Ferramentas",
-        item: "https://consultaplacabrasil.com.br/ferramentas",
+        item: "https://consultaplacabrasil.com/ferramentas",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Conversor de Placa",
-        item: "https://consultaplacabrasil.com.br/ferramentas/conversor-placa",
+        item: "https://consultaplacabrasil.com/ferramentas/conversor-placa",
       },
     ],
   };

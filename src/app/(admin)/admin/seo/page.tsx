@@ -162,7 +162,7 @@ export default function AdminSeoPage() {
                         <FileText className="h-4 w-4 shrink-0 text-[#FF4D30]" />
                         <div className="min-w-0">
                           <p className="text-sm font-medium text-[#0F172A] truncate">
-                            {entry.url.replace("https://consultaplacabrasil.com.br", "")}
+                            {entry.url.replace("https://consultaplacabrasil.com", "")}
                           </p>
                           <p className="text-xs text-[#94A3B8]">
                             Prioridade: {entry.priority} | Frequência: {entry.changeFrequency}
@@ -222,7 +222,7 @@ Disallow: /recuperar-senha
 Disallow: /comprar/
 Disallow: /checkout/
 
-Sitemap: https://consultaplacabrasil.com.br/sitemap.xml`}
+Sitemap: https://consultaplacabrasil.com/sitemap.xml`}
             </div>
             <div className="mt-4 rounded-lg bg-blue-50 border border-blue-200 p-3">
               <p className="text-sm text-blue-800">

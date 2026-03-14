@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Ferramentas gratuitas para veículos: calculadora de IPVA, simulador de financiamento, multas, chassi e mais. Use sem cadastro.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas",
+    canonical: "https://consultaplacabrasil.com/ferramentas",
   },
   openGraph: {
     title: "Ferramentas Veiculares Gratuitas | Consulta Placa Brasil",
     description:
       "Calculadoras e simuladores gratuitos para veículos. IPVA, financiamento, multas, chassi, etanol vs gasolina e mais.",
-    url: "https://consultaplacabrasil.com.br/ferramentas",
+    url: "https://consultaplacabrasil.com/ferramentas",
   },
 };
 
@@ -261,7 +261,7 @@ export default function FerramentasPage() {
             name: "Ferramentas Veiculares Gratuitas",
             description:
               "Coleção de ferramentas gratuitas para consulta veicular: calculadoras, simuladores e verificadores.",
-            url: "https://consultaplacabrasil.com.br/ferramentas",
+            url: "https://consultaplacabrasil.com/ferramentas",
             mainEntity: {
               "@type": "ItemList",
               itemListElement: ferramentas.map((f, i) => ({
@@ -269,7 +269,7 @@ export default function FerramentasPage() {
                 position: i + 1,
                 name: f.title,
                 description: f.description,
-                url: `https://consultaplacabrasil.com.br/ferramentas/${f.slug}`,
+                url: `https://consultaplacabrasil.com/ferramentas/${f.slug}`,
               })),
             },
           }),

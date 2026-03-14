@@ -8,13 +8,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page?.seoTitle || "Termos de Uso - Consulta Placa Brasil",
     description: page?.seoDescription || defaultDesc,
-    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com.br/termos" },
+    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com/termos" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
       title: page?.ogTitle || "Termos de Uso",
       description: page?.ogDescription || defaultDesc,
       images: page?.ogImage ? [page.ogImage] : undefined,
-      url: page?.ogUrl || "https://consultaplacabrasil.com.br/termos",
+      url: page?.ogUrl || "https://consultaplacabrasil.com/termos",
     },
   };
 }
@@ -35,7 +35,7 @@ const defaultContent = `
 <h2>7. Alterações nos Termos</h2>
 <p>Reservamos o direito de alterar estes termos a qualquer momento. As alterações entram em vigor imediatamente após a publicação.</p>
 <h2>8. Contato</h2>
-<p>Para dúvidas: contato@consultaplacabrasil.com.br</p>
+<p>Para dúvidas: contato@consultaplacabrasil.com</p>
 `;
 
 export default async function TermosPage() {
@@ -65,7 +65,7 @@ export default async function TermosPage() {
             "@type": "WebPage",
             name: page?.seoTitle || "Termos de Uso",
             description: page?.seoDescription || defaultDesc,
-            url: "https://consultaplacabrasil.com.br/termos",
+            url: "https://consultaplacabrasil.com/termos",
           }),
         }}
       />

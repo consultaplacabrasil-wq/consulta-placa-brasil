@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Compare os custos entre carro elétrico e a combustão. Calcule custo mensal, ponto de equilíbrio e economia acumulada em 60 meses. Grátis e sem cadastro.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/eletrico-vs-combustao",
+    canonical: "https://consultaplacabrasil.com/ferramentas/eletrico-vs-combustao",
   },
   openGraph: {
     title: "Elétrico vs Combustão: Comparador | Consulta Placa",
     description:
       "Compare os custos entre carro elétrico e a combustão. Descubra o ponto de equilíbrio e qual veículo é mais econômico em 5 anos.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/eletrico-vs-combustao",
+    url: "https://consultaplacabrasil.com/ferramentas/eletrico-vs-combustao",
     type: "website",
   },
 };
@@ -194,7 +194,7 @@ export default function EletricoVsCombustaoPage() {
             name: "Comparador Elétrico vs Combustão",
             description:
               "Compare os custos entre carro elétrico e a combustão. Calcule custo mensal, ponto de equilíbrio e economia acumulada em 60 meses.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/eletrico-vs-combustao",
+            url: "https://consultaplacabrasil.com/ferramentas/eletrico-vs-combustao",
             applicationCategory: "FinanceApplication",
             operatingSystem: "All",
             offers: {
@@ -205,7 +205,7 @@ export default function EletricoVsCombustaoPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -276,19 +276,19 @@ export default function EletricoVsCombustaoPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Elétrico vs Combustão",
-                item: "https://consultaplacabrasil.com.br/ferramentas/eletrico-vs-combustao",
+                item: "https://consultaplacabrasil.com/ferramentas/eletrico-vs-combustao",
               },
             ],
           }),

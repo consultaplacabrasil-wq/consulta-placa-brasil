@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Verifique a validade da CNH, calendário de licenciamento e situação dos documentos do veículo. Ferramenta gratuita com alertas automáticos.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/verificador-documentos",
+    canonical: "https://consultaplacabrasil.com/ferramentas/verificador-documentos",
   },
   openGraph: {
     title: "Verificador de Documentos Veiculares | Consulta Placa",
     description:
       "Consulte a validade da CNH e o calendário de licenciamento do seu veículo. Alertas visuais de vencimento e regras por faixa etária.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/verificador-documentos",
+    url: "https://consultaplacabrasil.com/ferramentas/verificador-documentos",
   },
 };
 
@@ -52,7 +52,7 @@ export default function VerificadorDocumentosPage() {
     name: "Verificador de Documentos Veiculares",
     description:
       "Ferramenta gratuita para verificar a validade da CNH, consultar o calendário de licenciamento e receber alertas sobre a documentação do veículo.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/verificador-documentos",
+    url: "https://consultaplacabrasil.com/ferramentas/verificador-documentos",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web",
     offers: {
@@ -83,19 +83,19 @@ export default function VerificadorDocumentosPage() {
         "@type": "ListItem",
         position: 1,
         name: "Início",
-        item: "https://consultaplacabrasil.com.br",
+        item: "https://consultaplacabrasil.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Ferramentas",
-        item: "https://consultaplacabrasil.com.br/ferramentas",
+        item: "https://consultaplacabrasil.com/ferramentas",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Verificador de Documentos",
-        item: "https://consultaplacabrasil.com.br/ferramentas/verificador-documentos",
+        item: "https://consultaplacabrasil.com/ferramentas/verificador-documentos",
       },
     ],
   };

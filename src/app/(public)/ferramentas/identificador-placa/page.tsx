@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Identifique o padrão da placa do veículo (Mercosul ou antigo), valide o formato, descubra a cor e o significado. Ferramenta gratuita e sem cadastro.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/identificador-placa",
+    canonical: "https://consultaplacabrasil.com/ferramentas/identificador-placa",
   },
   openGraph: {
     title: "Identificador de Placa Veicular | Consulta Placa Brasil",
     description:
       "Descubra se a placa do veículo segue o padrão Mercosul ou antigo, valide o formato e veja a representação visual. Grátis e sem cadastro.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/identificador-placa",
+    url: "https://consultaplacabrasil.com/ferramentas/identificador-placa",
   },
 };
 
@@ -52,7 +52,7 @@ export default function IdentificadorPlacaPage() {
     name: "Identificador de Placa Veicular",
     description:
       "Ferramenta gratuita para identificar o padrão da placa veicular brasileira (Mercosul ou antigo), validar o formato e visualizar a representação da placa.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/identificador-placa",
+    url: "https://consultaplacabrasil.com/ferramentas/identificador-placa",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web",
     offers: {
@@ -83,19 +83,19 @@ export default function IdentificadorPlacaPage() {
         "@type": "ListItem",
         position: 1,
         name: "Início",
-        item: "https://consultaplacabrasil.com.br",
+        item: "https://consultaplacabrasil.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Ferramentas",
-        item: "https://consultaplacabrasil.com.br/ferramentas",
+        item: "https://consultaplacabrasil.com/ferramentas",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Identificador de Placa",
-        item: "https://consultaplacabrasil.com.br/ferramentas/identificador-placa",
+        item: "https://consultaplacabrasil.com/ferramentas/identificador-placa",
       },
     ],
   };

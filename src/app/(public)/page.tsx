@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description:
     "Consulte qualquer veículo pela placa. Relatório completo com histórico, sinistro, leilão, gravame, débitos e multas. Resultado instantâneo.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br",
+    canonical: "https://consultaplacabrasil.com",
   },
 };
 
@@ -268,7 +268,7 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Consulta Placa Brasil",
-            url: "https://consultaplacabrasil.com.br",
+            url: "https://consultaplacabrasil.com",
             description:
               "Plataforma de consulta veicular com relatório completo de veículos pela placa.",
             publisher: {
@@ -280,7 +280,7 @@ export default function HomePage() {
               target: {
                 "@type": "EntryPoint",
                 urlTemplate:
-                  "https://consultaplacabrasil.com.br/consulta/{placa}",
+                  "https://consultaplacabrasil.com/consulta/{placa}",
               },
               "query-input": "required name=placa",
             },
@@ -297,8 +297,8 @@ export default function HomePage() {
             "@type": "Organization",
             name: "Consulta Placa Brasil",
             legalName: "Consulta Placa Brasil",
-            url: "https://consultaplacabrasil.com.br",
-            logo: "https://consultaplacabrasil.com.br/logo.png",
+            url: "https://consultaplacabrasil.com",
+            logo: "https://consultaplacabrasil.com/logo.png",
             description:
               "Plataforma de consulta veicular completa com relatórios detalhados de veículos, motos e caminhões em todos os estados do Brasil.",
             foundingDate: "2024",
@@ -312,7 +312,7 @@ export default function HomePage() {
               },
               {
                 "@type": "ContactPoint",
-                email: "contato@consultaplacabrasil.com.br",
+                email: "contato@consultaplacabrasil.com",
                 contactType: "customer support",
                 areaServed: "BR",
                 availableLanguage: "Portuguese",
@@ -354,7 +354,7 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             name: "Consulta Placa Brasil",
-            url: "https://consultaplacabrasil.com.br",
+            url: "https://consultaplacabrasil.com",
             applicationCategory: "UtilitiesApplication",
             operatingSystem: "Web",
             description:
@@ -377,7 +377,7 @@ export default function HomePage() {
             },
             featureList:
               "Consulta de placa, Relatório de sinistro, Histórico de leilão, Gravame, Débitos e multas, Tabela FIPE, Consulta por chassi, Consulta Renavam",
-            screenshot: "https://consultaplacabrasil.com.br/opengraph-image",
+            screenshot: "https://consultaplacabrasil.com/opengraph-image",
             author: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
@@ -400,7 +400,7 @@ export default function HomePage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
             areaServed: {
               "@type": "Country",
@@ -493,7 +493,7 @@ export default function HomePage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
             ],
           }),

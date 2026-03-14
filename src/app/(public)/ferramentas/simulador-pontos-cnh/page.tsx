@@ -9,13 +9,13 @@ export const metadata: Metadata = {
     "Simule a pontuação da sua CNH, veja os pontos ativos, data de vencimento e risco de suspensão. Ferramenta gratuita baseada no CTB atualizado.",
   alternates: {
     canonical:
-      "https://consultaplacabrasil.com.br/ferramentas/simulador-pontos-cnh",
+      "https://consultaplacabrasil.com/ferramentas/simulador-pontos-cnh",
   },
   openGraph: {
     title: "Simulador de Pontos na CNH | Consulta Placa Brasil",
     description:
       "Simule a pontuação da sua CNH, veja pontos ativos e risco de suspensão. Ferramenta gratuita baseada no CTB.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/simulador-pontos-cnh",
+    url: "https://consultaplacabrasil.com/ferramentas/simulador-pontos-cnh",
   },
 };
 
@@ -278,7 +278,7 @@ export default function SimuladorPontosCNHPage() {
               name: "Simulador de Pontos na CNH",
               description:
                 "Simule a pontuação da sua CNH, veja pontos ativos, data de vencimento e risco de suspensão. Ferramenta gratuita baseada no CTB.",
-              url: "https://consultaplacabrasil.com.br/ferramentas/simulador-pontos-cnh",
+              url: "https://consultaplacabrasil.com/ferramentas/simulador-pontos-cnh",
               applicationCategory: "UtilitiesApplication",
               operatingSystem: "Web",
               offers: {
@@ -341,19 +341,19 @@ export default function SimuladorPontosCNHPage() {
                   "@type": "ListItem",
                   position: 1,
                   name: "Início",
-                  item: "https://consultaplacabrasil.com.br",
+                  item: "https://consultaplacabrasil.com",
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
                   name: "Ferramentas",
-                  item: "https://consultaplacabrasil.com.br/ferramentas",
+                  item: "https://consultaplacabrasil.com/ferramentas",
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: "Simulador de Pontos na CNH",
-                  item: "https://consultaplacabrasil.com.br/ferramentas/simulador-pontos-cnh",
+                  item: "https://consultaplacabrasil.com/ferramentas/simulador-pontos-cnh",
                 },
               ],
             },

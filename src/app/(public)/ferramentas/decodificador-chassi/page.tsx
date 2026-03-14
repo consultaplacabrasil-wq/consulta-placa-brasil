@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Consulta chassi VIN gratuita: decodifique o número do chassi e descubra país de fabricação, fabricante, ano do modelo e valide o dígito verificador.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/decodificador-chassi",
+    canonical: "https://consultaplacabrasil.com/ferramentas/decodificador-chassi",
   },
   openGraph: {
     title: "Decodificador de Chassi VIN | Consulta Placa Brasil",
     description:
       "Decodifique o número do chassi (VIN) e descubra fabricante, país de origem e ano do modelo. Ferramenta gratuita e sem cadastro.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/decodificador-chassi",
+    url: "https://consultaplacabrasil.com/ferramentas/decodificador-chassi",
     type: "website",
   },
 };
@@ -53,7 +53,7 @@ export default function DecodificadorChassiPage() {
     name: "Decodificador de Chassi VIN",
     description:
       "Ferramenta gratuita para decodificar o número de chassi (VIN) de veículos e descobrir fabricante, país de origem e ano do modelo.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/decodificador-chassi",
+    url: "https://consultaplacabrasil.com/ferramentas/decodificador-chassi",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web",
     offers: {
@@ -64,7 +64,7 @@ export default function DecodificadorChassiPage() {
     provider: {
       "@type": "Organization",
       name: "Consulta Placa Brasil",
-      url: "https://consultaplacabrasil.com.br",
+      url: "https://consultaplacabrasil.com",
     },
   };
 
@@ -89,19 +89,19 @@ export default function DecodificadorChassiPage() {
         "@type": "ListItem",
         position: 1,
         name: "Início",
-        item: "https://consultaplacabrasil.com.br",
+        item: "https://consultaplacabrasil.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Ferramentas",
-        item: "https://consultaplacabrasil.com.br/ferramentas",
+        item: "https://consultaplacabrasil.com/ferramentas",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Decodificador de Chassi",
-        item: "https://consultaplacabrasil.com.br/ferramentas/decodificador-chassi",
+        item: "https://consultaplacabrasil.com/ferramentas/decodificador-chassi",
       },
     ],
   };

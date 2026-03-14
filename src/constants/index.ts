@@ -1,7 +1,7 @@
 export const APP_NAME = "Consulta Placa Brasil";
 export const APP_DESCRIPTION =
   "Consulte qualquer veículo pela placa. Relatório completo com histórico, sinistro, leilão, débitos, multas e mais.";
-export const APP_URL = "https://consultaplacabrasil.com.br";
+export const APP_URL = "https://consultaplacabrasil.com";
 
 export const REPORT_PRICES = {
   basic: 0,

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Entre em contato com a Consulta Placa Brasil. Atendimento por e-mail, telefone e WhatsApp de segunda a sexta, das 8h às 18h. Tire suas dúvidas sobre consulta veicular.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/contato",
+    canonical: "https://consultaplacabrasil.com/contato",
   },
   openGraph: {
     title: "Contato | Consulta Placa Brasil",
     description:
       "Entre em contato com a Consulta Placa Brasil. Atendimento por e-mail, telefone e WhatsApp.",
-    url: "https://consultaplacabrasil.com.br/contato",
+    url: "https://consultaplacabrasil.com/contato",
   },
 };
 
@@ -55,10 +55,10 @@ export default function ContatoPage() {
                   <div>
                     <p className="font-semibold text-[#0F172A]">E-mail</p>
                     <a
-                      href="mailto:contato@consultaplacabrasil.com.br"
+                      href="mailto:contato@consultaplacabrasil.com"
                       className="text-[#FF4D30] hover:underline text-sm"
                     >
-                      contato@consultaplacabrasil.com.br
+                      contato@consultaplacabrasil.com
                     </a>
                   </div>
                 </div>
@@ -138,12 +138,12 @@ export default function ContatoPage() {
             name: "Contato - Consulta Placa Brasil",
             description:
               "Entre em contato com a Consulta Placa Brasil por e-mail, telefone ou WhatsApp.",
-            url: "https://consultaplacabrasil.com.br/contato",
+            url: "https://consultaplacabrasil.com/contato",
             mainEntity: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
               telephone: "+55-11-4002-8922",
-              email: "contato@consultaplacabrasil.com.br",
+              email: "contato@consultaplacabrasil.com",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "São Paulo",

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Descubra se é melhor abastecer com gasolina ou etanol no seu veículo flex. Calculadora gratuita com comparação de custo por km e economia mensal.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-flex",
+    canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-flex",
   },
   openGraph: {
     title: "Gasolina ou Etanol? Calculadora Flex | Consulta Placa Brasil",
     description:
       "Descubra se é melhor abastecer com gasolina ou etanol no seu veículo flex. Calculadora gratuita com comparação de custo por km e economia mensal.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-flex",
+    url: "https://consultaplacabrasil.com/ferramentas/calculadora-flex",
     type: "website",
   },
 };
@@ -179,7 +179,7 @@ export default function CalculadoraFlexPage() {
             name: "Calculadora Flex: Gasolina ou Etanol?",
             description:
               "Calculadora gratuita para descobrir se é melhor abastecer com gasolina ou etanol no seu veículo flex. Compara custo por km e economia mensal.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-flex",
+            url: "https://consultaplacabrasil.com/ferramentas/calculadora-flex",
             applicationCategory: "UtilitiesApplication",
             operatingSystem: "All",
             offers: {
@@ -190,7 +190,7 @@ export default function CalculadoraFlexPage() {
             author: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -261,19 +261,19 @@ export default function CalculadoraFlexPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Gasolina ou Etanol",
-                item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-flex",
+                item: "https://consultaplacabrasil.com/ferramentas/calculadora-flex",
               },
             ],
           }),

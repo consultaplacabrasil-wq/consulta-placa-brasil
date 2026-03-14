@@ -8,13 +8,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page?.seoTitle || "Política de Privacidade - Consulta Placa Brasil",
     description: page?.seoDescription || defaultDesc,
-    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com.br/privacidade" },
+    alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com/privacidade" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
       title: page?.ogTitle || "Política de Privacidade",
       description: page?.ogDescription || defaultDesc,
       images: page?.ogImage ? [page.ogImage] : undefined,
-      url: page?.ogUrl || "https://consultaplacabrasil.com.br/privacidade",
+      url: page?.ogUrl || "https://consultaplacabrasil.com/privacidade",
     },
   };
 }
@@ -33,7 +33,7 @@ const defaultContent = `
 <h2>6. Cookies</h2>
 <p>Utilizamos cookies para melhorar a experiência. Consulte nossa <a href="/cookies">Política de Cookies</a> para mais detalhes.</p>
 <h2>7. Contato</h2>
-<p>Para exercer seus direitos ou tirar dúvidas: contato@consultaplacabrasil.com.br</p>
+<p>Para exercer seus direitos ou tirar dúvidas: contato@consultaplacabrasil.com</p>
 `;
 
 export default async function PrivacidadePage() {
@@ -63,7 +63,7 @@ export default async function PrivacidadePage() {
             "@type": "WebPage",
             name: page?.seoTitle || "Política de Privacidade",
             description: page?.seoDescription || defaultDesc,
-            url: "https://consultaplacabrasil.com.br/privacidade",
+            url: "https://consultaplacabrasil.com/privacidade",
           }),
         }}
       />

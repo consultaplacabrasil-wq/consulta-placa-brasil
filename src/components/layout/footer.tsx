@@ -52,7 +52,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-[#FF4D30]" />
-                contato@consultaplacabrasil.com.br
+                contato@consultaplacabrasil.com
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-[#FF4D30]" />

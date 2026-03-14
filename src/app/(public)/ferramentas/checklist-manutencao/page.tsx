@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Checklist completo de manutenção veicular por quilometragem. Saiba o que revisar a cada 5.000, 10.000, 20.000, 40.000 e 60.000 km no seu carro, moto ou caminhão.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/checklist-manutencao",
+    canonical: "https://consultaplacabrasil.com/ferramentas/checklist-manutencao",
   },
   openGraph: {
     title: "Checklist de Manutenção Veicular | Consulta Placa Brasil",
     description:
       "Checklist completo de manutenção para carro, moto e caminhão. Descubra quais revisões fazer com base na quilometragem. Grátis e sem cadastro.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/checklist-manutencao",
+    url: "https://consultaplacabrasil.com/ferramentas/checklist-manutencao",
     type: "website",
   },
 };
@@ -262,7 +262,7 @@ export default function ChecklistManutencaoPage() {
             name: "Checklist de Manutenção Veicular",
             description:
               "Checklist completo de manutenção veicular por quilometragem para carro, moto e caminhão. Saiba o que revisar a cada intervalo de km.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/checklist-manutencao",
+            url: "https://consultaplacabrasil.com/ferramentas/checklist-manutencao",
             applicationCategory: "UtilitiesApplication",
             operatingSystem: "All",
             offers: {
@@ -273,7 +273,7 @@ export default function ChecklistManutencaoPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -344,19 +344,19 @@ export default function ChecklistManutencaoPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Checklist de Manutenção",
-                item: "https://consultaplacabrasil.com.br/ferramentas/checklist-manutencao",
+                item: "https://consultaplacabrasil.com/ferramentas/checklist-manutencao",
               },
             ],
           }),

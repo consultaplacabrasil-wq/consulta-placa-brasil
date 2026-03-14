@@ -24,6 +24,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://consultaplacabrasil.com.br/sitemap.xml",
+    sitemap: "https://consultaplacabrasil.com/sitemap.xml",
   };
 }

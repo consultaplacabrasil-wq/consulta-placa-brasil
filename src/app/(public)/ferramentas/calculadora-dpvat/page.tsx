@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Calcule o valor do seguro DPVAT / SPVAT 2026 por tipo de veículo. Veja coberturas, como pagar e a diferença entre DPVAT e SPVAT. Grátis e sem cadastro.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-dpvat",
+    canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-dpvat",
   },
   openGraph: {
     title: "Calculadora DPVAT / SPVAT 2026 | Consulta Placa Brasil",
     description:
       "Descubra o valor do seguro obrigatório SPVAT 2026 para carro, moto, caminhão e ônibus. Confira coberturas e formas de pagamento.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-dpvat",
+    url: "https://consultaplacabrasil.com/ferramentas/calculadora-dpvat",
     type: "website",
   },
 };
@@ -198,7 +198,7 @@ export default function CalculadoraDPVATPage() {
             name: "Calculadora DPVAT / SPVAT 2026",
             description:
               "Calcule o valor do seguro obrigatório SPVAT (antigo DPVAT) 2026 por tipo de veículo. Confira coberturas e formas de pagamento.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-dpvat",
+            url: "https://consultaplacabrasil.com/ferramentas/calculadora-dpvat",
             applicationCategory: "FinanceApplication",
             operatingSystem: "All",
             offers: {
@@ -209,7 +209,7 @@ export default function CalculadoraDPVATPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -280,19 +280,19 @@ export default function CalculadoraDPVATPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Calculadora DPVAT / SPVAT",
-                item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-dpvat",
+                item: "https://consultaplacabrasil.com/ferramentas/calculadora-dpvat",
               },
             ],
           }),

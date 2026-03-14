@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Calcule o IPVA 2026 do seu veículo por estado. Simule parcelamento em até 5x, desconto à vista e confira a alíquota de cada UF. Grátis e sem cadastro.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-ipva",
+    canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-ipva",
   },
   openGraph: {
     title: "Calculadora de IPVA 2026 | Consulta Placa Brasil",
     description:
       "Calcule o valor do IPVA 2026 do seu carro, moto ou caminhão. Veja a alíquota por estado, parcelas e desconto à vista.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-ipva",
+    url: "https://consultaplacabrasil.com/ferramentas/calculadora-ipva",
     type: "website",
   },
 };
@@ -197,7 +197,7 @@ export default function CalculadoraIPVAPage() {
             name: "Calculadora de IPVA 2026",
             description:
               "Calcule o valor do IPVA 2026 do seu veículo por estado. Simule parcelamento e desconto à vista.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-ipva",
+            url: "https://consultaplacabrasil.com/ferramentas/calculadora-ipva",
             applicationCategory: "FinanceApplication",
             operatingSystem: "All",
             offers: {
@@ -208,7 +208,7 @@ export default function CalculadoraIPVAPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -279,19 +279,19 @@ export default function CalculadoraIPVAPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Calculadora de IPVA 2026",
-                item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-ipva",
+                item: "https://consultaplacabrasil.com/ferramentas/calculadora-ipva",
               },
             ],
           }),

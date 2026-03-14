@@ -11,7 +11,7 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://consultaplacabrasil.com.br"),
+  metadataBase: new URL("https://consultaplacabrasil.com"),
   title: {
     default: "Consulta Placa Brasil | Consultar Placa de Veículo",
     template: "%s | Consulta Placa Brasil",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://consultaplacabrasil.com.br",
+    url: "https://consultaplacabrasil.com",
     siteName: "Consulta Placa Brasil",
     title: "Consulta Placa Brasil | Consultar Placa de Veículo",
     description:
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       "Consulte qualquer veículo pela placa. Relatório completo com histórico, sinistro, leilão, gravame, débitos e multas.",
   },
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br",
+    canonical: "https://consultaplacabrasil.com",
   },
   icons: {
     icon: [

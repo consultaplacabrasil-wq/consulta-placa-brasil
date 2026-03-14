@@ -8,13 +8,13 @@ export const metadata: Metadata = {
     "Simule o financiamento do seu veículo com Tabela Price ou SAC. Calcule parcelas, juros totais e veja a tabela de amortização. Grátis e sem cadastro.",
   alternates: {
     canonical:
-      "https://consultaplacabrasil.com.br/ferramentas/simulador-financiamento",
+      "https://consultaplacabrasil.com/ferramentas/simulador-financiamento",
   },
   openGraph: {
     title: "Simulador de Financiamento Veicular | Consulta Placa Brasil",
     description:
       "Calcule parcelas, juros totais e tabela de amortização do financiamento do seu carro. Tabela Price e SAC.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/simulador-financiamento",
+    url: "https://consultaplacabrasil.com/ferramentas/simulador-financiamento",
     type: "website",
   },
 };
@@ -181,7 +181,7 @@ export default function SimuladorFinanciamentoPage() {
               name: "Simulador de Financiamento de Veículos",
               description:
                 "Simule o financiamento do seu veículo com Tabela Price ou SAC. Calcule parcelas, juros totais e veja a tabela de amortização completa.",
-              url: "https://consultaplacabrasil.com.br/ferramentas/simulador-financiamento",
+              url: "https://consultaplacabrasil.com/ferramentas/simulador-financiamento",
               applicationCategory: "FinanceApplication",
               operatingSystem: "Web",
               offers: {
@@ -192,7 +192,7 @@ export default function SimuladorFinanciamentoPage() {
               provider: {
                 "@type": "Organization",
                 name: "Consulta Placa Brasil",
-                url: "https://consultaplacabrasil.com.br",
+                url: "https://consultaplacabrasil.com",
               },
             },
             {
@@ -249,19 +249,19 @@ export default function SimuladorFinanciamentoPage() {
                   "@type": "ListItem",
                   position: 1,
                   name: "Início",
-                  item: "https://consultaplacabrasil.com.br",
+                  item: "https://consultaplacabrasil.com",
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
                   name: "Ferramentas",
-                  item: "https://consultaplacabrasil.com.br/ferramentas",
+                  item: "https://consultaplacabrasil.com/ferramentas",
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: "Simulador de Financiamento",
-                  item: "https://consultaplacabrasil.com.br/ferramentas/simulador-financiamento",
+                  item: "https://consultaplacabrasil.com/ferramentas/simulador-financiamento",
                 },
               ],
             },

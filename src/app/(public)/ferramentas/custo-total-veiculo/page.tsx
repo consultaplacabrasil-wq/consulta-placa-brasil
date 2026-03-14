@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Calcule o custo total anual do seu veículo: IPVA, combustível, manutenção, depreciação, seguro e financiamento. Veja o custo por mês e por km.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/custo-total-veiculo",
+    canonical: "https://consultaplacabrasil.com/ferramentas/custo-total-veiculo",
   },
   openGraph: {
     title: "Custo Total do Veículo por Ano | Consulta Placa Brasil",
     description:
       "Calcule todos os custos anuais do seu veículo: IPVA, combustível, manutenção, depreciação, seguro e financiamento. Grátis e sem cadastro.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/custo-total-veiculo",
+    url: "https://consultaplacabrasil.com/ferramentas/custo-total-veiculo",
     type: "website",
   },
 };
@@ -282,7 +282,7 @@ export default function CustoTotalVeiculoPage() {
             name: "Custo Total do Veículo por Ano",
             description:
               "Calcule o custo total anual do seu veículo incluindo IPVA, combustível, manutenção, depreciação, seguro e financiamento.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/custo-total-veiculo",
+            url: "https://consultaplacabrasil.com/ferramentas/custo-total-veiculo",
             applicationCategory: "FinanceApplication",
             operatingSystem: "All",
             offers: {
@@ -293,7 +293,7 @@ export default function CustoTotalVeiculoPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -364,19 +364,19 @@ export default function CustoTotalVeiculoPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Custo Total do Veículo",
-                item: "https://consultaplacabrasil.com.br/ferramentas/custo-total-veiculo",
+                item: "https://consultaplacabrasil.com/ferramentas/custo-total-veiculo",
               },
             ],
           }),

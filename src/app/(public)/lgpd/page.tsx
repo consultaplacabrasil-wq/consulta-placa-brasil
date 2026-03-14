@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   description:
     "Conheça como a Consulta Placa Brasil trata seus dados pessoais conforme a LGPD. Exerça seus direitos de acesso, correção, eliminação e portabilidade de dados.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/lgpd",
+    canonical: "https://consultaplacabrasil.com/lgpd",
   },
   openGraph: {
     title: "LGPD - Proteção de Dados | Consulta Placa Brasil",
     description:
       "Saiba como tratamos seus dados pessoais e exerça seus direitos conforme a Lei Geral de Proteção de Dados.",
-    url: "https://consultaplacabrasil.com.br/lgpd",
+    url: "https://consultaplacabrasil.com/lgpd",
   },
 };
 
@@ -190,10 +190,10 @@ export default function LgpdPage() {
                 <p className="text-[#0F172A]">
                   <strong>E-mail:</strong>{" "}
                   <a
-                    href="mailto:dpo@consultaplacabrasil.com.br"
+                    href="mailto:dpo@consultaplacabrasil.com"
                     className="text-[#FF4D30] hover:underline"
                   >
-                    dpo@consultaplacabrasil.com.br
+                    dpo@consultaplacabrasil.com
                   </a>
                 </p>
               </div>
@@ -247,7 +247,7 @@ export default function LgpdPage() {
             name: "LGPD - Proteção de Dados Pessoais",
             description:
               "Conheça como a Consulta Placa Brasil trata seus dados pessoais conforme a LGPD.",
-            url: "https://consultaplacabrasil.com.br/lgpd",
+            url: "https://consultaplacabrasil.com/lgpd",
           }),
         }}
       />

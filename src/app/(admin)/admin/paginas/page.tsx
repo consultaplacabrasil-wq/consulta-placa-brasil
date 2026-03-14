@@ -188,7 +188,7 @@ export default function AdminPaginasPage() {
     }
   }
 
-  const siteUrl = "https://consultaplacabrasil.com.br";
+  const siteUrl = "https://consultaplacabrasil.com";
 
   const tabs = [
     { id: "conteudo", label: "Conteúdo", icon: FileText },

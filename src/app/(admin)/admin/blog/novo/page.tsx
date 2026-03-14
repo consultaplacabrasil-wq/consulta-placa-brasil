@@ -169,21 +169,21 @@ export default function NovoBlogPostPage() {
         name: "Consulta Placa Brasil",
         logo: {
           "@type": "ImageObject",
-          url: "https://consultaplacabrasil.com.br/logo.png",
+          url: "https://consultaplacabrasil.com/logo.png",
         },
       },
       mainEntityOfPage: {
         "@type": "WebPage",
         "@id":
           form.seoCanonical ||
-          `https://consultaplacabrasil.com.br/blog/${slugify(form.title || "artigo")}`,
+          `https://consultaplacabrasil.com/blog/${slugify(form.title || "artigo")}`,
       },
     };
     return JSON.stringify(schema, null, 2);
   }
 
   const previewSlug = slugify(form.title || "url-do-artigo");
-  const previewUrl = `https://consultaplacabrasil.com.br/blog/${previewSlug}`;
+  const previewUrl = `https://consultaplacabrasil.com/blog/${previewSlug}`;
 
   return (
     <div className="space-y-6">
@@ -455,7 +455,7 @@ function SeoTab({
             type="url"
             value={form.seoCanonical}
             onChange={(e) => updateField("seoCanonical", e.target.value)}
-            placeholder="https://consultaplacabrasil.com.br/blog/artigo"
+            placeholder="https://consultaplacabrasil.com/blog/artigo"
             className="h-10 w-full rounded-lg border border-gray-200 pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
           />
         </div>
@@ -541,7 +541,7 @@ function OpenGraphTab({
             type="url"
             value={form.ogUrl}
             onChange={(e) => updateField("ogUrl", e.target.value)}
-            placeholder="https://consultaplacabrasil.com.br/blog/artigo"
+            placeholder="https://consultaplacabrasil.com/blog/artigo"
             className="h-10 w-full rounded-lg border border-gray-200 pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
           />
         </div>
@@ -646,7 +646,7 @@ function PreviewTab({
           )}
           <div className="border-t border-gray-100 bg-[#f2f3f5] p-3">
             <p className="text-xs uppercase text-[#64748B]">
-              consultaplacabrasil.com.br
+              consultaplacabrasil.com
             </p>
             <p className="mt-1 text-sm font-semibold text-[#0F172A]">
               {ogTitle}
@@ -686,7 +686,7 @@ function PreviewTab({
               {ogDesc}
             </p>
             <p className="mt-1 text-xs text-[#94A3B8]">
-              consultaplacabrasil.com.br
+              consultaplacabrasil.com
             </p>
           </div>
         </div>

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Calcule a depreciação do seu veículo para os próximos 5 anos. Descubra quanto seu carro, moto ou caminhão perde de valor por ano. Grátis e sem cadastro.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-depreciacao",
+    canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-depreciacao",
   },
   openGraph: {
     title: "Calculadora de Depreciação Veicular | Consulta Placa",
     description:
       "Simule a depreciação do seu veículo e descubra quanto ele valerá nos próximos anos. Projeção detalhada por ano com taxas reais do mercado brasileiro.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-depreciacao",
+    url: "https://consultaplacabrasil.com/ferramentas/calculadora-depreciacao",
     type: "website",
   },
 };
@@ -197,7 +197,7 @@ export default function CalculadoraDepreciacaoPage() {
             name: "Calculadora de Depreciação de Veículos",
             description:
               "Calcule a depreciação do seu veículo para os próximos 5 anos. Projeção detalhada com taxas reais do mercado brasileiro.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-depreciacao",
+            url: "https://consultaplacabrasil.com/ferramentas/calculadora-depreciacao",
             applicationCategory: "FinanceApplication",
             operatingSystem: "All",
             offers: {
@@ -208,7 +208,7 @@ export default function CalculadoraDepreciacaoPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -279,19 +279,19 @@ export default function CalculadoraDepreciacaoPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Calculadora de Depreciação de Veículos",
-                item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-depreciacao",
+                item: "https://consultaplacabrasil.com/ferramentas/calculadora-depreciacao",
               },
             ],
           }),

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Descubra o dia de rodízio do seu veículo em São Paulo e Rio de Janeiro. Consulte horários, restrições e multas por descumprimento do rodízio municipal.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-rodizio",
+    canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-rodizio",
   },
   openGraph: {
     title: "Rodízio de Veículos SP e RJ | Consulta Placa Brasil",
     description:
       "Consulte o dia de rodízio do seu veículo em São Paulo e Rio de Janeiro. Horários, restrições e valor da multa.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-rodizio",
+    url: "https://consultaplacabrasil.com/ferramentas/calculadora-rodizio",
     type: "website",
   },
 };
@@ -192,7 +192,7 @@ export default function CalculadoraRodizioPage() {
               name: "Calculadora de Rodízio de Veículos SP e RJ",
               description:
                 "Descubra o dia de rodízio do seu veículo em São Paulo e Rio de Janeiro pelo final da placa.",
-              url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-rodizio",
+              url: "https://consultaplacabrasil.com/ferramentas/calculadora-rodizio",
               applicationCategory: "UtilitiesApplication",
               operatingSystem: "Web",
               offers: {
@@ -203,7 +203,7 @@ export default function CalculadoraRodizioPage() {
               provider: {
                 "@type": "Organization",
                 name: "Consulta Placa Brasil",
-                url: "https://consultaplacabrasil.com.br",
+                url: "https://consultaplacabrasil.com",
               },
             },
             {
@@ -260,19 +260,19 @@ export default function CalculadoraRodizioPage() {
                   "@type": "ListItem",
                   position: 1,
                   name: "Início",
-                  item: "https://consultaplacabrasil.com.br",
+                  item: "https://consultaplacabrasil.com",
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
                   name: "Ferramentas",
-                  item: "https://consultaplacabrasil.com.br/ferramentas",
+                  item: "https://consultaplacabrasil.com/ferramentas",
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: "Rodízio de Veículos",
-                  item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-rodizio",
+                  item: "https://consultaplacabrasil.com/ferramentas/calculadora-rodizio",
                 },
               ],
             },

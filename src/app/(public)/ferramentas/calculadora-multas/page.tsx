@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Consulte o valor das multas de trânsito do CTB, pontos na CNH e gravidade das infrações. Tabela atualizada com todas as multas de trânsito do Brasil.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-multas",
+    canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-multas",
   },
   openGraph: {
     title: "Calculadora de Multas de Trânsito | Consulta Placa Brasil",
     description:
       "Consulte o valor das multas de trânsito, pontos na CNH e gravidade das infrações. Tabela atualizada do CTB.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-multas",
+    url: "https://consultaplacabrasil.com/ferramentas/calculadora-multas",
     type: "website",
   },
 };
@@ -175,7 +175,7 @@ export default function CalculadoraMultasPage() {
               name: "Calculadora de Multas de Trânsito",
               description:
                 "Consulte o valor das multas de trânsito do CTB, pontos na CNH e gravidade das infrações.",
-              url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-multas",
+              url: "https://consultaplacabrasil.com/ferramentas/calculadora-multas",
               applicationCategory: "UtilitiesApplication",
               operatingSystem: "Web",
               offers: {
@@ -186,7 +186,7 @@ export default function CalculadoraMultasPage() {
               provider: {
                 "@type": "Organization",
                 name: "Consulta Placa Brasil",
-                url: "https://consultaplacabrasil.com.br",
+                url: "https://consultaplacabrasil.com",
               },
             },
             {
@@ -243,19 +243,19 @@ export default function CalculadoraMultasPage() {
                   "@type": "ListItem",
                   position: 1,
                   name: "Início",
-                  item: "https://consultaplacabrasil.com.br",
+                  item: "https://consultaplacabrasil.com",
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
                   name: "Ferramentas",
-                  item: "https://consultaplacabrasil.com.br/ferramentas",
+                  item: "https://consultaplacabrasil.com/ferramentas",
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: "Calculadora de Multas",
-                  item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-multas",
+                  item: "https://consultaplacabrasil.com/ferramentas/calculadora-multas",
                 },
               ],
             },

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Calcule o piso mínimo de frete rodoviário conforme a tabela ANTT. Informe eixos, tipo de carga, peso e distância para obter o valor estimado com pedágio.",
   alternates: {
-    canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-frete-antt",
+    canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-frete-antt",
   },
   openGraph: {
     title: "Calculadora de Frete ANTT | Consulta Placa Brasil",
     description:
       "Simule o frete mínimo rodoviário pela tabela ANTT. Grátis, sem cadastro e com cálculo detalhado de pedágio por eixo.",
-    url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-frete-antt",
+    url: "https://consultaplacabrasil.com/ferramentas/calculadora-frete-antt",
     type: "website",
   },
 };
@@ -193,7 +193,7 @@ export default function CalculadoraFreteAnttPage() {
             name: "Calculadora de Frete ANTT",
             description:
               "Calcule o piso mínimo de frete rodoviário conforme a tabela da ANTT. Informe eixos, tipo de carga, peso e distância para obter o valor estimado com pedágio.",
-            url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-frete-antt",
+            url: "https://consultaplacabrasil.com/ferramentas/calculadora-frete-antt",
             applicationCategory: "FinanceApplication",
             operatingSystem: "All",
             offers: {
@@ -204,7 +204,7 @@ export default function CalculadoraFreteAnttPage() {
             provider: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              url: "https://consultaplacabrasil.com.br",
+              url: "https://consultaplacabrasil.com",
             },
           }),
         }}
@@ -275,19 +275,19 @@ export default function CalculadoraFreteAnttPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Início",
-                item: "https://consultaplacabrasil.com.br",
+                item: "https://consultaplacabrasil.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Ferramentas",
-                item: "https://consultaplacabrasil.com.br/ferramentas",
+                item: "https://consultaplacabrasil.com/ferramentas",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Calculadora de Frete ANTT",
-                item: "https://consultaplacabrasil.com.br/ferramentas/calculadora-frete-antt",
+                item: "https://consultaplacabrasil.com/ferramentas/calculadora-frete-antt",
               },
             ],
           }),
