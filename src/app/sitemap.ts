@@ -82,6 +82,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "consulta-recall", "consulta-cep", "calculadora-dpvat",
     "gerador-renavam", "validador-renavam", "gerador-recibo",
     "gerador-atpv", "validador-chassi", "contrato-veiculo",
+    "quitacao-antecipada", "juros-abusivos", "atraso-parcelas",
+    "proposta-quitacao", "calculadora-cet", "antecipacao-parcelas",
+    "portabilidade-financiamento", "refinanciamento", "calculadora-iof",
+    "direitos-comprador",
   ];
 
   const toolPages: MetadataRoute.Sitemap = toolSlugs.map((slug) => ({

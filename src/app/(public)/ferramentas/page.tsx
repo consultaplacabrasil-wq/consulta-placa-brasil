@@ -241,6 +241,78 @@ const ferramentas = [
     iconName: "FileText",
     category: "compra",
   },
+
+  // Financiamento
+  {
+    slug: "quitacao-antecipada",
+    title: "Quitação Antecipada",
+    description: "Calcule quanto economiza quitando o financiamento antes do prazo.",
+    iconName: "DollarSign",
+    category: "compra",
+  },
+  {
+    slug: "juros-abusivos",
+    title: "Juros Abusivos",
+    description: "Compare sua taxa com a média do Banco Central e identifique abusividade.",
+    iconName: "AlertTriangle",
+    category: "compra",
+  },
+  {
+    slug: "atraso-parcelas",
+    title: "Atraso de Parcelas",
+    description: "Calcule multa, juros de mora e valor atualizado de parcelas atrasadas.",
+    iconName: "Calculator",
+    category: "fiscal",
+  },
+  {
+    slug: "proposta-quitacao",
+    title: "Proposta de Quitação",
+    description: "Gere uma proposta formal de quitação para enviar ao banco.",
+    iconName: "ScrollText",
+    category: "compra",
+  },
+  {
+    slug: "calculadora-cet",
+    title: "Calculadora de CET",
+    description: "Descubra o custo efetivo total do financiamento com todas as taxas ocultas.",
+    iconName: "BarChart3",
+    category: "compra",
+  },
+  {
+    slug: "antecipacao-parcelas",
+    title: "Antecipação de Parcelas",
+    description: "Simule a economia ao antecipar parcelas do financiamento.",
+    iconName: "CreditCard",
+    category: "compra",
+  },
+  {
+    slug: "portabilidade-financiamento",
+    title: "Portabilidade de Financiamento",
+    description: "Compare seu banco atual com outro e veja quanto pode economizar.",
+    iconName: "ArrowLeftRight",
+    category: "compra",
+  },
+  {
+    slug: "refinanciamento",
+    title: "Refinanciamento de Veículo",
+    description: "Simule o refinanciamento e veja se vale a pena reduzir a parcela.",
+    iconName: "CreditCard",
+    category: "compra",
+  },
+  {
+    slug: "calculadora-iof",
+    title: "Calculadora de IOF",
+    description: "Calcule o IOF cobrado no financiamento do seu veículo (PF, PJ e leasing).",
+    iconName: "Calculator",
+    category: "fiscal",
+  },
+  {
+    slug: "direitos-comprador",
+    title: "Direitos do Comprador",
+    description: "Guia completo dos seus direitos na compra, financiamento e transferência de veículos.",
+    iconName: "Shield",
+    category: "documentos",
+  },
 ];
 
 export default function FerramentasPage() {
