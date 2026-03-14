@@ -111,10 +111,9 @@ export default function ContatoPage() {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
               email: "contato@consultaplacabrasil.com",
-              email: "contato@consultaplacabrasil.com",
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "São Paulo",
+                addressLocality: "Campinas",
                 addressRegion: "SP",
                 addressCountry: "BR",
               },
