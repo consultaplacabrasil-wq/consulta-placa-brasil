@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Car, Phone, Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
@@ -28,18 +29,14 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="space-y-5">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF4D30]">
-                <Car className="h-5 w-5 text-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg leading-tight" style={{ fontFamily: "Mechsuit, sans-serif" }}>
-                  Consulta<span className="text-[#FF4D30]">Placa</span>
-                </span>
-                <span className="text-[10px] font-medium uppercase tracking-wider text-gray-500">
-                  Brasil
-                </span>
-              </div>
+            <Link href="/">
+              <Image
+                src="/logo-header.webp"
+                alt="Consulta Placa Brasil"
+                width={160}
+                height={40}
+                className="brightness-0 invert"
+              />
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               Consulte qualquer veículo pela placa. Relatório completo com

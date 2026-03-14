@@ -8,6 +8,7 @@ import {
   SheetContent,
   SheetTitle,
 } from "@/components/ui/sheet";
+import Image from "next/image";
 import { Menu, Search, User, Car, Phone, ShoppingCart } from "lucide-react";
 import { useCartStore } from "@/store/cart-store";
 
@@ -48,18 +49,15 @@ export function Header() {
       <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
         <div className="mx-auto max-w-6xl flex h-16 items-center justify-between px-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF4D30]">
-              <Car className="h-5 w-5 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg leading-tight text-[#0F172A]" style={{ fontFamily: "Mechsuit, sans-serif" }}>
-                Consulta<span className="text-[#FF4D30]">Placa</span>
-              </span>
-              <span className="text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
-                Brasil
-              </span>
-            </div>
+          <Link href="/">
+            <Image
+              src="/logo-header.webp"
+              alt="Consulta Placa Brasil"
+              width={160}
+              height={40}
+              priority
+              fetchPriority="high"
+            />
           </Link>
 
           {/* Desktop Nav */}
