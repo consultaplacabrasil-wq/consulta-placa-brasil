@@ -23,41 +23,33 @@ export default function SimuladorFinanciamentoPage() {
   return (
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="bg-[#0F172A] text-white py-16">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Simulador de Financiamento de Veículos
+      <section className="bg-[#0F172A] text-white py-10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Início</Link>
+            <span className="mx-2">/</span>
+            <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-300">Simulador de Financiamento</span>
+          </nav>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            Simulador de Financiamento Veicular
           </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Calcule o valor das parcelas, juros totais e veja a tabela de
-            amortização completa do seu financiamento. Compare Tabela Price e SAC.
+          <p className="text-gray-400 max-w-2xl mb-4">
+            Simule parcelas, juros totais e tabela de amortização completa no modo Price ou SAC para o financiamento do seu veículo.
           </p>
+          <div className="flex items-center gap-4 text-sm">
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Gratuita
+            </span>
+            <span className="flex items-center gap-1.5 text-gray-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+              Sem cadastro
+            </span>
+          </div>
         </div>
       </section>
-
-      {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="container mx-auto px-4 max-w-4xl py-4">
-        <ol className="flex items-center gap-2 text-sm text-[#94A3B8]">
-          <li>
-            <Link href="/" className="hover:text-[#FF4D30] transition-colors">
-              Início
-            </Link>
-          </li>
-          <li>/</li>
-          <li>
-            <Link
-              href="/ferramentas"
-              className="hover:text-[#FF4D30] transition-colors"
-            >
-              Ferramentas
-            </Link>
-          </li>
-          <li>/</li>
-          <li className="text-[#0F172A] font-medium">
-            Simulador de Financiamento
-          </li>
-        </ol>
-      </nav>
 
       {/* Simulador */}
       <section className="container mx-auto px-4 max-w-4xl py-8">

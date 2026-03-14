@@ -109,39 +109,32 @@ export default function GeradorPlacaPage() {
 
   return (
     <div className="bg-[#F8FAFC]">
-      {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4 max-w-6xl py-3">
-          <nav className="flex items-center gap-2 text-sm text-[#64748B]">
-            <Link href="/" className="hover:text-[#FF4D30] transition-colors">
-              Início
-            </Link>
-            <span>/</span>
-            <Link
-              href="/ferramentas"
-              className="hover:text-[#FF4D30] transition-colors"
-            >
-              Ferramentas
-            </Link>
-            <span>/</span>
-            <span className="text-[#0F172A] font-medium">
-              Gerador Visual de Placa
-            </span>
-          </nav>
-        </div>
-      </div>
-
       {/* Hero */}
-      <section className="bg-[#0F172A] text-white py-16">
-        <div className="container mx-auto px-4 max-w-6xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+      <section className="bg-[#0F172A] text-white py-10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Início</Link>
+            <span className="mx-2">/</span>
+            <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-300">Gerador de Placa</span>
+          </nav>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Gerador Visual de Placa
           </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Crie a representação visual de placas veiculares nos padrões Mercosul
-            e antigo. Escolha o tipo, a categoria e digite os caracteres para ver
-            o resultado em tempo real.
+          <p className="text-gray-400 max-w-2xl mb-4">
+            Visualize como fica a placa do seu veículo no padrão Mercosul ou antigo com renderização em tempo real.
           </p>
+          <div className="flex items-center gap-4 text-sm">
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Gratuita
+            </span>
+            <span className="flex items-center gap-1.5 text-gray-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+              Sem cadastro
+            </span>
+          </div>
         </div>
       </section>
 

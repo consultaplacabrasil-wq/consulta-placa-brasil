@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+
 import ChecklistManutencao from "@/components/ferramentas/checklist-manutencao";
 
 export const metadata: Metadata = {
@@ -22,34 +22,32 @@ export const metadata: Metadata = {
 export default function ChecklistManutencaoPage() {
   return (
     <div className="bg-[#F8FAFC]">
-      {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4 max-w-6xl py-3">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-[#64748B]">
-            <Link href="/" className="hover:text-[#FF4D30] transition-colors">
-              Início
-            </Link>
-            <ChevronRight className="w-4 h-4 mx-2 flex-shrink-0" />
-            <Link href="/ferramentas" className="hover:text-[#FF4D30] transition-colors">
-              Ferramentas
-            </Link>
-            <ChevronRight className="w-4 h-4 mx-2 flex-shrink-0" />
-            <span className="text-[#0F172A] font-medium">Checklist de Manutenção</span>
-          </nav>
-        </div>
-      </div>
-
       {/* Hero */}
-      <section className="bg-[#0F172A] text-white py-12 md:py-16">
-        <div className="container mx-auto px-4 max-w-6xl text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">
+      <section className="bg-[#0F172A] text-white py-10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Início</Link>
+            <span className="mx-2">/</span>
+            <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-300">Checklist de Manutenção</span>
+          </nav>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Checklist de Manutenção Veicular
           </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Informe o tipo de veículo e a quilometragem atual para descobrir quais revisões e
-            trocas estão em dia, próximas ou atrasadas. Checklist completo para carro, moto e
-            caminhão com intervalos de 5.000 a 60.000 km.
+          <p className="text-gray-400 max-w-2xl mb-4">
+            Checklist completo de manutenção preventiva por quilometragem para carro, moto e caminhão.
           </p>
+          <div className="flex items-center gap-4 text-sm">
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Gratuita
+            </span>
+            <span className="flex items-center gap-1.5 text-gray-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+              Sem cadastro
+            </span>
+          </div>
         </div>
       </section>
 

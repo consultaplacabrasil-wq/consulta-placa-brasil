@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+
 import CalculadoraFlex from "@/components/ferramentas/calculadora-flex";
 
 export const metadata: Metadata = {
@@ -22,33 +22,32 @@ export const metadata: Metadata = {
 export default function CalculadoraFlexPage() {
   return (
     <div className="bg-[#F8FAFC]">
-      {/* Breadcrumb */}
-      <div className="bg-[#0F172A] border-b border-white/10">
-        <div className="container mx-auto px-4 max-w-6xl py-3">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-sm text-gray-400">
-            <Link href="/" className="hover:text-white transition-colors">
-              Início
-            </Link>
-            <ChevronRight className="w-3 h-3" />
-            <Link href="/ferramentas" className="hover:text-white transition-colors">
-              Ferramentas
-            </Link>
-            <ChevronRight className="w-3 h-3" />
-            <span className="text-white font-medium">Gasolina ou Etanol</span>
-          </nav>
-        </div>
-      </div>
-
       {/* Hero */}
-      <section className="bg-[#0F172A] text-white py-12 pb-16">
-        <div className="container mx-auto px-4 max-w-6xl text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">
+      <section className="bg-[#0F172A] text-white py-10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Início</Link>
+            <span className="mx-2">/</span>
+            <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-300">Gasolina ou Etanol</span>
+          </nav>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Gasolina ou Etanol?
           </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Calculadora flex gratuita: descubra qual combustível é mais econômico para o seu
-            veículo e quanto você pode economizar por mês.
+          <p className="text-gray-400 max-w-2xl mb-4">
+            Descubra qual combustível é mais vantajoso para o seu veículo flex com base nos preços e no consumo médio.
           </p>
+          <div className="flex items-center gap-4 text-sm">
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Gratuita
+            </span>
+            <span className="flex items-center gap-1.5 text-gray-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+              Sem cadastro
+            </span>
+          </div>
         </div>
       </section>
 

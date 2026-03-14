@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+
 import CustoTotalVeiculo from "@/components/ferramentas/custo-total-veiculo";
 
 export const metadata: Metadata = {
@@ -22,34 +22,32 @@ export const metadata: Metadata = {
 export default function CustoTotalVeiculoPage() {
   return (
     <div className="bg-[#F8FAFC]">
-      {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4 max-w-6xl py-3">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-[#64748B]">
-            <Link href="/" className="hover:text-[#FF4D30] transition-colors">
-              Início
-            </Link>
-            <ChevronRight className="w-4 h-4 mx-2 flex-shrink-0" />
-            <Link href="/ferramentas" className="hover:text-[#FF4D30] transition-colors">
-              Ferramentas
-            </Link>
-            <ChevronRight className="w-4 h-4 mx-2 flex-shrink-0" />
-            <span className="text-[#0F172A] font-medium">Custo Total do Veículo</span>
-          </nav>
-        </div>
-      </div>
-
       {/* Hero */}
-      <section className="bg-[#0F172A] text-white py-12 md:py-16">
-        <div className="container mx-auto px-4 max-w-6xl text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">
+      <section className="bg-[#0F172A] text-white py-10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Início</Link>
+            <span className="mx-2">/</span>
+            <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-300">Custo Total do Veículo</span>
+          </nav>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Custo Total do Veículo por Ano
           </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Descubra quanto o seu carro realmente custa por mês, por ano e por quilômetro
-            rodado. Inclua IPVA, combustível, manutenção, depreciação, seguro e financiamento
-            para ter uma visão completa dos seus gastos.
+          <p className="text-gray-400 max-w-2xl mb-4">
+            Calcule quanto seu veículo custa por mês e por ano com IPVA, combustível, manutenção, seguro e depreciação.
           </p>
+          <div className="flex items-center gap-4 text-sm">
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Gratuita
+            </span>
+            <span className="flex items-center gap-1.5 text-gray-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+              Sem cadastro
+            </span>
+          </div>
         </div>
       </section>
 
