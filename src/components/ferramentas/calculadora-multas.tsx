@@ -167,8 +167,10 @@ export function CalculadoraMultas() {
         <div className="flex flex-col md:flex-row gap-4">
           {/* Campo de busca */}
           <div className="flex-1 relative">
+            <label htmlFor="busca-infracoes" className="sr-only">Buscar infrações</label>
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
+              id="busca-infracoes"
               type="text"
               placeholder="Buscar por descrição ou código CTB (ex: 165, celular, álcool)..."
               value={busca}
@@ -179,8 +181,10 @@ export function CalculadoraMultas() {
 
           {/* Filtro de gravidade */}
           <div className="relative">
+            <label htmlFor="filtro-gravidade" className="sr-only">Filtrar por gravidade</label>
             <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <select
+              id="filtro-gravidade"
               value={gravidade}
               onChange={(e) => setGravidade(e.target.value)}
               className="pl-10 pr-8 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white appearance-none cursor-pointer transition-colors min-w-[200px]"
@@ -202,10 +206,11 @@ export function CalculadoraMultas() {
         <p className="text-sm text-[#64748B]">
           {resultados.length === 0
             ? "Nenhuma infração encontrada"
-            : `${resultados.length} infração${resultados.length > 1 ? "ões" : ""} encontrada${resultados.length > 1 ? "s" : ""}`}
+            : `${resultados.length} ${resultados.length > 1 ? "infrações encontradas" : "infração encontrada"}`}
         </p>
         {(busca || gravidade !== "todas") && (
           <button
+            type="button"
             onClick={() => {
               setBusca("");
               setGravidade("todas");

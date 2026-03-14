@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 type TipoPlaca = "mercosul" | "antigo";
 type CategoriaPlaca = "particular" | "comercial" | "oficial" | "moto";
@@ -150,6 +150,24 @@ export default function GeradorPlaca() {
     setErro("");
   }
 
+  const tiposPlaca = useMemo<{ value: TipoPlaca; label: string }[]>(
+    () => [
+      { value: "mercosul", label: "Mercosul" },
+      { value: "antigo", label: "Padrão Antigo" },
+    ],
+    []
+  );
+
+  const categoriasPlaca = useMemo<{ value: CategoriaPlaca; label: string }[]>(
+    () => [
+      { value: "particular", label: "Particular" },
+      { value: "comercial", label: "Comercial" },
+      { value: "oficial", label: "Oficial" },
+      { value: "moto", label: "Motocicleta" },
+    ],
+    []
+  );
+
   const placaExibida = placa || (tipo === "mercosul" ? "ABC1D23" : "ABC1234");
   const isValida = placa.length === 7 && validarFormato(placa, tipo);
   const mostrarErro =
@@ -168,10 +186,7 @@ export default function GeradorPlaca() {
           Tipo de Placa
         </label>
         <div className="flex gap-4">
-          {[
-            { value: "mercosul" as TipoPlaca, label: "Mercosul" },
-            { value: "antigo" as TipoPlaca, label: "Padrão Antigo" },
-          ].map((opt) => (
+          {tiposPlaca.map((opt) => (
             <label
               key={opt.value}
               className={`flex items-center gap-2 px-4 py-3 rounded-xl border cursor-pointer transition-colors ${
@@ -200,12 +215,7 @@ export default function GeradorPlaca() {
           Categoria do Veículo
         </label>
         <div className="flex flex-wrap gap-3">
-          {[
-            { value: "particular" as CategoriaPlaca, label: "Particular" },
-            { value: "comercial" as CategoriaPlaca, label: "Comercial" },
-            { value: "oficial" as CategoriaPlaca, label: "Oficial" },
-            { value: "moto" as CategoriaPlaca, label: "Motocicleta" },
-          ].map((opt) => (
+          {categoriasPlaca.map((opt) => (
             <label
               key={opt.value}
               className={`flex items-center gap-2 px-4 py-3 rounded-xl border cursor-pointer transition-colors ${

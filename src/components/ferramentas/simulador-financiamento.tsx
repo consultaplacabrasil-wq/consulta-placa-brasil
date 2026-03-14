@@ -94,10 +94,14 @@ export default function SimuladorFinanciamento() {
       : calcularSAC(principal, taxaJurosNum, prazo);
   }, [principal, taxaJurosNum, prazo, modo]);
 
-  const totalPago = tabela.reduce((acc, p) => acc + p.parcela, 0);
-  const totalJuros = tabela.reduce((acc, p) => acc + p.juros, 0);
-  const primeiraParcela = tabela.length > 0 ? tabela[0].parcela : 0;
-  const ultimaParcela = tabela.length > 0 ? tabela[tabela.length - 1].parcela : 0;
+  const { totalPago, totalJuros, primeiraParcela, ultimaParcela } = useMemo(() => {
+    return {
+      totalPago: tabela.reduce((acc, p) => acc + p.parcela, 0),
+      totalJuros: tabela.reduce((acc, p) => acc + p.juros, 0),
+      primeiraParcela: tabela.length > 0 ? tabela[0].parcela : 0,
+      ultimaParcela: tabela.length > 0 ? tabela[tabela.length - 1].parcela : 0,
+    };
+  }, [tabela]);
 
   function handleCurrencyInput(
     value: string,
@@ -123,7 +127,7 @@ export default function SimuladorFinanciamento() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Valor do veículo */}
           <div>
-            <label className="block text-sm font-semibold text-[#334155] mb-2">
+            <label htmlFor="valor-veiculo-fin" className="block text-sm font-semibold text-[#0F172A] mb-2">
               Valor do Veículo (R$)
             </label>
             <div className="relative">
@@ -131,6 +135,7 @@ export default function SimuladorFinanciamento() {
                 R$
               </span>
               <input
+                id="valor-veiculo-fin"
                 type="text"
                 inputMode="numeric"
                 value={displayCurrency(valorVeiculo)}
@@ -145,7 +150,7 @@ export default function SimuladorFinanciamento() {
 
           {/* Valor de entrada */}
           <div>
-            <label className="block text-sm font-semibold text-[#334155] mb-2">
+            <label htmlFor="valor-entrada-fin" className="block text-sm font-semibold text-[#0F172A] mb-2">
               Valor de Entrada (R$)
             </label>
             <div className="relative">
@@ -153,6 +158,7 @@ export default function SimuladorFinanciamento() {
                 R$
               </span>
               <input
+                id="valor-entrada-fin"
                 type="text"
                 inputMode="numeric"
                 value={displayCurrency(valorEntrada)}
@@ -167,11 +173,12 @@ export default function SimuladorFinanciamento() {
 
           {/* Taxa de juros */}
           <div>
-            <label className="block text-sm font-semibold text-[#334155] mb-2">
+            <label htmlFor="taxa-juros-fin" className="block text-sm font-semibold text-[#0F172A] mb-2">
               Taxa de Juros Mensal (%)
             </label>
             <div className="relative">
               <input
+                id="taxa-juros-fin"
                 type="text"
                 inputMode="decimal"
                 value={taxaJuros}
@@ -187,11 +194,12 @@ export default function SimuladorFinanciamento() {
 
           {/* Modo */}
           <div>
-            <label className="block text-sm font-semibold text-[#334155] mb-2">
+            <label className="block text-sm font-semibold text-[#0F172A] mb-2">
               Tipo de Amortização
             </label>
             <div className="flex gap-2">
               <button
+                type="button"
                 onClick={() => setModo("price")}
                 className={`flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-colors ${
                   modo === "price"
@@ -202,6 +210,7 @@ export default function SimuladorFinanciamento() {
                 Tabela Price
               </button>
               <button
+                type="button"
                 onClick={() => setModo("sac")}
                 className={`flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-colors ${
                   modo === "sac"
@@ -217,10 +226,11 @@ export default function SimuladorFinanciamento() {
 
         {/* Prazo slider */}
         <div className="mt-6">
-          <label className="block text-sm font-semibold text-[#334155] mb-2">
+          <label htmlFor="prazo-fin" className="block text-sm font-semibold text-[#0F172A] mb-2">
             Prazo: <span className="text-[#FF4D30]">{prazo} meses</span>
           </label>
           <input
+            id="prazo-fin"
             type="range"
             min={12}
             max={60}
@@ -290,7 +300,9 @@ export default function SimuladorFinanciamento() {
           {/* Tabela de amortização */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
             <button
+              type="button"
               onClick={() => setMostrarTabela(!mostrarTabela)}
+              aria-expanded={mostrarTabela}
               className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
             >
               <span className="text-lg font-bold text-[#0F172A]">

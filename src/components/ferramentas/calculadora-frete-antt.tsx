@@ -198,7 +198,7 @@ export default function CalculadoraFreteAntt() {
         type="button"
         onClick={calcular}
         disabled={!peso || !distancia}
-        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#e6432a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#E8432A] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
       >
         Calcular frete mínimo ANTT
       </button>

@@ -156,7 +156,7 @@ export default function DecodificadorChassi() {
         type="button"
         onClick={decodificar}
         disabled={chassi.length !== 17}
-        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#e6432a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#E8432A] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
       >
         Decodificar Chassi
       </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 const TIPOS_VEICULO = [
   { eixos: 2, nome: "2 eixos (Toco)", pneus: 6 },
@@ -151,14 +151,18 @@ export default function CustoKmCaminhao() {
     return ((valor / resultado.custoTotalKm) * 100).toFixed(1);
   }
 
-  const categorias = resultado
-    ? [
-        { nome: "Combustível", valor: resultado.custoCombustivelKm, cor: "bg-amber-500" },
-        { nome: "Pneus", valor: resultado.custoPneuKm, cor: "bg-blue-500" },
-        { nome: "Manutenção", valor: resultado.custoManutencaoKm, cor: "bg-green-500" },
-        { nome: "Depreciação", valor: resultado.depreciacaoKm, cor: "bg-purple-500" },
-      ]
-    : [];
+  const categorias = useMemo(
+    () =>
+      resultado
+        ? [
+            { nome: "Combustível", valor: resultado.custoCombustivelKm, cor: "bg-amber-500" },
+            { nome: "Pneus", valor: resultado.custoPneuKm, cor: "bg-blue-500" },
+            { nome: "Manutenção", valor: resultado.custoManutencaoKm, cor: "bg-green-500" },
+            { nome: "Depreciação", valor: resultado.depreciacaoKm, cor: "bg-purple-500" },
+          ]
+        : [],
+    [resultado]
+  );
 
   const podCalcular =
     tipoVeiculo && consumo && precoDiesel && kmMes && valorVeiculo;
@@ -373,7 +377,7 @@ export default function CustoKmCaminhao() {
         type="button"
         onClick={calcular}
         disabled={!podCalcular}
-        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#e6432a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#E8432A] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
       >
         Calcular Custo por Km
       </button>
@@ -440,7 +444,7 @@ export default function CustoKmCaminhao() {
             <h3 className="text-sm font-semibold text-[#0F172A] mb-4">
               Composição do custo por km
             </h3>
-            <div className="flex rounded-full overflow-hidden h-4 mb-4">
+            <div className="flex rounded-full overflow-hidden h-4 mb-4" role="img" aria-label="Gráfico de composição do custo por km">
               {categorias.map(
                 (cat) =>
                   cat.valor > 0 && (
@@ -451,6 +455,7 @@ export default function CustoKmCaminhao() {
                         width: `${getPorcentagem(cat.valor)}%`,
                       }}
                       title={`${cat.nome}: ${getPorcentagem(cat.valor)}%`}
+                      aria-label={`${cat.nome}: ${getPorcentagem(cat.valor)}%`}
                     />
                   )
               )}

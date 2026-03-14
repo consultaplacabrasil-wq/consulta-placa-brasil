@@ -107,10 +107,11 @@ export function SimuladorPontosCNH() {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
-              <label className="block text-sm font-medium text-[#334155] mb-1">
+              <label htmlFor="tipo-infracao" className="block text-sm font-semibold text-[#0F172A] mb-1">
                 Tipo de infração
               </label>
               <select
+                id="tipo-infracao"
                 value={infracaoSelecionada}
                 onChange={(e) => setInfracaoSelecionada(Number(e.target.value))}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white appearance-none cursor-pointer transition-colors"
@@ -124,10 +125,11 @@ export function SimuladorPontosCNH() {
               </select>
             </div>
             <div className="w-full md:w-48">
-              <label className="block text-sm font-medium text-[#334155] mb-1">
+              <label htmlFor="data-infracao" className="block text-sm font-semibold text-[#0F172A] mb-1">
                 Data da infração
               </label>
               <input
+                id="data-infracao"
                 type="date"
                 value={dataSelecionada}
                 max={hoje}
@@ -137,9 +139,10 @@ export function SimuladorPontosCNH() {
             </div>
             <div className="flex items-end">
               <button
+                type="button"
                 onClick={adicionarInfracao}
                 disabled={!dataSelecionada}
-                className="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#FF4D30] text-white font-semibold hover:bg-[#e04328] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#FF4D30] text-white font-semibold hover:bg-[#E8432A] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <Plus className="w-5 h-5" />
                 Adicionar
@@ -342,9 +345,11 @@ export function SimuladorPontosCNH() {
                       </td>
                       <td className="px-6 py-4 text-center">
                         <button
+                          type="button"
                           onClick={() => removerInfracao(inf.id)}
                           className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
                           title="Remover infração"
+                          aria-label="Remover infração"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -379,9 +384,11 @@ export function SimuladorPontosCNH() {
                       )}
                     </div>
                     <button
+                      type="button"
                       onClick={() => removerInfracao(inf.id)}
                       className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors shrink-0"
                       title="Remover infração"
+                      aria-label="Remover infração"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>

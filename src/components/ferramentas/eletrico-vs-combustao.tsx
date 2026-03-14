@@ -288,7 +288,7 @@ export default function EletricoVsCombustao() {
         type="button"
         onClick={calcular}
         disabled={!podCalcular}
-        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#e6432a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#E8432A] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
       >
         Comparar Custos
       </button>
@@ -380,23 +380,23 @@ export default function EletricoVsCombustao() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-3 px-2 font-semibold text-[#0F172A]">Período</th>
-                    <th className="text-right py-3 px-2 font-semibold text-green-700">Elétrico</th>
-                    <th className="text-right py-3 px-2 font-semibold text-orange-700">Combustão</th>
-                    <th className="text-right py-3 px-2 font-semibold text-[#64748B]">Diferença</th>
+                  <tr className="bg-[#0F172A] text-white">
+                    <th className="text-left py-3 px-4 text-sm font-semibold">Período</th>
+                    <th className="text-right py-3 px-4 text-sm font-semibold">Elétrico</th>
+                    <th className="text-right py-3 px-4 text-sm font-semibold">Combustão</th>
+                    <th className="text-right py-3 px-4 text-sm font-semibold">Diferença</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-b border-gray-100">
-                    <td className="py-3 px-2 text-[#475569]">Compra (mês 0)</td>
-                    <td className="py-3 px-2 text-right font-medium text-[#0F172A]">
+                    <td className="py-3 px-4 text-[#475569]">Compra (mês 0)</td>
+                    <td className="py-3 px-4 text-right font-medium text-[#0F172A]">
                       {formatarMoeda(parseValor(precoEletrico))}
                     </td>
-                    <td className="py-3 px-2 text-right font-medium text-[#0F172A]">
+                    <td className="py-3 px-4 text-right font-medium text-[#0F172A]">
                       {formatarMoeda(parseValor(precoCombustao))}
                     </td>
-                    <td className="py-3 px-2 text-right font-medium text-[#64748B]">
+                    <td className="py-3 px-4 text-right font-medium text-[#64748B]">
                       {formatarMoeda(parseValor(precoEletrico) - parseValor(precoCombustao))}
                     </td>
                   </tr>
@@ -404,16 +404,16 @@ export default function EletricoVsCombustao() {
                     const diff = linha.eletrico - linha.combustao;
                     return (
                       <tr key={linha.mes} className="border-b border-gray-100">
-                        <td className="py-3 px-2 text-[#475569]">
+                        <td className="py-3 px-4 text-[#475569]">
                           {linha.mes} meses ({linha.mes / 12} {linha.mes / 12 === 1 ? "ano" : "anos"})
                         </td>
-                        <td className="py-3 px-2 text-right font-medium text-[#0F172A]">
+                        <td className="py-3 px-4 text-right font-medium text-[#0F172A]">
                           {formatarMoeda(linha.eletrico)}
                         </td>
-                        <td className="py-3 px-2 text-right font-medium text-[#0F172A]">
+                        <td className="py-3 px-4 text-right font-medium text-[#0F172A]">
                           {formatarMoeda(linha.combustao)}
                         </td>
-                        <td className={`py-3 px-2 text-right font-medium ${
+                        <td className={`py-3 px-4 text-right font-medium ${
                           diff < 0 ? "text-green-600" : diff > 0 ? "text-red-500" : "text-[#64748B]"
                         }`}>
                           {diff < 0 ? "−" : "+"} {formatarMoeda(Math.abs(diff))}

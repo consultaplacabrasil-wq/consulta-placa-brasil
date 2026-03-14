@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 const ESTADOS = [
   { uf: "AC", nome: "Acre" },
@@ -142,16 +142,20 @@ export default function CustoTotalVeiculo() {
     return ((valor / resultado.totalAnual) * 100).toFixed(1);
   }
 
-  const categorias = resultado
-    ? [
-        { nome: "IPVA", valor: resultado.ipva, cor: "bg-red-500" },
-        { nome: "Combustível", valor: resultado.combustivel, cor: "bg-amber-500" },
-        { nome: "Manutenção", valor: resultado.manutencao, cor: "bg-blue-500" },
-        { nome: "Depreciação", valor: resultado.depreciacao, cor: "bg-purple-500" },
-        { nome: "Seguro", valor: resultado.seguro, cor: "bg-green-500" },
-        { nome: "Financiamento", valor: resultado.financiamento, cor: "bg-cyan-500" },
-      ]
-    : [];
+  const categorias = useMemo(
+    () =>
+      resultado
+        ? [
+            { nome: "IPVA", valor: resultado.ipva, cor: "bg-red-500" },
+            { nome: "Combustível", valor: resultado.combustivel, cor: "bg-amber-500" },
+            { nome: "Manutenção", valor: resultado.manutencao, cor: "bg-blue-500" },
+            { nome: "Depreciação", valor: resultado.depreciacao, cor: "bg-purple-500" },
+            { nome: "Seguro", valor: resultado.seguro, cor: "bg-green-500" },
+            { nome: "Financiamento", valor: resultado.financiamento, cor: "bg-cyan-500" },
+          ]
+        : [],
+    [resultado]
+  );
 
   const podCalcular = valorVeiculo && estado && kmMes && consumo && precoCombustivel;
 
@@ -326,7 +330,7 @@ export default function CustoTotalVeiculo() {
         type="button"
         onClick={calcular}
         disabled={!podCalcular}
-        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#e6432a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#E8432A] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
       >
         Calcular Custo Total
       </button>
@@ -367,7 +371,7 @@ export default function CustoTotalVeiculo() {
             <h3 className="text-sm font-semibold text-[#0F172A] mb-4">
               Composição do custo anual
             </h3>
-            <div className="flex rounded-full overflow-hidden h-4 mb-4">
+            <div className="flex rounded-full overflow-hidden h-4 mb-4" role="img" aria-label="Gráfico de composição do custo anual">
               {categorias.map(
                 (cat) =>
                   cat.valor > 0 && (
@@ -378,6 +382,7 @@ export default function CustoTotalVeiculo() {
                         width: `${getPorcentagem(cat.valor)}%`,
                       }}
                       title={`${cat.nome}: ${getPorcentagem(cat.valor)}%`}
+                      aria-label={`${cat.nome}: ${getPorcentagem(cat.valor)}%`}
                     />
                   )
               )}

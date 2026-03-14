@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 const ESTADOS = [
   { uf: "AC", nome: "Acre" },
@@ -125,11 +125,14 @@ export default function CalculadoraTransferencia() {
     });
   }
 
-  const tiposTransferencia: { value: TipoTransferencia; label: string }[] = [
-    { value: "compra_venda", label: "Compra e Venda" },
-    { value: "doacao", label: "Doação" },
-    { value: "heranca", label: "Herança" },
-  ];
+  const tiposTransferencia = useMemo<{ value: TipoTransferencia; label: string }[]>(
+    () => [
+      { value: "compra_venda", label: "Compra e Venda" },
+      { value: "doacao", label: "Doação" },
+      { value: "heranca", label: "Herança" },
+    ],
+    []
+  );
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
@@ -227,7 +230,7 @@ export default function CalculadoraTransferencia() {
         type="button"
         onClick={calcular}
         disabled={!valorVeiculo || !estadoOrigem || !estadoDestino}
-        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#e6432a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+        className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#E8432A] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
       >
         Calcular custos de transferência
       </button>
