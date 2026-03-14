@@ -31,11 +31,10 @@ export function Footer() {
           <div className="space-y-5">
             <Link href="/">
               <Image
-                src="/logo-header.webp"
+                src="/logo-footer.webp"
                 alt="Consulta Placa Brasil"
                 width={160}
                 height={40}
-                className="brightness-0 invert"
               />
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
