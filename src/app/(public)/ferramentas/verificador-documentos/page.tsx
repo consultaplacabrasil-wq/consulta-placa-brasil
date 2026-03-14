@@ -104,7 +104,7 @@ export default function VerificadorDocumentosPage() {
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto px-4 max-w-4xl">
           <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
@@ -133,7 +133,7 @@ export default function VerificadorDocumentosPage() {
 
       {/* Ferramenta */}
       <section className="py-16">
-        <div className="container mx-auto px-4 max-w-3xl">
+        <div className="container mx-auto px-4 max-w-4xl">
           <VerificadorDocumentos />
         </div>
       </section>

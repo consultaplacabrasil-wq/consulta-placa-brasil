@@ -111,7 +111,7 @@ export default function ConversorPlacaPage() {
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto px-4 max-w-4xl">
           <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
@@ -140,14 +140,14 @@ export default function ConversorPlacaPage() {
 
       {/* Ferramenta */}
       <section className="py-16">
-        <div className="container mx-auto px-4 max-w-3xl">
+        <div className="container mx-auto px-4 max-w-4xl">
           <ConversorPlaca />
         </div>
       </section>
 
       {/* FAQ */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-3xl">
+        <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
             Perguntas Frequentes sobre a Conversão de Placas
           </h2>
