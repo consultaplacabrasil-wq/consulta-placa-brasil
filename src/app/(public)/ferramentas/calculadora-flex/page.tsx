@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Descubra se é melhor abastecer com gasolina ou etanol no seu veículo flex. Calculadora gratuita com comparação de custo por km e economia mensal.",
     url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-flex",
+    type: "website",
   },
 };
 

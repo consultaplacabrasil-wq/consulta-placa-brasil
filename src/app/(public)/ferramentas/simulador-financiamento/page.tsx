@@ -3,18 +3,19 @@ import Link from "next/link";
 import SimuladorFinanciamento from "@/components/ferramentas/simulador-financiamento";
 
 export const metadata: Metadata = {
-  title: "Simulador de Financiamento de Veículos | Consulta Placa Brasil",
+  title: "Simulador de Financiamento Veicular | Consulta Placa Brasil",
   description:
-    "Simule o financiamento do seu veículo com Tabela Price ou SAC. Calcule parcelas, juros totais e veja a tabela de amortização completa. Grátis e sem cadastro.",
+    "Simule o financiamento do seu veículo com Tabela Price ou SAC. Calcule parcelas, juros totais e veja a tabela de amortização. Grátis e sem cadastro.",
   alternates: {
     canonical:
       "https://consultaplacabrasil.com.br/ferramentas/simulador-financiamento",
   },
   openGraph: {
-    title: "Simulador de Financiamento de Veículos | Consulta Placa Brasil",
+    title: "Simulador de Financiamento Veicular | Consulta Placa Brasil",
     description:
       "Calcule parcelas, juros totais e tabela de amortização do financiamento do seu carro. Tabela Price e SAC.",
     url: "https://consultaplacabrasil.com.br/ferramentas/simulador-financiamento",
+    type: "website",
   },
 };
 
@@ -35,7 +36,7 @@ export default function SimuladorFinanciamentoPage() {
       </section>
 
       {/* Breadcrumb */}
-      <nav className="container mx-auto px-4 max-w-4xl py-4">
+      <nav aria-label="Breadcrumb" className="container mx-auto px-4 max-w-4xl py-4">
         <ol className="flex items-center gap-2 text-sm text-[#94A3B8]">
           <li>
             <Link href="/" className="hover:text-[#FF4D30] transition-colors">
@@ -134,27 +135,33 @@ export default function SimuladorFinanciamentoPage() {
         </div>
       </section>
 
-      {/* Voltar */}
-      <section className="container mx-auto px-4 max-w-4xl pb-16">
-        <Link
-          href="/ferramentas"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-[#FF4D30] hover:underline"
-        >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-          Ver todas as ferramentas
-        </Link>
+      {/* Ferramentas relacionadas */}
+      <section className="px-4 pb-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-lg font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/ferramentas/calculadora-ipva" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
+              <span className="font-semibold text-[#0F172A]">Calculadora de IPVA 2026</span>
+              <p className="text-sm text-[#64748B] mt-1">Calcule o IPVA do seu veículo por estado.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-multas" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
+              <span className="font-semibold text-[#0F172A]">Calculadora de Multas</span>
+              <p className="text-sm text-[#64748B] mt-1">Consulte valores e pontos das infrações de trânsito.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-flex" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
+              <span className="font-semibold text-[#0F172A]">Gasolina ou Etanol?</span>
+              <p className="text-sm text-[#64748B] mt-1">Descubra qual combustível compensa mais no seu veículo.</p>
+            </Link>
+          </div>
+          <div className="mt-6 text-center">
+            <Link
+              href="/ferramentas"
+              className="inline-flex items-center text-[#FF4D30] font-semibold hover:underline transition-colors"
+            >
+              ← Ver todas as ferramentas
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* Schema: WebApplication + FAQPage + BreadcrumbList */}
@@ -175,6 +182,11 @@ export default function SimuladorFinanciamentoPage() {
                 "@type": "Offer",
                 price: "0",
                 priceCurrency: "BRL",
+              },
+              provider: {
+                "@type": "Organization",
+                name: "Consulta Placa Brasil",
+                url: "https://consultaplacabrasil.com.br",
               },
             },
             {

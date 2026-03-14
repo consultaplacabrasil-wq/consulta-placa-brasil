@@ -3,18 +3,19 @@ import Link from "next/link";
 import GeradorPlaca from "@/components/ferramentas/gerador-placa";
 
 export const metadata: Metadata = {
-  title: "Gerador Visual de Placa Mercosul e Antiga | Consulta Placa Brasil",
+  title: "Gerador de Placa Mercosul e Antiga | Consulta Placa",
   description:
-    "Gere a representação visual de placas veiculares nos padrões Mercosul e antigo. Escolha tipo, categoria e veja o resultado em tempo real. Grátis e sem cadastro.",
+    "Gere a representação visual de placas nos padrões Mercosul e antigo. Escolha tipo, categoria e veja o resultado em tempo real. Grátis e sem cadastro.",
   alternates: {
     canonical:
       "https://consultaplacabrasil.com.br/ferramentas/gerador-placa",
   },
   openGraph: {
-    title: "Gerador Visual de Placa Mercosul e Antiga | Consulta Placa Brasil",
+    title: "Gerador de Placa Mercosul e Antiga | Consulta Placa",
     description:
       "Ferramenta gratuita para gerar a visualização de placas veiculares brasileiras nos padrões Mercosul e antigo com validação automática.",
     url: "https://consultaplacabrasil.com.br/ferramentas/gerador-placa",
+    type: "website",
   },
 };
 
@@ -60,6 +61,11 @@ export default function GeradorPlacaPage() {
       "@type": "Offer",
       price: "0",
       priceCurrency: "BRL",
+    },
+    provider: {
+      "@type": "Organization",
+      name: "Consulta Placa Brasil",
+      url: "https://consultaplacabrasil.com.br",
     },
   };
 

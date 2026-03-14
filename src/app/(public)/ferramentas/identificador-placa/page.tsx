@@ -225,8 +225,19 @@ export default function IdentificadorPlacaPage() {
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
-            disponíveis no Consulta Placa Brasil, como a calculadora de IPVA, o simulador
-            de financiamento e o decodificador de chassi.
+            disponíveis no Consulta Placa Brasil, como o{" "}
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+              simulador de pontos na CNH
+            </Link>
+            , a{" "}
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de transferência de veículo
+            </Link>{" "}
+            e a{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de custo total do veículo
+            </Link>
+            .
           </p>
         </div>
       </section>

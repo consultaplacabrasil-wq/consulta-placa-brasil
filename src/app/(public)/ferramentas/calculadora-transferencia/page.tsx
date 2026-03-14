@@ -4,14 +4,14 @@ import { ChevronRight } from "lucide-react";
 import CalculadoraTransferencia from "@/components/ferramentas/calculadora-transferencia";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Transferência de Veículo | Consulta Placa Brasil",
+  title: "Calculadora de Transferência Veicular | Consulta Placa",
   description:
-    "Calcule o custo estimado para transferir um veículo entre estados ou por doação e herança. Veja taxas do Detran, vistoria, emplacamento e ITCMD.",
+    "Calcule o custo para transferir um veículo entre estados, por doação ou herança. Taxas do Detran, vistoria e ITCMD.",
   alternates: {
     canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-transferencia",
   },
   openGraph: {
-    title: "Calculadora de Transferência de Veículo | Consulta Placa Brasil",
+    title: "Calculadora de Transferência Veicular | Consulta Placa",
     description:
       "Simule os custos de transferência veicular: taxas do Detran, vistoria, emplacamento e ITCMD. Grátis e sem cadastro.",
     url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-transferencia",
@@ -57,6 +57,54 @@ export default function CalculadoraTransferenciaPage() {
       <section className="py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">
           <CalculadoraTransferencia />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Perguntas Frequentes sobre Transferência de Veículo
+          </h2>
+          <div className="space-y-4">
+            {[
+              {
+                question: "Quanto custa transferir um veículo de estado?",
+                answer: "O custo para transferir um veículo entre estados inclui a taxa de transferência do Detran (R$ 200 a R$ 350), taxa de vistoria (~R$ 150) e emplacamento (~R$ 180). O total varia conforme o estado de destino.",
+              },
+              {
+                question: "Preciso pagar ITCMD na transferência de veículo?",
+                answer: "O ITCMD é cobrado apenas em transferências por doação ou herança, não em compra e venda. A alíquota varia de 2% a 8% sobre o valor do veículo, conforme o estado.",
+              },
+              {
+                question: "Qual o prazo para transferir um veículo após a compra?",
+                answer: "O prazo legal para realizar a transferência de propriedade é de 30 dias após a data da compra. O descumprimento pode gerar multas e penalidades para o antigo proprietário.",
+              },
+              {
+                question: "É necessário trocar a placa ao transferir veículo para outro estado?",
+                answer: "Sim. Quando há mudança de estado, é obrigatório realizar o emplacamento no novo estado, com confecção de novas placas no padrão Mercosul. O custo é de aproximadamente R$ 180.",
+              },
+              {
+                question: "Quais documentos são necessários para transferir um veículo?",
+                answer: "São necessários o CRV preenchido e assinado com firma reconhecida, CPF e RG do comprador e vendedor, comprovante de residência atualizado, laudo de vistoria e comprovante de quitação de débitos do veículo (IPVA, licenciamento e multas).",
+              },
+            ].map((item, index) => (
+              <details
+                key={index}
+                className="group bg-[#F8FAFC] rounded-2xl border border-gray-100 overflow-hidden"
+              >
+                <summary className="flex items-center justify-between cursor-pointer p-6 text-[#0F172A] font-semibold hover:text-[#FF4D30] transition-colors">
+                  {item.question}
+                  <span className="ml-4 text-[#FF4D30] group-open:rotate-45 transition-transform text-xl font-bold">
+                    +
+                  </span>
+                </summary>
+                <div className="px-6 pb-6 text-[#475569] leading-relaxed">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -125,6 +173,26 @@ export default function CalculadoraTransferenciaPage() {
             débitos do veículo — como IPVA, licenciamento e multas — estejam quitados antes de
             iniciar o processo. O prazo legal para realizar a transferência é de 30 dias após
             a compra, e o descumprimento pode gerar multa de trânsito ao antigo proprietário.
+          </p>
+
+          <p className="text-[#475569]">
+            Explore também outras{" "}
+            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+              ferramentas veiculares gratuitas
+            </Link>{" "}
+            do Consulta Placa Brasil, como a{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de custo total do veículo
+            </Link>
+            , o{" "}
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+              simulador de pontos na CNH
+            </Link>{" "}
+            e o{" "}
+            <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">
+              identificador de placa veicular
+            </Link>
+            .
           </p>
 
           <div className="mt-8 p-4 bg-[#F8FAFC] rounded-xl border border-gray-100">

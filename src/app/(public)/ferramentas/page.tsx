@@ -19,9 +19,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Ferramentas Veiculares Gratuitas",
+  title: "Ferramentas Veiculares Gratuitas | Consulta Placa",
   description:
-    "Ferramentas gratuitas para consulta veicular: calculadora de IPVA, simulador de financiamento, calculadora de multas, decodificador de chassi e muito mais. Use agora sem cadastro.",
+    "Ferramentas gratuitas para veículos: calculadora de IPVA, simulador de financiamento, multas, chassi e mais. Use sem cadastro.",
   alternates: {
     canonical: "https://consultaplacabrasil.com.br/ferramentas",
   },

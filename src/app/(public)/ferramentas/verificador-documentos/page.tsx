@@ -3,14 +3,14 @@ import Link from "next/link";
 import VerificadorDocumentos from "@/components/ferramentas/verificador-documentos";
 
 export const metadata: Metadata = {
-  title: "Verificador de Documentos Veiculares | Consulta Placa Brasil",
+  title: "Verificador de Documentos Veiculares | Consulta Placa",
   description:
     "Verifique a validade da CNH, calendário de licenciamento e situação dos documentos do veículo. Ferramenta gratuita com alertas automáticos.",
   alternates: {
     canonical: "https://consultaplacabrasil.com.br/ferramentas/verificador-documentos",
   },
   openGraph: {
-    title: "Verificador de Documentos Veiculares | Consulta Placa Brasil",
+    title: "Verificador de Documentos Veiculares | Consulta Placa",
     description:
       "Consulte a validade da CNH e o calendário de licenciamento do seu veículo. Alertas visuais de vencimento e regras por faixa etária.",
     url: "https://consultaplacabrasil.com.br/ferramentas/verificador-documentos",
@@ -212,8 +212,19 @@ export default function VerificadorDocumentosPage() {
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>
-            , como calculadora de IPVA, simulador de financiamento, calculadora de multas e
-            decodificador de chassi. Todas são de uso gratuito, funcionam diretamente no navegador
+            . Confira o{" "}
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+              simulador de pontos na CNH
+            </Link>{" "}
+            para acompanhar sua pontuação, a{" "}
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de transferência de veículo
+            </Link>{" "}
+            e a{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de custo total do veículo
+            </Link>
+            . Todas são de uso gratuito, funcionam diretamente no navegador
             e não exigem cadastro. Mantenha seus documentos sempre atualizados e evite transtornos
             nas fiscalizações de trânsito.
           </p>

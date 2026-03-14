@@ -63,6 +63,54 @@ export default function SimuladorPontosCNHPage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Perguntas Frequentes sobre Pontos na CNH
+          </h2>
+          <div className="space-y-4">
+            {[
+              {
+                question: "Quantos pontos na CNH causam suspensão?",
+                answer: "Para motoristas sem suspensão anterior, o limite é de 20 pontos em 12 meses. Para reincidentes, o limite é de 30 pontos. Infrações gravíssimas podem causar suspensão imediata.",
+              },
+              {
+                question: "Quando os pontos da CNH vencem?",
+                answer: "Os pontos da CNH vencem 12 meses após a data da infração. Após esse período, os pontos são automaticamente removidos do prontuário do condutor.",
+              },
+              {
+                question: "Quais infrações causam suspensão imediata da CNH?",
+                answer: "Infrações gravíssimas como avançar semáforo vermelho, excesso de velocidade acima de 50%, dirigir sem CNH e conduzir moto sem capacete podem resultar em suspensão imediata da CNH.",
+              },
+              {
+                question: "Como consultar os pontos da minha CNH?",
+                answer: "Você pode consultar os pontos da sua CNH no site ou aplicativo do DETRAN do seu estado, ou pelo Portal de Serviços do DENATRAN. Use nosso simulador para estimar sua pontuação atual.",
+              },
+              {
+                question: "O que acontece se eu dirigir com a CNH suspensa?",
+                answer: "Dirigir com a CNH suspensa é infração gravíssima (Art. 162-II do CTB), com multa de R$ 880,41, 7 pontos na CNH e apreensão do veículo. O prazo de suspensão também é reiniciado.",
+              },
+            ].map((item, index) => (
+              <details
+                key={index}
+                className="group bg-[#F8FAFC] rounded-2xl border border-gray-100 overflow-hidden"
+              >
+                <summary className="flex items-center justify-between cursor-pointer p-6 text-[#0F172A] font-semibold hover:text-[#FF4D30] transition-colors">
+                  {item.question}
+                  <span className="ml-4 text-[#FF4D30] group-open:rotate-45 transition-transform text-xl font-bold">
+                    +
+                  </span>
+                </summary>
+                <div className="px-6 pb-6 text-[#475569] leading-relaxed">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SEO Content */}
       <section className="bg-white px-4 py-16">
         <div className="container mx-auto max-w-4xl prose prose-gray">
@@ -145,6 +193,25 @@ export default function SimuladorPontosCNHPage() {
             aprovado em prova teórica para reaver o direito de dirigir.
             Dirigir com a CNH suspensa é infração gravíssima prevista no
             Art. 162-II do CTB, com multa de R$ 880,41 e 7 pontos na CNH.
+          </p>
+          <p className="text-[#475569]">
+            Além do simulador de pontos, o Consulta Placa Brasil oferece diversas{" "}
+            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+              ferramentas veiculares gratuitas
+            </Link>
+            . Confira também o{" "}
+            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+              verificador de documentos veiculares
+            </Link>{" "}
+            para checar a validade da sua CNH, a{" "}
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de transferência de veículo
+            </Link>{" "}
+            e o{" "}
+            <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">
+              identificador de placa veicular
+            </Link>
+            .
           </p>
         </div>
       </section>

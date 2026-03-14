@@ -4,14 +4,14 @@ import { ChevronRight } from "lucide-react";
 import CalculadoraDepreciacao from "@/components/ferramentas/calculadora-depreciacao";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Depreciação de Veículos | Consulta Placa Brasil",
+  title: "Calculadora de Depreciação Veicular | Consulta Placa",
   description:
     "Calcule a depreciação do seu veículo para os próximos 5 anos. Descubra quanto seu carro, moto ou caminhão perde de valor por ano. Grátis e sem cadastro.",
   alternates: {
     canonical: "https://consultaplacabrasil.com.br/ferramentas/calculadora-depreciacao",
   },
   openGraph: {
-    title: "Calculadora de Depreciação de Veículos | Consulta Placa Brasil",
+    title: "Calculadora de Depreciação Veicular | Consulta Placa",
     description:
       "Simule a depreciação do seu veículo e descubra quanto ele valerá nos próximos anos. Projeção detalhada por ano com taxas reais do mercado brasileiro.",
     url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-depreciacao",
@@ -136,6 +136,27 @@ export default function CalculadoraDepreciacaoPage() {
               e condições do mercado. Para uma avaliação precisa, consulte a Tabela FIPE ou um
               especialista em avaliação veicular.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="px-4 pb-8">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-xl font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/ferramentas/custo-total-veiculo" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
+              <span className="font-semibold text-[#0F172A]">Custo Total do Veículo</span>
+              <p className="text-sm text-[#64748B] mt-1">Calcule quanto seu veículo custa por mês e por ano.</p>
+            </Link>
+            <Link href="/ferramentas/eletrico-vs-combustao" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
+              <span className="font-semibold text-[#0F172A]">Elétrico vs Combustão</span>
+              <p className="text-sm text-[#64748B] mt-1">Compare os custos entre carro elétrico e a combustão.</p>
+            </Link>
+            <Link href="/ferramentas/simulador-financiamento" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
+              <span className="font-semibold text-[#0F172A]">Simulador de Financiamento</span>
+              <p className="text-sm text-[#64748B] mt-1">Simule parcelas e juros para financiamento veicular.</p>
+            </Link>
           </div>
         </div>
       </section>

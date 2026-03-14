@@ -144,15 +144,32 @@ export default function CalculadoraIPVAPage() {
         </div>
       </section>
 
-      {/* Voltar para ferramentas */}
-      <section className="pb-12">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <Link
-            href="/ferramentas"
-            className="inline-flex items-center text-[#FF4D30] font-semibold hover:underline transition-colors"
-          >
-            ← Ver todas as ferramentas
-          </Link>
+      {/* Ferramentas relacionadas */}
+      <section className="px-4 pb-12">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-lg font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/ferramentas/calculadora-multas" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
+              <span className="font-semibold text-[#0F172A]">Calculadora de Multas</span>
+              <p className="text-sm text-[#64748B] mt-1">Consulte valores e pontos das infrações de trânsito.</p>
+            </Link>
+            <Link href="/ferramentas/simulador-financiamento" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
+              <span className="font-semibold text-[#0F172A]">Simulador de Financiamento</span>
+              <p className="text-sm text-[#64748B] mt-1">Calcule parcelas e juros do financiamento veicular.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-flex" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
+              <span className="font-semibold text-[#0F172A]">Gasolina ou Etanol?</span>
+              <p className="text-sm text-[#64748B] mt-1">Descubra qual combustível compensa mais no seu veículo.</p>
+            </Link>
+          </div>
+          <div className="mt-6 text-center">
+            <Link
+              href="/ferramentas"
+              className="inline-flex items-center text-[#FF4D30] font-semibold hover:underline transition-colors"
+            >
+              ← Ver todas as ferramentas
+            </Link>
+          </div>
         </div>
       </section>
 

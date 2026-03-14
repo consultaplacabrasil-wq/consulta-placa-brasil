@@ -154,6 +154,27 @@ export default function CustoKmCaminhaoPage() {
         </div>
       </section>
 
+      {/* Ferramentas relacionadas */}
+      <section className="px-4 pb-8">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-xl font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/ferramentas/calculadora-frete-antt" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
+              <span className="font-semibold text-[#0F172A]">Calculadora de Frete ANTT</span>
+              <p className="text-sm text-[#64748B] mt-1">Calcule o piso mínimo de frete pela tabela ANTT.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-depreciacao" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
+              <span className="font-semibold text-[#0F172A]">Calculadora de Depreciação</span>
+              <p className="text-sm text-[#64748B] mt-1">Estime quanto seu caminhão vai desvalorizar.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-flex" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
+              <span className="font-semibold text-[#0F172A]">Gasolina ou Etanol?</span>
+              <p className="text-sm text-[#64748B] mt-1">Compare o custo entre combustíveis.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Voltar para ferramentas */}
       <section className="pb-12">
         <div className="container mx-auto px-4 max-w-4xl text-center">

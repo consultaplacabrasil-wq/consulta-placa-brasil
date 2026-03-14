@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       "Decodifique o número do chassi (VIN) e descubra fabricante, país de origem e ano do modelo. Ferramenta gratuita e sem cadastro.",
     url: "https://consultaplacabrasil.com.br/ferramentas/decodificador-chassi",
+    type: "website",
   },
 };
 
@@ -60,6 +61,11 @@ export default function DecodificadorChassiPage() {
       price: "0",
       priceCurrency: "BRL",
     },
+    provider: {
+      "@type": "Organization",
+      name: "Consulta Placa Brasil",
+      url: "https://consultaplacabrasil.com.br",
+    },
   };
 
   const schemaFaq = {
@@ -105,7 +111,7 @@ export default function DecodificadorChassiPage() {
       {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-4 max-w-6xl py-3">
-          <nav className="flex items-center gap-2 text-sm text-[#64748B]">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-[#64748B]">
             <Link href="/" className="hover:text-[#FF4D30] transition-colors">
               Início
             </Link>

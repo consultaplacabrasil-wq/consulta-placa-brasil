@@ -4,14 +4,14 @@ import { ChevronRight } from "lucide-react";
 import EletricoVsCombustao from "@/components/ferramentas/eletrico-vs-combustao";
 
 export const metadata: Metadata = {
-  title: "Elétrico vs Combustão: Comparador de Custos | Consulta Placa Brasil",
+  title: "Elétrico vs Combustão: Comparador | Consulta Placa",
   description:
     "Compare os custos entre carro elétrico e a combustão. Calcule custo mensal, ponto de equilíbrio e economia acumulada em 60 meses. Grátis e sem cadastro.",
   alternates: {
     canonical: "https://consultaplacabrasil.com.br/ferramentas/eletrico-vs-combustao",
   },
   openGraph: {
-    title: "Elétrico vs Combustão: Comparador de Custos | Consulta Placa Brasil",
+    title: "Elétrico vs Combustão: Comparador | Consulta Placa",
     description:
       "Compare os custos entre carro elétrico e a combustão. Descubra o ponto de equilíbrio e qual veículo é mais econômico em 5 anos.",
     url: "https://consultaplacabrasil.com.br/ferramentas/eletrico-vs-combustao",
@@ -131,6 +131,27 @@ export default function EletricoVsCombustaoPage() {
               abastecimento. Custos como IPVA, seguro, manutenção e depreciação não estão incluídos
               nesta simulação. Utilize os resultados como referência para planejamento financeiro.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="px-4 pb-8">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-xl font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/ferramentas/calculadora-depreciacao" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
+              <span className="font-semibold text-[#0F172A]">Calculadora de Depreciação</span>
+              <p className="text-sm text-[#64748B] mt-1">Descubra quanto seu veículo perde de valor por ano.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-flex" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
+              <span className="font-semibold text-[#0F172A]">Gasolina ou Etanol?</span>
+              <p className="text-sm text-[#64748B] mt-1">Descubra qual combustível é mais vantajoso para você.</p>
+            </Link>
+            <Link href="/ferramentas/custo-total-veiculo" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
+              <span className="font-semibold text-[#0F172A]">Custo Total do Veículo</span>
+              <p className="text-sm text-[#64748B] mt-1">Calcule quanto seu veículo custa por mês e por ano.</p>
+            </Link>
           </div>
         </div>
       </section>

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Consulte o valor das multas de trânsito, pontos na CNH e gravidade das infrações. Tabela atualizada do CTB.",
     url: "https://consultaplacabrasil.com.br/ferramentas/calculadora-multas",
+    type: "website",
   },
 };
 
@@ -37,7 +38,7 @@ export default function CalculadoraMultasPage() {
 
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 max-w-6xl py-4">
-        <nav className="flex items-center gap-1 text-sm text-[#64748B]">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-sm text-[#64748B]">
           <Link href="/" className="hover:text-[#FF4D30] transition-colors">
             Início
           </Link>
@@ -133,6 +134,35 @@ export default function CalculadoraMultasPage() {
         </div>
       </section>
 
+      {/* Ferramentas relacionadas */}
+      <section className="px-4 pb-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-lg font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/ferramentas/calculadora-ipva" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
+              <span className="font-semibold text-[#0F172A]">Calculadora de IPVA 2026</span>
+              <p className="text-sm text-[#64748B] mt-1">Calcule o IPVA do seu veículo por estado.</p>
+            </Link>
+            <Link href="/ferramentas/simulador-financiamento" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
+              <span className="font-semibold text-[#0F172A]">Simulador de Financiamento</span>
+              <p className="text-sm text-[#64748B] mt-1">Calcule parcelas e juros do financiamento veicular.</p>
+            </Link>
+            <Link href="/ferramentas/decodificador-chassi" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
+              <span className="font-semibold text-[#0F172A]">Decodificador de Chassi</span>
+              <p className="text-sm text-[#64748B] mt-1">Decodifique o VIN e descubra dados do veículo.</p>
+            </Link>
+          </div>
+          <div className="mt-6 text-center">
+            <Link
+              href="/ferramentas"
+              className="inline-flex items-center text-[#FF4D30] font-semibold hover:underline transition-colors"
+            >
+              ← Ver todas as ferramentas
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Schema: WebApplication + FAQPage */}
       <script
         type="application/ld+json"
@@ -151,6 +181,11 @@ export default function CalculadoraMultasPage() {
                 "@type": "Offer",
                 price: "0",
                 priceCurrency: "BRL",
+              },
+              provider: {
+                "@type": "Organization",
+                name: "Consulta Placa Brasil",
+                url: "https://consultaplacabrasil.com.br",
               },
             },
             {
