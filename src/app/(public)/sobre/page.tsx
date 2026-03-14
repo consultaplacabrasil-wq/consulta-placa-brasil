@@ -110,8 +110,8 @@ export default async function SobrePage() {
         </div>
       </section>
 
-      {/* Dynamic content from admin */}
-      {page?.content ? (
+      {/* Dynamic content from admin (only if substantial content exists) */}
+      {page?.content && page.content.replace(/<[^>]*>/g, "").trim().length > 100 ? (
         <section className="bg-white px-4 py-12 md:py-16">
           <div
             className="prose prose-gray mx-auto max-w-4xl"
