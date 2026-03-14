@@ -242,25 +242,29 @@ export function SugestaoForm() {
 
 export function SugestaoCTA() {
   return (
-    <div className="bg-gradient-to-br from-[#0F172A] to-[#1E293B] rounded-2xl p-8 text-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF4D30]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+    <div
+      className="rounded-2xl p-8 relative overflow-hidden"
+      style={{ background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)" }}
+    >
+      <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" style={{ backgroundColor: "rgba(255,77,48,0.1)" }} />
       <div className="relative">
         <div className="flex items-center gap-3 mb-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/20">
-            <Lightbulb className="w-6 h-6 text-[#FF4D30]" />
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl" style={{ backgroundColor: "rgba(255,77,48,0.2)" }}>
+            <Lightbulb className="w-6 h-6" style={{ color: "#FF4D30" }} />
           </div>
           <div>
-            <h3 className="text-lg font-bold">Sentiu falta de alguma ferramenta?</h3>
-            <p className="text-sm text-gray-400">Ajude-nos a criar novas ferramentas</p>
+            <h3 className="text-lg font-bold" style={{ color: "#ffffff" }}>Sentiu falta de alguma ferramenta?</h3>
+            <p className="text-sm" style={{ color: "#94A3B8" }}>Ajude-nos a criar novas ferramentas</p>
           </div>
         </div>
-        <p className="text-gray-300 text-sm mb-5 leading-relaxed">
+        <p className="text-sm mb-5 leading-relaxed" style={{ color: "#CBD5E1" }}>
           Sua sugestão é muito importante para nós. Indique uma ferramenta que ainda não
           temos e nossa equipe vai avaliar a criação.
         </p>
         <a
           href="/ferramentas/sugerir"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FF4D30] text-white font-semibold hover:bg-[#E8432A] transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-colors hover:opacity-90"
+          style={{ backgroundColor: "#FF4D30", color: "#ffffff" }}
         >
           <Lightbulb className="w-4 h-4" />
           Sugerir ferramenta
