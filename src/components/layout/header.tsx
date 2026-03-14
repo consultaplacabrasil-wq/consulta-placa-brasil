@@ -27,24 +27,6 @@ export function Header() {
 
   return (
     <>
-      {/* Top bar */}
-      <div className="hidden md:block bg-[#0F172A] text-white text-sm">
-        <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-2">
-          <div className="flex items-center gap-4">
-            <span className="text-gray-300">contato@consultaplacabrasil.com</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="text-gray-300 hover:text-white transition-colors">
-              Entrar
-            </Link>
-            <span className="text-gray-500">|</span>
-            <Link href="/cadastro" className="text-gray-300 hover:text-white transition-colors">
-              Criar conta
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Main header */}
       <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
         <div className="mx-auto max-w-6xl flex h-16 items-center justify-between px-4">
