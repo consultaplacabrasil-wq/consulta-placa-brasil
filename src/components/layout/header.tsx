@@ -90,7 +90,7 @@ export function Header() {
                 </span>
               )}
             </button>
-            <Link href="/consulta">
+            <Link href="/">
               <Button
                 size="sm"
                 className="gap-2 bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold rounded-lg px-5 h-10 shadow-sm shadow-[#FF4D30]/20"
@@ -145,7 +145,7 @@ export function Header() {
                       Entrar
                     </Button>
                   </Link>
-                  <Link href="/consulta" onClick={() => setOpen(false)}>
+                  <Link href="/" onClick={() => setOpen(false)}>
                     <Button className="w-full gap-2 bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold">
                       <Search className="h-4 w-4" />
                       Consultar Placa
