@@ -110,6 +110,7 @@ export default function CustoTotalVeiculo() {
     const parcela = parseValor(parcelaFinanciamento);
 
     if (!valor || !estado || !km || !cons || !preco) return;
+    if (cons <= 0) return;
 
     const aliquota = (ALIQUOTAS_IPVA[estado] ?? 3) / 100;
     const ipva = valor * aliquota;
@@ -338,6 +339,24 @@ export default function CustoTotalVeiculo() {
       {/* Resultado */}
       {resultado && (
         <div className="mt-8 space-y-6">
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => {
+                setValorVeiculo("");
+                setEstado("");
+                setKmMes("");
+                setConsumo("");
+                setPrecoCombustivel("");
+                setValorSeguro("");
+                setParcelaFinanciamento("");
+                setResultado(null);
+              }}
+              className="text-sm text-[#FF4D30] hover:underline font-medium"
+            >
+              Limpar tudo
+            </button>
+          </div>
           {/* Resumo principal */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-[#F8FAFC] rounded-2xl p-5 border border-gray-100 text-center">

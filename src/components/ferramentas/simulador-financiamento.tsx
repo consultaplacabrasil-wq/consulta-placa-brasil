@@ -252,6 +252,22 @@ export default function SimuladorFinanciamento() {
       {/* Resultados */}
       {principal > 0 && taxaJurosNum > 0 && tabela.length > 0 && (
         <>
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => {
+                setValorVeiculo("60000");
+                setValorEntrada("12000");
+                setTaxaJuros("1.49");
+                setPrazo(48);
+                setModo("price");
+                setMostrarTabela(false);
+              }}
+              className="text-sm text-[#FF4D30] hover:underline font-medium"
+            >
+              Redefinir valores
+            </button>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
               <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">

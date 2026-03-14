@@ -238,6 +238,21 @@ export default function CalculadoraTransferencia() {
       {/* Resultado */}
       {resultado && (
         <div className="mt-8 space-y-6">
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => {
+                setEstadoOrigem("");
+                setEstadoDestino("");
+                setValorVeiculo("");
+                setTipoTransferencia("compra_venda");
+                setResultado(null);
+              }}
+              className="text-sm text-[#FF4D30] hover:underline font-medium"
+            >
+              Limpar tudo
+            </button>
+          </div>
           {/* Total estimado */}
           <div className="bg-[#F8FAFC] rounded-2xl p-6 border border-gray-100">
             <h3 className="text-sm font-semibold text-[#64748B] uppercase tracking-wide mb-1">

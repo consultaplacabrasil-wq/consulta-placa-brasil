@@ -267,7 +267,8 @@ export default function ConversorPlaca() {
       {/* Botão converter */}
       <button
         onClick={handleConverter}
-        className="w-full py-3 px-6 bg-[#FF4D30] hover:bg-[#e8432a] text-white font-bold rounded-xl transition-colors shadow-sm"
+        disabled={!placa}
+        className="w-full py-3 px-6 bg-[#FF4D30] hover:bg-[#e8432a] text-white font-bold rounded-xl transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Converter Placa
       </button>

@@ -219,9 +219,9 @@ export default function VerificadorDocumentos() {
           </label>
           <input
             id="final-placa"
-            type="number"
-            min={0}
-            max={9}
+            type="text"
+            inputMode="numeric"
+            maxLength={1}
             placeholder="Ex: 7"
             value={finalPlaca}
             onChange={(e) => {
@@ -285,6 +285,22 @@ export default function VerificadorDocumentos() {
       {/* Resultado */}
       {resultado && (
         <div className="mt-8 space-y-6">
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => {
+                setDataNascimento("");
+                setDataEmissao("");
+                setFinalPlaca("");
+                setEstado("");
+                setErro("");
+                setResultado(null);
+              }}
+              className="text-sm text-[#FF4D30] hover:underline font-medium"
+            >
+              Limpar tudo
+            </button>
+          </div>
           {/* Alerta visual principal */}
           <div
             className={`rounded-2xl p-6 border-2 ${statusColors[resultado.statusCNH.status].bg} ${statusColors[resultado.statusCNH.status].border}`}

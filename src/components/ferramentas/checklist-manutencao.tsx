@@ -15,7 +15,7 @@ interface GrupoIntervalo {
   itens: ItemChecklist[];
 }
 
-const CHECKLISTS: Record<TipoVeiculo, Omit<GrupoIntervalo, "itens"> & { itens: string[] }[]> = {
+const CHECKLISTS: Record<TipoVeiculo, { intervalo: number; label: string; itens: string[] }[]> = {
   carro: [
     {
       intervalo: 5000,

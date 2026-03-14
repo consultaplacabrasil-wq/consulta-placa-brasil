@@ -76,11 +76,13 @@ export default function CalculadoraFlex() {
               </span>
               <input
                 id="preco-gasolina"
-                type="number"
-                step="0.01"
-                min="0"
+                type="text"
+                inputMode="decimal"
                 value={precoGasolina}
-                onChange={(e) => setPrecoGasolina(e.target.value)}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/[^0-9.,]/g, "");
+                  setPrecoGasolina(val);
+                }}
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-all"
                 placeholder="5.89"
               />
@@ -100,11 +102,13 @@ export default function CalculadoraFlex() {
               </span>
               <input
                 id="preco-etanol"
-                type="number"
-                step="0.01"
-                min="0"
+                type="text"
+                inputMode="decimal"
                 value={precoEtanol}
-                onChange={(e) => setPrecoEtanol(e.target.value)}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/[^0-9.,]/g, "");
+                  setPrecoEtanol(val);
+                }}
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-all"
                 placeholder="3.99"
               />
@@ -120,11 +124,13 @@ export default function CalculadoraFlex() {
             </label>
             <input
               id="consumo-gasolina"
-              type="number"
-              step="0.1"
-              min="0"
+              type="text"
+              inputMode="decimal"
               value={consumoGasolina}
-              onChange={(e) => setConsumoGasolina(e.target.value)}
+              onChange={(e) => {
+                const val = e.target.value.replace(/[^0-9.,]/g, "");
+                setConsumoGasolina(val);
+              }}
               className="w-full px-4 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-all"
               placeholder="12"
             />
@@ -140,11 +146,13 @@ export default function CalculadoraFlex() {
             </label>
             <input
               id="km-mes"
-              type="number"
-              step="100"
-              min="0"
+              type="text"
+              inputMode="numeric"
               value={kmMes}
-              onChange={(e) => setKmMes(e.target.value)}
+              onChange={(e) => {
+                const val = e.target.value.replace(/[^0-9]/g, "");
+                setKmMes(val);
+              }}
               className="w-full px-4 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-all"
               placeholder="1000"
             />

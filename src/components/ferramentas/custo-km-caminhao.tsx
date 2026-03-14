@@ -52,6 +52,7 @@ export default function CustoKmCaminhao() {
   const [kmMes, setKmMes] = useState("");
   const [valorVeiculo, setValorVeiculo] = useState("");
   const [resultado, setResultado] = useState<Resultado | null>(null);
+  const [erro, setErro] = useState("");
 
   function handleMoedaChange(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -94,7 +95,11 @@ export default function CustoKmCaminhao() {
     const km = parseValor(kmMes);
     const valor = parseValor(valorVeiculo);
 
-    if (!eixos || !cons || !diesel || !km || !valor) return;
+    if (!eixos || !cons || !diesel || !km || !valor) {
+      setErro("Preencha todos os campos obrigatórios com valores maiores que zero.");
+      return;
+    }
+    setErro("");
 
     const tipo = TIPOS_VEICULO.find((t) => t.eixos === eixos);
     if (!tipo) return;
@@ -381,6 +386,13 @@ export default function CustoKmCaminhao() {
       >
         Calcular Custo por Km
       </button>
+
+      {/* Erro de validação */}
+      {erro && (
+        <div className="mt-4 p-4 rounded-xl bg-red-50 border border-red-100">
+          <p className="text-sm text-red-700">{erro}</p>
+        </div>
+      )}
 
       {/* Resultado */}
       {resultado && (

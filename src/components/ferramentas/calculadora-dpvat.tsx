@@ -31,13 +31,18 @@ export default function CalculadoraDPVAT() {
     valor: number;
     tipo: string;
   } | null>(null);
+  const [erro, setErro] = useState("");
 
   const anoAtual = new Date().getFullYear();
 
   function calcular() {
     if (!anoVeiculo) return;
     const ano = parseInt(anoVeiculo, 10);
-    if (isNaN(ano) || ano < 1900 || ano > anoAtual + 1) return;
+    if (isNaN(ano) || ano < 1900 || ano > anoAtual + 1) {
+      setErro(`Informe um ano válido entre 1900 e ${anoAtual + 1}.`);
+      return;
+    }
+    setErro("");
 
     const info = VALORES_SPVAT[tipoVeiculo];
     setResultado({
@@ -92,6 +97,7 @@ export default function CalculadoraDPVAT() {
           <input
             id="ano-veiculo"
             type="number"
+            inputMode="numeric"
             min="1900"
             max={anoAtual + 1}
             placeholder={`Ex: ${anoAtual}`}
@@ -111,6 +117,13 @@ export default function CalculadoraDPVAT() {
       >
         Calcular SPVAT / DPVAT 2026
       </button>
+
+      {/* Erro de validação */}
+      {erro && (
+        <div className="mt-4 p-4 rounded-xl bg-red-50 border border-red-100">
+          <p className="text-sm text-red-700">{erro}</p>
+        </div>
+      )}
 
       {/* Resultado */}
       {resultado && (

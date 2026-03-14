@@ -72,6 +72,7 @@ export default function EletricoVsCombustao() {
     const consCombustao = parseValor(consumoCombustao);
 
     if (!pEletrico || !pCombustao || !km || !kwh || !gasolina || !consEletrico || !consCombustao) return;
+    if (consEletrico <= 0 || consCombustao <= 0) return;
 
     // Custo mensal de energia: km/mês / (km/kWh) * preço kWh
     const custoMensalEletrico = (km / consEletrico) * kwh;
@@ -296,6 +297,24 @@ export default function EletricoVsCombustao() {
       {/* Resultado */}
       {resultado && (
         <div className="mt-8 space-y-6">
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => {
+                setPrecoEletrico("");
+                setPrecoCombustao("");
+                setKmMes("");
+                setPrecoKwh("0,90");
+                setPrecoGasolina("");
+                setConsumoEletrico("6");
+                setConsumoCombustao("");
+                setResultado(null);
+              }}
+              className="text-sm text-[#FF4D30] hover:underline font-medium"
+            >
+              Limpar tudo
+            </button>
+          </div>
           {/* Cards de custo mensal */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="bg-green-50 rounded-2xl p-5 border border-green-100 text-center">

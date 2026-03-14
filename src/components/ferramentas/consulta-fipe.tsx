@@ -301,6 +301,33 @@ export default function ConsultaFipe() {
         {erro && (
           <div className="bg-red-50 border border-red-100 rounded-xl p-4">
             <p className="text-sm text-red-700">{erro}</p>
+            <button
+              type="button"
+              onClick={() => {
+                setErro("");
+                // Re-trigger the last step by toggling the relevant state
+                if (anoCodigo) {
+                  const tmp = anoCodigo;
+                  setAnoCodigo("");
+                  setTimeout(() => setAnoCodigo(tmp), 50);
+                } else if (modeloCodigo) {
+                  const tmp = modeloCodigo;
+                  setModeloCodigo("");
+                  setTimeout(() => setModeloCodigo(tmp), 50);
+                } else if (marcaCodigo) {
+                  const tmp = marcaCodigo;
+                  setMarcaCodigo("");
+                  setTimeout(() => setMarcaCodigo(tmp), 50);
+                } else if (tipo) {
+                  const tmp = tipo;
+                  setTipo("");
+                  setTimeout(() => setTipo(tmp), 50);
+                }
+              }}
+              className="mt-2 text-sm font-semibold text-red-700 underline hover:text-red-900"
+            >
+              Tentar novamente
+            </button>
           </div>
         )}
 

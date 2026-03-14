@@ -57,6 +57,7 @@ export default function CalculadoraFreteAntt() {
   const [peso, setPeso] = useState("");
   const [distancia, setDistancia] = useState("");
   const [resultado, setResultado] = useState<ResultadoCalculo | null>(null);
+  const [erro, setErro] = useState("");
 
   function handleNumericInput(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -75,7 +76,11 @@ export default function CalculadoraFreteAntt() {
     const pesoNum = parseNumero(peso);
     const distanciaNum = parseNumero(distancia);
 
-    if (pesoNum <= 0 || distanciaNum <= 0) return;
+    if (pesoNum <= 0 || distanciaNum <= 0) {
+      setErro("Informe um peso e uma distância maiores que zero.");
+      return;
+    }
+    setErro("");
 
     const freteMinimo = pesoNum * distanciaNum * TAXA_ANTT;
     const valorPorTonKm = TAXA_ANTT;
@@ -202,6 +207,13 @@ export default function CalculadoraFreteAntt() {
       >
         Calcular frete mínimo ANTT
       </button>
+
+      {/* Erro de validação */}
+      {erro && (
+        <div className="mt-4 p-4 rounded-xl bg-red-50 border border-red-100">
+          <p className="text-sm text-red-700">{erro}</p>
+        </div>
+      )}
 
       {/* Resultado */}
       {resultado && (

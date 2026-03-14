@@ -241,7 +241,7 @@ CPF:`;
             </div>
             <div>
               <label htmlFor="v-cpf" className={labelClass}>CPF</label>
-              <input id="v-cpf" type="text" required value={vendedor.cpf}
+              <input id="v-cpf" type="text" inputMode="numeric" required value={vendedor.cpf}
                 onChange={(e) => setVendedor({ ...vendedor, cpf: e.target.value })}
                 className={inputClass} placeholder="000.000.000-00" />
             </div>
@@ -270,7 +270,7 @@ CPF:`;
             </div>
             <div>
               <label htmlFor="v-telefone" className={labelClass}>Telefone</label>
-              <input id="v-telefone" type="tel" required value={vendedor.telefone}
+              <input id="v-telefone" type="tel" inputMode="tel" required value={vendedor.telefone}
                 onChange={(e) => setVendedor({ ...vendedor, telefone: e.target.value })}
                 className={inputClass} placeholder="(00) 00000-0000" />
             </div>
@@ -292,7 +292,7 @@ CPF:`;
             </div>
             <div>
               <label htmlFor="c-cpf" className={labelClass}>CPF</label>
-              <input id="c-cpf" type="text" required value={comprador.cpf}
+              <input id="c-cpf" type="text" inputMode="numeric" required value={comprador.cpf}
                 onChange={(e) => setComprador({ ...comprador, cpf: e.target.value })}
                 className={inputClass} placeholder="000.000.000-00" />
             </div>
@@ -321,7 +321,7 @@ CPF:`;
             </div>
             <div>
               <label htmlFor="c-telefone" className={labelClass}>Telefone</label>
-              <input id="c-telefone" type="tel" required value={comprador.telefone}
+              <input id="c-telefone" type="tel" inputMode="tel" required value={comprador.telefone}
                 onChange={(e) => setComprador({ ...comprador, telefone: e.target.value })}
                 className={inputClass} placeholder="(00) 00000-0000" />
             </div>
@@ -349,13 +349,13 @@ CPF:`;
             </div>
             <div>
               <label htmlFor="ve-ano-fab" className={labelClass}>Ano de fabricação</label>
-              <input id="ve-ano-fab" type="text" required value={veiculo.anoFabricacao}
+              <input id="ve-ano-fab" type="text" inputMode="numeric" required value={veiculo.anoFabricacao}
                 onChange={(e) => setVeiculo({ ...veiculo, anoFabricacao: e.target.value })}
                 className={inputClass} placeholder="Ex.: 2020" />
             </div>
             <div>
               <label htmlFor="ve-ano-mod" className={labelClass}>Ano modelo</label>
-              <input id="ve-ano-mod" type="text" required value={veiculo.anoModelo}
+              <input id="ve-ano-mod" type="text" inputMode="numeric" required value={veiculo.anoModelo}
                 onChange={(e) => setVeiculo({ ...veiculo, anoModelo: e.target.value })}
                 className={inputClass} placeholder="Ex.: 2021" />
             </div>
@@ -379,7 +379,7 @@ CPF:`;
             </div>
             <div>
               <label htmlFor="ve-renavam" className={labelClass}>RENAVAM</label>
-              <input id="ve-renavam" type="text" required value={veiculo.renavam}
+              <input id="ve-renavam" type="text" inputMode="numeric" required value={veiculo.renavam}
                 onChange={(e) => setVeiculo({ ...veiculo, renavam: e.target.value })}
                 className={inputClass} placeholder="Número do RENAVAM" />
             </div>

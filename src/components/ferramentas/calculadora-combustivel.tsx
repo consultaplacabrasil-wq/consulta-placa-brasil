@@ -1,22 +1,39 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { Fuel, MapPin, DollarSign, Users, ArrowLeftRight, GaugeCircle } from "lucide-react";
 
 export default function CalculadoraCombustivel() {
-  const [distancia, setDistancia] = useState<string>("500");
-  const [consumo, setConsumo] = useState<string>("12");
-  const [precoCombustivel, setPrecoCombustivel] = useState<string>("5.89");
+  const [distancia, setDistancia] = useState<string>("");
+  const [consumo, setConsumo] = useState<string>("");
+  const [precoCombustivel, setPrecoCombustivel] = useState<string>("");
   const [passageiros, setPassageiros] = useState<string>("1");
   const [idaEVolta, setIdaEVolta] = useState<boolean>(false);
+  const [calculado, setCalculado] = useState(false);
+  const [erro, setErro] = useState("");
 
-  const resultado = useMemo(() => {
+  const [resultado, setResultado] = useState<{
+    distanciaTotal: number;
+    litrosNecessarios: number;
+    custoTotal: number;
+    custoPorKm: number;
+    custoPorPassageiro: number;
+    passageiros: number;
+    paradasAbastecimento: number;
+    tanquesCompletos: number;
+  } | null>(null);
+
+  function calcular() {
     const dist = parseFloat(distancia) || 0;
     const cons = parseFloat(consumo) || 0;
     const preco = parseFloat(precoCombustivel) || 0;
     const pass = parseInt(passageiros) || 1;
 
-    if (dist <= 0 || cons <= 0 || preco <= 0) return null;
+    if (dist <= 0 || cons <= 0 || preco <= 0) {
+      setErro("Informe a distância, o consumo e o preço do combustível com valores maiores que zero.");
+      return;
+    }
+    setErro("");
 
     const distanciaTotal = idaEVolta ? dist * 2 : dist;
     const litrosNecessarios = distanciaTotal / cons;
@@ -26,7 +43,7 @@ export default function CalculadoraCombustivel() {
     const tanqueMedio = 50;
     const paradasAbastecimento = Math.ceil(litrosNecessarios / tanqueMedio) - 1;
 
-    return {
+    setResultado({
       distanciaTotal,
       litrosNecessarios,
       custoTotal,
@@ -35,8 +52,11 @@ export default function CalculadoraCombustivel() {
       passageiros: pass,
       paradasAbastecimento: paradasAbastecimento < 0 ? 0 : paradasAbastecimento,
       tanquesCompletos: litrosNecessarios / tanqueMedio,
-    };
-  }, [distancia, consumo, precoCombustivel, passageiros, idaEVolta]);
+    });
+    setCalculado(true);
+  }
+
+  const podCalcular = distancia && consumo && precoCombustivel;
 
   const formatBRL = (value: number) =>
     value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -65,6 +85,7 @@ export default function CalculadoraCombustivel() {
               <input
                 id="distancia"
                 type="number"
+                inputMode="numeric"
                 step="1"
                 min="0"
                 value={distancia}
@@ -85,8 +106,9 @@ export default function CalculadoraCombustivel() {
             <input
               id="consumo"
               type="number"
+              inputMode="decimal"
               step="0.1"
-              min="0"
+              min="0.1"
               value={consumo}
               onChange={(e) => setConsumo(e.target.value)}
               className="w-full px-4 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-all"
@@ -108,12 +130,13 @@ export default function CalculadoraCombustivel() {
               <input
                 id="preco-combustivel"
                 type="number"
+                inputMode="decimal"
                 step="0.01"
-                min="0"
+                min="0.01"
                 value={precoCombustivel}
                 onChange={(e) => setPrecoCombustivel(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-all"
-                placeholder="5.89"
+                placeholder="5,89"
               />
             </div>
           </div>
@@ -129,6 +152,7 @@ export default function CalculadoraCombustivel() {
             <input
               id="passageiros"
               type="number"
+              inputMode="numeric"
               step="1"
               min="1"
               value={passageiros}
@@ -160,10 +184,27 @@ export default function CalculadoraCombustivel() {
             Ida e volta (dobrar distância)
           </span>
         </div>
+
+        {/* Botão calcular */}
+        <button
+          type="button"
+          onClick={calcular}
+          disabled={!podCalcular}
+          className="mt-6 w-full py-4 rounded-xl bg-[#FF4D30] text-white font-bold text-lg hover:bg-[#E8432A] disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+        >
+          Calcular custo de combustível
+        </button>
+
+        {/* Erro de validação */}
+        {erro && (
+          <div className="mt-4 p-4 rounded-xl bg-red-50 border border-red-100">
+            <p className="text-sm text-red-700">{erro}</p>
+          </div>
+        )}
       </div>
 
       {/* Resultado */}
-      {resultado && (
+      {calculado && resultado && (
         <>
           {/* Card principal de custo */}
           <div className="rounded-2xl p-8 text-center text-white shadow-lg bg-gradient-to-br from-[#FF4D30] to-red-700">
