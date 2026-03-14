@@ -25,6 +25,7 @@ import {
   Loader2,
   UserCog,
 } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 
@@ -69,13 +70,15 @@ function SidebarContent({
         onClick={onNavigate}
       >
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FF4D30]">
-          <Shield className="h-5 w-5 text-white" />
+          <Car className="h-5 w-5 text-white" />
         </div>
         <div>
-          <span className="text-base font-bold text-white">
-            {userRole === "admin" ? "Admin" : "Atendente"}
-          </span>
-          <span className="text-[10px] text-gray-400 block">ConsultaPlaca</span>
+          <Image
+            src="/logo-footer.webp"
+            alt="Consulta Placa Brasil"
+            width={120}
+            height={30}
+          />
         </div>
       </Link>
 

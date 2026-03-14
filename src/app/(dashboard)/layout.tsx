@@ -13,6 +13,7 @@ import {
   LogOut,
   Menu,
 } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 
@@ -35,9 +36,12 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FF4D30]">
           <Car className="h-5 w-5 text-white" />
         </div>
-        <span className="text-lg font-bold text-[#0F172A]">
-          Consulta<span className="text-[#FF4D30]">Placa</span>
-        </span>
+        <Image
+          src="/logo-header.webp"
+          alt="Consulta Placa Brasil"
+          width={140}
+          height={35}
+        />
       </Link>
 
       <nav className="flex-1 space-y-1 px-3 py-4">
