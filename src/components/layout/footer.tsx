@@ -47,16 +47,12 @@ export function Footer() {
             </p>
             <div className="space-y-2.5 text-sm text-gray-400">
               <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-[#FF4D30]" />
-                (11) 4002-8922
-              </div>
-              <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-[#FF4D30]" />
                 contato@consultaplacabrasil.com
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-[#FF4D30]" />
-                São Paulo, SP - Brasil
+                Campinas, SP - Brasil
               </div>
             </div>
           </div>

@@ -65,44 +65,12 @@ export default function ContatoPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/10 shrink-0">
-                    <Phone className="w-5 h-5 text-[#FF4D30]" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[#0F172A]">Telefone</p>
-                    <a
-                      href="tel:+551140028922"
-                      className="text-[#FF4D30] hover:underline text-sm"
-                    >
-                      (11) 4002-8922
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/10 shrink-0">
-                    <MessageCircle className="w-5 h-5 text-[#FF4D30]" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[#0F172A]">WhatsApp</p>
-                    <a
-                      href="https://wa.me/551140028922"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#FF4D30] hover:underline text-sm"
-                    >
-                      (11) 4002-8922
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/10 shrink-0">
                     <MapPin className="w-5 h-5 text-[#FF4D30]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#0F172A]">Endereço</p>
+                    <p className="font-semibold text-[#0F172A]">Localização</p>
                     <p className="text-sm text-[#475569]">
-                      São Paulo, SP - Brasil
+                      Campinas, SP - Brasil
                     </p>
                   </div>
                 </div>
@@ -142,7 +110,7 @@ export default function ContatoPage() {
             mainEntity: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              telephone: "+55-11-4002-8922",
+              email: "contato@consultaplacabrasil.com",
               email: "contato@consultaplacabrasil.com",
               address: {
                 "@type": "PostalAddress",

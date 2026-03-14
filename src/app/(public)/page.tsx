@@ -302,25 +302,16 @@ export default function HomePage() {
             description:
               "Plataforma de consulta veicular completa com relatórios detalhados de veículos, motos e caminhões em todos os estados do Brasil.",
             foundingDate: "2024",
-            contactPoint: [
-              {
-                "@type": "ContactPoint",
-                telephone: "+55-11-4002-8922",
-                contactType: "customer service",
-                areaServed: "BR",
-                availableLanguage: "Portuguese",
-              },
-              {
-                "@type": "ContactPoint",
-                email: "contato@consultaplacabrasil.com",
-                contactType: "customer support",
-                areaServed: "BR",
-                availableLanguage: "Portuguese",
-              },
-            ],
+            contactPoint: {
+              "@type": "ContactPoint",
+              email: "contato@consultaplacabrasil.com",
+              contactType: "customer service",
+              areaServed: "BR",
+              availableLanguage: "Portuguese",
+            },
             address: {
               "@type": "PostalAddress",
-              addressLocality: "São Paulo",
+              addressLocality: "Campinas",
               addressRegion: "SP",
               addressCountry: "BR",
             },

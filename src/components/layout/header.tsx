@@ -30,11 +30,6 @@ export function Header() {
       <div className="hidden md:block bg-[#0F172A] text-white text-sm">
         <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-2">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-gray-300">
-              <Phone className="h-3.5 w-3.5" />
-              (11) 4002-8922
-            </span>
-            <span className="text-gray-500">|</span>
             <span className="text-gray-300">contato@consultaplacabrasil.com</span>
           </div>
           <div className="flex items-center gap-3">

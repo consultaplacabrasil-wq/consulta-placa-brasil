@@ -3,7 +3,10 @@ import { Resend } from "resend";
 import { db } from "@/lib/db";
 import { contactMessages } from "@/lib/db/schema";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  return key ? new Resend(key) : null;
+}
 
 export async function POST(request: Request) {
   try {
@@ -25,7 +28,8 @@ export async function POST(request: Request) {
     });
 
     const adminEmail = process.env.ADMIN_EMAIL;
-    if (adminEmail && process.env.RESEND_API_KEY) {
+    const resend = getResend();
+    if (adminEmail && resend) {
       await resend.emails.send({
         from: "Consulta Placa Brasil <onboarding@resend.dev>",
         to: adminEmail,
