@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FerramentasGrid } from "@/components/ferramentas/ferramentas-grid";
 
 export const metadata: Metadata = {
@@ -202,18 +203,30 @@ export default function FerramentasPage() {
   return (
     <div className="bg-[#F8FAFC]">
       {/* Hero */}
-      <section className="bg-[#0F172A] text-white py-16">
-        <div className="container mx-auto px-4 max-w-6xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+      <section className="bg-[#0F172A] text-white py-10">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Início</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-300">Ferramentas</span>
+          </nav>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Ferramentas Veiculares Gratuitas
           </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mb-4">
             Calculadoras, simuladores e verificadores para ajudar você na compra, venda e manutenção
-            do seu veículo. Todas gratuitas e sem cadastro.
+            do seu veículo. {ferramentas.length} ferramentas disponíveis.
           </p>
-          <p className="mt-4 text-sm text-gray-500">
-            {ferramentas.length} ferramentas disponíveis
-          </p>
+          <div className="flex items-center gap-4 text-sm">
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Todas gratuitas
+            </span>
+            <span className="flex items-center gap-1.5 text-gray-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+              Sem cadastro
+            </span>
+          </div>
         </div>
       </section>
 
