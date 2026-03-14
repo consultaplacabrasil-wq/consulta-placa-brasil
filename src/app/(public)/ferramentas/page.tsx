@@ -211,7 +211,7 @@ export default function FerramentasPage() {
             <span className="text-gray-300">Ferramentas</span>
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold mb-3">
-            Ferramentas Veiculares Gratuitas
+            {ferramentas.length} Ferramentas Veiculares Gratuitas
           </h1>
           <p className="text-gray-400 max-w-2xl mb-4">
             Calculadoras, simuladores e verificadores para ajudar você na compra, venda e manutenção
