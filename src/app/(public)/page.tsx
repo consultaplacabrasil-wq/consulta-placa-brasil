@@ -392,8 +392,8 @@ export default function HomePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            name: "Consulta Veicular pela Placa",
-            serviceType: "Consulta de Veículos",
+            name: "Consulta Placa Veicular",
+            serviceType: "Consulta de Placa de Veículo",
             description:
               "Serviço de consulta veicular completa pela placa do veículo. Relatório com dados cadastrais, histórico de proprietários, sinistro, leilão, gravame, débitos, multas e tabela FIPE.",
             provider: {
