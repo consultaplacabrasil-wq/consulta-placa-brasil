@@ -153,16 +153,20 @@ export default async function SobrePage() {
               <p className="text-[#475569] leading-relaxed">
                 O Consulta Placa Brasil nasceu da necessidade real de milhões de
                 brasileiros que compram, vendem e financiam veículos todos os
-                dias. Percebemos que as informações veiculares estavam dispersas,
-                difíceis de acessar e, muitas vezes, caras. Decidimos mudar
+                dias. As informações veiculares estavam dispersas,
+                difíceis de acessar e, muitas vezes, caras. A{" "}
+                <strong className="text-[#0F172A]">BYTX</strong> decidiu mudar
                 isso.
               </p>
               <p className="text-[#475569] leading-relaxed">
-                Desenvolvido pela{" "}
+                O Consulta Placa Brasil é uma das plataformas do conglomerado
+                de serviços digitais da{" "}
                 <strong className="text-[#0F172A]">BYTX LTDA</strong>, empresa
-                de infraestrutura digital sediada em Campinas, SP, o Consulta
-                Placa Brasil reúne em uma única plataforma tudo o que o
-                proprietário de veículo precisa: desde a{" "}
+                de infraestrutura digital sediada em Campinas, SP. Toda a
+                gestão, desenvolvimento e operação são realizados pela BYTX,
+                que é proprietária desta e de diversas outras plataformas
+                digitais no Brasil. O Consulta Placa Brasil reúne em uma única
+                plataforma tudo o que o proprietário de veículo precisa: desde a{" "}
                 <Link
                   href="/"
                   className="text-[#FF4D30] hover:underline font-medium"
@@ -181,10 +185,10 @@ export default async function SobrePage() {
                 mais.
               </p>
               <p className="text-[#475569] leading-relaxed">
-                Somos mais do que um site de consulta. Somos um ecossistema
-                completo de ferramentas veiculares construído para empoderar o
-                consumidor brasileiro com informação, transparência e
-                segurança.
+                Mais do que um site de consulta, o Consulta Placa Brasil é um
+                ecossistema completo de ferramentas veiculares, parte da visão
+                da BYTX de construir plataformas que empoderam o consumidor
+                brasileiro com informação, transparência e segurança.
               </p>
             </div>
           </section>
@@ -350,18 +354,19 @@ export default async function SobrePage() {
               </h2>
               <div className="bg-[#F8FAFC] rounded-2xl p-8 border border-gray-100 space-y-4">
                 <p className="text-[#475569] leading-relaxed">
-                  O Consulta Placa Brasil é desenvolvido e operado pela{" "}
+                  A{" "}
                   <strong className="text-[#0F172A]">BYTX LTDA</strong> (CNPJ:
-                  65.649.904/0001-98), empresa brasileira de infraestrutura
-                  digital sediada em Campinas, São Paulo.
+                  65.649.904/0001-98) é uma empresa brasileira de infraestrutura
+                  digital sediada em Campinas, São Paulo, que desenvolve e opera
+                  um conglomerado de plataformas digitais em múltiplos segmentos.
                 </p>
                 <p className="text-[#475569] leading-relaxed">
-                  A BYTX desenvolve e opera ativos digitais em múltiplos
-                  segmentos, com foco em eficiência técnica, automação e
-                  escalabilidade. O Consulta Placa Brasil é um dos projetos
-                  da empresa, construído com tecnologia de ponta (Next.js,
-                  TypeScript, PostgreSQL) para oferecer a melhor experiência
-                  ao usuário brasileiro.
+                  O Consulta Placa Brasil é uma das propriedades digitais da
+                  BYTX, que atua na construção, operação e monetização de
+                  plataformas na internet com foco em eficiência técnica,
+                  automação e escalabilidade. Toda a gestão operacional,
+                  financeira e tecnológica desta plataforma é de
+                  responsabilidade da BYTX.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div className="text-sm">
