@@ -207,12 +207,9 @@ export default async function SobrePage() {
                   </h2>
                   <p className="text-[#475569] leading-relaxed">
                     Democratizar o acesso à informação veicular no Brasil,
-                    oferecendo a plataforma mais completa, confiável e acessível
-                    do mercado. Queremos que cada brasileiro tenha em mãos as
-                    ferramentas necessárias para tomar decisões seguras na
-                    compra, venda, financiamento e manutenção do seu veículo,
-                    eliminando a assimetria de informação que historicamente
-                    favoreceu vendedores e instituições financeiras.
+                    oferecendo ferramentas gratuitas e confiáveis para que cada
+                    brasileiro tome decisões seguras na compra, venda e
+                    financiamento do seu veículo.
                   </p>
                 </div>
 
@@ -225,13 +222,10 @@ export default async function SobrePage() {
                     Nossa Visão
                   </h2>
                   <p className="text-[#475569] leading-relaxed">
-                    Ser a maior e mais confiável plataforma de dados veiculares
-                    do Brasil, referência nacional em consulta de placas,
-                    ferramentas automotivas e informação para o consumidor. Nossa
-                    visão é construir o ecossistema definitivo para tudo que
-                    envolve veículos no país, impactando positivamente a vida de
-                    milhões de brasileiros que dependem de transporte próprio no
-                    seu dia a dia.
+                    Ser a maior plataforma de dados veiculares do Brasil,
+                    referência nacional em consulta de placas e ferramentas
+                    automotivas, impactando positivamente a vida de milhões
+                    de brasileiros.
                   </p>
                 </div>
               </div>
