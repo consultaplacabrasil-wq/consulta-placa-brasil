@@ -393,6 +393,19 @@ export const apiLogs = pgTable(
   ]
 );
 
+// Tool Suggestions (user-submitted)
+export const toolSuggestions = pgTable("tool_suggestions", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  nome: varchar("nome", { length: 100 }),
+  email: varchar("email", { length: 255 }),
+  ferramentas: jsonb("ferramentas")
+    .$type<{ nome: string; descricao: string }[]>()
+    .notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Vehicle Alerts
 export const vehicleAlerts = pgTable(
   "vehicle_alerts",

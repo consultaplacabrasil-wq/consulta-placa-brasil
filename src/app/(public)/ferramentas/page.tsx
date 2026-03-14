@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FerramentasGrid } from "@/components/ferramentas/ferramentas-grid";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Ferramentas Veiculares Gratuitas | Consulta Placa",
@@ -350,6 +351,13 @@ export default function FerramentasPage() {
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <FerramentasGrid ferramentas={ferramentas} />
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-8">
+        <div className="container mx-auto max-w-6xl">
+          <SugestaoCTA />
         </div>
       </section>
 
