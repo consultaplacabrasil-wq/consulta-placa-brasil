@@ -26,7 +26,7 @@ export default function SimuladorPontosCNHPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -125,7 +125,7 @@ export default function SimuladorPontosCNHPage() {
             regulamentado pelo Código de Trânsito Brasileiro (CTB), Lei nº
             9.503/1997, com alterações importantes trazidas pela Lei nº
             14.071/2020. Aproveite também para realizar uma{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consulta placa de veículo</Link> e
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consulta placa de veículo</Link> e
             verificar a situação completa do automóvel.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -141,7 +141,7 @@ export default function SimuladorPontosCNHPage() {
             (7 pontos). Cada categoria reflete o nível de risco que a conduta
             do motorista representa para a segurança no trânsito. Para conhecer
             os valores das penalidades associadas, utilize nossa{" "}
-            <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-multas" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de multas de trânsito
             </Link>
             .
@@ -197,7 +197,7 @@ export default function SimuladorPontosCNHPage() {
           <p className="text-[#475569] leading-relaxed">
             Além disso, mantenha a CNH e o licenciamento do veículo sempre em dia.
             Use o{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>{" "}
             para conferir a validade dos seus documentos. Caso receba uma notificação
@@ -214,7 +214,7 @@ export default function SimuladorPontosCNHPage() {
             Caso a CNH seja suspensa, o condutor deve entregar o documento ao
             órgão de trânsito e cumprir o período de suspensão determinado, que
             varia de 2 a 12 meses. Você também pode{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">pesquisar placa de carro</Link> para
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">pesquisar placa de carro</Link> para
             saber se o veículo possui alguma restrição ativa. Durante esse período, é proibido conduzir
             qualquer veículo.
           </p>
@@ -225,26 +225,26 @@ export default function SimuladorPontosCNHPage() {
             gravíssima prevista no Art. 162-II do CTB, com multa de R$ 880,41 e
             7 pontos na CNH. Lembre-se também de manter o IPVA do seu veículo em
             dia, e consulte a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de IPVA
             </Link>{" "}
             para estimar o valor do imposto no seu estado.
           </p>
           <p className="text-[#475569] leading-relaxed">
             Além do simulador de pontos, o Consulta Placa Brasil oferece diversas{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>
             . Confira também o{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>{" "}
             para checar a validade da sua CNH, a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência de veículo
             </Link>{" "}
             e o{" "}
-            <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/identificador-placa" className="text-[#C73A1E] hover:underline font-medium">
               identificador de placa veicular
             </Link>
             .

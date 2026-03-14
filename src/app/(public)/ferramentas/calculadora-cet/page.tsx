@@ -26,7 +26,7 @@ export default function CalculadoraCETPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -78,7 +78,7 @@ export default function CalculadoraCETPage() {
             juros remuneratórios, IOF (Imposto sobre Operações Financeiras), TAC (Tarifa de Abertura
             de Crédito), seguro prestamista, tarifas de cadastro, avaliação do bem e quaisquer outros
             custos embutidos no contrato. Antes de fechar um financiamento, vale{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar a placa</Link>{" "}
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar a placa</Link>{" "}
             do veículo para verificar a situação cadastral e eventuais restrições.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -104,7 +104,7 @@ export default function CalculadoraCETPage() {
             R$ 1.500 dependendo da instituição. Há ainda a inclusão de serviços como proteção
             financeira, pacote de assistência e seguro de garantia mecânica, que inflam o valor
             financiado sem que o cliente perceba. Utilize o{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               Simulador de Financiamento
             </Link>{" "}
             para visualizar as parcelas e compare com o CET calculado aqui.
@@ -128,11 +128,11 @@ export default function CalculadoraCETPage() {
             o único indicador que permite uma comparação verdadeiramente justa entre financiamentos
             de diferentes bancos. Complementarmente, verifique também os custos de manutenção e
             impostos do veículo com as ferramentas de{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               Custo Total do Veículo
             </Link>{" "}
             e{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               Calculadora de IPVA
             </Link>.
           </p>

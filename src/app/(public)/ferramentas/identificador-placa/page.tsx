@@ -106,7 +106,7 @@ export default function IdentificadorPlacaPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -189,7 +189,7 @@ export default function IdentificadorPlacaPage() {
           <p className="text-[#475569] leading-relaxed">
             Além da placa, outro código importante para a identificação é o chassi. Utilize
             nosso{" "}
-            <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/decodificador-chassi" className="text-[#C73A1E] hover:underline font-medium">
               decodificador de chassi
             </Link>{" "}
             para extrair informações detalhadas a partir do número VIN. No Brasil, existem atualmente
@@ -212,7 +212,7 @@ export default function IdentificadorPlacaPage() {
             A placa Mercosul, implementada no Brasil a partir de setembro de 2018, segue
             o formato ABC1D23, onde a quinta posição é uma letra em vez de um número. Se
             deseja visualizar como ficaria uma placa nesse formato, experimente o{" "}
-            <Link href="/ferramentas/gerador-placa" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/gerador-placa" className="text-[#C73A1E] hover:underline font-medium">
               gerador visual de placa
             </Link>
             . O novo padrão traz visual unificado para todas as categorias: fundo branco, faixa
@@ -228,7 +228,7 @@ export default function IdentificadorPlacaPage() {
           <p className="text-[#475569] leading-relaxed">
             Do ponto de vista da segurança, a placa Mercosul trouxe avanços significativos
             em relação ao padrão antigo. Se você precisa{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">puxar placa de carro</Link> para
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">puxar placa de carro</Link> para
             verificar a autenticidade, utilize nossa ferramenta principal.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -246,7 +246,7 @@ export default function IdentificadorPlacaPage() {
             alfanumérica e visualize a representação gráfica da placa com as cores e
             elementos corretos. Se está planejando comprar ou vender um veículo, confira
             também a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência veicular
             </Link>{" "}
             para estimar os custos envolvidos.
@@ -255,23 +255,23 @@ export default function IdentificadorPlacaPage() {
             A ferramenta é totalmente gratuita e não requer cadastro.
             Para obter informações mais detalhadas sobre um veículo específico, utilize
             nossa{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consulta de placa
             </Link>{" "}
             principal. Você também pode explorar outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             disponíveis no Consulta Placa Brasil, como o{" "}
-            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#C73A1E] hover:underline font-medium">
               simulador de pontos na CNH
             </Link>
             , a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência de veículo
             </Link>{" "}
             e a{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de custo total do veículo
             </Link>
             .

@@ -296,14 +296,14 @@ export default function CalculadoraIOF() {
                   <p className="text-lg font-bold text-[#0F172A] mt-1">
                     {formatarMoeda(resultado.iofFixo)}
                   </p>
-                  <span className="text-xs text-[#94A3B8]">Alíquota de 0,38%</span>
+                  <span className="text-xs text-[#64748B]">Alíquota de 0,38%</span>
                 </div>
                 <div className="bg-white rounded-xl p-4 border border-gray-100">
                   <span className="text-xs text-[#64748B] font-medium">IOF Diário</span>
                   <p className="text-lg font-bold text-[#0F172A] mt-1">
                     {formatarMoeda(resultado.iofDiario)}
                   </p>
-                  <span className="text-xs text-[#94A3B8]">
+                  <span className="text-xs text-[#64748B]">
                     {tipoOperacao === "pf" ? "0,0082%" : "0,0041%"}/dia
                   </span>
                 </div>
@@ -312,14 +312,14 @@ export default function CalculadoraIOF() {
                   <p className="text-lg font-bold text-[#FF4D30] mt-1">
                     {formatarPercentual(resultado.iofPercentual)}
                   </p>
-                  <span className="text-xs text-[#94A3B8]">Do valor financiado</span>
+                  <span className="text-xs text-[#64748B]">Do valor financiado</span>
                 </div>
                 <div className="bg-white rounded-xl p-4 border border-gray-100">
                   <span className="text-xs text-[#64748B] font-medium">IOF por parcela</span>
                   <p className="text-lg font-bold text-[#0F172A] mt-1">
                     {formatarMoeda(resultado.iofPorParcela)}
                   </p>
-                  <span className="text-xs text-[#94A3B8]">Diluído em {prazoMeses}x</span>
+                  <span className="text-xs text-[#64748B]">Diluído em {prazoMeses}x</span>
                 </div>
               </div>
 

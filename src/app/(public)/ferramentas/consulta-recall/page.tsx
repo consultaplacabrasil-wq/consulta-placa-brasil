@@ -106,7 +106,7 @@ export default function ConsultaRecallPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -189,7 +189,7 @@ export default function ConsultaRecallPage() {
             Defesa do Consumidor (Lei nº 8.078/1990) e fiscalizado pela Secretaria
             Nacional do Consumidor (SENACON) e pelo SENATRAN. Se você deseja verificar
             a situação completa do seu veículo, utilize também o{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>
             .
@@ -203,7 +203,7 @@ export default function ConsultaRecallPage() {
             bombas de combustível, vazamentos em linhas de combustível e problemas em
             software de módulos eletrônicos. Conhecer o histórico do seu veículo é
             essencial, e para isso você pode utilizar o{" "}
-            <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/decodificador-chassi" className="text-[#C73A1E] hover:underline font-medium">
               decodificador de chassi
             </Link>{" "}
             para identificar as características de fábrica a partir do número VIN.
@@ -219,11 +219,11 @@ export default function ConsultaRecallPage() {
           <p className="text-[#475569] leading-relaxed">
             Caso tenha adquirido o veículo de segunda mão, é ainda mais importante
             verificar a existência de recalls pendentes. Faça uma{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consulta do veículo pela placa
             </Link>{" "}
             para obter um panorama completo e confira a{" "}
-            <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/identificador-placa" className="text-[#C73A1E] hover:underline font-medium">
               ferramenta de identificação de placa
             </Link>{" "}
             para obter informações sobre a origem do veículo.
@@ -245,19 +245,19 @@ export default function ConsultaRecallPage() {
             para o proprietário. Embora esses dados sejam informativos, recomendamos
             sempre a consulta oficial no portal do SENATRAN para confirmar a situação
             específica do seu veículo. Explore também outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             disponíveis no Consulta Placa Brasil, como a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de IPVA
             </Link>
             , a{" "}
-            <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-multas" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de multas
             </Link>{" "}
             e o{" "}
-            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#C73A1E] hover:underline font-medium">
               simulador de pontos na CNH
             </Link>
             . Todas funcionam diretamente no navegador, sem necessidade de cadastro.

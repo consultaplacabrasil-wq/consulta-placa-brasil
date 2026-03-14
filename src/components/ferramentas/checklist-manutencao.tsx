@@ -407,7 +407,7 @@ export default function ChecklistManutencao() {
                     <span
                       className={`text-sm ${
                         item.checked
-                          ? "line-through text-[#94A3B8]"
+                          ? "line-through text-[#64748B]"
                           : "text-[#0F172A]"
                       } transition-colors`}
                     >

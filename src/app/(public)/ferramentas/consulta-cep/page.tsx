@@ -26,7 +26,7 @@ export default function ConsultaCepPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -130,7 +130,7 @@ export default function ConsultaCepPage() {
             registrado, a mudança de domicílio veicular exige procedimentos adicionais que impactam
             diretamente no custo e no tempo necessário para regularizar a documentação. Antes de
             iniciar o processo, vale{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               pesquisar placa do carro
             </Link>{" "}
             para confirmar que não há pendências que impeçam a transferência.
@@ -146,7 +146,7 @@ export default function ConsultaCepPage() {
             mudança de estado, o novo proprietário precisa realizar o emplacamento no Detran do
             estado de destino, com confecção de novas placas no padrão Mercosul e vistoria veicular
             obrigatória. Antes de iniciar a transferência, é essencial verificar se o{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               IPVA está em dia
             </Link>{" "}
             e se não há multas pendentes no veículo, pois débitos impedem a conclusão do processo.
@@ -162,7 +162,7 @@ export default function ConsultaCepPage() {
             ferramenta consulta automaticamente a API ViaCEP e exibe a cidade e o estado de cada
             endereço. Com essa informação, você pode antecipar se haverá custos adicionais de
             emplacamento e vistoria. Para uma estimativa completa dos custos envolvidos, utilize a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência veicular
             </Link>{" "}
             e informe os estados de origem e destino, o valor do veículo e o tipo de transação.
@@ -176,7 +176,7 @@ export default function ConsultaCepPage() {
             alguns documentos são obrigatórios: CRV preenchido e assinado com firma reconhecida,
             CPF e RG de comprador e vendedor, comprovante de residência atualizado (que comprova o
             CEP do novo endereço) e laudo de vistoria veicular. Utilize o{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>{" "}
             para conferir a validade da CNH e do licenciamento antes de dar início ao processo.
@@ -187,19 +187,19 @@ export default function ConsultaCepPage() {
 
           <p className="text-[#475569] leading-relaxed">
             Explore também outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             do Consulta Placa Brasil, como a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência veicular
             </Link>
             , a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de IPVA
             </Link>{" "}
             e o{" "}
-            <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/decodificador-chassi" className="text-[#C73A1E] hover:underline font-medium">
               decodificador de chassi
             </Link>
             .

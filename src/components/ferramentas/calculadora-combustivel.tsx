@@ -79,7 +79,7 @@ export default function CalculadoraCombustivel() {
               Distância da viagem (km)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm font-medium">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm font-medium">
                 km
               </span>
               <input
@@ -124,7 +124,7 @@ export default function CalculadoraCombustivel() {
               Preço do combustível (R$/litro)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm font-medium">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm font-medium">
                 R$
               </span>
               <input
@@ -147,7 +147,7 @@ export default function CalculadoraCombustivel() {
               className="block text-sm font-semibold text-[#0F172A] mb-2"
             >
               Número de passageiros{" "}
-              <span className="text-[#94A3B8] font-normal">(opcional, para dividir)</span>
+              <span className="text-[#64748B] font-normal">(opcional, para dividir)</span>
             </label>
             <input
               id="passageiros"
@@ -172,6 +172,7 @@ export default function CalculadoraCombustivel() {
               idaEVolta ? "bg-[#FF4D30]" : "bg-gray-200"
             }`}
             aria-pressed={idaEVolta}
+            aria-label="Incluir ida e volta"
           >
             <span
               className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-sm transition-transform ${
@@ -227,7 +228,7 @@ export default function CalculadoraCombustivel() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <Fuel className="w-4 h-4 text-[#FF4D30]" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Litros necessários
                 </span>
               </div>
@@ -239,7 +240,7 @@ export default function CalculadoraCombustivel() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <GaugeCircle className="w-4 h-4 text-[#FF4D30]" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Custo por km
                 </span>
               </div>
@@ -251,7 +252,7 @@ export default function CalculadoraCombustivel() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <MapPin className="w-4 h-4 text-[#FF4D30]" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Distância total
                 </span>
               </div>
@@ -259,7 +260,7 @@ export default function CalculadoraCombustivel() {
                 {resultado.distanciaTotal.toLocaleString("pt-BR")} km
               </p>
               {idaEVolta && (
-                <p className="text-xs text-[#94A3B8] mt-1">Ida e volta incluídas</p>
+                <p className="text-xs text-[#64748B] mt-1">Ida e volta incluídas</p>
               )}
             </div>
 
@@ -267,14 +268,14 @@ export default function CalculadoraCombustivel() {
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <Users className="w-4 h-4 text-green-500" />
-                  <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                  <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                     Custo por passageiro
                   </span>
                 </div>
                 <p className="text-2xl font-bold text-green-600">
                   {formatBRL(resultado.custoPorPassageiro)}
                 </p>
-                <p className="text-xs text-[#94A3B8] mt-1">
+                <p className="text-xs text-[#64748B] mt-1">
                   Dividido entre {resultado.passageiros} passageiros
                 </p>
               </div>
@@ -283,14 +284,14 @@ export default function CalculadoraCombustivel() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <Fuel className="w-4 h-4 text-[#FF4D30]" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Paradas para abastecer
                 </span>
               </div>
               <p className="text-2xl font-bold text-[#0F172A]">
                 {resultado.paradasAbastecimento}
               </p>
-              <p className="text-xs text-[#94A3B8] mt-1">
+              <p className="text-xs text-[#64748B] mt-1">
                 Considerando tanque médio de 50 litros
               </p>
             </div>
@@ -298,7 +299,7 @@ export default function CalculadoraCombustivel() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="w-4 h-4 text-[#FF4D30]" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Custo total
                 </span>
               </div>
@@ -310,7 +311,7 @@ export default function CalculadoraCombustivel() {
 
           {/* Resumo visual */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 text-center">
-            <p className="text-sm text-[#94A3B8] mb-1">Proporção do tanque utilizada</p>
+            <p className="text-sm text-[#64748B] mb-1">Proporção do tanque utilizada</p>
             <p className="text-4xl font-extrabold text-[#0F172A]">
               {resultado.tanquesCompletos.toFixed(1)}x
             </p>

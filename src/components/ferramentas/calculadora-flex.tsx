@@ -71,7 +71,7 @@ export default function CalculadoraFlex() {
               Preço da Gasolina (R$/litro)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm font-medium">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm font-medium">
                 R$
               </span>
               <input
@@ -97,7 +97,7 @@ export default function CalculadoraFlex() {
               Preço do Etanol (R$/litro)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm font-medium">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm font-medium">
                 R$
               </span>
               <input
@@ -142,7 +142,7 @@ export default function CalculadoraFlex() {
               className="block text-sm font-semibold text-[#0F172A] mb-2"
             >
               Km rodados por mês{" "}
-              <span className="text-[#94A3B8] font-normal">(opcional)</span>
+              <span className="text-[#64748B] font-normal">(opcional)</span>
             </label>
             <input
               id="km-mes"
@@ -241,7 +241,7 @@ export default function CalculadoraFlex() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="w-4 h-4 text-[#FF4D30]" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Custo por km (Gasolina)
                 </span>
               </div>
@@ -253,7 +253,7 @@ export default function CalculadoraFlex() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="w-4 h-4 text-green-500" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Custo por km (Etanol)
                 </span>
               </div>
@@ -265,7 +265,7 @@ export default function CalculadoraFlex() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <Gauge className="w-4 h-4 text-[#FF4D30]" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Consumo estimado (Etanol)
                 </span>
               </div>
@@ -277,7 +277,7 @@ export default function CalculadoraFlex() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingDown className="w-4 h-4 text-green-500" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Economia mensal
                 </span>
               </div>
@@ -289,7 +289,7 @@ export default function CalculadoraFlex() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingDown className="w-4 h-4 text-green-500" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Economia anual
                 </span>
               </div>
@@ -301,14 +301,14 @@ export default function CalculadoraFlex() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <div className="flex items-center gap-2 mb-2">
                 <Fuel className="w-4 h-4 text-[#FF4D30]" />
-                <span className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide">
+                <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
                   Preço máximo do Etanol
                 </span>
               </div>
               <p className="text-2xl font-bold text-[#0F172A]">
                 {formatBRL(resultado.breakevenEtanol)}
               </p>
-              <p className="text-xs text-[#94A3B8] mt-1">
+              <p className="text-xs text-[#64748B] mt-1">
                 Acima deste valor, gasolina compensa mais
               </p>
             </div>
@@ -316,7 +316,7 @@ export default function CalculadoraFlex() {
 
           {/* Percentual de economia */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 text-center">
-            <p className="text-sm text-[#94A3B8] mb-1">Percentual de economia escolhendo o melhor combustível</p>
+            <p className="text-sm text-[#64748B] mb-1">Percentual de economia escolhendo o melhor combustível</p>
             <p className="text-4xl font-extrabold text-[#0F172A]">
               {resultado.percentualEconomia.toFixed(1)}%
             </p>

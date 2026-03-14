@@ -26,7 +26,7 @@ export default function GeradorContratoPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -127,7 +127,7 @@ export default function GeradorContratoPage() {
             Veículo), ter um contrato escrito garante proteção jurídica tanto para o vendedor quanto
             para o comprador. Antes de finalizar a venda, é importante calcular os custos envolvidos
             na{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               transferência veicular
             </Link>{" "}
             para evitar surpresas financeiras durante o processo de documentação.
@@ -144,7 +144,7 @@ export default function GeradorContratoPage() {
             infrações cometidas após a venda, enquanto o comprador tem garantia sobre as condições
             do veículo declaradas no documento. Para verificar informações sobre o veículo antes da
             compra, utilize o{" "}
-            <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/decodificador-chassi" className="text-[#C73A1E] hover:underline font-medium">
               decodificador de chassi
             </Link>{" "}
             e confirme os dados de fábrica do automóvel.
@@ -173,14 +173,14 @@ export default function GeradorContratoPage() {
             a venda. O contrato de compra e venda é o documento que comprova a data da transação e
             serve como base para a comunicação de venda. Para identificar a origem do veículo pela
             placa, utilize o{" "}
-            <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/identificador-placa" className="text-[#C73A1E] hover:underline font-medium">
               identificador de placa veicular
             </Link>
             . O prazo para o comprador realizar a transferência é de 30 dias, conforme o Código de
             Trânsito Brasileiro. Caso o comprador não efetue a transferência nesse período, o
             vendedor pode registrar a comunicação de venda e solicitar o bloqueio do veículo. Antes
             de fechar qualquer negociação, recomendamos{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               verificar placa de veículo
             </Link>{" "}
             para garantir que não existam restrições ou pendências ocultas.
@@ -188,19 +188,19 @@ export default function GeradorContratoPage() {
 
           <p className="text-[#475569] leading-relaxed">
             Explore também outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             do Consulta Placa Brasil, como a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência veicular
             </Link>
             , o{" "}
-            <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/decodificador-chassi" className="text-[#C73A1E] hover:underline font-medium">
               decodificador de chassi
             </Link>{" "}
             e o{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               simulador de financiamento
             </Link>
             .

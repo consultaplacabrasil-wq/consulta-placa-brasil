@@ -26,7 +26,7 @@ export default function CalculadoraRodizioPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -104,7 +104,7 @@ export default function CalculadoraRodizioPage() {
             É importante observar que o condutor pode ser autuado uma vez em cada
             período de restrição (manhã e tarde), totalizando até duas multas por
             dia. Para consultar outras infrações e seus valores, utilize a{" "}
-            <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-multas" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de multas de trânsito
             </Link>.
           </p>
@@ -121,7 +121,7 @@ export default function CalculadoraRodizioPage() {
             suspenso, e os veículos podem circular livremente pela zona restrita.
             Para identificar a origem de uma placa e verificar se ela está sujeita
             ao rodízio, experimente o{" "}
-            <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/identificador-placa" className="text-[#C73A1E] hover:underline font-medium">
               identificador de placas
             </Link>.
           </p>
@@ -138,7 +138,7 @@ export default function CalculadoraRodizioPage() {
             restrições temporárias podem ocorrer em períodos de grandes eventos,
             obras viárias ou situações emergenciais. É fundamental manter a
             documentação do veículo sempre em dia, e para isso você pode utilizar o{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>{" "}
             para garantir que seu veículo está regularizado.
@@ -158,7 +158,7 @@ export default function CalculadoraRodizioPage() {
             rodízio podem alternar o uso para manter a mobilidade durante toda
             a semana sem infringir as regras. Se você tem dúvidas sobre a situação
             do seu veículo, pode{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               checar placa
             </Link>{" "}
             rapidamente e obter dados atualizados sobre o automóvel.

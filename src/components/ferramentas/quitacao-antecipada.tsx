@@ -186,7 +186,7 @@ export default function QuitacaoAntecipada() {
               Valor Original do Financiamento (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 R$
               </span>
               <input
@@ -216,7 +216,7 @@ export default function QuitacaoAntecipada() {
                 className="w-full pl-4 pr-10 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-colors"
                 placeholder="1,49"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 %
               </span>
             </div>
@@ -262,7 +262,7 @@ export default function QuitacaoAntecipada() {
               Valor da Parcela Atual (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 R$
               </span>
               <input
@@ -337,7 +337,7 @@ export default function QuitacaoAntecipada() {
               <p className="text-3xl font-bold text-red-600 mb-2">
                 {formatCurrency(resultado.totalAteOFinal)}
               </p>
-              <p className="text-sm text-[#94A3B8]">
+              <p className="text-sm text-[#64748B]">
                 Inclui {formatCurrency(resultado.jurosFuturos)} em juros
               </p>
             </div>
@@ -357,7 +357,7 @@ export default function QuitacaoAntecipada() {
               <p className="text-3xl font-bold text-emerald-600 mb-2">
                 {formatCurrency(resultado.valorQuitacao)}
               </p>
-              <p className="text-sm text-[#94A3B8]">
+              <p className="text-sm text-[#64748B]">
                 Sem juros futuros
               </p>
             </div>
@@ -368,7 +368,7 @@ export default function QuitacaoAntecipada() {
             <h3 className="text-lg font-bold text-[#0F172A] mb-4">Sua economia com a quitação antecipada</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="text-center">
-                <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                   Economia Total
                 </p>
                 <p className="text-2xl font-bold text-emerald-600">
@@ -376,7 +376,7 @@ export default function QuitacaoAntecipada() {
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                   Juros Economizados
                 </p>
                 <p className="text-2xl font-bold text-emerald-600">
@@ -384,7 +384,7 @@ export default function QuitacaoAntecipada() {
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                   Percentual de Desconto
                 </p>
                 <p className="text-2xl font-bold text-emerald-600">
@@ -406,7 +406,7 @@ export default function QuitacaoAntecipada() {
                 Parcelas Restantes e Juros
               </span>
               <svg
-                className={`w-5 h-5 text-[#94A3B8] transition-transform ${
+                className={`w-5 h-5 text-[#64748B] transition-transform ${
                   mostrarTabela ? "rotate-180" : ""
                 }`}
                 fill="none"

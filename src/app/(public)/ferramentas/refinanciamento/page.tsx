@@ -26,7 +26,7 @@ export default function RefinanciamentoPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -76,7 +76,7 @@ export default function RefinanciamentoPage() {
             oferecida por bancos e financeiras como uma alternativa para quem está com dificuldade em manter
             as parcelas em dia ou deseja aproveitar taxas mais baixas disponíveis no mercado. Antes de fechar
             qualquer negócio envolvendo veículos, é fundamental{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar a placa</Link>{" "}
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar a placa</Link>{" "}
             para verificar a situação cadastral e a procedência do bem.
           </p>
 
@@ -112,7 +112,7 @@ export default function RefinanciamentoPage() {
             refinanciamento. Isso acontece porque o veículo pode ter um valor de mercado superior ao saldo devedor,
             permitindo que a diferença seja emprestada. Porém, esse dinheiro extra é incorporado ao novo financiamento
             e incide juros ao longo de todo o prazo. Use a{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de financiamento
             </Link>{" "}
             para entender melhor como funcionam os juros compostos em financiamentos veiculares.
@@ -129,7 +129,7 @@ export default function RefinanciamentoPage() {
             avalie a possibilidade de amortização antecipada no contrato atual, que pode ser mais econômica do que
             um novo contrato. Para ter uma visão completa da sua situação, combine a análise de refinanciamento com
             o cálculo do{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               custo total do veículo
             </Link>.
           </p>

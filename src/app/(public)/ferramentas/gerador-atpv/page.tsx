@@ -26,7 +26,7 @@ export default function GeradorAtpvPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -128,7 +128,7 @@ export default function GeradorAtpvPage() {
             manual no verso do CRV (Certificado de Registro de Veículo), que era vulnerável a fraudes
             como falsificação de assinaturas e adulteração de dados. Antes de iniciar qualquer
             negociação, é fundamental{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar placa do veículo
             </Link>{" "}
             para verificar a situação cadastral, restrições e débitos pendentes.
@@ -179,19 +179,19 @@ export default function GeradorAtpvPage() {
 
           <p className="text-[#475569] leading-relaxed">
             Explore também outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             do Consulta Placa Brasil, como o{" "}
-            <Link href="/ferramentas/gerador-contrato" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/gerador-contrato" className="text-[#C73A1E] hover:underline font-medium">
               gerador de contrato de compra e venda
             </Link>
             , a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência veicular
             </Link>{" "}
             e o{" "}
-            <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/decodificador-chassi" className="text-[#C73A1E] hover:underline font-medium">
               decodificador de chassi
             </Link>
             .

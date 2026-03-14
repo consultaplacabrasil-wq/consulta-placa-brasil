@@ -26,7 +26,7 @@ export default function CustoTotalVeiculoPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -125,7 +125,7 @@ export default function CustoTotalVeiculoPage() {
             O custo real de propriedade de um veículo inclui uma série de despesas fixas e variáveis
             que, somadas, podem representar uma parcela significativa do orçamento familiar. Antes de
             adquirir um veículo usado, é recomendável{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               buscar placa de carro
             </Link>{" "}
             para conferir o histórico e a procedência do automóvel. Conhecer
@@ -140,7 +140,7 @@ export default function CustoTotalVeiculoPage() {
           <p className="text-[#475569] leading-relaxed">
             O Imposto sobre a Propriedade de Veículos Automotores (IPVA) é cobrado anualmente por
             cada estado brasileiro e pode ser estimado com precisão usando nossa{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de IPVA
             </Link>
             . A alíquota varia conforme a unidade federativa, indo de 2% em
@@ -156,7 +156,7 @@ export default function CustoTotalVeiculoPage() {
           <p className="text-[#475569] leading-relaxed">
             O combustível costuma ser uma das maiores despesas para quem roda bastante. Se o seu
             veículo é flex, descubra qual combustível compensa mais com a calculadora{" "}
-            <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-flex" className="text-[#C73A1E] hover:underline font-medium">
               gasolina ou etanol
             </Link>
             . O cálculo é simples: divida a quilometragem mensal pelo consumo médio do veículo
@@ -185,7 +185,7 @@ export default function CustoTotalVeiculoPage() {
           <p className="text-[#475569] leading-relaxed">
             A depreciação é frequentemente chamada de &quot;custo invisível&quot; do veículo. Use
             a{" "}
-            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de depreciação
             </Link>{" "}
             para estimar a perda de valor do seu automóvel. Em
@@ -208,7 +208,7 @@ export default function CustoTotalVeiculoPage() {
             manutenção, depreciação, seguro e financiamento), muitos proprietários se surpreendem ao
             descobrir que o custo total pode ultrapassar R$ 2.000 por mês, mesmo para veículos
             populares. Para verificar pendências e a situação do veículo, você pode{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               pesquisar veículo pela placa
             </Link>{" "}
             de forma rápida e gratuita.
@@ -216,19 +216,19 @@ export default function CustoTotalVeiculoPage() {
 
           <p className="text-[#475569] leading-relaxed">
             Explore outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             do Consulta Placa Brasil, como a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência de veículo
             </Link>
             , o{" "}
-            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#C73A1E] hover:underline font-medium">
               simulador de pontos na CNH
             </Link>{" "}
             e o{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>
             .

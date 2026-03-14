@@ -26,7 +26,7 @@ export default function CalculadoraDepreciacaoPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -79,11 +79,11 @@ export default function CalculadoraDepreciacaoPage() {
             primeiros cinco anos de uso. Compreender como a depreciação funciona é essencial para
             tomar decisões financeiras inteligentes, seja na hora de comprar um veículo novo ou
             seminovo, planejar a troca, fazer uma{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               pesquisa de placa
             </Link>{" "}
             para verificar o histórico do automóvel, ou calcular o{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total de propriedade do veículo</Link>.
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">custo total de propriedade do veículo</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -111,7 +111,7 @@ export default function CalculadoraDepreciacaoPage() {
             Veículos flex, por exemplo, costumam ter melhor valor de revenda no Brasil do que
             modelos movidos exclusivamente a gasolina. Se está em dúvida entre um modelo elétrico e
             um a combustão, confira nosso{" "}
-            <Link href="/ferramentas/eletrico-vs-combustao" className="text-[#FF4D30] hover:underline font-medium">comparador elétrico vs combustão</Link>.
+            <Link href="/ferramentas/eletrico-vs-combustao" className="text-[#C73A1E] hover:underline font-medium">comparador elétrico vs combustão</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -140,11 +140,11 @@ export default function CalculadoraDepreciacaoPage() {
             um veículo seminovo com um ou dois anos de uso também é uma estratégia inteligente,
             pois você evita a maior faixa de depreciação que ocorre logo após a saída da
             concessionária. Também é possível{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               checar placa
             </Link>{" "}
             do veículo desejado para confirmar sua procedência. Para planejar melhor a compra, experimente também nosso{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">simulador de financiamento veicular</Link>{" "}
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">simulador de financiamento veicular</Link>{" "}
             e veja as parcelas e juros antes de fechar negócio.
           </p>
 

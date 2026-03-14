@@ -26,7 +26,7 @@ export default function AntecipacaoParcelasPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -72,7 +72,7 @@ export default function AntecipacaoParcelasPage() {
           </h2>
           <p className="text-[#475569] leading-relaxed">
             A antecipação de parcelas é um direito garantido por lei a todo consumidor que possui um financiamento veicular no Brasil. Ao antecipar parcelas, o mutuário paga antes do vencimento e, em contrapartida, recebe um desconto proporcional aos juros que seriam cobrados nos meses futuros. Antes de antecipar, vale{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa</Link>{" "}
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar placa</Link>{" "}
             do veículo para verificar se não há pendências cadastrais que possam impactar a negociação com a instituição financeira.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -87,7 +87,7 @@ export default function AntecipacaoParcelasPage() {
           </p>
           <p className="text-[#475569] leading-relaxed">
             Para quem deseja simular o financiamento completo, recomendamos o{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">Simulador de Financiamento</Link>{" "}
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">Simulador de Financiamento</Link>{" "}
             disponível em nosso site. Ele permite comparar cenários com Tabela Price e SAC, oferecendo uma visão detalhada de parcelas, juros e amortização ao longo de todo o contrato.
           </p>
 
@@ -106,7 +106,7 @@ export default function AntecipacaoParcelasPage() {
           </h3>
           <p className="text-[#475569] leading-relaxed">
             A estratégia mais vantajosa costuma ser antecipar as últimas parcelas do contrato, pois são as que carregam mais juros acumulados. Além disso, é importante negociar diretamente com a instituição financeira para confirmar a taxa de desconto aplicada. Algumas instituições podem oferecer condições especiais em determinados períodos. Utilize também a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">calculadora de IPVA</Link>{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">calculadora de IPVA</Link>{" "}
             para planejar seus gastos anuais com o veículo e definir quanto pode destinar à antecipação.
           </p>
           <p className="text-[#475569] leading-relaxed">

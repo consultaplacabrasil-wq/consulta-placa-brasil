@@ -26,7 +26,7 @@ export default function CalculadoraIOFPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -80,7 +80,7 @@ export default function CalculadoraIOFPage() {
             O imposto é calculado com base no valor financiado e no prazo da operação, e seu custo
             é adicionado ao montante total do financiamento. Antes de financiar, é importante
             realizar uma{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consulta de placa do veículo
             </Link>{" "}
             para verificar se não existem restrições ou débitos pendentes.
@@ -99,7 +99,7 @@ export default function CalculadoraIOFPage() {
             resulta no IOF total, que possui um teto máximo de 3,00% para PF e 1,88% para PJ,
             garantindo que em financiamentos de longo prazo o imposto não ultrapasse esses limites.
             Para entender o custo total da operação, incluindo o IOF, utilize nossa{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de simulação de financiamento
             </Link>.
           </p>
@@ -115,7 +115,7 @@ export default function CalculadoraIOFPage() {
             a Pessoa Jurídica pagará menos IOF. A alíquota fixa de 0,38% é idêntica para
             ambos os casos. Para avaliar se o financiamento possui taxas abusivas, confira
             nossa ferramenta de{" "}
-            <Link href="/ferramentas/juros-abusivos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/juros-abusivos" className="text-[#C73A1E] hover:underline font-medium">
               verificação de juros abusivos
             </Link>.
           </p>
@@ -132,7 +132,7 @@ export default function CalculadoraIOFPage() {
             isenção de IOF é uma das principais vantagens do leasing em relação ao financiamento
             convencional, podendo representar uma economia significativa. Para calcular o custo
             efetivo total de cada modalidade, utilize a{" "}
-            <Link href="/ferramentas/calculadora-cet" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-cet" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de CET
             </Link>.
           </p>

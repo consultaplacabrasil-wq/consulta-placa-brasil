@@ -112,7 +112,7 @@ export default function DecodificadorChassiPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -194,7 +194,7 @@ export default function DecodificadorChassiPage() {
           <p className="text-[#475569] leading-relaxed">
             Assim como a placa identifica o veículo nas vias, o chassi é o código definitivo
             de identificação. Use nosso{" "}
-            <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">identificador de placa</Link> para
+            <Link href="/ferramentas/identificador-placa" className="text-[#C73A1E] hover:underline font-medium">identificador de placa</Link> para
             descobrir informações a partir do emplacamento. No Brasil, o chassi é utilizado
             pelo Detran, seguradoras e órgãos de fiscalização para identificar e rastrear
             veículos de forma inequívoca.
@@ -222,14 +222,14 @@ export default function DecodificadorChassiPage() {
           <p className="text-[#475569] leading-relaxed">
             A consulta chassi é uma etapa fundamental na compra de veículos usados. Outra
             verificação indispensável é{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar veículo pela placa</Link>,
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar veículo pela placa</Link>,
             que revela dados cadastrais e possíveis restrições.
           </p>
           <p className="text-[#475569] leading-relaxed">
             Ao decodificar o VIN, o comprador pode verificar se as informações do chassi conferem
             com os dados do documento (CRV/CRLV), como ano do modelo e fabricante. Se você está
             adquirindo um veículo usado, confira também a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">calculadora de transferência</Link> para
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">calculadora de transferência</Link> para
             estimar os custos de transferência de propriedade. Essa
             verificação simples pode evitar golpes e ajudar a identificar veículos com
             histórico de roubo, furto ou sinistro. Nosso decodificador de chassi é totalmente
@@ -237,12 +237,12 @@ export default function DecodificadorChassiPage() {
           </p>
           <p className="text-[#475569] leading-relaxed">
             Além da consulta pelo chassi, o Consulta Placa Brasil oferece diversas outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>
             , como calculadora de IPVA, simulador de financiamento, calculadora de multas e
             o{" "}
-            <Link href="/ferramentas/gerador-placa" className="text-[#FF4D30] hover:underline font-medium">gerador visual de placa</Link>.
+            <Link href="/ferramentas/gerador-placa" className="text-[#C73A1E] hover:underline font-medium">gerador visual de placa</Link>.
             Todas as ferramentas foram desenvolvidas para ajudar
             motoristas, compradores e profissionais do setor automotivo no dia a dia.
           </p>

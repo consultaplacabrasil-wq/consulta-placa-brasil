@@ -26,7 +26,7 @@ export default function PropostaQuitacaoPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -128,7 +128,7 @@ export default function PropostaQuitacaoPage() {
             e encargos financeiros. Isso significa que, ao propor a quitação, o banco deve
             obrigatoriamente recalcular o saldo devedor, descontando os juros que seriam cobrados
             nas parcelas futuras. Antes de iniciar a negociação, é fundamental{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar a situação do veículo pela placa
             </Link>{" "}
             para verificar se não existem pendências ou restrições que possam interferir no processo.
@@ -146,7 +146,7 @@ export default function PropostaQuitacaoPage() {
             propostas de pagamento parcelado. Além disso, se você está com parcelas em atraso, o
             banco tem interesse em receber ao menos uma parte do valor, o que pode favorecer a
             negociação. Utilize também a{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de financiamento
             </Link>{" "}
             para simular diferentes cenários e entender o impacto dos juros no valor total.
@@ -179,7 +179,7 @@ export default function PropostaQuitacaoPage() {
             ou por carta registrada, mantendo o comprovante de envio. Se o banco não responder em
             prazo razoável, registre uma reclamação no Banco Central do Brasil ou no Procon da sua
             cidade. Explore também as demais{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas gratuitas
             </Link>{" "}
             do Consulta Placa Brasil para auxiliar na gestão do seu veículo financiado.

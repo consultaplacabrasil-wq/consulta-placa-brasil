@@ -26,7 +26,7 @@ export default function JurosAbusivosPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -76,7 +76,7 @@ export default function JurosAbusivosPage() {
             Consumidor (CDC), em seu artigo 51, considera nulas as cláusulas contratuais que
             estabeleçam obrigações consideradas abusivas ou que coloquem o consumidor em desvantagem
             exagerada. Antes de fechar qualquer financiamento, é fundamental{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar a placa</Link> do
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar a placa</Link> do
             veículo para verificar sua procedência e situação cadastral completa.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -96,7 +96,7 @@ export default function JurosAbusivosPage() {
             indícios de abusividade. Utilize nossa calculadora acima para fazer essa comparação
             de forma rápida e precisa. Para entender o custo total da operação, considere também
             usar nosso{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">simulador de financiamento</Link> com
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">simulador de financiamento</Link> com
             tabela de amortização completa.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -104,7 +104,7 @@ export default function JurosAbusivosPage() {
             crédito não informadas previamente, seguros embutidos sem sua autorização e taxas
             administrativas excessivas. O Custo Efetivo Total (CET) deve ser informado antes da
             assinatura do contrato, conforme determinação do Banco Central. Utilize a{" "}
-            <Link href="/ferramentas/calculadora-cet" className="text-[#FF4D30] hover:underline font-medium">calculadora de CET</Link> para
+            <Link href="/ferramentas/calculadora-cet" className="text-[#C73A1E] hover:underline font-medium">calculadora de CET</Link> para
             verificar se o custo efetivo está condizente com o que foi contratado.
           </p>
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -125,7 +125,7 @@ export default function JurosAbusivosPage() {
             e o valor que seria devido com a taxa justa pode ser restituída ao consumidor ou
             compensada nas parcelas restantes. Para quem deseja quitar o financiamento
             antecipadamente, recomendamos verificar a{" "}
-            <Link href="/ferramentas/quitacao-antecipada" className="text-[#FF4D30] hover:underline font-medium">calculadora de quitação antecipada</Link> e
+            <Link href="/ferramentas/quitacao-antecipada" className="text-[#C73A1E] hover:underline font-medium">calculadora de quitação antecipada</Link> e
             conhecer seus direitos de desconto proporcional dos juros futuros.
           </p>
         </div>

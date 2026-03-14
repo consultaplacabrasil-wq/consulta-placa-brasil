@@ -140,7 +140,7 @@ export default function SimuladorRefinanciamento() {
               Saldo Devedor (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">R$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">R$</span>
               <input
                 id="saldo-devedor"
                 type="text"
@@ -175,7 +175,7 @@ export default function SimuladorRefinanciamento() {
               Valor da Parcela Atual (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">R$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">R$</span>
               <input
                 id="parcela-atual"
                 type="text"
@@ -203,7 +203,7 @@ export default function SimuladorRefinanciamento() {
                 className="w-full pl-4 pr-10 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-colors"
                 placeholder="1,89"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">%</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">%</span>
             </div>
           </div>
         </div>
@@ -231,7 +231,7 @@ export default function SimuladorRefinanciamento() {
                 className="w-full pl-4 pr-10 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-colors"
                 placeholder="1,49"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">%</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">%</span>
             </div>
           </div>
 
@@ -255,10 +255,10 @@ export default function SimuladorRefinanciamento() {
           <div className="md:col-span-2">
             <label htmlFor="valor-liberado" className="block text-sm font-semibold text-[#0F172A] mb-2">
               Valor Liberado Adicional (R$)
-              <span className="text-[#94A3B8] font-normal ml-1">- opcional</span>
+              <span className="text-[#64748B] font-normal ml-1">- opcional</span>
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">R$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">R$</span>
               <input
                 id="valor-liberado"
                 type="text"
@@ -269,7 +269,7 @@ export default function SimuladorRefinanciamento() {
                 placeholder="0"
               />
             </div>
-            <p className="text-xs text-[#94A3B8] mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               Quando o refinanciamento libera dinheiro extra além do saldo devedor.
             </p>
           </div>
@@ -321,7 +321,7 @@ export default function SimuladorRefinanciamento() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Antes */}
               <div className="bg-[#F8FAFC] rounded-xl p-5 border border-gray-100">
-                <h3 className="text-sm font-semibold text-[#94A3B8] uppercase tracking-wide mb-4">Financiamento Atual</h3>
+                <h3 className="text-sm font-semibold text-[#64748B] uppercase tracking-wide mb-4">Financiamento Atual</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-sm text-[#64748B]">Parcela mensal</span>
@@ -370,7 +370,7 @@ export default function SimuladorRefinanciamento() {
           {/* Cards de resumo */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Nova Parcela
               </p>
               <p className="text-2xl font-bold text-[#FF4D30]">
@@ -378,7 +378,7 @@ export default function SimuladorRefinanciamento() {
               </p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Diferença na Parcela
               </p>
               <p className={`text-2xl font-bold ${resultado.diferencaParcela <= 0 ? "text-emerald-600" : "text-red-600"}`}>
@@ -386,7 +386,7 @@ export default function SimuladorRefinanciamento() {
               </p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Diferença no Custo Total
               </p>
               <p className={`text-2xl font-bold ${resultado.diferencaTotal <= 0 ? "text-emerald-600" : "text-red-600"}`}>
@@ -403,15 +403,15 @@ export default function SimuladorRefinanciamento() {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="bg-[#F8FAFC] rounded-xl p-4 text-center">
-                  <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">Valor Recebido</p>
+                  <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">Valor Recebido</p>
                   <p className="text-xl font-bold text-[#0F172A]">{formatCurrency(valorLiberadoNum)}</p>
                 </div>
                 <div className="bg-[#F8FAFC] rounded-xl p-4 text-center">
-                  <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">Juros sobre o Valor Extra</p>
+                  <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">Juros sobre o Valor Extra</p>
                   <p className="text-xl font-bold text-red-600">{formatCurrency(resultado.custoValorLiberado)}</p>
                 </div>
                 <div className="bg-[#F8FAFC] rounded-xl p-4 text-center">
-                  <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">Custo Real do Dinheiro</p>
+                  <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">Custo Real do Dinheiro</p>
                   <p className="text-xl font-bold text-red-600">{formatCurrency(valorLiberadoNum + resultado.custoValorLiberado)}</p>
                 </div>
               </div>

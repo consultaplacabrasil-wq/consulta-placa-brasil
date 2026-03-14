@@ -112,7 +112,7 @@ export default function ValidadorRenavamPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -192,7 +192,7 @@ export default function ValidadorRenavamPage() {
             brasileiro. Diferente da placa, que pode ser alterada em casos de
             transferência entre estados, o RENAVAM acompanha o veículo durante
             toda a sua vida útil. Se você precisa{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar placa
             </Link>
             , utilize nossa ferramenta principal para obter informações
@@ -215,7 +215,7 @@ export default function ValidadorRenavamPage() {
             não garante que o veículo esteja regularizado, livre de multas ou sem
             restrições judiciais. Para uma verificação completa da situação do
             veículo, recomenda-se{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               pesquisar a placa
             </Link>{" "}
             e consultar diretamente o Detran do respectivo estado.
@@ -241,20 +241,20 @@ export default function ValidadorRenavamPage() {
           <p className="text-[#475569] leading-relaxed">
             Se você precisa verificar outros dados do veículo, o Consulta Placa
             Brasil oferece diversas{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>
             . Utilize o{" "}
-            <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/decodificador-chassi" className="text-[#C73A1E] hover:underline font-medium">
               decodificador de chassi
             </Link>{" "}
             para interpretar o número VIN do veículo, o{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">
               verificador de documentos
             </Link>{" "}
             para conferir a validade da CNH e o calendário de licenciamento,
             ou a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de IPVA
             </Link>{" "}
             para estimar o valor do imposto do seu veículo. Todas as ferramentas

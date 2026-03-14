@@ -26,7 +26,7 @@ export default function CalculadoraCombustivelPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -82,7 +82,7 @@ export default function CalculadoraCombustivelPage() {
             calculadora faz esse cálculo automaticamente e ainda oferece informações extras, como o
             número de paradas para abastecimento e a divisão do custo entre passageiros. Se você viaja
             com frequência, confira também a nossa{" "}
-            <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-flex" className="text-[#C73A1E] hover:underline font-medium">
               calculadora flex
             </Link>{" "}
             para descobrir se compensa abastecer com gasolina ou etanol.
@@ -101,7 +101,7 @@ export default function CalculadoraCombustivelPage() {
             rodovias tem impacto menor do que na cidade, mas em trajetos urbanos, abrir as janelas pode ser
             mais econômico. Para entender todos os custos envolvidos na manutenção do seu veículo, utilize
             nossa ferramenta de{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               custo total do veículo
             </Link>.
           </p>
@@ -121,7 +121,7 @@ export default function CalculadoraCombustivelPage() {
             então considere isso ao planejar viagens rodoviárias. Veículos mais modernos com injeção
             eletrônica e câmbio automático CVT tendem a apresentar consumos mais eficientes em estrada.
             Se está avaliando um carro usado para viagens, é possível{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               pesquisar veículo pela placa
             </Link>{" "}
             e verificar informações importantes antes da compra.
@@ -139,7 +139,7 @@ export default function CalculadoraCombustivelPage() {
             especializados mostram o preço do combustível em tempo real nos postos de cada cidade. Se
             está considerando trocar para um veículo elétrico e quer comparar os custos, experimente
             nosso comparador{" "}
-            <Link href="/ferramentas/eletrico-vs-combustao" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/eletrico-vs-combustao" className="text-[#C73A1E] hover:underline font-medium">
               elétrico vs combustão
             </Link>{" "}
             para uma análise detalhada.

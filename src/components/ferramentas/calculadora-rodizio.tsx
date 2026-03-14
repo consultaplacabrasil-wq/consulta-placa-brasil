@@ -390,7 +390,7 @@ export function CalculadoraRodizio() {
             nacionais são exceções — nesses dias, não há restrição de
             circulação.
           </p>
-          <p className="text-xs text-[#94A3B8] mt-3">
+          <p className="text-xs text-[#64748B] mt-3">
             Informações baseadas nas regras vigentes do rodízio municipal de São
             Paulo (Decreto Municipal nº 58.584/2018). Verifique atualizações no
             site oficial da CET-SP.

@@ -177,7 +177,7 @@ export function SimuladorPontosCNH() {
           </span>
           <span className="text-2xl font-bold text-[#0F172A]">
             {pontosAtivos}{" "}
-            <span className="text-sm font-normal text-[#94A3B8]">
+            <span className="text-sm font-normal text-[#64748B]">
               / {limiteSuspensao} pts
             </span>
           </span>
@@ -259,7 +259,7 @@ export function SimuladorPontosCNH() {
         )}
 
         {/* Info reincidência */}
-        <p className="text-xs text-[#94A3B8] mt-2">
+        <p className="text-xs text-[#64748B] mt-2">
           Limite para suspensão:{" "}
           {reincidente
             ? "30 pontos (motorista reincidente)"
@@ -431,7 +431,7 @@ export function SimuladorPontosCNH() {
           <p className="font-medium text-[#334155]">
             Nenhuma infração registrada
           </p>
-          <p className="text-sm text-[#94A3B8] mt-1">
+          <p className="text-sm text-[#64748B] mt-1">
             Selecione uma infração e a data para começar a simulação.
           </p>
         </div>
@@ -469,7 +469,7 @@ export function SimuladorPontosCNH() {
             </span>
           </div>
         </div>
-        <p className="text-xs text-[#94A3B8] mt-4">
+        <p className="text-xs text-[#64748B] mt-4">
           Simulação com base no Código de Trânsito Brasileiro (CTB). Os pontos
           vencem 12 meses após a data da infração. Limite de suspensão: 20 pontos
           (1ª vez) ou 30 pontos (reincidência). Este simulador é apenas

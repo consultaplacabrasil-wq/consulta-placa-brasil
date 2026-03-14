@@ -26,7 +26,7 @@ export default function CalculadoraDPVATPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -80,7 +80,7 @@ export default function CalculadoraDPVATPage() {
             indenização em casos de morte, invalidez permanente e despesas médicas. O valor do SPVAT
             varia conforme o tipo de veículo e é cobrado anualmente junto com o licenciamento. Para
             calcular todos os custos anuais do seu veículo, incluindo o SPVAT, utilize nossa{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de custo total do veículo
             </Link>.
           </p>
@@ -96,7 +96,7 @@ export default function CalculadoraDPVATPage() {
             R$ 2.700,00 (DAMS). Essas coberturas são garantidas independentemente de culpa e
             abrangem qualquer pessoa envolvida no acidente, inclusive pedestres. Para manter a
             documentação do seu veículo em dia, confira nosso{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>.
           </p>
@@ -114,7 +114,7 @@ export default function CalculadoraDPVATPage() {
             visou reduzir custos administrativos, aumentar a transparência e garantir que os
             recursos cheguem efetivamente às vítimas de acidentes de trânsito. Para manter
             seu veículo totalmente regularizado, é importante realizar uma{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consulta de placa de veículo
             </Link>{" "}
             e verificar se não há débitos ou restrições pendentes.
@@ -131,7 +131,7 @@ export default function CalculadoraDPVATPage() {
             definidos anualmente pelo Conselho Nacional de Seguros Privados (CNSP) e podem ser
             atualizados conforme a sinistralidade de cada categoria. Para saber quanto você pagará
             de imposto estadual, use a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de IPVA 2026
             </Link>.
           </p>

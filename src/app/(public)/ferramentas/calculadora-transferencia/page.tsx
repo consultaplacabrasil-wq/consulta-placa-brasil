@@ -26,7 +26,7 @@ export default function CalculadoraTransferenciaPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -129,13 +129,13 @@ export default function CalculadoraTransferenciaPage() {
           <p className="text-[#475569] leading-relaxed">
             Antes de iniciar a transferência,
             é fundamental verificar se o IPVA está em dia. Use a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de IPVA
             </Link>{" "}
             para estimar o valor do imposto. Conhecer antecipadamente esses custos
             é essencial para planejar a aquisição de um veículo usado e evitar surpresas financeiras
             no momento da documentação. Antes de fechar negócio, você também pode{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar placa do carro
             </Link>{" "}
             para verificar a procedência do veículo.
@@ -175,7 +175,7 @@ export default function CalculadoraTransferenciaPage() {
             estão sujeitas ao ITCMD (Imposto sobre Transmissão Causa Mortis e Doação). Para ter
             uma visão completa de todos os gastos envolvidos na posse do veículo, confira a
             calculadora de{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               custo total do veículo
             </Link>
             . Esse imposto estadual incide sobre o valor do bem transferido e possui alíquotas
@@ -193,13 +193,13 @@ export default function CalculadoraTransferenciaPage() {
             (Certificado de Registro do Veículo) preenchido e assinado pelo vendedor com firma
             reconhecida em cartório, cópia do CPF e RG de ambas as partes, comprovante de
             residência atualizado e o laudo de vistoria veicular. Utilize o{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>{" "}
             para conferir a validade da CNH e do licenciamento. É imprescindível que todos os
             débitos do veículo, incluindo IPVA, licenciamento e multas, estejam quitados antes de
             iniciar o processo. Para confirmar a situação cadastral do automóvel, faça uma{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consulta veiculo pela placa
             </Link>{" "}
             antes de dar entrada na transferência. O prazo legal para realizar a transferência é de 30 dias após
@@ -208,19 +208,19 @@ export default function CalculadoraTransferenciaPage() {
 
           <p className="text-[#475569] leading-relaxed">
             Explore também outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             do Consulta Placa Brasil, como a{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de custo total do veículo
             </Link>
             , o{" "}
-            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#C73A1E] hover:underline font-medium">
               simulador de pontos na CNH
             </Link>{" "}
             e o{" "}
-            <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/identificador-placa" className="text-[#C73A1E] hover:underline font-medium">
               identificador de placa veicular
             </Link>
             .

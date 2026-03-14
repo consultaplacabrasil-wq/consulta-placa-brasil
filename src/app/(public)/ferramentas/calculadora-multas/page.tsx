@@ -26,7 +26,7 @@ export default function CalculadoraMultasPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -75,7 +75,7 @@ export default function CalculadoraMultasPage() {
           <p className="text-[#475569] leading-relaxed">
             As multas de trânsito no Brasil são regulamentadas pelo Código de
             Trânsito Brasileiro (CTB), Lei nº 9.503/1997. Ao{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa de carro</Link>,
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar placa de carro</Link>,
             é possível verificar se há pendências associadas ao veículo. Cada infração possui
             um valor específico, uma quantidade de pontos que é registrada na
             Carteira Nacional de Habilitação (CNH) do condutor e uma
@@ -87,7 +87,7 @@ export default function CalculadoraMultasPage() {
             (7 pontos). O condutor que acumular 40 pontos em um período de
             12 meses terá a CNH suspensa, conforme a Lei nº 14.071/2020. Para
             acompanhar sua pontuação, utilize o{" "}
-            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">simulador de pontos na CNH</Link>.
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#C73A1E] hover:underline font-medium">simulador de pontos na CNH</Link>.
             Para motoristas profissionais, esse limite pode chegar a 40 pontos
             sem infração gravíssima.
           </p>
@@ -136,12 +136,12 @@ export default function CalculadoraMultasPage() {
             enquanto dirige, mantenha o licenciamento do veículo em dia e
             nunca dirija após consumir bebidas alcoólicas. Como o IPVA em
             atraso também gera multa, use a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">calculadora de IPVA</Link> para
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">calculadora de IPVA</Link> para
             se planejar.
           </p>
           <p className="text-[#475569] leading-relaxed">
             Além disso, confira o{" "}
-            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">verificador de documentos</Link> para
+            <Link href="/ferramentas/verificador-documentos" className="text-[#C73A1E] hover:underline font-medium">verificador de documentos</Link> para
             garantir que toda a documentação do veículo está regularizada. Essas simples
             atitudes podem poupar você de multas que variam de R$ 130,16 a
             R$ 2.934,70, além de preservar vidas no trânsito.

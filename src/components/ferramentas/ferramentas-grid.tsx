@@ -112,7 +112,7 @@ export function FerramentasGrid({ ferramentas }: { ferramentas: Ferramenta[] }) 
       </div>
 
       {ferramentasFiltradas.length === 0 && (
-        <p className="text-center text-[#94A3B8] py-12">
+        <p className="text-center text-[#64748B] py-12">
           Nenhuma ferramenta encontrada nesta categoria.
         </p>
       )}

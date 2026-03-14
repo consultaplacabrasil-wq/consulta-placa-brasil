@@ -52,7 +52,7 @@ export default function DireitosCompradorPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -127,7 +127,7 @@ export default function DireitosCompradorPage() {
             que a concessionária é obrigada a informar, de forma transparente, o preço total
             do veículo, eventuais taxas de acessórios, custos de documentação e todas as
             condições da oferta. Antes de fechar negócio, é fundamental{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar placa de veículo
             </Link>{" "}
             para verificar se não existem restrições ou pendências associadas ao bem.
@@ -165,7 +165,7 @@ export default function DireitosCompradorPage() {
             em que o vício é descoberto, e não da data da compra. Isso inclui problemas
             mecânicos graves, falhas estruturais e defeitos no motor que não eram aparentes
             durante a inspeção inicial. Para se proteger, utilize sempre o{" "}
-            <Link href="/ferramentas/contrato-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/contrato-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               gerador de contrato
             </Link>{" "}
             para formalizar a compra com cláusulas de proteção.
@@ -180,7 +180,7 @@ export default function DireitosCompradorPage() {
             quilometragem adulterada, entre outros. A omissão dessas informações configura
             prática abusiva (Art. 39 do CDC) e pode gerar o direito à rescisão do contrato
             com devolução integral do valor pago. Por isso, sempre procure{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar placa de veículo
             </Link>{" "}
             antes de fechar qualquer negociação.
@@ -193,7 +193,7 @@ export default function DireitosCompradorPage() {
             da venda. Se o comprador descobrir que um defeito era de conhecimento do vendedor
             e foi omitido, pode exigir o conserto, abatimento do preço ou a devolução do
             valor pago. Recomenda-se sempre gerar um{" "}
-            <Link href="/ferramentas/gerador-recibo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/gerador-recibo" className="text-[#C73A1E] hover:underline font-medium">
               gerador de recibo
             </Link>{" "}
             detalhado que descreva as condições do veículo no ato da compra.
@@ -220,7 +220,7 @@ export default function DireitosCompradorPage() {
             condições mais vantajosas. A instituição credora original não pode cobrar
             nenhuma taxa pela portabilidade nem criar obstáculos para a transferência.
             Utilize o{" "}
-            <Link href="/ferramentas/portabilidade-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/portabilidade-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               simulador de portabilidade
             </Link>{" "}
             para comparar as condições e verificar se vale a pena migrar o seu financiamento.
@@ -234,7 +234,7 @@ export default function DireitosCompradorPage() {
             juros e demais acréscimos. Isso significa que, ao quitar parcelas futuras antes
             do vencimento, o banco é obrigado a conceder desconto proporcional. Calcule
             exatamente quanto você pode economizar com a{" "}
-            <Link href="/ferramentas/quitacao-antecipada" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/quitacao-antecipada" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de quitação antecipada
             </Link>
             .
@@ -248,7 +248,7 @@ export default function DireitosCompradorPage() {
             pelo Banco Central. Se o seu financiamento cobra uma taxa muito acima da média
             do BC para a mesma modalidade, é possível pleitear judicialmente a revisão do
             contrato. Verifique se os juros do seu financiamento são abusivos com a{" "}
-            <Link href="/ferramentas/juros-abusivos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/juros-abusivos" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de juros abusivos
             </Link>
             .
@@ -263,7 +263,7 @@ export default function DireitosCompradorPage() {
             tarifas, seguros, tributos e outras despesas cobradas do consumidor. Essa
             informação é essencial para comparar propostas de diferentes bancos e
             financeiras. Calcule o CET real do seu financiamento com a{" "}
-            <Link href="/ferramentas/calculadora-cet" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-cet" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de CET
             </Link>
             .
@@ -299,7 +299,7 @@ export default function DireitosCompradorPage() {
             pelo novo proprietário após a venda. O comprador, por sua vez, tem o mesmo
             prazo de 30 dias para providenciar a transferência do veículo para seu nome
             junto ao Detran. Para formalizar a transação de forma segura, utilize o{" "}
-            <Link href="/ferramentas/contrato-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/contrato-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               gerador de contrato
             </Link>{" "}
             com todas as cláusulas de proteção necessárias.

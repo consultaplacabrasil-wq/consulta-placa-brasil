@@ -137,7 +137,7 @@ export default function CalculadoraCET() {
               Valor Financiado (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">R$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">R$</span>
               <input
                 id="valor-cet"
                 type="text"
@@ -165,7 +165,7 @@ export default function CalculadoraCET() {
                 className="w-full pl-4 pr-10 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-colors"
                 placeholder="1,79"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">%</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">%</span>
             </div>
           </div>
 
@@ -175,7 +175,7 @@ export default function CalculadoraCET() {
               TAC / Taxa de Abertura (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">R$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">R$</span>
               <input
                 id="tac-cet"
                 type="text"
@@ -203,7 +203,7 @@ export default function CalculadoraCET() {
                 className="w-full pl-4 pr-10 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-colors"
                 placeholder="0"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">R$/mês</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">R$/mês</span>
             </div>
           </div>
 
@@ -213,7 +213,7 @@ export default function CalculadoraCET() {
               Outras Taxas (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">R$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">R$</span>
               <input
                 id="outras-cet"
                 type="text"
@@ -262,7 +262,7 @@ export default function CalculadoraCET() {
               </p>
             ) : (
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">R$</span>
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">R$</span>
                 <input
                   id="iof-cet"
                   type="text"
@@ -292,7 +292,7 @@ export default function CalculadoraCET() {
             onChange={(e) => setPrazo(parseInt(e.target.value))}
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#FF4D30]"
           />
-          <div className="flex justify-between text-xs text-[#94A3B8] mt-1">
+          <div className="flex justify-between text-xs text-[#64748B] mt-1">
             <span>6</span>
             <span>12</span>
             <span>24</span>
@@ -329,13 +329,13 @@ export default function CalculadoraCET() {
           {/* Cards de comparação */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Taxa Nominal Anual
               </p>
               <p className="text-2xl font-bold text-[#0F172A]">
                 {formatPercent(resultado.taxaNominalAnual)}
               </p>
-              <p className="text-xs text-[#94A3B8] mt-1">Apenas juros</p>
+              <p className="text-xs text-[#64748B] mt-1">Apenas juros</p>
             </div>
             <div className="bg-white rounded-2xl border-2 border-[#FF4D30]/30 shadow-sm p-5 text-center">
               <p className="text-xs font-semibold text-[#FF4D30] uppercase tracking-wide mb-1">
@@ -344,25 +344,25 @@ export default function CalculadoraCET() {
               <p className="text-2xl font-bold text-[#FF4D30]">
                 {formatPercent(resultado.cetAnual)}
               </p>
-              <p className="text-xs text-[#94A3B8] mt-1">Juros + todas as taxas</p>
+              <p className="text-xs text-[#64748B] mt-1">Juros + todas as taxas</p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Diferença
               </p>
               <p className="text-2xl font-bold text-amber-600">
                 +{formatPercent(resultado.cetAnual - resultado.taxaNominalAnual)}
               </p>
-              <p className="text-xs text-[#94A3B8] mt-1">Custos ocultos</p>
+              <p className="text-xs text-[#64748B] mt-1">Custos ocultos</p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Custo Total (R$)
               </p>
               <p className="text-2xl font-bold text-red-600">
                 {formatCurrency(resultado.custoTotal)}
               </p>
-              <p className="text-xs text-[#94A3B8] mt-1">Juros + taxas</p>
+              <p className="text-xs text-[#64748B] mt-1">Juros + taxas</p>
             </div>
           </div>
 
@@ -370,7 +370,7 @@ export default function CalculadoraCET() {
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
             <div className="flex items-center justify-center gap-8">
               <div>
-                <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                   CET Mensal
                 </p>
                 <p className="text-xl font-bold text-[#FF4D30]">
@@ -379,7 +379,7 @@ export default function CalculadoraCET() {
               </div>
               <div className="w-px h-10 bg-gray-200" />
               <div>
-                <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                   Parcela Estimada
                 </p>
                 <p className="text-xl font-bold text-[#0F172A]">

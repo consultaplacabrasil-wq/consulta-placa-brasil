@@ -26,7 +26,7 @@ export default function EletricoVsCombustaoPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -77,10 +77,10 @@ export default function EletricoVsCombustaoPage() {
             na concessionária. Embora os carros elétricos costumem ter um valor de compra mais
             elevado, o custo operacional, especialmente o gasto com energia, é significativamente
             menor. Para tomar a melhor decisão, é fundamental comparar o{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total de propriedade do veículo</Link>{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">custo total de propriedade do veículo</Link>{" "}
             ao longo de vários anos, considerando tanto o investimento inicial quanto as despesas
             recorrentes com abastecimento. Se está avaliando um veículo usado, aproveite para fazer a{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consulta da placa do carro
             </Link>{" "}
             e verificar a situação cadastral antes da compra.
@@ -109,7 +109,7 @@ export default function EletricoVsCombustaoPage() {
             Além disso, veículos elétricos exigem menos manutenção, pois não possuem motor a
             explosão, câmbio tradicional, embreagem, correia dentada nem sistema de escapamento.
             Outro fator a considerar é a{" "}
-            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">depreciação veicular</Link>,
+            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#C73A1E] hover:underline font-medium">depreciação veicular</Link>,
             que tende a ser diferente entre elétricos e modelos a combustão.
           </p>
 
@@ -135,12 +135,12 @@ export default function EletricoVsCombustaoPage() {
             incentivos podem representar uma economia de milhares de reais por ano e devem ser
             considerados na análise de custo total. Para quem possui veículo flex, vale também
             conferir nossa calculadora{" "}
-            <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">gasolina ou etanol</Link>{" "}
+            <Link href="/ferramentas/calculadora-flex" className="text-[#C73A1E] hover:underline font-medium">gasolina ou etanol</Link>{" "}
             e descobrir o combustível mais vantajoso. Vale ressaltar que a política de incentivos
             varia conforme a legislação estadual e pode ser alterada ao longo do tempo, por isso é
             importante consultar sempre a Secretaria da Fazenda do seu estado para informações atualizadas. Para saber mais
             sobre qualquer veículo, você pode{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               verificar placa de carro
             </Link>{" "}
             gratuitamente em nosso site.

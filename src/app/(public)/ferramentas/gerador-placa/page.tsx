@@ -113,7 +113,7 @@ export default function GeradorPlacaPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -198,7 +198,7 @@ export default function GeradorPlacaPage() {
             nossa ferramenta de{" "}
             <Link
               href="/"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               pesquisa placa de carro
             </Link>.
@@ -235,7 +235,7 @@ export default function GeradorPlacaPage() {
             milhões, garantindo disponibilidade por décadas. Se precisa{" "}
             <Link
               href="/"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               procurar placa
             </Link>{" "}
@@ -251,28 +251,28 @@ export default function GeradorPlacaPage() {
             existente, utilize nosso{" "}
             <Link
               href="/ferramentas/identificador-placa"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               identificador de placa veicular
             </Link>
             . Explore também as demais{" "}
             <Link
               href="/ferramentas"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               ferramentas veiculares gratuitas
             </Link>{" "}
             disponíveis no Consulta Placa Brasil, como o{" "}
             <Link
               href="/ferramentas/decodificador-chassi"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               decodificador de chassi
             </Link>{" "}
             e a{" "}
             <Link
               href="/ferramentas/calculadora-transferencia"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               calculadora de transferência veicular
             </Link>.

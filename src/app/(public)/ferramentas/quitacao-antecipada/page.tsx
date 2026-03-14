@@ -26,7 +26,7 @@ export default function QuitacaoAntecipadaPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -75,7 +75,7 @@ export default function QuitacaoAntecipadaPage() {
             do seu financiamento antes do prazo contratado. De acordo com o Código de Defesa do Consumidor
             e a Lei 14.181/2021, as instituições financeiras são obrigadas a conceder desconto proporcional
             dos juros futuros quando o cliente opta por antecipar o pagamento. Antes de quitar, recomendamos{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa</Link>{" "}
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar placa</Link>{" "}
             do veículo para garantir que toda a documentação esteja regularizada.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -83,7 +83,7 @@ export default function QuitacaoAntecipadaPage() {
             atualizado, sem os juros das parcelas que ainda não venceram. Isso pode representar uma economia
             significativa, especialmente nos primeiros meses do contrato, quando a proporção de juros
             nas parcelas é maior. Utilize o{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               simulador de financiamento
             </Link>{" "}
             para comparar diferentes cenários de prazo e taxa.
@@ -102,7 +102,7 @@ export default function QuitacaoAntecipadaPage() {
           <p className="text-[#475569] leading-relaxed">
             Para entender se os juros do seu contrato estão dentro dos padrões de mercado, utilize
             a{" "}
-            <Link href="/ferramentas/juros-abusivos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/juros-abusivos" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de juros abusivos
             </Link>. Taxas acima da média praticada pelo mercado podem ser contestadas junto ao banco
             ou em órgãos de defesa do consumidor.
@@ -120,7 +120,7 @@ export default function QuitacaoAntecipadaPage() {
           </p>
           <p className="text-[#475569] leading-relaxed">
             Também é importante verificar o Custo Efetivo Total do financiamento original. Use a{" "}
-            <Link href="/ferramentas/calculadora-cet" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-cet" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de CET
             </Link>{" "}
             para conferir se todos os encargos estão sendo considerados corretamente. Lembre-se de que

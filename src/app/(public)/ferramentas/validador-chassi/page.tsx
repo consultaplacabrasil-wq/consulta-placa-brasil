@@ -112,7 +112,7 @@ export default function ValidadorChassiPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -211,7 +211,7 @@ export default function ValidadorChassiPage() {
           </p>
           <p className="text-[#475569] leading-relaxed">
             Se você deseja decodificar o chassi e ver fabricante, país e ano, utilize nosso{" "}
-            <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/decodificador-chassi" className="text-[#C73A1E] hover:underline font-medium">
               decodificador de chassi
             </Link>. O decodificador extrai informações detalhadas das seções WMI, VDS e VIS,
             enquanto o validador foca exclusivamente em confirmar se o número é estruturalmente
@@ -227,7 +227,7 @@ export default function ValidadorChassiPage() {
           <p className="text-[#475569] leading-relaxed">
             Ao adquirir um veículo usado, a validação do chassi deve ser combinada com outras
             verificações essenciais. Recomendamos{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar placa de veículo
             </Link>{" "}
             para obter dados cadastrais, histórico de multas e possíveis restrições. Juntas,
@@ -248,7 +248,7 @@ export default function ValidadorChassiPage() {
             requer nenhum tipo de cadastro. Nenhum dado é enviado a servidores externos e
             todo o processamento é feito localmente no seu dispositivo. Explore também as
             demais{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             disponíveis no Consulta Placa Brasil.

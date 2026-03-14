@@ -26,7 +26,7 @@ export default function PortabilidadeFinanciamentoPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -76,7 +76,7 @@ export default function PortabilidadeFinanciamentoPage() {
             financiamento de veículo de uma instituição financeira para outra que ofereça
             condições mais vantajosas, como taxas de juros menores ou prazos mais adequados
             ao seu orçamento. Antes de iniciar o processo, recomendamos{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar a placa
             </Link>{" "}
             do veículo para garantir que a documentação esteja em ordem.
@@ -104,7 +104,7 @@ export default function PortabilidadeFinanciamentoPage() {
             tem até 5 dias úteis para apresentar uma contraproposta. Muitos consumidores
             conseguem condições ainda melhores nessa etapa de negociação, sem precisar
             trocar de instituição. Use nosso{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               simulador de financiamento
             </Link>{" "}
             para comparar cenários com diferentes taxas e prazos.
@@ -127,7 +127,7 @@ export default function PortabilidadeFinanciamentoPage() {
             Para financiamentos com poucas parcelas restantes, a economia pode não
             justificar os custos da transferência. Verifique também se não há cláusulas
             de juros abusivos no seu contrato atual com nossa ferramenta de{" "}
-            <Link href="/ferramentas/juros-abusivos" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/juros-abusivos" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de juros abusivos
             </Link>.
           </p>

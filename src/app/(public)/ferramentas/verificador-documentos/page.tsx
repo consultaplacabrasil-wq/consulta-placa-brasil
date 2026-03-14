@@ -106,7 +106,7 @@ export default function VerificadorDocumentosPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -182,7 +182,7 @@ export default function VerificadorDocumentosPage() {
           <p className="text-[#475569] leading-relaxed">
             Manter a documentação do veículo e a habilitação em dia é uma obrigação de todo
             condutor brasileiro. Se precisar{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa</Link>,
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar placa</Link>,
             utilize nossa ferramenta principal para obter os dados atualizados do veículo.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -192,7 +192,7 @@ export default function VerificadorDocumentosPage() {
             perante os órgãos de trânsito. Circular com qualquer um desses documentos vencidos
             pode resultar em multas, apreensão do veículo e pontos na carteira. Acompanhe sua
             pontuação com o{" "}
-            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#C73A1E] hover:underline font-medium">
               simulador de pontos na CNH
             </Link>
             .
@@ -211,7 +211,7 @@ export default function VerificadorDocumentosPage() {
           <p className="text-[#475569] leading-relaxed">
             O licenciamento anual do veículo é outro ponto que exige atenção. Antes de verificar
             o calendário, vale{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">pesquisar placa</Link> para
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">pesquisar placa</Link> para
             confirmar os dados cadastrais do automóvel. O calendário de
             licenciamento é definido pelo último dígito da placa do veículo: placas com final 1
             vencem em janeiro, final 2 em fevereiro, e assim por diante, até final 0 em outubro.
@@ -220,7 +220,7 @@ export default function VerificadorDocumentosPage() {
             O não pagamento do licenciamento impede a emissão do CRLV e configura infração
             gravíssima, com multa e remoção do veículo ao pátio do Detran. Além do licenciamento,
             é necessário quitar o IPVA. Utilize a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de IPVA
             </Link>{" "}
             para estimar o valor do imposto, e regularize eventuais multas de trânsito pendentes para
@@ -230,7 +230,7 @@ export default function VerificadorDocumentosPage() {
             Nosso verificador de documentos veiculares foi desenvolvido para facilitar o controle
             dessas obrigações. Se você planeja comprar ou vender um veículo, confira
             a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência veicular
             </Link>{" "}
             para conhecer os custos envolvidos na documentação.
@@ -246,19 +246,19 @@ export default function VerificadorDocumentosPage() {
           <p className="text-[#475569] leading-relaxed">
             Além do verificador de documentos, o Consulta Placa Brasil disponibiliza diversas
             outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>
             . Confira o{" "}
-            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#C73A1E] hover:underline font-medium">
               simulador de pontos na CNH
             </Link>{" "}
             para acompanhar sua pontuação, a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência de veículo
             </Link>{" "}
             e a{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de custo total do veículo
             </Link>
             . Todas são de uso gratuito, funcionam diretamente no navegador

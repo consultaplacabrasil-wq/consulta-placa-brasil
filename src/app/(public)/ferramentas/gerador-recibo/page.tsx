@@ -26,7 +26,7 @@ export default function GeradorReciboPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -128,7 +128,7 @@ export default function GeradorReciboPage() {
             protege tanto o comprador, que passa a ter um comprovante oficial do pagamento
             realizado, quanto o vendedor, que documenta o recebimento do valor. Antes de concluir
             qualquer negociação, é essencial{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               verificar a placa do veículo
             </Link>{" "}
             para garantir que não existam pendências ou restrições ocultas que possam comprometer
@@ -144,7 +144,7 @@ export default function GeradorReciboPage() {
             pagamento é realizado integralmente no ato da entrega do veículo. Em transações
             parceladas, recomenda-se emitir um recibo para cada parcela paga, especificando o
             valor e a data do pagamento. Além do recibo, é altamente recomendável elaborar um{" "}
-            <Link href="/ferramentas/gerador-contrato" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/gerador-contrato" className="text-[#C73A1E] hover:underline font-medium">
               contrato de compra e venda
             </Link>{" "}
             completo, que detalha todas as condições da negociação, responsabilidades sobre
@@ -162,7 +162,7 @@ export default function GeradorReciboPage() {
             todos esses elementos confere validade ao documento e facilita a comprovação da
             transação em caso de eventuais disputas. Para calcular os custos adicionais
             envolvidos na transferência do veículo, utilize a{" "}
-            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de transferência veicular
             </Link>
             , que apresenta as taxas do DETRAN, vistoria e demais encargos por estado.
@@ -179,7 +179,7 @@ export default function GeradorReciboPage() {
             ou gerar problemas na hora da transferência junto ao DETRAN. É recomendável emitir
             o recibo em duas vias, uma para o vendedor e outra para o comprador, e guardar o
             documento por pelo menos cinco anos. Explore também as demais{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             do Consulta Placa Brasil para auxiliar em todas as etapas da negociação.

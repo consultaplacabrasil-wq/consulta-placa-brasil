@@ -20,7 +20,7 @@ export default function SugerirFerramentaPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           <nav
             aria-label="Breadcrumb"
-            className="flex items-center text-sm text-gray-500 mb-4"
+            className="flex items-center text-sm text-gray-400 mb-4"
           >
             <Link href="/" className="hover:text-white transition-colors">
               Início

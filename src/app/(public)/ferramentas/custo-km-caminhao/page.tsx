@@ -26,7 +26,7 @@ export default function CustoKmCaminhaoPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -79,12 +79,12 @@ export default function CustoKmCaminhaoPage() {
             quilometragem percorrida. Sem esse controle, o caminhoneiro corre o risco de aceitar
             fretes que não cobrem sequer as despesas básicas de operação, comprometendo a
             sustentabilidade financeira do negócio. Para verificar dados de qualquer caminhão, faça uma{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consulta pela placa
             </Link>{" "}
             diretamente em nosso site. Compare seus resultados com o piso estabelecido
             pela nossa{" "}
-            <Link href="/ferramentas/calculadora-frete-antt" className="text-[#FF4D30] hover:underline font-medium">calculadora de frete ANTT</Link>{" "}
+            <Link href="/ferramentas/calculadora-frete-antt" className="text-[#C73A1E] hover:underline font-medium">calculadora de frete ANTT</Link>{" "}
             para garantir que seus fretes são rentáveis.
           </p>
 
@@ -101,7 +101,7 @@ export default function CustoKmCaminhaoPage() {
             o consumo, recomenda-se manter o veículo bem regulado, calibrar os pneus
             regularmente e adotar uma condução econômica, evitando acelerações bruscas. Para veículos
             flex da frota, confira também nossa calculadora{" "}
-            <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">gasolina ou etanol</Link>{" "}
+            <Link href="/ferramentas/calculadora-flex" className="text-[#C73A1E] hover:underline font-medium">gasolina ou etanol</Link>{" "}
             e descubra o combustível mais econômico.
           </p>
 
@@ -143,7 +143,7 @@ export default function CustoKmCaminhaoPage() {
             operacional, pois impacta o valor de revenda e a capacidade de renovação da frota.
             Caminhões bem conservados e com baixa quilometragem tendem a depreciar menos. Utilize
             nossa{" "}
-            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">calculadora de depreciação veicular</Link>{" "}
+            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#C73A1E] hover:underline font-medium">calculadora de depreciação veicular</Link>{" "}
             para projetar a desvalorização do seu caminhão nos próximos anos.
           </p>
 
@@ -160,7 +160,7 @@ export default function CustoKmCaminhaoPage() {
             calculadora sugere um frete mínimo por km com margem de 20% sobre o custo total,
             servindo como referência inicial para a precificação dos seus serviços de transporte.
             Antes de adquirir um caminhão usado, não deixe de{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               conferir placa de carro
             </Link>{" "}
             para checar a situação do veículo.

@@ -113,7 +113,7 @@ export default function GeradorRenavamPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -197,7 +197,7 @@ export default function GeradorRenavamPage() {
             uma{" "}
             <Link
               href="/"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               consultar placa de veículo
             </Link>{" "}
@@ -245,7 +245,7 @@ export default function GeradorRenavamPage() {
             Para complementar seus testes, utilize também o{" "}
             <Link
               href="/ferramentas/validador-renavam"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               validador de RENAVAM
             </Link>
@@ -253,21 +253,21 @@ export default function GeradorRenavamPage() {
             correto. Explore ainda o{" "}
             <Link
               href="/ferramentas/decodificador-chassi"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               decodificador de chassi
             </Link>{" "}
             e o{" "}
             <Link
               href="/ferramentas/identificador-placa"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               identificador de placa veicular
             </Link>{" "}
             para obter ainda mais informações sobre veículos. Acesse todas as{" "}
             <Link
               href="/ferramentas"
-              className="text-[#FF4D30] hover:underline font-medium"
+              className="text-[#C73A1E] hover:underline font-medium"
             >
               ferramentas veiculares gratuitas
             </Link>{" "}

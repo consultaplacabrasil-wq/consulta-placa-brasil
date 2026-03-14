@@ -26,7 +26,7 @@ export default function ConsultaFipePage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -80,7 +80,7 @@ export default function ConsultaFipePage() {
             por concessionárias, seguradoras, financeiras, despachantes e órgãos públicos como base
             para negociações, cálculo de impostos e avaliação de sinistros. Se você deseja calcular
             o IPVA do seu veículo com base no valor FIPE, utilize nossa{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de IPVA 2026
             </Link>{" "}
             com alíquotas atualizadas por estado.
@@ -109,7 +109,7 @@ export default function ConsultaFipePage() {
             indenização em caso de perda total ou roubo. Além disso, instituições financeiras
             consultam a FIPE para aprovar financiamentos e definir limites de crédito. Para quem
             está pensando em financiar um veículo, recomendamos o nosso{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               simulador de financiamento veicular
             </Link>{" "}
             para comparar parcelas e taxas de juros.
@@ -126,12 +126,12 @@ export default function ConsultaFipePage() {
             veículos com histórico de sinistros, alta quilometragem ou pendências documentais
             tendem a ser vendidos abaixo. Use a FIPE como ponto de partida e considere esses
             fatores na hora de negociar. Ao avaliar um veículo usado, você também pode{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar placas de veículos
             </Link>{" "}
             para obter informações detalhadas sobre o histórico do automóvel. Para entender quanto o seu veículo desvaloriza ao longo
             do tempo, experimente nossa{" "}
-            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de depreciação veicular
             </Link>.
           </p>

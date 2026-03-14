@@ -26,7 +26,7 @@ export default function ChecklistManutencaoPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -145,7 +145,7 @@ export default function ChecklistManutencaoPage() {
             60.000 km. Ignorar esses prazos pode resultar em avarias graves e custos de reparo
             significativamente mais altos. Para estimar o impacto financeiro dessas manutenções, utilize
             nossa{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de custo total do veículo
             </Link>.
           </p>
@@ -162,7 +162,7 @@ export default function ChecklistManutencaoPage() {
             veículos pesados é obrigatória para a segurança nas estradas e está sujeita a
             fiscalização nas rodovias federais e estaduais. Para calcular o custo por quilômetro
             do seu veículo, incluindo a depreciação ao longo dos anos, utilize a{" "}
-            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de depreciação veicular
             </Link>.
           </p>
@@ -183,12 +183,12 @@ export default function ChecklistManutencaoPage() {
             preservar o valor do veículo ao longo dos anos e evitar custos inesperados com a
             manutenção corretiva, que pode ser até três vezes mais cara do que a preventiva. Antes
             de comprar um veículo usado, recomendamos{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar placa veicular
             </Link>{" "}
             para conhecer o histórico completo do automóvel. Para
             estimar o{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">
               valor do IPVA
             </Link>{" "}
             e demais custos anuais, explore nossas ferramentas gratuitas.
@@ -196,19 +196,19 @@ export default function ChecklistManutencaoPage() {
 
           <p className="text-[#475569] leading-relaxed">
             Explore outras{" "}
-            <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas" className="text-[#C73A1E] hover:underline font-medium">
               ferramentas veiculares gratuitas
             </Link>{" "}
             do Consulta Placa Brasil, como a{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">
               simuladora de financiamento
             </Link>
             , a{" "}
-            <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/calculadora-multas" className="text-[#C73A1E] hover:underline font-medium">
               calculadora de multas
             </Link>{" "}
             e o{" "}
-            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#C73A1E] hover:underline font-medium">
               simulador de pontos na CNH
             </Link>
             .

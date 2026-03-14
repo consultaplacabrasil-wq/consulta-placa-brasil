@@ -26,7 +26,7 @@ export default function CalculadoraIPVAPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -76,14 +76,14 @@ export default function CalculadoraIPVAPage() {
             O Imposto sobre a Propriedade de Veículos Automotores (IPVA) é um tributo estadual
             cobrado anualmente de todos os proprietários de veículos no Brasil. Antes de calcular
             o imposto, você pode{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa de veículo</Link> para
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar placa de veículo</Link> para
             obter os dados completos do automóvel.
           </p>
           <p className="text-[#475569] leading-relaxed">
             O valor do IPVA é calculado com base no valor venal do veículo, geralmente obtido
             pela Tabela FIPE, multiplicado pela alíquota definida por cada estado. Caso você tenha
             recebido alguma infração, utilize nossa{" "}
-            <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">calculadora de multas de trânsito</Link> para
+            <Link href="/ferramentas/calculadora-multas" className="text-[#C73A1E] hover:underline font-medium">calculadora de multas de trânsito</Link> para
             consultar valores e pontos na CNH. Como cada unidade federativa possui
             autonomia para definir suas próprias alíquotas, o valor final do imposto pode variar
             significativamente de um estado para outro.
@@ -121,7 +121,7 @@ export default function CalculadoraIPVAPage() {
             O parcelamento do IPVA é permitido na maioria dos estados em até 3 a 5 parcelas, sem
             acréscimo de juros. Entretanto, ao parcelar, o proprietário abre mão do desconto
             oferecido no pagamento à vista. Se você está pensando em financiar um veículo, experimente
-            nosso <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">simulador de financiamento veicular</Link> para
+            nosso <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">simulador de financiamento veicular</Link> para
             calcular parcelas e juros.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -144,7 +144,7 @@ export default function CalculadoraIPVAPage() {
             ter isenção. Veículos elétricos e híbridos possuem redução ou isenção total em vários
             estados, como incentivo à mobilidade sustentável. Para entender todos os gastos envolvidos
             na manutenção do seu veículo, confira a calculadora de{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total do veículo</Link>.
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">custo total do veículo</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">

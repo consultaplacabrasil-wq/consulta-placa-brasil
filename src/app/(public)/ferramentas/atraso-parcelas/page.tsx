@@ -26,7 +26,7 @@ export default function AtrasoParcelasPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -72,7 +72,7 @@ export default function AtrasoParcelasPage() {
           </h2>
           <p className="text-[#475569] leading-relaxed">
             Quando uma parcela de financiamento, boleto ou carnê vence sem pagamento, incidem encargos adicionais sobre o valor original. No Brasil, esses encargos são regulados pelo Código de Defesa do Consumidor (CDC) e pelo Código Civil, garantindo limites que protegem o consumidor. Antes de negociar qualquer dívida relacionada a veículos, recomendamos{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar a placa</Link>{" "}
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consultar a placa</Link>{" "}
             para verificar a situação cadastral e identificar possíveis pendências financeiras vinculadas ao automóvel.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -90,7 +90,7 @@ export default function AtrasoParcelasPage() {
           </p>
           <p className="text-[#475569] leading-relaxed">
             Se você está com parcelas de financiamento veicular em atraso, vale a pena utilizar o{" "}
-            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">simulador de financiamento</Link>{" "}
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#C73A1E] hover:underline font-medium">simulador de financiamento</Link>{" "}
             para recalcular as condições do contrato. Também considere verificar se os juros cobrados estão dentro da média do mercado. Taxas muito acima da média podem ser consideradas abusivas, e o consumidor tem o direito de questionar e renegociar.
           </p>
 
@@ -102,7 +102,7 @@ export default function AtrasoParcelasPage() {
           </p>
           <p className="text-[#475569] leading-relaxed">
             Para quem deseja quitar a dívida de uma vez, consulte ferramentas como a de{" "}
-            <Link href="/ferramentas/quitacao-antecipada" className="text-[#FF4D30] hover:underline font-medium">quitação antecipada</Link>{" "}
+            <Link href="/ferramentas/quitacao-antecipada" className="text-[#C73A1E] hover:underline font-medium">quitação antecipada</Link>{" "}
             para simular o valor total com desconto dos juros futuros. Manter as finanças organizadas e acompanhar os vencimentos é essencial para preservar o crédito e evitar restrições nos órgãos de proteção, como SPC e Serasa.
           </p>
           <p className="text-[#475569] leading-relaxed">

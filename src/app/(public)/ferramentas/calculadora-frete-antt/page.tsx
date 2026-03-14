@@ -26,7 +26,7 @@ export default function CalculadoraFreteAnttPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -81,12 +81,12 @@ export default function CalculadoraFreteAnttPage() {
             autônomos e garantir condições justas de remuneração. O descumprimento
             desses pisos pode acarretar sanções administrativas e multas tanto para
             embarcadores quanto para transportadoras. Ao contratar um transportador autônomo, é possível{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               puxar placa de veículo
             </Link>{" "}
             para confirmar os dados do caminhão. Para entender melhor seus custos operacionais,
             utilize nossa calculadora de{" "}
-            <Link href="/ferramentas/custo-km-caminhao" className="text-[#FF4D30] hover:underline font-medium">custo por quilômetro do caminhão</Link>.
+            <Link href="/ferramentas/custo-km-caminhao" className="text-[#C73A1E] hover:underline font-medium">custo por quilômetro do caminhão</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -118,12 +118,12 @@ export default function CalculadoraFreteAnttPage() {
             englobam materiais inflamáveis, tóxicos, corrosivos e explosivos, que
             demandam veículos especializados e documentação específica conforme as
             normas do IBAMA e do Exército Brasileiro. Você pode{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">
               consultar placa veicular
             </Link>{" "}
             para conferir o tipo e a situação de qualquer veículo de carga. Para comparar custos de combustível na sua
             frota, experimente nossa calculadora{" "}
-            <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">gasolina ou etanol</Link>.
+            <Link href="/ferramentas/calculadora-flex" className="text-[#C73A1E] hover:underline font-medium">gasolina ou etanol</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -140,7 +140,7 @@ export default function CalculadoraFreteAnttPage() {
             rodoviários de carga no Brasil utilizam configurações que variam de dois
             a nove eixos, dependendo da capacidade de carga e do tipo de implemento
             utilizado, como carretas, bitrens e rodotrens. Não se esqueça de calcular também o{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">IPVA do seu veículo</Link>{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">IPVA do seu veículo</Link>{" "}
             para incluir esse custo no planejamento financeiro da operação.
           </p>
 

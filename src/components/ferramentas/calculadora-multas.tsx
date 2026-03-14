@@ -340,7 +340,7 @@ export function CalculadoraMultas() {
             </span>
           ))}
         </div>
-        <p className="text-xs text-[#94A3B8] mt-3">
+        <p className="text-xs text-[#64748B] mt-3">
           Valores atualizados conforme o Código de Trânsito Brasileiro (CTB).
           Os valores das multas podem sofrer reajustes anuais.
         </p>

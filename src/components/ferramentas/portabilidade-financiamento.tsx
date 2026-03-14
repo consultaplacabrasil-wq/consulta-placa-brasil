@@ -90,7 +90,7 @@ export default function PortabilidadeFinanciamento() {
               Saldo Devedor (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 R$
               </span>
               <input
@@ -119,7 +119,7 @@ export default function PortabilidadeFinanciamento() {
                 className="w-full pl-4 pr-10 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-colors"
                 placeholder="1,99"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 %
               </span>
             </div>
@@ -145,7 +145,7 @@ export default function PortabilidadeFinanciamento() {
               Valor da Parcela Atual (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 R$
               </span>
               <input
@@ -181,7 +181,7 @@ export default function PortabilidadeFinanciamento() {
                   className="w-full pl-4 pr-10 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-colors"
                   placeholder="1,29"
                 />
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                   %
                 </span>
               </div>
@@ -325,7 +325,7 @@ export default function PortabilidadeFinanciamento() {
               </span>{" "}
               por parcela
             </p>
-            <p className="text-xs text-[#94A3B8]">
+            <p className="text-xs text-[#64748B]">
               * Considera custo estimado de portabilidade de {formatCurrency(resultado.custoPortabilidade)}
             </p>
           </div>

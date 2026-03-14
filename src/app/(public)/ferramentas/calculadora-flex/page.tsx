@@ -26,7 +26,7 @@ export default function CalculadoraFlexPage() {
       {/* Hero */}
       <section className="bg-[#0F172A] text-white py-10">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="mx-2">/</span>
             <Link href="/ferramentas" className="hover:text-white transition-colors">Ferramentas</Link>
@@ -76,7 +76,7 @@ export default function CalculadoraFlexPage() {
             A dúvida entre abastecer com gasolina ou etanol é uma das mais comuns entre os motoristas
             brasileiros que possuem veículos flex. Se você ainda não conhece todos os dados do seu
             automóvel, faça uma{" "}
-            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consulta veicular</Link> gratuita
+            <Link href="/" className="text-[#C73A1E] hover:underline font-medium">consulta veicular</Link> gratuita
             para descobrir modelo, ano e tipo de combustível.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -85,7 +85,7 @@ export default function CalculadoraFlexPage() {
             real por quilômetro rodado, levando em conta a diferença de rendimento entre os dois
             combustíveis. Para uma visão completa dos gastos com o veículo, utilize nossa ferramenta
             de{" "}
-            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total do veículo</Link>,
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#C73A1E] hover:underline font-medium">custo total do veículo</Link>,
             que inclui combustível, IPVA, seguro e manutenção.
           </p>
 
@@ -129,13 +129,13 @@ export default function CalculadoraFlexPage() {
             produzido a partir da cana-de-açúcar, a emissão líquida de CO₂ é significativamente menor
             em comparação à gasolina, que é um combustível fóssil derivado do petróleo. Se a
             sustentabilidade é prioridade para você, confira também nosso comparador{" "}
-            <Link href="/ferramentas/eletrico-vs-combustao" className="text-[#FF4D30] hover:underline font-medium">elétrico vs combustão</Link>.
+            <Link href="/ferramentas/eletrico-vs-combustao" className="text-[#C73A1E] hover:underline font-medium">elétrico vs combustão</Link>.
           </p>
           <p className="text-[#475569] leading-relaxed">
             O Brasil é referência mundial na produção de etanol, e abastecer com esse combustível contribui para
             a redução da pegada de carbono do transporte nacional. Não se esqueça de verificar o valor do imposto
             anual com a{" "}
-            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">calculadora de IPVA</Link>.
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#C73A1E] hover:underline font-medium">calculadora de IPVA</Link>.
             Use nossa calculadora acima para
             fazer a comparação com os preços atuais da sua região e descubra quanto você pode
             economizar por mês e por ano.

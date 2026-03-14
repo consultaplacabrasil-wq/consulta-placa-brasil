@@ -284,7 +284,7 @@ export default function AntecipacaoParcelas() {
               Valor da Parcela (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 R$
               </span>
               <input
@@ -320,7 +320,7 @@ export default function AntecipacaoParcelas() {
                 className="w-full pl-4 pr-10 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-colors"
                 placeholder="1,49"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 %
               </span>
             </div>
@@ -397,7 +397,7 @@ export default function AntecipacaoParcelas() {
             }}
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#FF4D30]"
           />
-          <div className="flex justify-between text-xs text-[#94A3B8] mt-1">
+          <div className="flex justify-between text-xs text-[#64748B] mt-1">
             <span>1 parcela</span>
             <span>{maxAntecipar} parcelas</span>
           </div>
@@ -462,7 +462,7 @@ export default function AntecipacaoParcelas() {
           {/* Cards de resultado */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Economia Total
               </p>
               <p className="text-2xl font-bold text-[#16A34A]">
@@ -470,7 +470,7 @@ export default function AntecipacaoParcelas() {
               </p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 {modoAntecipacao === "reduzir-prazo" ? "Novo Prazo" : "Nova Parcela"}
               </p>
               <p className="text-2xl font-bold text-[#FF4D30]">
@@ -480,7 +480,7 @@ export default function AntecipacaoParcelas() {
               </p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Desconto Obtido
               </p>
               <p className="text-2xl font-bold text-[#0F172A]">
@@ -492,7 +492,7 @@ export default function AntecipacaoParcelas() {
           {/* Cards secundários */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Valor a Pagar na Antecipação
               </p>
               <p className="text-2xl font-bold text-[#0F172A]">
@@ -500,7 +500,7 @@ export default function AntecipacaoParcelas() {
               </p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
-              <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-1">
+              <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1">
                 Novo Saldo Devedor
               </p>
               <p className="text-2xl font-bold text-[#0F172A]">
@@ -565,8 +565,8 @@ export default function AntecipacaoParcelas() {
                   </tr>
                   <tr className="border-t border-gray-100 hover:bg-[#FFFBFA] transition-colors">
                     <td className="px-4 py-3 text-[#334155] font-medium">Economia (%)</td>
-                    <td className="px-4 py-3 text-right text-[#94A3B8]">-</td>
-                    <td className="px-4 py-3 text-right text-[#94A3B8]">-</td>
+                    <td className="px-4 py-3 text-right text-[#64748B]">-</td>
+                    <td className="px-4 py-3 text-right text-[#64748B]">-</td>
                     <td className="px-4 py-3 text-right text-[#16A34A] font-semibold">
                       {resultados.custoOriginal > 0
                         ? formatPercent((resultados.economia / resultados.custoOriginal) * 100)

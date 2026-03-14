@@ -146,7 +146,7 @@ export default function JurosAbusivos() {
                 className="w-full pl-4 pr-10 py-3 border border-gray-200 rounded-xl text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/30 focus:border-[#FF4D30] transition-colors"
                 placeholder="2,90"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 %
               </span>
             </div>
@@ -161,7 +161,7 @@ export default function JurosAbusivos() {
               Valor Financiado (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 R$
               </span>
               <input
@@ -210,7 +210,7 @@ export default function JurosAbusivos() {
               Valor da Parcela (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-sm">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-sm">
                 R$
               </span>
               <input
@@ -253,7 +253,7 @@ export default function JurosAbusivos() {
                   </option>
                 ))}
             </select>
-            <p className="text-xs text-[#94A3B8] mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               Taxa média do Banco Central para financiamento de veículos em{" "}
               {anoContrato}: <strong>{taxaMediaBC.toFixed(2)}% a.m.</strong>
             </p>
@@ -352,7 +352,7 @@ export default function JurosAbusivos() {
           {/* Comparativo lado a lado */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-              <h4 className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wide mb-4">
+              <h4 className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-4">
                 Seu Contrato
               </h4>
               <div className="space-y-4">
