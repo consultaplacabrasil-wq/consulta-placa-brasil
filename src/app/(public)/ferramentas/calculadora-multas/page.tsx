@@ -71,7 +71,9 @@ export default function CalculadoraMultasPage() {
           </h2>
           <p className="text-[#475569]">
             As multas de trânsito no Brasil são regulamentadas pelo Código de
-            Trânsito Brasileiro (CTB), Lei nº 9.503/1997. Cada infração possui
+            Trânsito Brasileiro (CTB), Lei nº 9.503/1997. Ao{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa de carro</Link>,
+            é possível verificar se há pendências associadas ao veículo. Cada infração possui
             um valor específico, uma quantidade de pontos que é registrada na
             Carteira Nacional de Habilitação (CNH) do condutor e uma
             classificação de gravidade que determina a severidade da penalidade.

@@ -153,7 +153,12 @@ export default function CalculadoraRodizioPage() {
             desses horários e dessa região, a circulação é livre. Motoristas
             que possuem dois veículos com finais de placa em dias diferentes de
             rodízio podem alternar o uso para manter a mobilidade durante toda
-            a semana sem infringir as regras.
+            a semana sem infringir as regras. Se você tem dúvidas sobre a situação
+            do seu veículo, pode{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              checar placa
+            </Link>{" "}
+            rapidamente e obter dados atualizados sobre o automóvel.
           </p>
         </div>
       </section>

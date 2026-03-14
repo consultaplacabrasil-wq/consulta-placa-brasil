@@ -210,7 +210,11 @@ export default function ConsultaRecallPage() {
             também são obrigadas a notificar os proprietários por carta registrada,
             e-mail ou outros meios de comunicação direta. Caso tenha adquirido o
             veículo de segunda mão, é ainda mais importante verificar a existência de
-            recalls pendentes — confira a{" "}
+            recalls pendentes — faça uma{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              consulta do veículo pela placa
+            </Link>{" "}
+            para obter um panorama completo e confira a{" "}
             <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">
               ferramenta de identificação de placa
             </Link>{" "}

@@ -73,7 +73,11 @@ export default function EletricoVsCombustaoPage() {
             menor. Para tomar a melhor decisão, é fundamental comparar o{" "}
             <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total de propriedade do veículo</Link>{" "}
             ao longo de vários anos, considerando tanto o investimento inicial quanto as despesas
-            recorrentes com abastecimento.
+            recorrentes com abastecimento. Se está avaliando um veículo usado, aproveite para fazer a{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              consulta da placa do carro
+            </Link>{" "}
+            e verificar a situação cadastral antes da compra.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -128,7 +132,12 @@ export default function EletricoVsCombustaoPage() {
             <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">gasolina ou etanol</Link>{" "}
             e descobrir o combustível mais vantajoso. Vale ressaltar que a política de incentivos
             varia conforme a legislação estadual e pode ser alterada ao longo do tempo — consulte
-            sempre a Secretaria da Fazenda do seu estado para informações atualizadas.
+            sempre a Secretaria da Fazenda do seu estado para informações atualizadas. Para saber mais
+            sobre qualquer veículo, você pode{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              verificar placa de carro
+            </Link>{" "}
+            gratuitamente em nosso site.
           </p>
 
           <div className="mt-8 p-4 bg-[#F8FAFC] rounded-xl border border-gray-100">

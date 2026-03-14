@@ -110,7 +110,12 @@ export default function CalculadoraCombustivelPage() {
             Repita o processo pelo menos duas vezes para obter uma média mais confiável. Lembre-se de que
             o consumo na estrada costuma ser significativamente melhor do que na cidade, então considere
             isso ao planejar viagens rodoviárias. Veículos mais modernos com injeção eletrônica e câmbio
-            automático CVT tendem a apresentar consumos mais eficientes em estrada.
+            automático CVT tendem a apresentar consumos mais eficientes em estrada. Se está
+            avaliando um carro usado para viagens, é possível{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              pesquisar veículo pela placa
+            </Link>{" "}
+            e verificar informações importantes antes da compra.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">

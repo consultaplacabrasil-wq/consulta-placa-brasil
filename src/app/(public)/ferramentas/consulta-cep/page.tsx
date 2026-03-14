@@ -122,7 +122,12 @@ export default function ConsultaCepPage() {
             possui taxas, procedimentos e prazos específicos para a transferência de propriedade.
             Quando o comprador reside em um estado diferente de onde o veículo está atualmente
             registrado, a mudança de domicílio veicular exige procedimentos adicionais que impactam
-            diretamente no custo e no tempo necessário para regularizar a documentação.
+            diretamente no custo e no tempo necessário para regularizar a documentação. Antes de
+            iniciar o processo, vale{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              pesquisar placa do carro
+            </Link>{" "}
+            para confirmar que não há pendências que impeçam a transferência.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">

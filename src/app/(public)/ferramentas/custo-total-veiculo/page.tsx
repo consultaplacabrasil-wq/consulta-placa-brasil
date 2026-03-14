@@ -117,7 +117,12 @@ export default function CustoTotalVeiculoPage() {
           <p className="text-[#475569]">
             Ter um carro no Brasil vai muito além do valor pago na concessionária ou no financiamento.
             O custo real de propriedade de um veículo inclui uma série de despesas fixas e variáveis
-            que, somadas, podem representar uma parcela significativa do orçamento familiar. Conhecer
+            que, somadas, podem representar uma parcela significativa do orçamento familiar. Antes de
+            adquirir um veículo usado, é recomendável{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              buscar placa de carro
+            </Link>{" "}
+            para conferir o histórico e a procedência do automóvel. Conhecer
             todos esses gastos é fundamental para tomar decisões financeiras inteligentes, seja na
             hora de comprar um carro novo, trocar de veículo ou até avaliar se vale mais a pena
             utilizar transporte por aplicativo.
@@ -196,7 +201,11 @@ export default function CustoTotalVeiculoPage() {
             do quanto seu carro realmente custa. Ao somar todas essas categorias — IPVA, combustível,
             manutenção, depreciação, seguro e financiamento — muitos proprietários se surpreendem ao
             descobrir que o custo total pode ultrapassar R$ 2.000 por mês, mesmo para veículos
-            populares.
+            populares. Para verificar pendências e a situação do veículo, você pode{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              pesquisar veículo pela placa
+            </Link>{" "}
+            de forma rápida e gratuita.
           </p>
 
           <p className="text-[#475569]">

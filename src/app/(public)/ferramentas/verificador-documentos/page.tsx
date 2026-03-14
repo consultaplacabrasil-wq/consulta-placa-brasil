@@ -174,7 +174,10 @@ export default function VerificadorDocumentosPage() {
           </h2>
           <p className="text-[#475569]">
             Manter a documentação do veículo e a habilitação em dia é uma obrigação de todo
-            condutor brasileiro. A Carteira Nacional de Habilitação (CNH) é o principal documento
+            condutor brasileiro. Se precisar{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa</Link>,
+            utilize nossa ferramenta principal para obter os dados atualizados do veículo.
+            A Carteira Nacional de Habilitação (CNH) é o principal documento
             que comprova a aptidão do motorista para conduzir veículos, enquanto o Certificado de
             Registro e Licenciamento de Veículo (CRLV) atesta que o automóvel está regularizado
             perante os órgãos de trânsito. Circular com qualquer um desses documentos vencidos
@@ -194,7 +197,10 @@ export default function VerificadorDocumentosPage() {
             etárias mais avançadas passem por avaliações médicas com maior frequência.
           </p>
           <p className="text-[#475569]">
-            O licenciamento anual do veículo é outro ponto que exige atenção. O calendário de
+            O licenciamento anual do veículo é outro ponto que exige atenção. Antes de verificar
+            o calendário, vale{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">pesquisar placa</Link> para
+            confirmar os dados cadastrais do automóvel. O calendário de
             licenciamento é definido pelo último dígito da placa do veículo: placas com final 1
             vencem em janeiro, final 2 em fevereiro, e assim por diante, até final 0 em outubro.
             O não pagamento do licenciamento impede a emissão do CRLV e configura infração

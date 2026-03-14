@@ -208,7 +208,10 @@ export default function DecodificadorChassiPage() {
             comum em veículos roubados ou clonados.
           </p>
           <p className="text-[#475569]">
-            A consulta chassi é uma etapa fundamental na compra de veículos usados. Ao
+            A consulta chassi é uma etapa fundamental na compra de veículos usados. Outra
+            verificação indispensável é{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar veículo pela placa</Link>,
+            que revela dados cadastrais e possíveis restrições. Ao
             decodificar o VIN, o comprador pode verificar se as informações do chassi conferem
             com os dados do documento (CRV/CRLV), como ano do modelo e fabricante. Se você está
             adquirindo um veículo usado, confira também a{" "}

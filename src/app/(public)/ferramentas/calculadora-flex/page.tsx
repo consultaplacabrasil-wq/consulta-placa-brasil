@@ -67,7 +67,10 @@ export default function CalculadoraFlexPage() {
           </h2>
           <p className="text-[#475569]">
             A dúvida entre abastecer com gasolina ou etanol é uma das mais comuns entre os motoristas
-            brasileiros que possuem veículos flex. A resposta depende de uma conta simples, mas que
+            brasileiros que possuem veículos flex. Se você ainda não conhece todos os dados do seu
+            automóvel, faça uma{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consulta veicular</Link> gratuita
+            para descobrir modelo, ano e tipo de combustível. A resposta depende de uma conta simples, mas que
             poucos fazem corretamente: é preciso comparar não apenas o preço por litro, mas o custo
             real por quilômetro rodado, levando em conta a diferença de rendimento entre os dois
             combustíveis. Para uma visão completa dos gastos com o veículo, utilize nossa ferramenta

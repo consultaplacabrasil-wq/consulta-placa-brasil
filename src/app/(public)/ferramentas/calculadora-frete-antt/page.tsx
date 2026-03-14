@@ -74,7 +74,11 @@ export default function CalculadoraFreteAnttPage() {
             cumprimento de valores mínimos de frete para proteger os transportadores
             autônomos e garantir condições justas de remuneração. O descumprimento
             desses pisos pode acarretar sanções administrativas e multas tanto para
-            embarcadores quanto para transportadoras. Para entender melhor seus custos operacionais,
+            embarcadores quanto para transportadoras. Ao contratar um transportador autônomo, é possível{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              puxar placa de veículo
+            </Link>{" "}
+            para confirmar os dados do caminhão. Para entender melhor seus custos operacionais,
             utilize nossa calculadora de{" "}
             <Link href="/ferramentas/custo-km-caminhao" className="text-[#FF4D30] hover:underline font-medium">custo por quilômetro do caminhão</Link>.
           </p>
@@ -107,7 +111,11 @@ export default function CalculadoraFreteAnttPage() {
             como alimentos perecíveis e medicamentos. Por fim, as cargas perigosas
             englobam materiais inflamáveis, tóxicos, corrosivos e explosivos, que
             demandam veículos especializados e documentação específica conforme as
-            normas do IBAMA e do Exército Brasileiro. Para comparar custos de combustível na sua
+            normas do IBAMA e do Exército Brasileiro. Você pode{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              consultar placa veicular
+            </Link>{" "}
+            para conferir o tipo e a situação de qualquer veículo de carga. Para comparar custos de combustível na sua
             frota, experimente nossa calculadora{" "}
             <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">gasolina ou etanol</Link>.
           </p>

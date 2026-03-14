@@ -71,7 +71,11 @@ export default function CalculadoraDepreciacaoPage() {
             veículo no Brasil, podendo representar uma perda de até 50% do valor original nos
             primeiros cinco anos de uso. Compreender como a depreciação funciona é essencial para
             tomar decisões financeiras inteligentes, seja na hora de comprar um veículo novo ou
-            seminovo, planejar a troca ou calcular o{" "}
+            seminovo, planejar a troca, fazer uma{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              pesquisa de placa
+            </Link>{" "}
+            para verificar o histórico do automóvel, ou calcular o{" "}
             <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total de propriedade do veículo</Link>.
           </p>
 
@@ -128,7 +132,11 @@ export default function CalculadoraDepreciacaoPage() {
             aceitação no mercado são práticas que ajudam a preservar o valor de revenda. Comprar
             um veículo seminovo com um ou dois anos de uso também é uma estratégia inteligente,
             pois você evita a maior faixa de depreciação que ocorre logo após a saída da
-            concessionária. Para planejar melhor a compra, experimente também nosso{" "}
+            concessionária. Também é possível{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              checar placa
+            </Link>{" "}
+            do veículo desejado para confirmar sua procedência. Para planejar melhor a compra, experimente também nosso{" "}
             <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">simulador de financiamento veicular</Link>{" "}
             e veja as parcelas e juros antes de fechar negócio.
           </p>

@@ -212,7 +212,9 @@ export default function IdentificadorPlacaPage() {
           </p>
           <p className="text-[#475569]">
             Do ponto de vista da segurança, a placa Mercosul trouxe avanços significativos
-            em relação ao padrão antigo. Ela incorpora elementos como QR Code, código de
+            em relação ao padrão antigo. Se você precisa{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">puxar placa de carro</Link> para
+            verificar a autenticidade, utilize nossa ferramenta principal. A placa Mercosul incorpora elementos como QR Code, código de
             barras bidimensional (Datamatrix), película refletiva com marca d&apos;água e
             impressão por estampagem a quente. Essas características tornam a falsificação
             e a clonagem muito mais difíceis, contribuindo para a redução de crimes

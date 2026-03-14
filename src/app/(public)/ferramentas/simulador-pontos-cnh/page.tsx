@@ -121,7 +121,9 @@ export default function SimuladorPontosCNHPage() {
             O sistema de pontuação da Carteira Nacional de Habilitação (CNH) é
             regulamentado pelo Código de Trânsito Brasileiro (CTB), Lei nº
             9.503/1997, com alterações importantes trazidas pela Lei nº
-            14.071/2020. Cada infração de trânsito cometida pelo condutor gera
+            14.071/2020. Aproveite também para realizar uma{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consulta placa de veículo</Link> e
+            verificar a situação completa do automóvel. Cada infração de trânsito cometida pelo condutor gera
             uma quantidade específica de pontos, que ficam registrados no
             prontuário do motorista por um período de 12 meses a partir da data
             da infração. Quando os pontos atingem o limite estabelecido, o
@@ -195,7 +197,9 @@ export default function SimuladorPontosCNHPage() {
           <p className="text-[#475569]">
             Caso a CNH seja suspensa, o condutor deve entregar o documento ao
             órgão de trânsito e cumprir o período de suspensão determinado, que
-            varia de 2 a 12 meses. Durante esse período, é proibido conduzir
+            varia de 2 a 12 meses. Você também pode{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">pesquisar placa de carro</Link> para
+            saber se o veículo possui alguma restrição ativa. Durante esse período, é proibido conduzir
             qualquer veículo. Após o cumprimento da penalidade, o motorista
             precisará realizar um curso de reciclagem obrigatório e ser
             aprovado em prova teórica para reaver o direito de dirigir.

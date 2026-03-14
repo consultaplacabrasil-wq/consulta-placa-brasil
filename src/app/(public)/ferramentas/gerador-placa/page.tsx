@@ -193,7 +193,14 @@ export default function GeradorPlacaPage() {
             Rodoviária Federal e por demais órgãos de trânsito. Atualmente,
             existem dois padrões de placas em circulação no território nacional:
             o padrão antigo brasileiro e o padrão Mercosul, implementado a partir
-            de setembro de 2018.
+            de setembro de 2018. Para obter informações reais sobre um veículo, utilize
+            nossa ferramenta de{" "}
+            <Link
+              href="/"
+              className="text-[#FF4D30] hover:underline font-medium"
+            >
+              pesquisa placa de carro
+            </Link>.
           </p>
           <p className="text-[#475569]">
             O padrão antigo de placas, vigente de 1990 a 2018, segue o formato
@@ -224,7 +231,14 @@ export default function GeradorPlacaPage() {
             e película refletiva com marca d&apos;água, tornando a clonagem e a
             falsificação significativamente mais difíceis. Além disso, o novo
             formato amplia o número de combinações possíveis para mais de 450
-            milhões, garantindo disponibilidade por décadas.
+            milhões, garantindo disponibilidade por décadas. Se precisa{" "}
+            <Link
+              href="/"
+              className="text-[#FF4D30] hover:underline font-medium"
+            >
+              procurar placa
+            </Link>{" "}
+            de um veículo específico, acesse a página inicial do Consulta Placa Brasil.
           </p>
           <p className="text-[#475569]">
             Nosso gerador visual de placas permite que você visualize como ficaria

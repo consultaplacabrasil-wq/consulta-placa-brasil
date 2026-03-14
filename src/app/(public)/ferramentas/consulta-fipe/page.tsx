@@ -118,7 +118,11 @@ export default function ConsultaFipePage() {
             região. Veículos em excelente estado podem ser negociados acima da FIPE, enquanto
             veículos com histórico de sinistros, alta quilometragem ou pendências documentais
             tendem a ser vendidos abaixo. Use a FIPE como ponto de partida e considere esses
-            fatores na hora de negociar. Para entender quanto o seu veículo desvaloriza ao longo
+            fatores na hora de negociar. Ao avaliar um veículo usado, você também pode{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              consultar placas de veículos
+            </Link>{" "}
+            para obter informações detalhadas sobre o histórico do automóvel. Para entender quanto o seu veículo desvaloriza ao longo
             do tempo, experimente nossa{" "}
             <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">
               calculadora de depreciação veicular

@@ -67,7 +67,10 @@ export default function CalculadoraIPVAPage() {
           </h2>
           <p className="text-[#475569]">
             O Imposto sobre a Propriedade de Veículos Automotores (IPVA) é um tributo estadual
-            cobrado anualmente de todos os proprietários de veículos no Brasil. O valor do IPVA é
+            cobrado anualmente de todos os proprietários de veículos no Brasil. Antes de calcular
+            o imposto, você pode{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa de veículo</Link> para
+            obter os dados completos do automóvel. O valor do IPVA é
             calculado com base no valor venal do veículo — geralmente obtido pela Tabela FIPE —
             multiplicado pela alíquota definida por cada estado. Caso você tenha recebido alguma infração,
             utilize nossa <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">calculadora de multas de trânsito</Link> para

@@ -194,7 +194,15 @@ export default function ConversorPlacaPage() {
             substituído por uma letra de acordo com uma tabela fixa de correspondência.
             Os dígitos de 0 a 9 são convertidos, respectivamente, nas letras A, B, C,
             D, E, F, G, H, I e J. Assim, uma placa como ABC-1234 se torna ABC1C34 no
-            padrão Mercosul, pois o dígito 2 é mapeado para a letra C.
+            padrão Mercosul, pois o dígito 2 é mapeado para a letra C. Se você deseja obter
+            informações detalhadas sobre um veículo, faça uma{" "}
+            <Link
+              href="/"
+              className="text-[#FF4D30] hover:underline font-medium"
+            >
+              consulta placa de carro
+            </Link>{" "}
+            em nosso site.
           </p>
           <p className="text-[#475569]">
             Essa conversão é utilizada pelo Detran em todo o território nacional quando
@@ -216,7 +224,14 @@ export default function ConversorPlacaPage() {
             no formato alfanumérico, a placa Mercosul trouxe avanços significativos em
             segurança, como QR Code, código de barras bidimensional e película refletiva
             com marca d&apos;água, dificultando consideravelmente a clonagem e a
-            falsificação de placas.
+            falsificação de placas. Para{" "}
+            <Link
+              href="/"
+              className="text-[#FF4D30] hover:underline font-medium"
+            >
+              consultar placa carro
+            </Link>{" "}
+            e obter dados cadastrais, acesse a página inicial da plataforma.
           </p>
           <p className="text-[#475569]">
             Do ponto de vista visual, a diferença entre os dois padrões é marcante. A

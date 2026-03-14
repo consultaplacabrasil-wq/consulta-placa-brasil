@@ -125,7 +125,11 @@ export default function CalculadoraTransferenciaPage() {
             </Link>{" "}
             para estimar o valor do imposto. Conhecer antecipadamente esses custos
             é essencial para planejar a aquisição de um veículo usado e evitar surpresas financeiras
-            no momento da documentação.
+            no momento da documentação. Antes de fechar negócio, você também pode{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              consultar placa do carro
+            </Link>{" "}
+            para verificar a procedência do veículo.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -185,7 +189,11 @@ export default function CalculadoraTransferenciaPage() {
             </Link>{" "}
             para conferir a validade da CNH e do licenciamento. É imprescindível que todos os
             débitos do veículo — como IPVA, licenciamento e multas — estejam quitados antes de
-            iniciar o processo. O prazo legal para realizar a transferência é de 30 dias após
+            iniciar o processo. Para confirmar a situação cadastral do automóvel, faça uma{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              consulta veiculo pela placa
+            </Link>{" "}
+            antes de dar entrada na transferência. O prazo legal para realizar a transferência é de 30 dias após
             a compra, e o descumprimento pode gerar multa de trânsito ao antigo proprietário.
           </p>
 

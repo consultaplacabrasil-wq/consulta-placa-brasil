@@ -172,7 +172,12 @@ export default function GeradorContratoPage() {
             </Link>
             . O prazo para o comprador realizar a transferência é de 30 dias, conforme o Código de
             Trânsito Brasileiro. Caso o comprador não efetue a transferência nesse período, o
-            vendedor pode registrar a comunicação de venda e solicitar o bloqueio do veículo.
+            vendedor pode registrar a comunicação de venda e solicitar o bloqueio do veículo. Antes
+            de fechar qualquer negociação, recomendamos{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              verificar placa de veículo
+            </Link>{" "}
+            para garantir que não existam restrições ou pendências ocultas.
           </p>
 
           <p className="text-[#475569]">

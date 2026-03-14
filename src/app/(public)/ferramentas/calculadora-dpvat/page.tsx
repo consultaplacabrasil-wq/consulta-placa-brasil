@@ -105,7 +105,12 @@ export default function CalculadoraDPVATPage() {
             Lei nº 14.867/2024 substituiu oficialmente o DPVAT pelo SPVAT, transferindo a gestão
             para a Caixa Econômica Federal e modernizando o sistema de indenizações. A mudança
             visou reduzir custos administrativos, aumentar a transparência e garantir que os
-            recursos cheguem efetivamente às vítimas de acidentes de trânsito.
+            recursos cheguem efetivamente às vítimas de acidentes de trânsito. Para manter
+            seu veículo totalmente regularizado, é importante realizar uma{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              consulta de placa de veículo
+            </Link>{" "}
+            e verificar se não há débitos ou restrições pendentes.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">

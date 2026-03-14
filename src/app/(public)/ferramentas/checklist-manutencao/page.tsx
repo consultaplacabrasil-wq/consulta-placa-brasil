@@ -169,7 +169,12 @@ export default function ChecklistManutencaoPage() {
             uma referência geral — para informações precisas, consulte sempre o manual do
             proprietário do seu veículo. Manter as revisões em dia também é fundamental para
             preservar o valor do veículo ao longo dos anos e evitar custos inesperados com a
-            manutenção corretiva, que pode ser até três vezes mais cara do que a preventiva. Para
+            manutenção corretiva, que pode ser até três vezes mais cara do que a preventiva. Antes
+            de comprar um veículo usado, recomendamos{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              consultar placa veicular
+            </Link>{" "}
+            para conhecer o histórico completo do automóvel. Para
             estimar o{" "}
             <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
               valor do IPVA

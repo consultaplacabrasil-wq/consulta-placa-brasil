@@ -72,7 +72,9 @@ export default function SimuladorFinanciamentoPage() {
           </h2>
           <p className="text-[#475569]">
             O financiamento de veículos é uma das formas mais comuns de aquisição
-            de carros e motos no Brasil. De acordo com dados do Banco Central,
+            de carros e motos no Brasil. Antes de fechar negócio, recomendamos{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">buscar placa</Link> do
+            veículo para conferir a procedência e a situação cadastral. De acordo com dados do Banco Central,
             milhões de contratos de financiamento são firmados anualmente no país,
             movimentando bilhões de reais. Além das parcelas, é importante considerar
             custos como o IPVA — use nossa{" "}

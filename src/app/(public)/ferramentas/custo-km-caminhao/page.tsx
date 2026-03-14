@@ -72,7 +72,11 @@ export default function CustoKmCaminhaoPage() {
             envolve a soma de todos os custos operacionais — fixos e variáveis — divididos pela
             quilometragem percorrida. Sem esse controle, o caminhoneiro corre o risco de aceitar
             fretes que não cobrem sequer as despesas básicas de operação, comprometendo a
-            sustentabilidade financeira do negócio. Compare seus resultados com o piso estabelecido
+            sustentabilidade financeira do negócio. Para verificar dados de qualquer caminhão, faça uma{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              consulta pela placa
+            </Link>{" "}
+            diretamente em nosso site. Compare seus resultados com o piso estabelecido
             pela nossa{" "}
             <Link href="/ferramentas/calculadora-frete-antt" className="text-[#FF4D30] hover:underline font-medium">calculadora de frete ANTT</Link>{" "}
             para garantir que seus fretes são rentáveis.
@@ -149,6 +153,11 @@ export default function CustoKmCaminhaoPage() {
             de frete que cubram todos os custos operacionais e ainda gerem margem de lucro. Nossa
             calculadora sugere um frete mínimo por km com margem de 20% sobre o custo total,
             servindo como referência inicial para a precificação dos seus serviços de transporte.
+            Antes de adquirir um caminhão usado, não deixe de{" "}
+            <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
+              conferir placa de carro
+            </Link>{" "}
+            para checar a situação do veículo.
           </p>
 
           <div className="mt-8 p-4 bg-[#F8FAFC] rounded-xl border border-gray-100">
