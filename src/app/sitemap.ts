@@ -80,6 +80,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "conversor-placa", "checklist-manutencao", "calculadora-combustivel",
     "calculadora-rodizio", "gerador-contrato", "consulta-fipe",
     "consulta-recall", "consulta-cep", "calculadora-dpvat",
+    "gerador-renavam", "validador-renavam", "gerador-recibo",
+    "gerador-atpv", "validador-chassi",
   ];
 
   const toolPages: MetadataRoute.Sitemap = toolSlugs.map((slug) => ({

@@ -197,6 +197,43 @@ const ferramentas = [
     iconName: "Wrench",
     category: "profissional",
   },
+
+  // Geradores e Validadores
+  {
+    slug: "gerador-renavam",
+    title: "Gerador de RENAVAM",
+    description: "Gere números de RENAVAM válidos para testes de software e desenvolvimento.",
+    iconName: "FileText",
+    category: "consulta",
+  },
+  {
+    slug: "validador-renavam",
+    title: "Validador de RENAVAM",
+    description: "Verifique se um número de RENAVAM é válido pelo algoritmo módulo 11.",
+    iconName: "Shield",
+    category: "consulta",
+  },
+  {
+    slug: "gerador-recibo",
+    title: "Gerador de Recibo",
+    description: "Gere um recibo de compra e venda de veículo pronto para imprimir.",
+    iconName: "ScrollText",
+    category: "compra",
+  },
+  {
+    slug: "gerador-atpv",
+    title: "Gerador de ATPV-e",
+    description: "Gere um modelo de autorização de transferência de propriedade de veículo.",
+    iconName: "FileText",
+    category: "compra",
+  },
+  {
+    slug: "validador-chassi",
+    title: "Validador de Chassi (VIN)",
+    description: "Valide o número do chassi verificando o dígito de controle ISO 3779.",
+    iconName: "Shield",
+    category: "consulta",
+  },
 ];
 
 export default function FerramentasPage() {
