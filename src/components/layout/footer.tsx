@@ -4,6 +4,7 @@ import { Car, Phone, Mail, MapPin } from "lucide-react";
 const footerLinks = {
   plataforma: [
     { href: "/", label: "Consultar Placa" },
+    { href: "/ferramentas", label: "Ferramentas Gratuitas" },
     { href: "/blog", label: "Blog" },
     { href: "/faq", label: "FAQ" },
     { href: "/contato", label: "Contato" },

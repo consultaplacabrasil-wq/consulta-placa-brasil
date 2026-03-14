@@ -13,7 +13,7 @@ import { useCartStore } from "@/store/cart-store";
 
 const navLinks = [
   { href: "/", label: "Início" },
-  { href: "/sobre", label: "Sobre" },
+  { href: "/ferramentas", label: "Ferramentas" },
   { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
   { href: "/contato", label: "Contato" },
