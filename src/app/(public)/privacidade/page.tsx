@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("privacidade");
   return {
     title: page?.seoTitle || "Política de Privacidade",
-    description: page?.seoDescription || defaultDesc,
+    description: (page?.seoDescription && page.seoDescription.length > 100) ? page.seoDescription : defaultDesc,
     alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com/privacidade" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
@@ -63,7 +63,7 @@ export default async function PrivacidadePage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: page?.seoTitle || "Política de Privacidade",
-            description: page?.seoDescription || defaultDesc,
+            description: (page?.seoDescription && page.seoDescription.length > 100) ? page.seoDescription : defaultDesc,
             url: "https://consultaplacabrasil.com/privacidade",
           }),
         }}

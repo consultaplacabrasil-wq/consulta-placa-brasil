@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("sobre");
   return {
     title: page?.seoTitle || "Quem Somos",
-    description: page?.seoDescription || defaultDescription,
+    description: (page?.seoDescription && page.seoDescription.length > 100) ? page.seoDescription : defaultDescription,
     alternates: {
       canonical:
         page?.seoCanonical || "https://consultaplacabrasil.com/sobre",

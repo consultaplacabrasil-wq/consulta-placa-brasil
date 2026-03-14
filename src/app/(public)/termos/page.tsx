@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import { getPageBySlug } from "@/lib/get-page";
 
-const defaultDesc = "Termos e condições de uso da plataforma Consulta Placa Brasil.";
+const defaultDesc = "Leia os termos e condições de uso da plataforma Consulta Placa Brasil. Regras de utilização, pagamentos, responsabilidades e propriedade intelectual.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("termos");
   return {
     title: page?.seoTitle || "Termos de Uso - Consulta Placa Brasil",
-    description: page?.seoDescription || defaultDesc,
+    description: (page?.seoDescription && page.seoDescription.length > 100) ? page.seoDescription : defaultDesc,
     alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com/termos" },
     robots: page?.seoRobots || "index, follow",
     openGraph: {
@@ -65,7 +65,7 @@ export default async function TermosPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: page?.seoTitle || "Termos de Uso",
-            description: page?.seoDescription || defaultDesc,
+            description: (page?.seoDescription && page.seoDescription.length > 100) ? page.seoDescription : defaultDesc,
             url: "https://consultaplacabrasil.com/termos",
           }),
         }}
