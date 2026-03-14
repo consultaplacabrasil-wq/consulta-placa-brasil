@@ -234,6 +234,13 @@ const ferramentas = [
     iconName: "Shield",
     category: "consulta",
   },
+  {
+    slug: "contrato-veiculo",
+    title: "Contrato com PDF",
+    description: "Gere contratos de compra e venda para carro, moto, caminhão, embarcação com download em PDF.",
+    iconName: "FileText",
+    category: "compra",
+  },
 ];
 
 export default function FerramentasPage() {
