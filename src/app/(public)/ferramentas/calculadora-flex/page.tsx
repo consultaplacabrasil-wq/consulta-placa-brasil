@@ -60,16 +60,19 @@ export default function CalculadoraFlexPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Como saber se vale mais a pena gasolina ou etanol?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A dúvida entre abastecer com gasolina ou etanol é uma das mais comuns entre os motoristas
             brasileiros que possuem veículos flex. Se você ainda não conhece todos os dados do seu
             automóvel, faça uma{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consulta veicular</Link> gratuita
-            para descobrir modelo, ano e tipo de combustível. A resposta depende de uma conta simples, mas que
+            para descobrir modelo, ano e tipo de combustível.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            A resposta depende de uma conta simples, mas que
             poucos fazem corretamente: é preciso comparar não apenas o preço por litro, mas o custo
             real por quilômetro rodado, levando em conta a diferença de rendimento entre os dois
             combustíveis. Para uma visão completa dos gastos com o veículo, utilize nossa ferramenta
@@ -81,40 +84,46 @@ export default function CalculadoraFlexPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             A regra dos 70% funciona mesmo?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A regra dos 70% é amplamente utilizada e recomendada por engenheiros automotivos e pelo
             Inmetro. Ela funciona assim: divida o preço do litro do etanol pelo preço do litro da
             gasolina. Se o resultado for menor que 0,70 (ou 70%), o etanol é mais vantajoso. Caso
-            contrário, abasteça com gasolina. Essa regra existe porque o etanol rende em média 30%
-            menos que a gasolina — ou seja, o motor consome mais etanol para percorrer a mesma
-            distância. Nossa calculadora aplica essa fórmula automaticamente e vai além, mostrando
-            o custo por quilômetro, a economia mensal e o preço máximo do etanol para que ele continue
-            compensando.
+            contrário, abasteça com gasolina.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Essa regra existe porque o etanol rende em média 30% menos que a gasolina, ou seja,
+            o motor consome mais etanol para percorrer a mesma distância. Nossa calculadora aplica
+            essa fórmula automaticamente e vai além, mostrando o custo por quilômetro, a economia
+            mensal e o preço máximo do etanol para que ele continue compensando.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
             Fatores que influenciam o consumo de combustível
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O consumo real do seu veículo pode variar dependendo de diversos fatores: condições do
             trânsito (cidade versus estrada), calibragem dos pneus, uso do ar-condicionado, peso
             transportado, estado de manutenção do motor e estilo de condução. Veículos mais novos
             com injeção eletrônica otimizada tendem a aproveitar melhor o etanol, enquanto modelos
-            mais antigos podem apresentar rendimento inferior. Para um resultado mais preciso, sugerimos
-            que você faça a medição real do consumo do seu carro: abasteça o tanque completo, zere o
-            hodômetro, rode normalmente e, no próximo abastecimento completo, divida os quilômetros
-            rodados pelos litros abastecidos.
+            mais antigos podem apresentar rendimento inferior.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Para um resultado mais preciso, sugerimos que você faça a medição real do consumo do seu
+            carro: abasteça o tanque completo, zere o hodômetro, rode normalmente e, no próximo
+            abastecimento completo, divida os quilômetros rodados pelos litros abastecidos.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
             Vantagens ambientais do etanol
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Além da questão econômica, o etanol é considerado um combustível mais sustentável. Por ser
             produzido a partir da cana-de-açúcar, a emissão líquida de CO₂ é significativamente menor
             em comparação à gasolina, que é um combustível fóssil derivado do petróleo. Se a
             sustentabilidade é prioridade para você, confira também nosso comparador{" "}
             <Link href="/ferramentas/eletrico-vs-combustao" className="text-[#FF4D30] hover:underline font-medium">elétrico vs combustão</Link>.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
             O Brasil é referência mundial na produção de etanol, e abastecer com esse combustível contribui para
             a redução da pegada de carbono do transporte nacional. Não se esqueça de verificar o valor do imposto
             anual com a{" "}
@@ -124,7 +133,7 @@ export default function CalculadoraFlexPage() {
             economizar por mês e por ano.
           </p>
 
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             <Link
               href="/ferramentas"
               className="text-[#FF4D30] font-semibold hover:underline"

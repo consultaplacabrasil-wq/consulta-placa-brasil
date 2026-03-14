@@ -167,66 +167,75 @@ export default function VerificadorDocumentosPage() {
 
       {/* SEO Content */}
       <section className="px-4 py-16 bg-[#F8FAFC]">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Documentação veicular no Brasil: tudo o que você precisa saber
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Manter a documentação do veículo e a habilitação em dia é uma obrigação de todo
             condutor brasileiro. Se precisar{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa</Link>,
             utilize nossa ferramenta principal para obter os dados atualizados do veículo.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
             A Carteira Nacional de Habilitação (CNH) é o principal documento
             que comprova a aptidão do motorista para conduzir veículos, enquanto o Certificado de
             Registro e Licenciamento de Veículo (CRLV) atesta que o automóvel está regularizado
             perante os órgãos de trânsito. Circular com qualquer um desses documentos vencidos
-            pode resultar em multas, apreensão do veículo e pontos na carteira — acompanhe sua
+            pode resultar em multas, apreensão do veículo e pontos na carteira. Acompanhe sua
             pontuação com o{" "}
             <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
               simulador de pontos na CNH
             </Link>
             .
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A validade da CNH no Brasil é determinada pela faixa etária do condutor no momento da
             emissão ou renovação. Condutores com até 49 anos têm CNH válida por 10 anos. Entre 50
             e 69 anos, a validade é reduzida para 5 anos, e motoristas com 70 anos ou mais precisam
-            renovar a cada 3 anos. Essas regras foram estabelecidas pela Lei nº 14.071/2020, que
+            renovar a cada 3 anos.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Essas regras foram estabelecidas pela Lei nº 14.071/2020, que
             alterou o Código de Trânsito Brasileiro (CTB), visando garantir que motoristas em faixas
             etárias mais avançadas passem por avaliações médicas com maior frequência.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O licenciamento anual do veículo é outro ponto que exige atenção. Antes de verificar
             o calendário, vale{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">pesquisar placa</Link> para
             confirmar os dados cadastrais do automóvel. O calendário de
             licenciamento é definido pelo último dígito da placa do veículo: placas com final 1
             vencem em janeiro, final 2 em fevereiro, e assim por diante, até final 0 em outubro.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
             O não pagamento do licenciamento impede a emissão do CRLV e configura infração
             gravíssima, com multa e remoção do veículo ao pátio do Detran. Além do licenciamento,
-            é necessário quitar o IPVA — utilize a{" "}
+            é necessário quitar o IPVA. Utilize a{" "}
             <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
               calculadora de IPVA
             </Link>{" "}
-            para estimar o valor do imposto — e eventuais multas de trânsito pendentes para
-            regularizar completamente o veículo.
+            para estimar o valor do imposto, e regularize eventuais multas de trânsito pendentes para
+            deixar o veículo completamente em dia.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Nosso verificador de documentos veiculares foi desenvolvido para facilitar o controle
             dessas obrigações. Se você planeja comprar ou vender um veículo, confira
             a{" "}
             <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
               calculadora de transferência veicular
             </Link>{" "}
-            para conhecer os custos envolvidos na documentação. Com o verificador, você pode calcular
-            automaticamente a data de vencimento da sua CNH com base na idade e na data de emissão,
-            consultar em qual mês deve realizar o licenciamento do veículo e receber alertas visuais
-            sobre a proximidade do vencimento.
+            para conhecer os custos envolvidos na documentação.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Com o verificador, você pode calcular automaticamente a data de vencimento da sua CNH
+            com base na idade e na data de emissão, consultar em qual mês deve realizar o
+            licenciamento do veículo e receber alertas visuais sobre a proximidade do vencimento.
             O sistema utiliza cores intuitivas: verde indica que a documentação está em dia, amarelo
             alerta que o vencimento ocorrerá nos próximos 60 dias, e vermelho indica que o documento
             já está vencido.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Além do verificador de documentos, o Consulta Placa Brasil disponibiliza diversas
             outras{" "}
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">

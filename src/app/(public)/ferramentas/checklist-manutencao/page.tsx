@@ -108,11 +108,11 @@ export default function ChecklistManutencaoPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Por que a manutenção preventiva do veículo é tão importante?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A manutenção preventiva é a melhor forma de garantir a longevidade, a segurança e o
             bom desempenho do seu veículo. Seguir o cronograma de revisões recomendado pelo
             fabricante evita falhas inesperadas, reduz o risco de acidentes causados por problemas
@@ -124,13 +124,16 @@ export default function ChecklistManutencaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Intervalos de manutenção: o que revisar e quando
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Cada veículo possui um plano de manutenção específico definido pelo fabricante, mas
             existem intervalos padrão amplamente aceitos pela indústria automotiva. A troca de
             óleo e a verificação do filtro de ar são os itens mais frequentes, recomendados a cada
             5.000 km. A cada 10.000 km, é fundamental verificar as pastilhas de freio e realizar o
-            balanceamento das rodas. Componentes de maior durabilidade, como a correia dentada e as
-            velas de ignição, exigem atenção em intervalos maiores — geralmente entre 40.000 e
+            balanceamento das rodas.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Componentes de maior durabilidade, como a correia dentada e as
+            velas de ignição, exigem atenção em intervalos maiores, geralmente entre 40.000 e
             60.000 km. Ignorar esses prazos pode resultar em avarias graves e custos de reparo
             significativamente mais altos. Para estimar o impacto financeiro dessas manutenções, utilize
             nossa{" "}
@@ -142,7 +145,7 @@ export default function ChecklistManutencaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Manutenção específica para motos e caminhões
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Motos demandam cuidados com componentes exclusivos, como corrente de transmissão, kit
             de relação e cabos de embreagem. A lubrificação da corrente deve ser feita a cada
             500 km ou semanalmente para motociclistas que rodam diariamente. Já os caminhões
@@ -159,13 +162,16 @@ export default function ChecklistManutencaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como usar o checklist de manutenção veicular
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Selecione o tipo de veículo (carro, moto ou caminhão) e informe a quilometragem atual
             do hodômetro. O sistema identificará automaticamente quais itens de manutenção estão
             em dia (verde), próximos do prazo (amarelo) ou atrasados (vermelho). Marque os itens
             já realizados para acompanhar visualmente o progresso das revisões. Este checklist é
-            uma referência geral — para informações precisas, consulte sempre o manual do
-            proprietário do seu veículo. Manter as revisões em dia também é fundamental para
+            uma referência geral, portanto consulte sempre o manual do
+            proprietário do seu veículo para informações precisas.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Manter as revisões em dia também é fundamental para
             preservar o valor do veículo ao longo dos anos e evitar custos inesperados com a
             manutenção corretiva, que pode ser até três vezes mais cara do que a preventiva. Antes
             de comprar um veículo usado, recomendamos{" "}
@@ -180,7 +186,7 @@ export default function ChecklistManutencaoPage() {
             e demais custos anuais, explore nossas ferramentas gratuitas.
           </p>
 
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Explore outras{" "}
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
               ferramentas veiculares gratuitas

@@ -108,11 +108,11 @@ export default function GeradorContratoPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Por que fazer um contrato de compra e venda de veículo?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O contrato particular de compra e venda de veículo automotor é um documento essencial
             para formalizar a transferência de propriedade entre particulares. Embora muitas pessoas
             realizem a negociação apenas com o preenchimento do CRV (Certificado de Registro do
@@ -128,7 +128,7 @@ export default function GeradorContratoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Segurança jurídica para ambas as partes
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O contrato de compra e venda estabelece de forma clara as obrigações do vendedor e do
             comprador, incluindo a descrição detalhada do veículo, o valor da transação, a forma
             de pagamento e as responsabilidades sobre débitos anteriores e posteriores à venda. Com
@@ -145,7 +145,7 @@ export default function GeradorContratoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Cláusulas essenciais do contrato de veículo
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Um contrato de compra e venda de veículo completo deve conter a qualificação das partes
             (nome, CPF, endereço), a descrição do veículo (marca, modelo, ano, cor, placa, chassi e
             RENAVAM), o preço e condições de pagamento, cláusulas sobre o estado de conservação do
@@ -158,7 +158,7 @@ export default function GeradorContratoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Comunicação de venda ao DETRAN
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Após assinar o contrato e entregar o veículo, é fundamental que o vendedor comunique a
             venda ao DETRAN do seu estado. Essa comunicação protege o antigo proprietário contra
             multas, infrações e até responsabilidade criminal por atos praticados com o veículo após
@@ -178,7 +178,7 @@ export default function GeradorContratoPage() {
             para garantir que não existam restrições ou pendências ocultas.
           </p>
 
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Explore também outras{" "}
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
               ferramentas veiculares gratuitas

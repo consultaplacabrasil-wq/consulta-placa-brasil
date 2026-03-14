@@ -60,14 +60,14 @@ export default function EletricoVsCombustaoPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Carro elétrico ou a combustão: qual é mais econômico?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A escolha entre um carro elétrico e um veículo a combustão vai muito além do preço
             na concessionária. Embora os carros elétricos costumem ter um valor de compra mais
-            elevado, o custo operacional — especialmente o gasto com energia — é significativamente
+            elevado, o custo operacional, especialmente o gasto com energia, é significativamente
             menor. Para tomar a melhor decisão, é fundamental comparar o{" "}
             <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total de propriedade do veículo</Link>{" "}
             ao longo de vários anos, considerando tanto o investimento inicial quanto as despesas
@@ -81,7 +81,7 @@ export default function EletricoVsCombustaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como funciona o comparador de custos?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Nosso comparador calcula o custo mensal de abastecimento de cada tipo de veículo e
             projeta o custo acumulado ao longo de 60 meses (5 anos). Para o carro elétrico,
             o cálculo é baseado no consumo em km/kWh e no preço da energia elétrica por quilowatt-hora.
@@ -93,11 +93,11 @@ export default function EletricoVsCombustaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Vantagens do carro elétrico no custo operacional
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O custo por quilômetro de um carro elétrico é, em média, de 3 a 5 vezes menor do que o
             de um veículo movido a gasolina. Um elétrico com consumo de 6 km/kWh e energia a
             R$ 0,90/kWh gasta apenas R$ 0,15 por quilômetro. Já um carro a combustão com consumo
-            de 12 km/l e gasolina a R$ 5,79/l custa R$ 0,48 por quilômetro — mais que o triplo.
+            de 12 km/l e gasolina a R$ 5,79/l custa R$ 0,48 por quilômetro, mais que o triplo.
             Além disso, veículos elétricos exigem menos manutenção, pois não possuem motor a
             explosão, câmbio tradicional, embreagem, correia dentada nem sistema de escapamento.
             Outro fator a considerar é a{" "}
@@ -108,7 +108,7 @@ export default function EletricoVsCombustaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             O ponto de equilíbrio: quando o elétrico compensa?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O ponto de equilíbrio depende de três fatores principais: a diferença de preço entre
             os veículos, a quilometragem mensal percorrida e os custos de energia e combustível
             da sua região. Quanto maior a quilometragem mensal, mais rápido o elétrico se paga.
@@ -120,7 +120,7 @@ export default function EletricoVsCombustaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Incentivos fiscais para veículos elétricos no Brasil
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Diversos estados brasileiros já oferecem isenção total ou parcial de IPVA para veículos
             elétricos e híbridos. Estados como Maranhão, Pernambuco, Rio Grande do Norte e Piauí
             concedem isenção total, enquanto São Paulo oferece desconto na alíquota. Esses
@@ -129,8 +129,8 @@ export default function EletricoVsCombustaoPage() {
             conferir nossa calculadora{" "}
             <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">gasolina ou etanol</Link>{" "}
             e descobrir o combustível mais vantajoso. Vale ressaltar que a política de incentivos
-            varia conforme a legislação estadual e pode ser alterada ao longo do tempo — consulte
-            sempre a Secretaria da Fazenda do seu estado para informações atualizadas. Para saber mais
+            varia conforme a legislação estadual e pode ser alterada ao longo do tempo, por isso é
+            importante consultar sempre a Secretaria da Fazenda do seu estado para informações atualizadas. Para saber mais
             sobre qualquer veículo, você pode{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
               verificar placa de carro
@@ -232,7 +232,7 @@ export default function EletricoVsCombustaoPage() {
                 name: "Quanto custa carregar um carro elétrico por mês?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Depende da quilometragem e do consumo do veículo. Um carro elétrico com consumo de 6 km/kWh, rodando 1.500 km/mês com energia a R$ 0,90/kWh, gasta aproximadamente R$ 225 por mês — muito menos que os R$ 723 que um carro a combustão com 12 km/l gastaria com gasolina a R$ 5,79/l.",
+                  text: "Depende da quilometragem e do consumo do veículo. Um carro elétrico com consumo de 6 km/kWh, rodando 1.500 km/mês com energia a R$ 0,90/kWh, gasta aproximadamente R$ 225 por mês, muito menos que os R$ 723 que um carro a combustão com 12 km/l gastaria com gasolina a R$ 5,79/l.",
                 },
               },
               {

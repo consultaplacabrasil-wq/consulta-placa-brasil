@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Consulta Tabela FIPE 2026 | Consulta Placa Brasil",
     description:
-      "Consulte o valor do seu veículo na Tabela FIPE 2026 atualizada. Carros, motos e caminhões — grátis e sem cadastro.",
+      "Consulte o valor do seu veículo na Tabela FIPE 2026 atualizada. Carros, motos e caminhões, grátis e sem cadastro.",
     url: "https://consultaplacabrasil.com.br/ferramentas/consulta-fipe",
     type: "website",
   },
@@ -60,11 +60,11 @@ export default function ConsultaFipePage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             O que é a Tabela FIPE?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A Tabela FIPE (Fundação Instituto de Pesquisas Econômicas) é a principal referência de
             preços de veículos no Brasil. Publicada mensalmente pela FIPE em parceria com a USP
             (Universidade de São Paulo), ela apresenta os valores médios de mercado para automóveis,
@@ -81,7 +81,7 @@ export default function ConsultaFipePage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como funciona a consulta da Tabela FIPE?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A consulta é simples e gratuita. Basta selecionar o tipo de veículo (carro, moto ou
             caminhão), escolher a marca, o modelo e o ano de fabricação. O sistema consulta a API
             oficial da FIPE em tempo real e retorna o valor médio de mercado atualizado, além de
@@ -93,7 +93,7 @@ export default function ConsultaFipePage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Para que serve o valor da Tabela FIPE?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O valor FIPE é utilizado em diversas situações do dia a dia. Na compra e venda de
             veículos usados, ele serve como referência para definir um preço justo de negociação.
             No cálculo do IPVA, a maioria dos estados utiliza o valor FIPE como base para aplicar
@@ -110,7 +110,7 @@ export default function ConsultaFipePage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             O valor FIPE é o preço final do veículo?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Não. O valor da Tabela FIPE representa uma média de mercado e serve como referência,
             mas o preço real de um veículo pode variar conforme estado de conservação, quilometragem,
             localização geográfica, cor, opcionais instalados e condições de oferta e demanda da
@@ -131,7 +131,7 @@ export default function ConsultaFipePage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Com que frequência a Tabela FIPE é atualizada?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A Tabela FIPE é atualizada mensalmente pela Fundação Instituto de Pesquisas Econômicas.
             A cada mês, os pesquisadores coletam dados de transações reais de compra e venda em
             concessionárias, lojas de veículos usados e entre particulares em todo o Brasil. Essas

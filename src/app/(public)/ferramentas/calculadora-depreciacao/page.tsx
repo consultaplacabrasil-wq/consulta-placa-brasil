@@ -60,11 +60,11 @@ export default function CalculadoraDepreciacaoPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             O que é depreciação de veículos e por que ela importa?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A depreciação veicular é a perda de valor que todo automóvel, motocicleta ou caminhão
             sofre ao longo do tempo. Trata-se de um dos maiores custos ocultos de possuir um
             veículo no Brasil, podendo representar uma perda de até 50% do valor original nos
@@ -81,9 +81,9 @@ export default function CalculadoraDepreciacaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como funciona o cálculo da depreciação?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A depreciação de um veículo não ocorre de maneira uniforme. No primeiro ano, um carro
-            zero-quilômetro pode perder até 20% do seu valor de mercado — é o período de maior
+            zero-quilômetro pode perder até 20% do seu valor de mercado, sendo esse o período de maior
             desvalorização. No segundo ano, a taxa cai para aproximadamente 15%, seguida por 12%
             no terceiro ano, 10% no quarto e cerca de 7% ao ano a partir do quinto ano. Nossa
             calculadora utiliza essas taxas médias do mercado brasileiro, ajustadas conforme o
@@ -93,10 +93,10 @@ export default function CalculadoraDepreciacaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Fatores que influenciam a depreciação
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Diversos fatores impactam a velocidade com que um veículo perde valor. A marca e o
             modelo são determinantes: veículos populares com boa aceitação no mercado tendem a
-            depreciar menos. A quilometragem é outro fator crucial — carros com uso acima da
+            depreciar menos. A quilometragem é outro fator crucial, já que carros com uso acima da
             média (15.000 km/ano) desvalorizam mais rapidamente. O estado de conservação, o
             histórico de manutenção, a cor (cores neutras como branco, prata e preto são
             preferidas), a região do país e até o tipo de combustível também influenciam.
@@ -109,7 +109,7 @@ export default function CalculadoraDepreciacaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Diferença entre depreciação de carros, motos e caminhões
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Cada tipo de veículo apresenta um padrão distinto de depreciação. As motocicletas
             tendem a depreciar mais rapidamente que os automóveis, principalmente por conta do
             desgaste mecânico mais acentuado e da maior exposição às condições climáticas. Já os
@@ -123,7 +123,7 @@ export default function CalculadoraDepreciacaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Dicas para reduzir a depreciação do seu veículo
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Embora a depreciação seja inevitável, algumas estratégias podem minimizar a perda de
             valor. Manter as revisões em dia na concessionária ou oficina de confiança, guardar
             todos os comprovantes de manutenção, manter a quilometragem dentro da média anual,

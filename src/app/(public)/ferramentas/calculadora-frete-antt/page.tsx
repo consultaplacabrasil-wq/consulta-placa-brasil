@@ -60,11 +60,11 @@ export default function CalculadoraFreteAnttPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             O que é a tabela de frete mínimo da ANTT?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A Agência Nacional de Transportes Terrestres (ANTT) é o órgão regulador
             responsável por estabelecer os pisos mínimos de frete para o transporte
             rodoviário de cargas no Brasil. Desde a publicação da Lei nº 13.703/2018,
@@ -84,7 +84,7 @@ export default function CalculadoraFreteAnttPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como é calculado o frete mínimo rodoviário?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O cálculo do frete mínimo leva em consideração diversos fatores essenciais:
             o peso da carga em toneladas, a distância percorrida em quilômetros, o tipo
             de carga transportada e o número de eixos do veículo. A ANTT define uma taxa
@@ -99,7 +99,7 @@ export default function CalculadoraFreteAnttPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Tipos de carga na tabela ANTT
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A tabela de pisos mínimos da ANTT classifica as cargas em cinco categorias
             principais. A carga geral abrange mercadorias diversas transportadas em
             embalagens, paletes ou volumes unitizados. O granel sólido inclui produtos
@@ -121,7 +121,7 @@ export default function CalculadoraFreteAnttPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Importância do número de eixos no cálculo
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O número de eixos do veículo influencia diretamente na parcela de pedágio
             do frete. Veículos com mais eixos pagam proporcionalmente mais pedágio por
             quilômetro percorrido, pois as tarifas das concessionárias são calculadas

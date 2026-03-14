@@ -28,7 +28,7 @@ const faqItems = [
   {
     question: "Toda placa antiga pode ser convertida para o padrão Mercosul?",
     answer:
-      "Sim. Toda placa no formato antigo (ABC-1234) possui um equivalente direto no padrão Mercosul. A conversão é determinística — cada combinação antiga gera uma única combinação Mercosul correspondente, e vice-versa. Isso ocorre porque a única diferença entre os dois formatos é a substituição do 2º dígito por uma letra segundo a tabela oficial.",
+      "Sim. Toda placa no formato antigo (ABC-1234) possui um equivalente direto no padrão Mercosul. A conversão é determinística: cada combinação antiga gera uma única combinação Mercosul correspondente, e vice-versa. Isso ocorre porque a única diferença entre os dois formatos é a substituição do 2º dígito por uma letra segundo a tabela oficial.",
   },
   {
     question: "A placa Mercosul do meu veículo será igual à conversão mostrada aqui?",
@@ -174,13 +174,13 @@ export default function ConversorPlacaPage() {
 
       {/* SEO Content */}
       <section className="px-4 py-16 bg-[#F8FAFC]">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Como converter placas do formato antigo para o padrão Mercosul
           </h2>
-          <p className="text-[#475569]">
-            A conversão entre os formatos de placas veiculares brasileiras — do padrão
-            antigo (ABC-1234) para o padrão Mercosul (ABC1D23) — segue uma regra
+          <p className="text-[#475569] leading-relaxed">
+            A conversão entre os formatos de placas veiculares brasileiras, do padrão
+            antigo (ABC-1234) para o padrão Mercosul (ABC1D23), segue uma regra
             oficial estabelecida pelo Conselho Nacional de Trânsito (CONTRAN). Essa
             regra é simples e determinística: o segundo dígito numérico da placa
             antiga, que corresponde à quinta posição da sequência alfanumérica, é
@@ -197,22 +197,22 @@ export default function ConversorPlacaPage() {
             </Link>{" "}
             em nosso site.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Essa conversão é utilizada pelo Detran em todo o território nacional quando
             um veículo precisa trocar a placa antiga pela nova placa no padrão Mercosul.
             As situações que exigem a troca incluem transferência de propriedade do
             veículo, mudança de município de registro, alteração de categoria (por
             exemplo, de particular para comercial) e perda, furto ou deterioração da
             placa original. É importante destacar que a troca voluntária também é
-            permitida — o proprietário pode solicitar a nova placa Mercosul a qualquer
+            permitida, e o proprietário pode solicitar a nova placa Mercosul a qualquer
             momento, bastando procurar uma empresa credenciada pelo Detran de seu estado.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O padrão Mercosul foi implementado no Brasil a partir de setembro de 2018,
             em cumprimento à Resolução nº 729/2018 do CONTRAN, que regulamentou a
             adoção do Sistema de Placas de Identificação Veicular do Mercosul. A
-            principal motivação foi a padronização entre os países do bloco econômico —
-            Brasil, Argentina, Uruguai e Paraguai — facilitando a identificação e a
+            principal motivação foi a padronização entre os países do bloco econômico
+            (Brasil, Argentina, Uruguai e Paraguai), facilitando a identificação e a
             fiscalização de veículos que transitam entre as fronteiras. Além da mudança
             no formato alfanumérico, a placa Mercosul trouxe avanços significativos em
             segurança, como QR Code, código de barras bidimensional e película refletiva
@@ -226,7 +226,7 @@ export default function ConversorPlacaPage() {
             </Link>{" "}
             e obter dados cadastrais, acesse a página inicial da plataforma.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Do ponto de vista visual, a diferença entre os dois padrões é marcante. A
             placa antiga de veículos particulares possui fundo cinza escuro com
             caracteres brancos e uma faixa vermelha na parte superior. Já a placa
@@ -244,7 +244,7 @@ export default function ConversorPlacaPage() {
             </Link>
             .
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Nosso conversor de placas permite realizar a conversão instantânea nos dois
             sentidos: do formato antigo para o Mercosul e do Mercosul para o antigo. A
             ferramenta valida automaticamente o formato digitado, exibe a tabela de

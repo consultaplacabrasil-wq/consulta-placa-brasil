@@ -108,11 +108,11 @@ export default function CustoTotalVeiculoPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Como calcular o custo total de um veículo por ano?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Ter um carro no Brasil vai muito além do valor pago na concessionária ou no financiamento.
             O custo real de propriedade de um veículo inclui uma série de despesas fixas e variáveis
             que, somadas, podem representar uma parcela significativa do orçamento familiar. Antes de
@@ -129,7 +129,7 @@ export default function CustoTotalVeiculoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             IPVA: o imposto anual obrigatório
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O Imposto sobre a Propriedade de Veículos Automotores (IPVA) é cobrado anualmente por
             cada estado brasileiro e pode ser estimado com precisão usando nossa{" "}
             <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
@@ -139,13 +139,13 @@ export default function CustoTotalVeiculoPage() {
             estados como Santa Catarina e Tocantins até 4% em São Paulo, Rio de Janeiro e Minas
             Gerais. O cálculo é feito sobre o valor venal do veículo, geralmente baseado na Tabela
             FIPE. Para um carro de R$ 80.000 em São Paulo, por exemplo, o IPVA seria de R$ 3.200
-            por ano — um valor que não pode ser ignorado no planejamento financeiro.
+            por ano, um valor que não pode ser ignorado no planejamento financeiro.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
             Combustível: o gasto que depende do seu uso
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O combustível costuma ser uma das maiores despesas para quem roda bastante. Se o seu
             veículo é flex, descubra qual combustível compensa mais com a calculadora{" "}
             <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">
@@ -162,7 +162,7 @@ export default function CustoTotalVeiculoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Manutenção preventiva e corretiva
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Especialistas do setor automotivo estimam que o custo anual com manutenção corresponde
             a cerca de 3% do valor do veículo. Isso inclui revisões periódicas, troca de óleo,
             filtros, pastilhas de freio, pneus e eventuais reparos. Veículos mais antigos tendem
@@ -174,8 +174,8 @@ export default function CustoTotalVeiculoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Depreciação: a perda de valor ao longo do tempo
           </h3>
-          <p className="text-[#475569]">
-            A depreciação é frequentemente chamada de &quot;custo invisível&quot; do veículo — use
+          <p className="text-[#475569] leading-relaxed">
+            A depreciação é frequentemente chamada de &quot;custo invisível&quot; do veículo. Use
             a{" "}
             <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">
               calculadora de depreciação
@@ -191,13 +191,13 @@ export default function CustoTotalVeiculoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Seguro e financiamento
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O seguro automotivo protege contra roubos, furtos, colisões e danos a terceiros.
             O valor varia conforme o perfil do motorista, região, modelo do veículo e cobertura
             escolhida. Já o financiamento, quando aplicável, adiciona parcelas mensais com juros
             ao custo do veículo. É importante incluir ambos no cálculo para ter uma visão realista
-            do quanto seu carro realmente custa. Ao somar todas essas categorias — IPVA, combustível,
-            manutenção, depreciação, seguro e financiamento — muitos proprietários se surpreendem ao
+            do quanto seu carro realmente custa. Ao somar todas essas categorias (IPVA, combustível,
+            manutenção, depreciação, seguro e financiamento), muitos proprietários se surpreendem ao
             descobrir que o custo total pode ultrapassar R$ 2.000 por mês, mesmo para veículos
             populares. Para verificar pendências e a situação do veículo, você pode{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
@@ -206,7 +206,7 @@ export default function CustoTotalVeiculoPage() {
             de forma rápida e gratuita.
           </p>
 
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Explore outras{" "}
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
               ferramentas veiculares gratuitas

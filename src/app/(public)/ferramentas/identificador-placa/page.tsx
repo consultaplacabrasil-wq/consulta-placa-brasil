@@ -167,17 +167,20 @@ export default function IdentificadorPlacaPage() {
 
       {/* SEO Content */}
       <section className="px-4 py-16 bg-[#F8FAFC]">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Tudo sobre placas de veículos no Brasil: Mercosul e padrão antigo
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             As placas de identificação veicular são elementos obrigatórios em todos os
             veículos automotores que circulam no território brasileiro. Elas funcionam
             como o principal meio de identificação visual de um veículo, permitindo o
             rastreamento, a fiscalização e o controle por parte dos órgãos de trânsito
-            como o Detran e a Polícia Rodoviária Federal. Além da placa, outro código importante
-            para a identificação é o chassi — utilize nosso{" "}
+            como o Detran e a Polícia Rodoviária Federal.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Além da placa, outro código importante para a identificação é o chassi. Utilize
+            nosso{" "}
             <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
               decodificador de chassi
             </Link>{" "}
@@ -185,17 +188,19 @@ export default function IdentificadorPlacaPage() {
             dois padrões de placas em circulação: o antigo padrão brasileiro e o novo
             padrão Mercosul, cada um com características visuais e estruturais distintas.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O padrão antigo de placas, utilizado no Brasil desde 1990 até 2018, segue
             o formato ABC-1234, composto por três letras seguidas de um hífen e quatro
             números. Visualmente, as placas de veículos particulares possuem fundo cinza
             escuro com caracteres brancos, enquanto veículos comerciais (táxis e
-            transportes de aluguel) recebem placas vermelhas com letras brancas. Veículos
-            oficiais utilizam placas azuis, e veículos de representação diplomática possuem
+            transportes de aluguel) recebem placas vermelhas com letras brancas.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Veículos oficiais utilizam placas azuis, e veículos de representação diplomática possuem
             placas douradas. Embora esse sistema ainda seja válido para veículos emplacados
             antes de 2018, ele não é mais utilizado para novos emplacamentos.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A placa Mercosul, implementada no Brasil a partir de setembro de 2018, segue
             o formato ABC1D23, onde a quinta posição é uma letra em vez de um número. Se
             deseja visualizar como ficaria uma placa nesse formato, experimente o{" "}
@@ -204,16 +209,22 @@ export default function IdentificadorPlacaPage() {
             </Link>
             . O novo padrão traz visual unificado para todas as categorias: fundo branco, faixa
             azul na parte superior com o nome &quot;MERCOSUL&quot; e a bandeira do país, e
-            caracteres em azul escuro. A mudança foi motivada pela necessidade de padronizar
-            a identificação veicular entre os países membros do bloco — Brasil, Argentina,
-            Uruguai e Paraguai — facilitando o trânsito de veículos nas fronteiras e
-            melhorando a segurança contra fraudes e clonagem de placas.
+            caracteres em azul escuro.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
+            A mudança foi motivada pela necessidade de padronizar a identificação veicular
+            entre os países membros do bloco, incluindo Brasil, Argentina, Uruguai e Paraguai,
+            facilitando o trânsito de veículos nas fronteiras e melhorando a segurança contra
+            fraudes e clonagem de placas.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
             Do ponto de vista da segurança, a placa Mercosul trouxe avanços significativos
             em relação ao padrão antigo. Se você precisa{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">puxar placa de carro</Link> para
-            verificar a autenticidade, utilize nossa ferramenta principal. A placa Mercosul incorpora elementos como QR Code, código de
+            verificar a autenticidade, utilize nossa ferramenta principal.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            A placa Mercosul incorpora elementos como QR Code, código de
             barras bidimensional (Datamatrix), película refletiva com marca d&apos;água e
             impressão por estampagem a quente. Essas características tornam a falsificação
             e a clonagem muito mais difíceis, contribuindo para a redução de crimes
@@ -221,7 +232,7 @@ export default function IdentificadorPlacaPage() {
             possíveis (mais de 450 milhões, contra 175 milhões do padrão antigo) também
             garante a disponibilidade de placas por muitas décadas.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Nosso identificador de placas permite que você verifique rapidamente se uma
             placa segue o padrão Mercosul ou o formato antigo, valide a estrutura
             alfanumérica e visualize a representação gráfica da placa com as cores e
@@ -230,7 +241,10 @@ export default function IdentificadorPlacaPage() {
             <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
               calculadora de transferência veicular
             </Link>{" "}
-            para estimar os custos envolvidos. A ferramenta é totalmente gratuita e não requer cadastro.
+            para estimar os custos envolvidos.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            A ferramenta é totalmente gratuita e não requer cadastro.
             Para obter informações mais detalhadas sobre um veículo específico, utilize
             nossa{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">

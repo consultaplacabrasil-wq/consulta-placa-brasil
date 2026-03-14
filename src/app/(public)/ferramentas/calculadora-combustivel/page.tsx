@@ -60,11 +60,11 @@ export default function CalculadoraCombustivelPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Como calcular o custo de combustível de uma viagem?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Planejar o gasto com combustível é uma etapa fundamental antes de qualquer viagem de
             carro no Brasil. Seja uma viagem de férias, uma mudança ou um deslocamento a trabalho,
             saber antecipadamente quanto você vai gastar com combustível evita surpresas e ajuda no
@@ -83,7 +83,7 @@ export default function CalculadoraCombustivelPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Dicas para economizar combustível em viagens longas
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Existem diversas estratégias para reduzir o consumo de combustível durante viagens rodoviárias.
             Manter a velocidade constante entre 90 e 110 km/h é uma das mais eficazes, pois a resistência
             do ar aumenta exponencialmente em velocidades mais altas. Calibrar os pneus corretamente antes
@@ -101,16 +101,18 @@ export default function CalculadoraCombustivelPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como medir o consumo médio do seu veículo
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Para obter um resultado preciso na calculadora, é importante conhecer o consumo real do seu
             carro. O método mais confiável é o seguinte: abasteça o tanque completo e zere o hodômetro
             parcial. Rode normalmente até precisar abastecer novamente e complete o tanque. Divida os
-            quilômetros rodados pela quantidade de litros abastecidos — esse é o seu consumo médio em km/l.
-            Repita o processo pelo menos duas vezes para obter uma média mais confiável. Lembre-se de que
-            o consumo na estrada costuma ser significativamente melhor do que na cidade, então considere
-            isso ao planejar viagens rodoviárias. Veículos mais modernos com injeção eletrônica e câmbio
-            automático CVT tendem a apresentar consumos mais eficientes em estrada. Se está
-            avaliando um carro usado para viagens, é possível{" "}
+            quilômetros rodados pela quantidade de litros abastecidos para obter o seu consumo médio em km/l.
+            Repita o processo pelo menos duas vezes para ter uma média mais confiável.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Lembre-se de que o consumo na estrada costuma ser significativamente melhor do que na cidade,
+            então considere isso ao planejar viagens rodoviárias. Veículos mais modernos com injeção
+            eletrônica e câmbio automático CVT tendem a apresentar consumos mais eficientes em estrada.
+            Se está avaliando um carro usado para viagens, é possível{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
               pesquisar veículo pela placa
             </Link>{" "}
@@ -120,7 +122,7 @@ export default function CalculadoraCombustivelPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Planejando paradas para abastecimento
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Em viagens muito longas, planejar onde você vai parar para abastecer é tão importante quanto
             calcular o custo. Nossa calculadora considera um tanque médio de 50 litros para estimar o
             número de paradas necessárias. Em regiões remotas do Brasil, os postos de combustível podem
@@ -135,7 +137,7 @@ export default function CalculadoraCombustivelPage() {
             para uma análise detalhada.
           </p>
 
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             <Link
               href="/ferramentas"
               className="text-[#FF4D30] font-semibold hover:underline"

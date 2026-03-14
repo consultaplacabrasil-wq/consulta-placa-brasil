@@ -60,19 +60,22 @@ export default function CalculadoraIPVAPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Como funciona o cálculo do IPVA 2026?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O Imposto sobre a Propriedade de Veículos Automotores (IPVA) é um tributo estadual
             cobrado anualmente de todos os proprietários de veículos no Brasil. Antes de calcular
             o imposto, você pode{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa de veículo</Link> para
-            obter os dados completos do automóvel. O valor do IPVA é
-            calculado com base no valor venal do veículo — geralmente obtido pela Tabela FIPE —
-            multiplicado pela alíquota definida por cada estado. Caso você tenha recebido alguma infração,
-            utilize nossa <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">calculadora de multas de trânsito</Link> para
+            obter os dados completos do automóvel.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            O valor do IPVA é calculado com base no valor venal do veículo, geralmente obtido
+            pela Tabela FIPE, multiplicado pela alíquota definida por cada estado. Caso você tenha
+            recebido alguma infração, utilize nossa{" "}
+            <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">calculadora de multas de trânsito</Link> para
             consultar valores e pontos na CNH. Como cada unidade federativa possui
             autonomia para definir suas próprias alíquotas, o valor final do imposto pode variar
             significativamente de um estado para outro.
@@ -81,11 +84,13 @@ export default function CalculadoraIPVAPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Alíquotas do IPVA por estado em 2026
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             As alíquotas do IPVA para automóveis variam de 2% (em estados como Acre, Espírito Santo,
             Santa Catarina e Tocantins) até 4% (em São Paulo, Rio de Janeiro e Minas Gerais). Para
-            motocicletas, as alíquotas são geralmente menores, variando entre 1% e 3,5%. Já para
-            caminhões e ônibus, as alíquotas costumam ficar entre 1% e 1,5%, como incentivo ao
+            motocicletas, as alíquotas são geralmente menores, variando entre 1% e 3,5%.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Já para caminhões e ônibus, as alíquotas costumam ficar entre 1% e 1,5%, como incentivo ao
             transporte de cargas e passageiros. É importante verificar a legislação vigente do seu
             estado, pois as alíquotas podem ser atualizadas anualmente.
           </p>
@@ -93,7 +98,7 @@ export default function CalculadoraIPVAPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Desconto para pagamento à vista
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A maioria dos estados brasileiros oferece desconto para quem paga o IPVA em cota única
             (à vista). O percentual de desconto varia conforme o estado, mas geralmente fica entre
             3% e 10%. Na nossa calculadora, utilizamos um desconto padrão de 3%, que é o mínimo
@@ -104,39 +109,46 @@ export default function CalculadoraIPVAPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Parcelamento do IPVA 2026
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O parcelamento do IPVA é permitido na maioria dos estados em até 3 a 5 parcelas, sem
             acréscimo de juros. Entretanto, ao parcelar, o proprietário abre mão do desconto
             oferecido no pagamento à vista. Se você está pensando em financiar um veículo, experimente
             nosso <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">simulador de financiamento veicular</Link> para
-            calcular parcelas e juros. As datas de vencimento das parcelas variam conforme
-            o final da placa do veículo e o calendário definido pelo Detran de cada estado.
-            Ficar atento ao calendário é fundamental para evitar multas e juros por atraso.
+            calcular parcelas e juros.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            As datas de vencimento das parcelas variam conforme o final da placa do veículo e o
+            calendário definido pelo Detran de cada estado. Ficar atento ao calendário é fundamental
+            para evitar multas e juros por atraso.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
             Quem está isento do IPVA?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Existem diversas situações de isenção do IPVA previstas em lei. Veículos com mais de
             20 anos de fabricação são isentos na maioria dos estados (o prazo varia entre 10 e 30
             anos, dependendo da UF). Pessoas com deficiência (PcD) também podem solicitar isenção
-            mediante laudo médico e processo administrativo junto ao Detran. Veículos oficiais,
-            táxis, ambulâncias e veículos de entidades diplomáticas também costumam ter isenção.
-            Veículos elétricos e híbridos possuem redução ou isenção total em vários estados,
-            como incentivo à mobilidade sustentável. Para entender todos os gastos envolvidos na
-            manutenção do seu veículo, confira a calculadora de{" "}
+            mediante laudo médico e processo administrativo junto ao Detran.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Veículos oficiais, táxis, ambulâncias e veículos de entidades diplomáticas também costumam
+            ter isenção. Veículos elétricos e híbridos possuem redução ou isenção total em vários
+            estados, como incentivo à mobilidade sustentável. Para entender todos os gastos envolvidos
+            na manutenção do seu veículo, confira a calculadora de{" "}
             <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total do veículo</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
             O que acontece se não pagar o IPVA?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O não pagamento do IPVA acarreta multa de 0,33% ao dia (limitada a 20%) e juros com
             base na taxa Selic. Após determinado prazo, o débito é inscrito na Dívida Ativa do
-            estado, o que pode resultar em protesto do CPF e negativação no SPC/Serasa. Além
-            disso, o veículo com IPVA em atraso não pode ser licenciado, e circular sem
+            estado, o que pode resultar em protesto do CPF e negativação no SPC/Serasa.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Além disso, o veículo com IPVA em atraso não pode ser licenciado, e circular sem
             licenciamento é infração gravíssima, sujeita a multa de R$ 293,47, 7 pontos na CNH
             e apreensão do veículo.
           </p>

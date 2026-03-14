@@ -60,14 +60,14 @@ export default function CustoKmCaminhaoPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Como calcular o custo por quilômetro do caminhão?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Conhecer o custo por quilômetro do caminhão é essencial para qualquer transportador
             autônomo ou empresa de logística que deseja operar com lucratividade. Esse cálculo
-            envolve a soma de todos os custos operacionais — fixos e variáveis — divididos pela
+            envolve a soma de todos os custos operacionais, tanto fixos quanto variáveis, divididos pela
             quilometragem percorrida. Sem esse controle, o caminhoneiro corre o risco de aceitar
             fretes que não cobrem sequer as despesas básicas de operação, comprometendo a
             sustentabilidade financeira do negócio. Para verificar dados de qualquer caminhão, faça uma{" "}
@@ -83,7 +83,7 @@ export default function CustoKmCaminhaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Combustível: a maior despesa variável
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O diesel representa, em média, entre 30% e 40% do custo total de operação de um
             caminhão no Brasil. O consumo médio varia conforme o tipo de veículo, a carga
             transportada, o terreno e o estilo de condução. Um caminhão toco (2 eixos) pode
@@ -100,7 +100,7 @@ export default function CustoKmCaminhaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Pneus: custo significativo para frotas
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O custo com pneus é frequentemente subestimado, mas pode representar entre 10% e
             15% do custo operacional total. Um caminhão de 5 eixos utiliza 18 pneus, e cada
             unidade custa em torno de R$ 1.200 a R$ 2.500, dependendo da marca e especificação.
@@ -114,7 +114,7 @@ export default function CustoKmCaminhaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Manutenção preventiva e corretiva
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A manutenção regular do caminhão inclui troca de óleo do motor, filtros de ar e
             combustível, pastilhas e lonas de freio, revisão da suspensão, troca de correias e
             inspeção geral de componentes. Especialistas recomendam destinar entre R$ 1.500 e
@@ -127,7 +127,7 @@ export default function CustoKmCaminhaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Depreciação do caminhão
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A depreciação é a perda de valor do veículo ao longo do tempo. Em média, um caminhão
             perde cerca de 10% do seu valor por ano. Para um veículo avaliado em R$ 350.000,
             isso representa aproximadamente R$ 35.000 por ano ou R$ 2.917 por mês. Embora não
@@ -142,7 +142,7 @@ export default function CustoKmCaminhaoPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Piso mínimo de frete da ANTT
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Desde 2018, a Agência Nacional de Transportes Terrestres (ANTT) estabelece pisos
             mínimos de frete rodoviário, com o objetivo de garantir remuneração justa aos
             transportadores. O piso é definido em R$ por tonelada por quilômetro (R$/ton.km) e

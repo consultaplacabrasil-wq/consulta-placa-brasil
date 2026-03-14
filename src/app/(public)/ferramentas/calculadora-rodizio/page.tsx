@@ -60,21 +60,21 @@ export default function CalculadoraRodizioPage() {
 
       {/* SEO Content */}
       <section className="bg-white px-4 py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Rodízio de Veículos em São Paulo e Rio de Janeiro
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O rodízio municipal de veículos é uma política de restrição de
             circulação adotada pela cidade de São Paulo desde 1997, com o
             objetivo de reduzir o congestionamento e a poluição atmosférica na
             região central da capital paulista. A medida funciona de segunda a
-            sexta-feira, nos horários de pico — das 7h às 10h pela manhã e das
-            17h às 20h à tarde —, dentro do chamado centro expandido, uma área
+            sexta-feira, nos horários de pico (das 7h às 10h pela manhã e das
+            17h às 20h à tarde), dentro do chamado centro expandido, uma área
             delimitada por grandes vias como a Marginal Tietê, Marginal
             Pinheiros, Avenida dos Bandeirantes e Avenida Salim Farah Maluf.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A restrição é determinada pelo último algarismo da placa do veículo.
             Veículos com finais 1 e 2 não podem circular na zona restrita às
             segundas-feiras; finais 3 e 4, às terças-feiras; finais 5 e 6, às
@@ -88,7 +88,7 @@ export default function CalculadoraRodizioPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Multa por descumprimento do rodízio em SP
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O motorista que desrespeitar o rodízio municipal de São Paulo está
             sujeito a uma multa de R$ 130,16, com acréscimo de 4 pontos na
             Carteira Nacional de Habilitação (CNH), sendo classificada como
@@ -104,7 +104,7 @@ export default function CalculadoraRodizioPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Exceções ao rodízio de São Paulo
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Alguns veículos são isentos do rodízio municipal, como ambulâncias,
             viaturas policiais, veículos de transporte escolar, táxis, veículos
             de pessoas com deficiência (PCD), motocicletas, caminhões (que
@@ -121,7 +121,7 @@ export default function CalculadoraRodizioPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Rodízio no Rio de Janeiro
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Diferente de São Paulo, a cidade do Rio de Janeiro não possui
             atualmente um sistema de rodízio permanente de veículos. Embora a
             capital fluminense já tenha discutido a implementação de medidas
@@ -129,7 +129,7 @@ export default function CalculadoraRodizioPage() {
             baseada no final da placa foi estabelecida até o momento. No entanto,
             restrições temporárias podem ocorrer em períodos de grandes eventos,
             obras viárias ou situações emergenciais. É fundamental manter a
-            documentação do veículo sempre em dia — utilize o{" "}
+            documentação do veículo sempre em dia, e para isso você pode utilizar o{" "}
             <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>{" "}
@@ -139,12 +139,12 @@ export default function CalculadoraRodizioPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Dicas para lidar com o rodízio em São Paulo
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Para evitar multas e transtornos, planeje seus deslocamentos com
             antecedência. Nos dias de restrição do seu veículo, considere
             utilizar transporte público, aplicativos de carona ou rotas
             alternativas fora do centro expandido. Lembre-se de que a restrição
-            vale apenas nos horários de pico e dentro da área delimitada — fora
+            vale apenas nos horários de pico e dentro da área delimitada. Fora
             desses horários e dessa região, a circulação é livre. Motoristas
             que possuem dois veículos com finais de placa em dias diferentes de
             rodízio podem alternar o uso para manter a mobilidade durante toda

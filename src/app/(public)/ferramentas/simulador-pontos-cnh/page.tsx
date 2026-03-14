@@ -108,23 +108,26 @@ export default function SimuladorPontosCNHPage() {
 
       {/* SEO Content */}
       <section className="bg-white px-4 py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Como funciona o sistema de pontos na CNH no Brasil?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O sistema de pontuação da Carteira Nacional de Habilitação (CNH) é
             regulamentado pelo Código de Trânsito Brasileiro (CTB), Lei nº
             9.503/1997, com alterações importantes trazidas pela Lei nº
             14.071/2020. Aproveite também para realizar uma{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consulta placa de veículo</Link> e
-            verificar a situação completa do automóvel. Cada infração de trânsito cometida pelo condutor gera
+            verificar a situação completa do automóvel.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Cada infração de trânsito cometida pelo condutor gera
             uma quantidade específica de pontos, que ficam registrados no
             prontuário do motorista por um período de 12 meses a partir da data
             da infração. Quando os pontos atingem o limite estabelecido, o
             condutor pode ter o direito de dirigir suspenso.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             As infrações são classificadas em quatro categorias de gravidade:
             leve (3 pontos), média (4 pontos), grave (5 pontos) e gravíssima
             (7 pontos). Cada categoria reflete o nível de risco que a conduta
@@ -133,7 +136,10 @@ export default function SimuladorPontosCNHPage() {
             <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">
               calculadora de multas de trânsito
             </Link>
-            . Infrações gravíssimas, como avançar o sinal vermelho, exceder a velocidade em
+            .
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Infrações gravíssimas, como avançar o sinal vermelho, exceder a velocidade em
             mais de 50% do limite permitido ou conduzir motocicleta sem capacete,
             podem resultar em suspensão imediata da CNH, independentemente do
             total de pontos acumulados.
@@ -142,26 +148,30 @@ export default function SimuladorPontosCNHPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Limites para suspensão da CNH
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Com as mudanças introduzidas pela Lei nº 14.071/2020, os limites de
             pontos para suspensão da CNH foram atualizados. Para motoristas que
             nunca tiveram a CNH suspensa anteriormente, o limite é de 20 pontos
-            acumulados em um período de 12 meses. Já para motoristas reincidentes,
-            ou seja, que já passaram por suspensão anterior, o limite sobe para
-            30 pontos. É importante ressaltar que esses limites se aplicam apenas
-            quando não há infração gravíssima no período, pois determinadas
-            infrações gravíssimas podem levar à suspensão imediata.
+            acumulados em um período de 12 meses.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Já para motoristas reincidentes, ou seja, que já passaram por suspensão
+            anterior, o limite sobe para 30 pontos. É importante ressaltar que esses
+            limites se aplicam apenas quando não há infração gravíssima no período,
+            pois determinadas infrações gravíssimas podem levar à suspensão imediata.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
             Quando os pontos da CNH vencem?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Os pontos registrados na CNH têm validade de 12 meses, contados a
             partir da data em que a infração foi cometida. Após esse período,
             os pontos são automaticamente removidos do prontuário do condutor
-            e deixam de contar para o limite de suspensão. Por isso, é
-            fundamental acompanhar as datas de vencimento de cada infração
+            e deixam de contar para o limite de suspensão.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Por isso, é fundamental acompanhar as datas de vencimento de cada infração
             para saber exatamente quantos pontos estão ativos em seu
             prontuário. Nosso simulador calcula automaticamente o vencimento
             de cada lote de pontos com base na data informada.
@@ -170,12 +180,15 @@ export default function SimuladorPontosCNHPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como evitar a suspensão da CNH?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A melhor forma de evitar a suspensão da CNH é respeitar as leis de
             trânsito. Utilize sempre o cinto de segurança, respeite os limites
             de velocidade, não use o celular enquanto dirige e jamais dirija
-            após consumir bebidas alcoólicas. Além disso, mantenha a CNH e o
-            licenciamento do veículo sempre em dia — use o{" "}
+            após consumir bebidas alcoólicas.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Além disso, mantenha a CNH e o licenciamento do veículo sempre em dia.
+            Use o{" "}
             <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
               verificador de documentos veiculares
             </Link>{" "}
@@ -189,25 +202,27 @@ export default function SimuladorPontosCNHPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             O que fazer se a CNH for suspensa?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Caso a CNH seja suspensa, o condutor deve entregar o documento ao
             órgão de trânsito e cumprir o período de suspensão determinado, que
             varia de 2 a 12 meses. Você também pode{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">pesquisar placa de carro</Link> para
             saber se o veículo possui alguma restrição ativa. Durante esse período, é proibido conduzir
-            qualquer veículo. Após o cumprimento da penalidade, o motorista
-            precisará realizar um curso de reciclagem obrigatório e ser
-            aprovado em prova teórica para reaver o direito de dirigir.
-            Dirigir com a CNH suspensa é infração gravíssima prevista no
-            Art. 162-II do CTB, com multa de R$ 880,41 e 7 pontos na CNH.
-            Lembre-se também de manter o IPVA do seu veículo em dia — consulte
-            a{" "}
+            qualquer veículo.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Após o cumprimento da penalidade, o motorista precisará realizar um
+            curso de reciclagem obrigatório e ser aprovado em prova teórica para
+            reaver o direito de dirigir. Dirigir com a CNH suspensa é infração
+            gravíssima prevista no Art. 162-II do CTB, com multa de R$ 880,41 e
+            7 pontos na CNH. Lembre-se também de manter o IPVA do seu veículo em
+            dia, e consulte a{" "}
             <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
               calculadora de IPVA
             </Link>{" "}
             para estimar o valor do imposto no seu estado.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Além do simulador de pontos, o Consulta Placa Brasil oferece diversas{" "}
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
               ferramentas veiculares gratuitas

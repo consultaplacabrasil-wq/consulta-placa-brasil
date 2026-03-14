@@ -173,45 +173,52 @@ export default function DecodificadorChassiPage() {
 
       {/* SEO Content */}
       <section className="px-4 py-16 bg-[#F8FAFC]">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Como funciona o decodificador de chassi VIN
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O número de chassi, também conhecido como VIN (Vehicle Identification Number),
             é um código padronizado internacionalmente pela norma ISO 3779. Composto por 17
             caracteres alfanuméricos, ele funciona como uma espécie de &quot;RG&quot; do veículo,
-            sendo único para cada unidade fabricada no mundo. Assim como a placa identifica o
-            veículo nas vias, o chassi é o código definitivo de identificação — use
-            nosso{" "}
+            sendo único para cada unidade fabricada no mundo.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Assim como a placa identifica o veículo nas vias, o chassi é o código definitivo
+            de identificação. Use nosso{" "}
             <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">identificador de placa</Link> para
             descobrir informações a partir do emplacamento. No Brasil, o chassi é utilizado
             pelo Detran, seguradoras e órgãos de fiscalização para identificar e rastrear
             veículos de forma inequívoca.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A estrutura do VIN é dividida em três partes principais. As três primeiras posições
             formam o WMI (World Manufacturer Identifier), que identifica o país de fabricação
             e o fabricante do veículo. Por exemplo, chassi que começam com &quot;9B&quot; indicam
-            veículos fabricados no Brasil. As posições 4 a 9 compõem o VDS (Vehicle Descriptor
-            Section), que descreve as características técnicas do veículo, como modelo, tipo de
-            carroceria e motor. Já as posições 10 a 17 formam o VIS (Vehicle Identifier Section),
-            que contém o ano do modelo, a planta de montagem e o número sequencial de produção.
+            veículos fabricados no Brasil.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
+            As posições 4 a 9 compõem o VDS (Vehicle Descriptor Section), que descreve as
+            características técnicas do veículo, como modelo, tipo de carroceria e motor. Já as
+            posições 10 a 17 formam o VIS (Vehicle Identifier Section), que contém o ano do
+            modelo, a planta de montagem e o número sequencial de produção.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
             Um elemento importante do chassi é o dígito verificador, localizado na posição 9.
             Esse dígito é calculado matematicamente a partir dos demais caracteres do VIN,
             utilizando uma tabela de transliteração e pesos específicos. Quando o dígito
             informado no chassi não corresponde ao valor calculado, pode indicar erro de
-            digitação ou, em casos mais graves, adulteração do número de chassi — uma prática
-            comum em veículos roubados ou clonados.
+            digitação ou, em casos mais graves, adulteração do número de chassi, que é uma
+            prática comum em veículos roubados ou clonados.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A consulta chassi é uma etapa fundamental na compra de veículos usados. Outra
             verificação indispensável é{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar veículo pela placa</Link>,
-            que revela dados cadastrais e possíveis restrições. Ao
-            decodificar o VIN, o comprador pode verificar se as informações do chassi conferem
+            que revela dados cadastrais e possíveis restrições.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Ao decodificar o VIN, o comprador pode verificar se as informações do chassi conferem
             com os dados do documento (CRV/CRLV), como ano do modelo e fabricante. Se você está
             adquirindo um veículo usado, confira também a{" "}
             <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">calculadora de transferência</Link> para
@@ -220,7 +227,7 @@ export default function DecodificadorChassiPage() {
             histórico de roubo, furto ou sinistro. Nosso decodificador de chassi é totalmente
             gratuito, funciona diretamente no navegador e não requer nenhum tipo de cadastro.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Além da consulta pelo chassi, o Consulta Placa Brasil oferece diversas outras{" "}
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
               ferramentas veiculares gratuitas

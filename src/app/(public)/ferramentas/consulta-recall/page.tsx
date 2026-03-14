@@ -26,7 +26,7 @@ const faqItems = [
   {
     question: "O recall é gratuito para o proprietário do veículo?",
     answer:
-      "Sim, por lei o recall é totalmente gratuito. O fabricante é responsável por arcar com todos os custos de reparo, substituição de peças e mão de obra. Não é necessário que o veículo esteja dentro do período de garantia — o recall se aplica a todos os veículos afetados, independentemente da quilometragem ou do tempo de uso.",
+      "Sim, por lei o recall é totalmente gratuito. O fabricante é responsável por arcar com todos os custos de reparo, substituição de peças e mão de obra. Não é necessário que o veículo esteja dentro do período de garantia, pois o recall se aplica a todos os veículos afetados, independentemente da quilometragem ou do tempo de uso.",
   },
   {
     question: "Como saber se meu veículo tem recall pendente?",
@@ -41,7 +41,7 @@ const faqItems = [
   {
     question: "Qual é o prazo para atender a um recall veicular?",
     answer:
-      "Não há prazo limite para o proprietário comparecer ao recall — ele permanece disponível enquanto houver peças e infraestrutura para a correção. No entanto, recomenda-se atender o mais rápido possível, especialmente em recalls que envolvem riscos graves como airbags, freios ou sistemas de combustível. O fabricante é obrigado a disponibilizar o reparo por pelo menos 12 meses após o início da campanha.",
+      "Não há prazo limite para o proprietário comparecer ao recall, que permanece disponível enquanto houver peças e infraestrutura para a correção. No entanto, recomenda-se atender o mais rápido possível, especialmente em recalls que envolvem riscos graves como airbags, freios ou sistemas de combustível. O fabricante é obrigado a disponibilizar o reparo por pelo menos 12 meses após o início da campanha.",
   },
 ];
 
@@ -167,11 +167,11 @@ export default function ConsultaRecallPage() {
 
       {/* SEO Content */}
       <section className="px-4 py-16 bg-[#F8FAFC]">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Recall veicular no Brasil: segurança, direitos e como consultar
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O recall veicular é um dos mecanismos mais importantes de proteção ao
             consumidor no setor automotivo brasileiro. Quando um fabricante identifica
             um defeito de projeto ou de fabricação que possa comprometer a segurança
@@ -186,7 +186,7 @@ export default function ConsultaRecallPage() {
             </Link>
             .
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Os recalls mais frequentes no Brasil envolvem problemas em airbags,
             sistemas de freio, componentes do motor e sistemas elétricos. A campanha
             mais conhecida mundialmente foi a do fabricante de airbags Takata, que
@@ -194,21 +194,23 @@ export default function ConsultaRecallPage() {
             de infladores em todo o país. Outros recalls comuns incluem falhas em
             bombas de combustível, vazamentos em linhas de combustível e problemas em
             software de módulos eletrônicos. Conhecer o histórico do seu veículo é
-            essencial — utilize o{" "}
+            essencial, e para isso você pode utilizar o{" "}
             <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
               decodificador de chassi
             </Link>{" "}
             para identificar as características de fábrica a partir do número VIN.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Para consultar se o seu veículo possui recall pendente, o caminho oficial
             é acessar o portal do SENATRAN (Secretaria Nacional de Trânsito) ou o site
             do Procon do seu estado. Nessas plataformas, é possível realizar a busca
             pela placa do veículo ou pelo número do chassi (RENAVAM). As montadoras
             também são obrigadas a notificar os proprietários por carta registrada,
-            e-mail ou outros meios de comunicação direta. Caso tenha adquirido o
-            veículo de segunda mão, é ainda mais importante verificar a existência de
-            recalls pendentes — faça uma{" "}
+            e-mail ou outros meios de comunicação direta.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Caso tenha adquirido o veículo de segunda mão, é ainda mais importante
+            verificar a existência de recalls pendentes. Faça uma{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
               consulta do veículo pela placa
             </Link>{" "}
@@ -218,17 +220,17 @@ export default function ConsultaRecallPage() {
             </Link>{" "}
             para obter informações sobre a origem do veículo.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O proprietário que não atende ao recall assume os riscos do defeito não
             corrigido. Embora não haja multa de trânsito pelo não comparecimento, a
             responsabilidade civil em caso de acidente pode recair sobre o dono do
             veículo que foi devidamente notificado. Além disso, seguradoras podem
             negar a cobertura de sinistros relacionados a defeitos cobertos por recall
             não atendido. O reparo é sempre gratuito, sem limite de quilometragem ou
-            prazo de garantia — o fabricante arca com todas as peças e mão de obra
+            prazo de garantia, e o fabricante arca com todas as peças e mão de obra
             necessárias.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Nossa ferramenta de consulta de recall apresenta os chamamentos mais
             recentes organizados por marca, com informações sobre os modelos e anos
             afetados, a descrição do defeito, os riscos envolvidos e as orientações

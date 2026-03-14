@@ -60,11 +60,11 @@ export default function CalculadoraMultasPage() {
 
       {/* SEO Content */}
       <section className="bg-white px-4 py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Tabela de Multas de Trânsito no Brasil
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             As multas de trânsito no Brasil são regulamentadas pelo Código de
             Trânsito Brasileiro (CTB), Lei nº 9.503/1997. Ao{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">consultar placa de carro</Link>,
@@ -73,7 +73,7 @@ export default function CalculadoraMultasPage() {
             Carteira Nacional de Habilitação (CNH) do condutor e uma
             classificação de gravidade que determina a severidade da penalidade.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             As infrações são classificadas em quatro categorias de gravidade:
             leve (3 pontos), média (4 pontos), grave (5 pontos) e gravíssima
             (7 pontos). O condutor que acumular 40 pontos em um período de
@@ -87,7 +87,7 @@ export default function CalculadoraMultasPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como funciona o sistema de pontuação da CNH?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Cada vez que um motorista comete uma infração de trânsito, além do
             valor da multa em dinheiro, pontos são registrados em seu
             prontuário na CNH. A quantidade de pontos varia de acordo com a
@@ -100,7 +100,7 @@ export default function CalculadoraMultasPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Valores atualizados das multas de trânsito
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Os valores das multas de trânsito são atualizados periodicamente
             pelo Conselho Nacional de Trânsito (CONTRAN). As infrações
             gravíssimas, como dirigir sob influência de álcool, podem ter o
@@ -109,7 +109,7 @@ export default function CalculadoraMultasPage() {
             volante (Art. 165 do CTB), por exemplo, possui uma multa base de
             R$ 2.934,70, sendo uma das mais severas do código.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Além do valor da multa e dos pontos na CNH, algumas infrações
             gravíssimas preveem medidas administrativas adicionais, como a
             suspensão do direito de dirigir, a apreensão do veículo ou a
@@ -122,14 +122,17 @@ export default function CalculadoraMultasPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Dicas para evitar multas de trânsito
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Para evitar multas e manter a CNH limpa, respeite os limites de
             velocidade, use sempre o cinto de segurança, não utilize o celular
             enquanto dirige, mantenha o licenciamento do veículo em dia e
-            nunca dirija após consumir bebidas alcoólicas. Lembre-se de que o IPVA em
-            atraso também gera multa — use a{" "}
+            nunca dirija após consumir bebidas alcoólicas. Como o IPVA em
+            atraso também gera multa, use a{" "}
             <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">calculadora de IPVA</Link> para
-            se planejar. Além disso, confira o{" "}
+            se planejar.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Além disso, confira o{" "}
             <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">verificador de documentos</Link> para
             garantir que toda a documentação do veículo está regularizada. Essas simples
             atitudes podem poupar você de multas que variam de R$ 130,16 a

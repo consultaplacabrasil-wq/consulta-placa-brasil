@@ -174,11 +174,11 @@ export default function GeradorPlacaPage() {
 
       {/* SEO Content */}
       <section className="px-4 py-16 bg-[#F8FAFC]">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Entenda os padrões de placas veiculares no Brasil
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             As placas de identificação veicular são o principal instrumento de
             reconhecimento e fiscalização de veículos automotores no Brasil. Cada
             veículo registrado no país recebe uma combinação única de letras e
@@ -195,7 +195,7 @@ export default function GeradorPlacaPage() {
               pesquisa placa de carro
             </Link>.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O padrão antigo de placas, vigente de 1990 a 2018, segue o formato
             ABC-1234, formado por três letras e quatro números separados por
             hífen. A cor de fundo da placa varia conforme a categoria do veículo:
@@ -203,10 +203,10 @@ export default function GeradorPlacaPage() {
             vermelho com letras brancas para veículos comerciais (como táxis e
             veículos de aluguel), e azul com caracteres brancos para veículos
             pertencentes a órgãos públicos. As placas de motocicleta seguem a
-            mesma codificação, porém com dimensões menores — 200 por 170
-            milímetros — e os caracteres distribuídos em duas linhas.
+            mesma codificação, porém com dimensões menores (200 por 170
+            milímetros) e os caracteres distribuídos em duas linhas.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Já o padrão Mercosul, adotado em cumprimento a uma resolução do bloco
             econômico formado por Brasil, Argentina, Uruguai e Paraguai, utiliza o
             formato ABC1D23, no qual a quinta posição é ocupada por uma letra em
@@ -216,7 +216,7 @@ export default function GeradorPlacaPage() {
             são impressos em azul escuro. Esse padrão unificado é utilizado para
             todas as categorias de veículos, sem diferenciação de cores.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             As dimensões oficiais da placa para automóveis são 400 milímetros de
             largura por 130 milímetros de altura, tanto no padrão antigo quanto
             no Mercosul. A placa Mercosul incorpora recursos avançados de
@@ -233,7 +233,7 @@ export default function GeradorPlacaPage() {
             </Link>{" "}
             de um veículo específico, acesse a página inicial do Consulta Placa Brasil.
           </p>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Nosso gerador visual de placas permite que você visualize como ficaria
             uma placa nos dois padrões e em diferentes categorias. A ferramenta
             valida automaticamente o formato conforme o tipo selecionado e exibe a

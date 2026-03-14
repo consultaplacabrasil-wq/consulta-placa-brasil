@@ -108,16 +108,19 @@ export default function CalculadoraTransferenciaPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Quanto custa transferir um veículo no Brasil?
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A transferência de veículo é um procedimento obrigatório sempre que ocorre mudança de
-            propriedade — seja por compra e venda, doação ou herança. O processo envolve diversas
+            propriedade, seja por compra e venda, doação ou herança. O processo envolve diversas
             taxas e encargos que variam conforme o estado de registro do veículo, o tipo de
-            transação e se há mudança de unidade federativa. Antes de iniciar a transferência,
-            é fundamental verificar se o IPVA está em dia — use a{" "}
+            transação e se há mudança de unidade federativa.
+          </p>
+          <p className="text-[#475569] leading-relaxed">
+            Antes de iniciar a transferência,
+            é fundamental verificar se o IPVA está em dia. Use a{" "}
             <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
               calculadora de IPVA
             </Link>{" "}
@@ -133,7 +136,7 @@ export default function CalculadoraTransferenciaPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Taxas do Detran para transferência veicular
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Cada Detran estadual cobra uma taxa administrativa para processar a transferência de
             propriedade do veículo. Esse valor varia de aproximadamente R$ 200 a R$ 350, dependendo
             do estado. Estados como São Paulo e Rio de Janeiro costumam praticar as taxas mais
@@ -146,9 +149,9 @@ export default function CalculadoraTransferenciaPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Emplacamento na mudança de estado
           </h3>
-          <p className="text-[#475569]">
-            Quando a transferência envolve mudança de estado — por exemplo, comprar um carro em
-            Minas Gerais e registrá-lo em São Paulo — é necessário realizar o emplacamento no
+          <p className="text-[#475569] leading-relaxed">
+            Quando a transferência envolve mudança de estado, como comprar um carro em
+            Minas Gerais e registrá-lo em São Paulo, é necessário realizar o emplacamento no
             novo estado. Essa taxa adicional custa aproximadamente R$ 180 e cobre a confecção
             das novas placas no padrão Mercosul. Vale lembrar que, desde 2018, todos os novos
             emplacamentos no Brasil seguem o padrão Mercosul, com a combinação de quatro letras
@@ -159,7 +162,7 @@ export default function CalculadoraTransferenciaPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             ITCMD em transferências por doação ou herança
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Diferentemente da compra e venda convencional, as transferências por doação ou herança
             estão sujeitas ao ITCMD (Imposto sobre Transmissão Causa Mortis e Doação). Para ter
             uma visão completa de todos os gastos envolvidos na posse do veículo, confira a
@@ -177,7 +180,7 @@ export default function CalculadoraTransferenciaPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Documentos necessários para transferir um veículo
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Para efetuar a transferência de um veículo, o comprador precisa apresentar o CRV
             (Certificado de Registro do Veículo) preenchido e assinado pelo vendedor com firma
             reconhecida em cartório, cópia do CPF e RG de ambas as partes, comprovante de
@@ -186,7 +189,7 @@ export default function CalculadoraTransferenciaPage() {
               verificador de documentos veiculares
             </Link>{" "}
             para conferir a validade da CNH e do licenciamento. É imprescindível que todos os
-            débitos do veículo — como IPVA, licenciamento e multas — estejam quitados antes de
+            débitos do veículo, incluindo IPVA, licenciamento e multas, estejam quitados antes de
             iniciar o processo. Para confirmar a situação cadastral do automóvel, faça uma{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
               consulta veiculo pela placa
@@ -195,7 +198,7 @@ export default function CalculadoraTransferenciaPage() {
             a compra, e o descumprimento pode gerar multa de trânsito ao antigo proprietário.
           </p>
 
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Explore também outras{" "}
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
               ferramentas veiculares gratuitas

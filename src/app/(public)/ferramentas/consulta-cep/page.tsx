@@ -108,11 +108,11 @@ export default function ConsultaCepPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             A importância do CEP na transferência de veículos
           </h2>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O Código de Endereçamento Postal (CEP) desempenha um papel fundamental no processo de
             transferência veicular no Brasil. Ao comprar, vender ou receber um veículo por doação
             ou herança, o CEP do novo proprietário determina em qual município e estado o veículo
@@ -131,7 +131,7 @@ export default function ConsultaCepPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Transferência no mesmo estado vs. entre estados
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             A diferença entre uma transferência dentro do mesmo estado e entre estados distintos é
             significativa. No primeiro caso, o processo é mais simples e barato: basta atualizar o
             CRV no Detran local, sem necessidade de trocar as placas do veículo. Já quando há
@@ -147,7 +147,7 @@ export default function ConsultaCepPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como usar o CEP para planejar a transferência
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Nossa ferramenta de consulta de CEP permite que você identifique rapidamente se a
             transferência envolverá mudança de estado. Basta informar o CEP de onde o veículo está
             atualmente registrado (origem) e o CEP do endereço do novo proprietário (destino). A
@@ -163,7 +163,7 @@ export default function ConsultaCepPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Documentação necessária para a transferência
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Independentemente de a transferência ser no mesmo estado ou entre estados diferentes,
             alguns documentos são obrigatórios: CRV preenchido e assinado com firma reconhecida,
             CPF e RG de comprador e vendedor, comprovante de residência atualizado (que comprova o
@@ -177,7 +177,7 @@ export default function ConsultaCepPage() {
             responsável pelo registro.
           </p>
 
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Explore também outras{" "}
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">
               ferramentas veiculares gratuitas

@@ -60,12 +60,12 @@ export default function CalculadoraDPVATPage() {
 
       {/* Conteúdo SEO */}
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             O que é o SPVAT (antigo DPVAT)?
           </h2>
-          <p className="text-[#475569]">
-            O SPVAT — Seguro Obrigatório para Proteção de Vítimas de Acidentes de Trânsito — é o
+          <p className="text-[#475569] leading-relaxed">
+            O SPVAT (Seguro Obrigatório para Proteção de Vítimas de Acidentes de Trânsito) é o
             seguro obrigatório que substituiu o DPVAT a partir de 2024. Ele cobre todas as vítimas
             de acidentes de trânsito em território nacional, independentemente de quem causou o
             acidente. O seguro é válido para motoristas, passageiros e pedestres, garantindo
@@ -80,7 +80,7 @@ export default function CalculadoraDPVATPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Coberturas do SPVAT / DPVAT
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O seguro obrigatório oferece três tipos de cobertura para vítimas de acidentes de
             trânsito: indenização por morte no valor de R$ 13.500,00, indenização por invalidez
             permanente total ou parcial de até R$ 13.500,00 (proporcional ao grau de invalidez
@@ -96,7 +96,7 @@ export default function CalculadoraDPVATPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             História: do DPVAT ao SPVAT
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O DPVAT (Seguro de Danos Pessoais causados por Veículos Automotores de Via Terrestre)
             foi criado em 1974 e durante décadas foi administrado por um consórcio de seguradoras
             privadas liderado pela Seguradora Líder. Em 2020, o governo federal tentou extinguir o
@@ -115,10 +115,10 @@ export default function CalculadoraDPVATPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Valores do SPVAT por tipo de veículo
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Os valores anuais do SPVAT variam de acordo com a categoria do veículo. Automóveis e
             caminhões pagam aproximadamente R$ 52,62 por ano, enquanto motocicletas possuem o valor
-            mais alto — R$ 293,48 — devido à maior incidência de sinistros envolvendo esse tipo
+            mais alto, de R$ 293,48, devido à maior incidência de sinistros envolvendo esse tipo
             de veículo. Ônibus e micro-ônibus pagam cerca de R$ 196,99 por ano. Esses valores são
             definidos anualmente pelo Conselho Nacional de Seguros Privados (CNSP) e podem ser
             atualizados conforme a sinistralidade de cada categoria. Para saber quanto você pagará
@@ -131,7 +131,7 @@ export default function CalculadoraDPVATPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como pagar o SPVAT?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             O pagamento do SPVAT é feito automaticamente junto com o licenciamento anual do veículo.
             Ao quitar o IPVA e as taxas de licenciamento no Detran do seu estado, o valor do seguro
             obrigatório já está incluído no boleto. Não é necessário procurar uma seguradora ou
@@ -145,7 +145,7 @@ export default function CalculadoraDPVATPage() {
           <h3 className="text-xl font-bold text-[#0F172A]">
             Como solicitar indenização do SPVAT?
           </h3>
-          <p className="text-[#475569]">
+          <p className="text-[#475569] leading-relaxed">
             Para solicitar a indenização do SPVAT, a vítima ou seus dependentes devem reunir a
             documentação necessária (boletim de ocorrência, laudos médicos, documentos pessoais)
             e dar entrada no pedido por meio dos canais da Caixa Econômica Federal, que é a
