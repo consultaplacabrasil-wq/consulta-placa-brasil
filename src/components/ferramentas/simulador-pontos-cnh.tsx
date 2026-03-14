@@ -105,8 +105,8 @@ export function SimuladorPontosCNH() {
           Adicionar Infração
         </h2>
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_200px_auto] gap-4 items-end">
+            <div>
               <label htmlFor="tipo-infracao" className="block text-sm font-semibold text-[#0F172A] mb-1">
                 Tipo de infração
               </label>
@@ -114,7 +114,7 @@ export function SimuladorPontosCNH() {
                 id="tipo-infracao"
                 value={infracaoSelecionada}
                 onChange={(e) => setInfracaoSelecionada(Number(e.target.value))}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white appearance-none cursor-pointer transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white cursor-pointer transition-colors text-sm"
               >
                 {infracoesDisponiveis.map((inf, idx) => (
                   <option key={idx} value={idx}>
@@ -124,7 +124,7 @@ export function SimuladorPontosCNH() {
                 ))}
               </select>
             </div>
-            <div className="w-full md:w-48">
+            <div>
               <label htmlFor="data-infracao" className="block text-sm font-semibold text-[#0F172A] mb-1">
                 Data da infração
               </label>

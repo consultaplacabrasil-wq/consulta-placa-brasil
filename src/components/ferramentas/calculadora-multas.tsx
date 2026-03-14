@@ -187,7 +187,7 @@ export function CalculadoraMultas() {
               id="filtro-gravidade"
               value={gravidade}
               onChange={(e) => setGravidade(e.target.value)}
-              className="pl-10 pr-8 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white appearance-none cursor-pointer transition-colors min-w-[200px]"
+              className="pl-10 pr-8 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white cursor-pointer transition-colors min-w-[200px]"
             >
               {gravidades.map((g) => (
                 <option key={g} value={g}>

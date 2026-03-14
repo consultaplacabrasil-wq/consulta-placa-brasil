@@ -86,7 +86,7 @@ export function CalculadoraRodizio() {
                   setFinalPlaca(e.target.value);
                   setMostrarResultado(false);
                 }}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white appearance-none cursor-pointer transition-colors"
+                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white cursor-pointer transition-colors"
               >
                 <option value="">Selecione o final da placa</option>
                 {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
@@ -115,7 +115,7 @@ export function CalculadoraRodizio() {
                   setCidade(e.target.value);
                   setMostrarResultado(false);
                 }}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white appearance-none cursor-pointer transition-colors"
+                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-[#0F172A] bg-white cursor-pointer transition-colors"
               >
                 <option value="sao-paulo">São Paulo</option>
                 <option value="rio-de-janeiro">Rio de Janeiro</option>
