@@ -6,7 +6,7 @@ import CalculadoraIOF from "@/components/ferramentas/calculadora-iof";
 export const metadata: Metadata = {
   title: "Calculadora de IOF no Financiamento | Consulta Placa",
   description:
-    "Calcule o IOF cobrado no financiamento do seu veículo. Simule para Pessoa Física, Pessoa Jurídica ou Leasing com alíquotas atualizadas. Grátis e sem cadastro.",
+    "Calcule o IOF cobrado no financiamento do seu veículo. Simule para Pessoa Física, Pessoa Jurídica ou Leasing com alíquotas atualizadas.",
   alternates: {
     canonical: "https://consultaplacabrasil.com/ferramentas/calculadora-iof",
   },

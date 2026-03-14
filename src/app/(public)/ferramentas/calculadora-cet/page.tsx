@@ -5,7 +5,7 @@ import CalculadoraCET from "@/components/ferramentas/calculadora-cet";
 export const metadata: Metadata = {
   title: "Calculadora de CET Financiamento | Consulta Placa",
   description:
-    "Calcule o Custo Efetivo Total (CET) do seu financiamento com juros, IOF, TAC, seguro e taxas. Compare a taxa anunciada com o custo real. Grátis e sem cadastro.",
+    "Calcule o Custo Efetivo Total (CET) do seu financiamento com juros, IOF, TAC, seguro e taxas. Compare a taxa anunciada com o custo real da operação.",
   alternates: {
     canonical:
       "https://consultaplacabrasil.com/ferramentas/calculadora-cet",
@@ -58,7 +58,7 @@ export default function CalculadoraCETPage() {
 
       {/* SEO Content */}
       <section className="bg-white px-4 py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             O que é o CET e por que ele importa mais que a taxa de juros?
           </h2>

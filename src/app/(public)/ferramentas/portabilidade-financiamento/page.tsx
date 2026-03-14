@@ -5,7 +5,7 @@ import PortabilidadeFinanciamento from "@/components/ferramentas/portabilidade-f
 export const metadata: Metadata = {
   title: "Portabilidade de Financiamento | Consulta Placa",
   description:
-    "Compare seu financiamento atual com outra proposta e descubra se vale a pena fazer a portabilidade. Calcule economia mensal e total. Grátis e sem cadastro.",
+    "Compare seu financiamento atual com outra proposta e descubra se vale a pena fazer a portabilidade. Calcule a economia mensal e total. Gratuito.",
   alternates: {
     canonical:
       "https://consultaplacabrasil.com/ferramentas/portabilidade-financiamento",
@@ -58,7 +58,7 @@ export default function PortabilidadeFinanciamentoPage() {
 
       {/* SEO Content */}
       <section className="bg-white px-4 py-16">
-        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             O que é a portabilidade de financiamento veicular?
           </h2>
@@ -95,7 +95,7 @@ export default function PortabilidadeFinanciamentoPage() {
             É importante destacar que, ao receber o pedido de portabilidade, o banco atual
             tem até 5 dias úteis para apresentar uma contraproposta. Muitos consumidores
             conseguem condições ainda melhores nessa etapa de negociação, sem precisar
-            trocar de instituição. Use nossa{" "}
+            trocar de instituição. Use nosso{" "}
             <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">
               simulador de financiamento
             </Link>{" "}
@@ -119,8 +119,8 @@ export default function PortabilidadeFinanciamentoPage() {
             Para financiamentos com poucas parcelas restantes, a economia pode não
             justificar os custos da transferência. Verifique também se não há cláusulas
             de juros abusivos no seu contrato atual com nossa ferramenta de{" "}
-            <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">
-              calculadora de multas
+            <Link href="/ferramentas/juros-abusivos" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de juros abusivos
             </Link>.
           </p>
 
@@ -149,11 +149,11 @@ export default function PortabilidadeFinanciamentoPage() {
               <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Simulador de Financiamento</h3>
               <p className="text-sm text-[#64748B]">Simule parcelas com Tabela Price ou SAC e veja a tabela de amortização completa.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-transferencia" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+            <Link href="/ferramentas/calculadora-cet" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de CET</h3>
               <p className="text-sm text-[#64748B]">Calcule o Custo Efetivo Total do financiamento incluindo taxas e seguros.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-multas" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+            <Link href="/ferramentas/juros-abusivos" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Juros Abusivos</h3>
               <p className="text-sm text-[#64748B]">Verifique se os juros do seu financiamento estão acima da média de mercado.</p>
             </Link>

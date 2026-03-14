@@ -209,15 +209,15 @@ export default function PropostaQuitacaoPage() {
             Ferramentas relacionadas
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <Link href="/ferramentas/simulador-financiamento" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+            <Link href="/ferramentas/quitacao-antecipada" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Quitação Antecipada</h3>
               <p className="text-sm text-[#64748B]">Simule a quitação antecipada do seu financiamento e descubra quanto pode economizar nos juros restantes.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-multas" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+            <Link href="/ferramentas/atraso-parcelas" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Atraso de Parcelas</h3>
               <p className="text-sm text-[#64748B]">Calcule multas, juros de mora e encargos sobre parcelas em atraso do seu financiamento veicular.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-transferencia" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+            <Link href="/ferramentas/juros-abusivos" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Juros Abusivos</h3>
               <p className="text-sm text-[#64748B]">Verifique se as taxas de juros do seu financiamento estão acima da média de mercado e conheça seus direitos.</p>
             </Link>

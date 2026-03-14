@@ -118,11 +118,11 @@ export default function AntecipacaoParcelasPage() {
               <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Simulador de Financiamento</h3>
               <p className="text-sm text-[#64748B]">Simule parcelas, juros totais e tabela de amortização completa com Price e SAC.</p>
             </Link>
-            <Link href="/ferramentas/custo-total-veiculo" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+            <Link href="/ferramentas/quitacao-antecipada" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Quitação Antecipada</h3>
               <p className="text-sm text-[#64748B]">Descubra quanto custa quitar seu financiamento antes do prazo e economize nos juros.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-ipva" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+            <Link href="/ferramentas/calculadora-cet" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de CET</h3>
               <p className="text-sm text-[#64748B]">Calcule o Custo Efetivo Total do financiamento incluindo tarifas e seguros embutidos.</p>
             </Link>

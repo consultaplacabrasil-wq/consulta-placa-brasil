@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AtrasoParcealasPage() {
+export default function AtrasoParcelasPage() {
   return (
     <div className="bg-[#F8FAFC]">
       {/* Hero */}

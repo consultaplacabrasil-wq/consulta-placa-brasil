@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Direitos do Comprador de Veículos | Consulta Placa",
   description:
-    "Conheça seus direitos na compra de veículos novos e usados, financiamento, transferência e como recorrer ao Procon e Justiça. Guia completo com base no CDC.",
+    "Conheça seus direitos na compra de veículos novos e usados, financiamento e transferência. Guia completo com base no Código de Defesa do Consumidor.",
   alternates: {
     canonical: "https://consultaplacabrasil.com/ferramentas/direitos-comprador",
   },
@@ -431,7 +431,7 @@ export default function DireitosCompradorPage() {
             "@type": "WebPage",
             name: "Guia de Direitos do Comprador de Veículos",
             description:
-              "Conheça seus direitos na compra de veículos novos e usados, financiamento, transferência e como recorrer ao Procon e Justiça. Guia completo com base no CDC.",
+              "Conheça seus direitos na compra de veículos novos e usados, financiamento e transferência. Guia completo com base no Código de Defesa do Consumidor.",
             url: "https://consultaplacabrasil.com/ferramentas/direitos-comprador",
             publisher: {
               "@type": "Organization",
