@@ -131,8 +131,12 @@ export default function SimuladorPontosCNHPage() {
             As infrações são classificadas em quatro categorias de gravidade:
             leve (3 pontos), média (4 pontos), grave (5 pontos) e gravíssima
             (7 pontos). Cada categoria reflete o nível de risco que a conduta
-            do motorista representa para a segurança no trânsito. Infrações
-            gravíssimas, como avançar o sinal vermelho, exceder a velocidade em
+            do motorista representa para a segurança no trânsito. Para conhecer
+            os valores das penalidades associadas, utilize nossa{" "}
+            <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de multas de trânsito
+            </Link>
+            . Infrações gravíssimas, como avançar o sinal vermelho, exceder a velocidade em
             mais de 50% do limite permitido ou conduzir motocicleta sem capacete,
             podem resultar em suspensão imediata da CNH, independentemente do
             total de pontos acumulados.
@@ -174,7 +178,11 @@ export default function SimuladorPontosCNHPage() {
             trânsito. Utilize sempre o cinto de segurança, respeite os limites
             de velocidade, não use o celular enquanto dirige e jamais dirija
             após consumir bebidas alcoólicas. Além disso, mantenha a CNH e o
-            licenciamento do veículo sempre em dia. Caso receba uma notificação
+            licenciamento do veículo sempre em dia — use o{" "}
+            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+              verificador de documentos veiculares
+            </Link>{" "}
+            para conferir a validade dos seus documentos. Caso receba uma notificação
             de infração, verifique se os dados estão corretos e, se necessário,
             apresente recurso dentro do prazo legal. Utilize nosso simulador
             para acompanhar sua pontuação e tomar medidas preventivas antes
@@ -193,6 +201,12 @@ export default function SimuladorPontosCNHPage() {
             aprovado em prova teórica para reaver o direito de dirigir.
             Dirigir com a CNH suspensa é infração gravíssima prevista no
             Art. 162-II do CTB, com multa de R$ 880,41 e 7 pontos na CNH.
+            Lembre-se também de manter o IPVA do seu veículo em dia — consulte
+            a{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de IPVA
+            </Link>{" "}
+            para estimar o valor do imposto no seu estado.
           </p>
           <p className="text-[#475569]">
             Além do simulador de pontos, o Consulta Placa Brasil oferece diversas{" "}
@@ -213,6 +227,29 @@ export default function SimuladorPontosCNHPage() {
             </Link>
             .
           </p>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/calculadora-multas" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Multas</h3>
+              <p className="text-sm text-[#64748B]">Calcule o valor das multas de trânsito com base na gravidade da infração e verifique descontos para pagamento antecipado.</p>
+            </Link>
+            <Link href="/ferramentas/verificador-documentos" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Verificador de Documentos</h3>
+              <p className="text-sm text-[#64748B]">Verifique a validade da CNH, consulte o calendário de licenciamento e receba alertas sobre a documentação do veículo.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-ipva" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de IPVA</h3>
+              <p className="text-sm text-[#64748B]">Estime o valor do IPVA do seu veículo com base no estado, valor venal e alíquota vigente. Simule parcelamentos e descontos.</p>
+            </Link>
+          </div>
         </div>
       </section>
 

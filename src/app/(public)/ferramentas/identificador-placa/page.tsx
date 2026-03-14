@@ -177,7 +177,12 @@ export default function IdentificadorPlacaPage() {
             veículos automotores que circulam no território brasileiro. Elas funcionam
             como o principal meio de identificação visual de um veículo, permitindo o
             rastreamento, a fiscalização e o controle por parte dos órgãos de trânsito
-            como o Detran e a Polícia Rodoviária Federal. No Brasil, existem atualmente
+            como o Detran e a Polícia Rodoviária Federal. Além da placa, outro código importante
+            para a identificação é o chassi — utilize nosso{" "}
+            <Link href="/ferramentas/decodificador-chassi" className="text-[#FF4D30] hover:underline font-medium">
+              decodificador de chassi
+            </Link>{" "}
+            para extrair informações detalhadas a partir do número VIN. No Brasil, existem atualmente
             dois padrões de placas em circulação: o antigo padrão brasileiro e o novo
             padrão Mercosul, cada um com características visuais e estruturais distintas.
           </p>
@@ -193,8 +198,12 @@ export default function IdentificadorPlacaPage() {
           </p>
           <p className="text-[#475569]">
             A placa Mercosul, implementada no Brasil a partir de setembro de 2018, segue
-            o formato ABC1D23, onde a quinta posição é uma letra em vez de um número. O
-            novo padrão traz visual unificado para todas as categorias: fundo branco, faixa
+            o formato ABC1D23, onde a quinta posição é uma letra em vez de um número. Se
+            deseja visualizar como ficaria uma placa nesse formato, experimente o{" "}
+            <Link href="/ferramentas/gerador-placa" className="text-[#FF4D30] hover:underline font-medium">
+              gerador visual de placa
+            </Link>
+            . O novo padrão traz visual unificado para todas as categorias: fundo branco, faixa
             azul na parte superior com o nome &quot;MERCOSUL&quot; e a bandeira do país, e
             caracteres em azul escuro. A mudança foi motivada pela necessidade de padronizar
             a identificação veicular entre os países membros do bloco — Brasil, Argentina,
@@ -215,7 +224,12 @@ export default function IdentificadorPlacaPage() {
             Nosso identificador de placas permite que você verifique rapidamente se uma
             placa segue o padrão Mercosul ou o formato antigo, valide a estrutura
             alfanumérica e visualize a representação gráfica da placa com as cores e
-            elementos corretos. A ferramenta é totalmente gratuita e não requer cadastro.
+            elementos corretos. Se está planejando comprar ou vender um veículo, confira
+            também a{" "}
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de transferência veicular
+            </Link>{" "}
+            para estimar os custos envolvidos. A ferramenta é totalmente gratuita e não requer cadastro.
             Para obter informações mais detalhadas sobre um veículo específico, utilize
             nossa{" "}
             <Link href="/" className="text-[#FF4D30] hover:underline font-medium">
@@ -239,6 +253,29 @@ export default function IdentificadorPlacaPage() {
             </Link>
             .
           </p>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/decodificador-chassi" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Decodificador de Chassi</h3>
+              <p className="text-sm text-[#64748B]">Decodifique o número do chassi (VIN) e descubra fabricante, país de origem, ano e especificações do veículo.</p>
+            </Link>
+            <Link href="/ferramentas/gerador-placa" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Gerador Visual de Placa</h3>
+              <p className="text-sm text-[#64748B]">Gere uma representação visual da placa veicular nos padrões Mercosul e antigo com cores e formatação realistas.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-transferencia" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Transferência</h3>
+              <p className="text-sm text-[#64748B]">Calcule o custo total para transferir um veículo, incluindo taxas do Detran, vistoria, emplacamento e ITCMD.</p>
+            </Link>
+          </div>
         </div>
       </section>
 

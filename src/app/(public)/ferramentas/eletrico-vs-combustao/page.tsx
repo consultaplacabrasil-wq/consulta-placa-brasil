@@ -70,7 +70,8 @@ export default function EletricoVsCombustaoPage() {
             A escolha entre um carro elétrico e um veículo a combustão vai muito além do preço
             na concessionária. Embora os carros elétricos costumem ter um valor de compra mais
             elevado, o custo operacional — especialmente o gasto com energia — é significativamente
-            menor. Para tomar a melhor decisão, é fundamental comparar o custo total de propriedade
+            menor. Para tomar a melhor decisão, é fundamental comparar o{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total de propriedade do veículo</Link>{" "}
             ao longo de vários anos, considerando tanto o investimento inicial quanto as despesas
             recorrentes com abastecimento.
           </p>
@@ -97,6 +98,9 @@ export default function EletricoVsCombustaoPage() {
             de 12 km/l e gasolina a R$ 5,79/l custa R$ 0,48 por quilômetro — mais que o triplo.
             Além disso, veículos elétricos exigem menos manutenção, pois não possuem motor a
             explosão, câmbio tradicional, embreagem, correia dentada nem sistema de escapamento.
+            Outro fator a considerar é a{" "}
+            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">depreciação veicular</Link>,
+            que tende a ser diferente entre elétricos e modelos a combustão.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -119,7 +123,10 @@ export default function EletricoVsCombustaoPage() {
             elétricos e híbridos. Estados como Maranhão, Pernambuco, Rio Grande do Norte e Piauí
             concedem isenção total, enquanto São Paulo oferece desconto na alíquota. Esses
             incentivos podem representar uma economia de milhares de reais por ano e devem ser
-            considerados na análise de custo total. Vale ressaltar que a política de incentivos
+            considerados na análise de custo total. Para quem possui veículo flex, vale também
+            conferir nossa calculadora{" "}
+            <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">gasolina ou etanol</Link>{" "}
+            e descobrir o combustível mais vantajoso. Vale ressaltar que a política de incentivos
             varia conforme a legislação estadual e pode ser alterada ao longo do tempo — consulte
             sempre a Secretaria da Fazenda do seu estado para informações atualizadas.
           </p>
@@ -136,21 +143,23 @@ export default function EletricoVsCombustaoPage() {
       </section>
 
       {/* Ferramentas relacionadas */}
-      <section className="px-4 pb-8">
+      <section className="bg-white px-4 py-16">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-xl font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/ferramentas/calculadora-depreciacao" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Calculadora de Depreciação</span>
-              <p className="text-sm text-[#64748B] mt-1">Descubra quanto seu veículo perde de valor por ano.</p>
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/calculadora-flex" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Gasolina ou Etanol</h3>
+              <p className="text-sm text-[#64748B]">Descubra qual combustível é mais vantajoso para o seu veículo flex.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-flex" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Gasolina ou Etanol?</span>
-              <p className="text-sm text-[#64748B] mt-1">Descubra qual combustível é mais vantajoso para você.</p>
+            <Link href="/ferramentas/calculadora-depreciacao" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Depreciação</h3>
+              <p className="text-sm text-[#64748B]">Descubra quanto seu veículo perde de valor por ano com projeção detalhada.</p>
             </Link>
-            <Link href="/ferramentas/custo-total-veiculo" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Custo Total do Veículo</span>
-              <p className="text-sm text-[#64748B] mt-1">Calcule quanto seu veículo custa por mês e por ano.</p>
+            <Link href="/ferramentas/custo-total-veiculo" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Custo Total do Veículo</h3>
+              <p className="text-sm text-[#64748B]">Calcule quanto seu veículo custa por mês e por ano, incluindo todas as despesas.</p>
             </Link>
           </div>
         </div>

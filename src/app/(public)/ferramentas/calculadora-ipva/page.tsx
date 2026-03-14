@@ -69,7 +69,9 @@ export default function CalculadoraIPVAPage() {
             O Imposto sobre a Propriedade de Veículos Automotores (IPVA) é um tributo estadual
             cobrado anualmente de todos os proprietários de veículos no Brasil. O valor do IPVA é
             calculado com base no valor venal do veículo — geralmente obtido pela Tabela FIPE —
-            multiplicado pela alíquota definida por cada estado. Como cada unidade federativa possui
+            multiplicado pela alíquota definida por cada estado. Caso você tenha recebido alguma infração,
+            utilize nossa <Link href="/ferramentas/calculadora-multas" className="text-[#FF4D30] hover:underline font-medium">calculadora de multas de trânsito</Link> para
+            consultar valores e pontos na CNH. Como cada unidade federativa possui
             autonomia para definir suas próprias alíquotas, o valor final do imposto pode variar
             significativamente de um estado para outro.
           </p>
@@ -103,7 +105,9 @@ export default function CalculadoraIPVAPage() {
           <p className="text-[#475569]">
             O parcelamento do IPVA é permitido na maioria dos estados em até 3 a 5 parcelas, sem
             acréscimo de juros. Entretanto, ao parcelar, o proprietário abre mão do desconto
-            oferecido no pagamento à vista. As datas de vencimento das parcelas variam conforme
+            oferecido no pagamento à vista. Se você está pensando em financiar um veículo, experimente
+            nosso <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">simulador de financiamento veicular</Link> para
+            calcular parcelas e juros. As datas de vencimento das parcelas variam conforme
             o final da placa do veículo e o calendário definido pelo Detran de cada estado.
             Ficar atento ao calendário é fundamental para evitar multas e juros por atraso.
           </p>
@@ -118,7 +122,9 @@ export default function CalculadoraIPVAPage() {
             mediante laudo médico e processo administrativo junto ao Detran. Veículos oficiais,
             táxis, ambulâncias e veículos de entidades diplomáticas também costumam ter isenção.
             Veículos elétricos e híbridos possuem redução ou isenção total em vários estados,
-            como incentivo à mobilidade sustentável.
+            como incentivo à mobilidade sustentável. Para entender todos os gastos envolvidos na
+            manutenção do seu veículo, confira a calculadora de{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total do veículo</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -145,29 +151,23 @@ export default function CalculadoraIPVAPage() {
       </section>
 
       {/* Ferramentas relacionadas */}
-      <section className="px-4 pb-12">
+      <section className="bg-white px-4 py-16">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-lg font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/ferramentas/calculadora-multas" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
-              <span className="font-semibold text-[#0F172A]">Calculadora de Multas</span>
-              <p className="text-sm text-[#64748B] mt-1">Consulte valores e pontos das infrações de trânsito.</p>
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/calculadora-multas" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Multas</h3>
+              <p className="text-sm text-[#64748B]">Consulte valores, pontos na CNH e gravidade das infrações de trânsito do CTB.</p>
             </Link>
-            <Link href="/ferramentas/simulador-financiamento" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
-              <span className="font-semibold text-[#0F172A]">Simulador de Financiamento</span>
-              <p className="text-sm text-[#64748B] mt-1">Calcule parcelas e juros do financiamento veicular.</p>
+            <Link href="/ferramentas/simulador-financiamento" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Simulador de Financiamento</h3>
+              <p className="text-sm text-[#64748B]">Calcule parcelas, juros totais e compare Tabela Price e SAC no financiamento veicular.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-flex" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
-              <span className="font-semibold text-[#0F172A]">Gasolina ou Etanol?</span>
-              <p className="text-sm text-[#64748B] mt-1">Descubra qual combustível compensa mais no seu veículo.</p>
-            </Link>
-          </div>
-          <div className="mt-6 text-center">
-            <Link
-              href="/ferramentas"
-              className="inline-flex items-center text-[#FF4D30] font-semibold hover:underline transition-colors"
-            >
-              ← Ver todas as ferramentas
+            <Link href="/ferramentas/custo-total-veiculo" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Custo Total do Veículo</h3>
+              <p className="text-sm text-[#64748B]">Descubra quanto custa manter seu veículo por mês incluindo IPVA, seguro e combustível.</p>
             </Link>
           </div>
         </div>

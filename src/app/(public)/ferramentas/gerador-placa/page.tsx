@@ -247,9 +247,44 @@ export default function GeradorPlacaPage() {
             >
               ferramentas veiculares gratuitas
             </Link>{" "}
-            disponíveis no Consulta Placa Brasil, como a calculadora de IPVA, o
-            simulador de financiamento e o decodificador de chassi.
+            disponíveis no Consulta Placa Brasil, como o{" "}
+            <Link
+              href="/ferramentas/decodificador-chassi"
+              className="text-[#FF4D30] hover:underline font-medium"
+            >
+              decodificador de chassi
+            </Link>{" "}
+            e a{" "}
+            <Link
+              href="/ferramentas/calculadora-transferencia"
+              className="text-[#FF4D30] hover:underline font-medium"
+            >
+              calculadora de transferência veicular
+            </Link>.
           </p>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/identificador-placa" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Identificador de Placa</h3>
+              <p className="text-sm text-[#64748B]">Identifique o padrão, estado e categoria de qualquer placa veicular brasileira.</p>
+            </Link>
+            <Link href="/ferramentas/decodificador-chassi" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Decodificador de Chassi</h3>
+              <p className="text-sm text-[#64748B]">Decodifique o número do chassi e descubra informações sobre o veículo.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-transferencia" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Transferência</h3>
+              <p className="text-sm text-[#64748B]">Calcule os custos de transferência de propriedade do veículo.</p>
+            </Link>
+          </div>
         </div>
       </section>
 

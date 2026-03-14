@@ -118,7 +118,12 @@ export default function CalculadoraTransferenciaPage() {
             A transferência de veículo é um procedimento obrigatório sempre que ocorre mudança de
             propriedade — seja por compra e venda, doação ou herança. O processo envolve diversas
             taxas e encargos que variam conforme o estado de registro do veículo, o tipo de
-            transação e se há mudança de unidade federativa. Conhecer antecipadamente esses custos
+            transação e se há mudança de unidade federativa. Antes de iniciar a transferência,
+            é fundamental verificar se o IPVA está em dia — use a{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de IPVA
+            </Link>{" "}
+            para estimar o valor do imposto. Conhecer antecipadamente esses custos
             é essencial para planejar a aquisição de um veículo usado e evitar surpresas financeiras
             no momento da documentação.
           </p>
@@ -154,9 +159,14 @@ export default function CalculadoraTransferenciaPage() {
           </h3>
           <p className="text-[#475569]">
             Diferentemente da compra e venda convencional, as transferências por doação ou herança
-            estão sujeitas ao ITCMD (Imposto sobre Transmissão Causa Mortis e Doação). Esse imposto
-            estadual incide sobre o valor do bem transferido e possui alíquotas que variam de 2% a
-            8%, conforme a legislação de cada estado. Em São Paulo, a alíquota é de 4%, enquanto em
+            estão sujeitas ao ITCMD (Imposto sobre Transmissão Causa Mortis e Doação). Para ter
+            uma visão completa de todos os gastos envolvidos na posse do veículo, confira a
+            calculadora de{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">
+              custo total do veículo
+            </Link>
+            . Esse imposto estadual incide sobre o valor do bem transferido e possui alíquotas
+            que variam de 2% a 8%, conforme a legislação de cada estado. Em São Paulo, a alíquota é de 4%, enquanto em
             Minas Gerais chega a 5%. O Rio de Janeiro pratica alíquotas progressivas que podem
             atingir até 5% em determinadas faixas de valor. O ITCMD representa o maior custo na
             transferência por doação ou herança, especialmente para veículos de alto valor.
@@ -169,7 +179,11 @@ export default function CalculadoraTransferenciaPage() {
             Para efetuar a transferência de um veículo, o comprador precisa apresentar o CRV
             (Certificado de Registro do Veículo) preenchido e assinado pelo vendedor com firma
             reconhecida em cartório, cópia do CPF e RG de ambas as partes, comprovante de
-            residência atualizado e o laudo de vistoria veicular. É imprescindível que todos os
+            residência atualizado e o laudo de vistoria veicular. Utilize o{" "}
+            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">
+              verificador de documentos veiculares
+            </Link>{" "}
+            para conferir a validade da CNH e do licenciamento. É imprescindível que todos os
             débitos do veículo — como IPVA, licenciamento e multas — estejam quitados antes de
             iniciar o processo. O prazo legal para realizar a transferência é de 30 dias após
             a compra, e o descumprimento pode gerar multa de trânsito ao antigo proprietário.
@@ -215,6 +229,29 @@ export default function CalculadoraTransferenciaPage() {
           >
             ← Ver todas as ferramentas
           </Link>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/calculadora-ipva" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de IPVA</h3>
+              <p className="text-sm text-[#64748B]">Estime o valor do IPVA do seu veículo com base no estado, valor venal e alíquota vigente. Simule parcelamentos e descontos.</p>
+            </Link>
+            <Link href="/ferramentas/custo-total-veiculo" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Custo Total do Veículo</h3>
+              <p className="text-sm text-[#64748B]">Calcule o custo total anual do seu veículo incluindo IPVA, combustível, manutenção, depreciação, seguro e financiamento.</p>
+            </Link>
+            <Link href="/ferramentas/verificador-documentos" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Verificador de Documentos</h3>
+              <p className="text-sm text-[#64748B]">Verifique a validade da CNH, consulte o calendário de licenciamento e receba alertas sobre a documentação do veículo.</p>
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -74,7 +74,9 @@ export default function CalculadoraFreteAnttPage() {
             cumprimento de valores mínimos de frete para proteger os transportadores
             autônomos e garantir condições justas de remuneração. O descumprimento
             desses pisos pode acarretar sanções administrativas e multas tanto para
-            embarcadores quanto para transportadoras.
+            embarcadores quanto para transportadoras. Para entender melhor seus custos operacionais,
+            utilize nossa calculadora de{" "}
+            <Link href="/ferramentas/custo-km-caminhao" className="text-[#FF4D30] hover:underline font-medium">custo por quilômetro do caminhão</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -105,7 +107,9 @@ export default function CalculadoraFreteAnttPage() {
             como alimentos perecíveis e medicamentos. Por fim, as cargas perigosas
             englobam materiais inflamáveis, tóxicos, corrosivos e explosivos, que
             demandam veículos especializados e documentação específica conforme as
-            normas do IBAMA e do Exército Brasileiro.
+            normas do IBAMA e do Exército Brasileiro. Para comparar custos de combustível na sua
+            frota, experimente nossa calculadora{" "}
+            <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">gasolina ou etanol</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -121,7 +125,9 @@ export default function CalculadoraFreteAnttPage() {
             seja adequadamente remunerado pelo custo real da operação. Veículos
             rodoviários de carga no Brasil utilizam configurações que variam de dois
             a nove eixos, dependendo da capacidade de carga e do tipo de implemento
-            utilizado, como carretas, bitrens e rodotrens.
+            utilizado, como carretas, bitrens e rodotrens. Não se esqueça de calcular também o{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">IPVA do seu veículo</Link>{" "}
+            para incluir esse custo no planejamento financeiro da operação.
           </p>
 
           <div className="mt-8 p-4 bg-[#F8FAFC] rounded-xl border border-gray-100">
@@ -137,21 +143,23 @@ export default function CalculadoraFreteAnttPage() {
       </section>
 
       {/* Ferramentas relacionadas */}
-      <section className="px-4 pb-8">
+      <section className="bg-white px-4 py-16">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-xl font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/ferramentas/custo-km-caminhao" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Custo por Km do Caminhão</span>
-              <p className="text-sm text-[#64748B] mt-1">Calcule o custo operacional por quilômetro rodado.</p>
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/custo-km-caminhao" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Custo por Km do Caminhão</h3>
+              <p className="text-sm text-[#64748B]">Calcule o custo operacional por quilômetro rodado do seu caminhão.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-flex" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Gasolina ou Etanol?</span>
-              <p className="text-sm text-[#64748B] mt-1">Descubra qual combustível é mais vantajoso.</p>
+            <Link href="/ferramentas/calculadora-flex" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Gasolina ou Etanol</h3>
+              <p className="text-sm text-[#64748B]">Descubra qual combustível é mais vantajoso para a sua frota.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-depreciacao" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Calculadora de Depreciação</span>
-              <p className="text-sm text-[#64748B] mt-1">Estime quanto seu veículo vai desvalorizar.</p>
+            <Link href="/ferramentas/calculadora-ipva" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de IPVA</h3>
+              <p className="text-sm text-[#64748B]">Calcule o valor do IPVA do seu veículo por estado e ano.</p>
             </Link>
           </div>
         </div>

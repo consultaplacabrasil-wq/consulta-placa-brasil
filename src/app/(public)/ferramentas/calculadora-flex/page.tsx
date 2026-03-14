@@ -70,7 +70,10 @@ export default function CalculadoraFlexPage() {
             brasileiros que possuem veículos flex. A resposta depende de uma conta simples, mas que
             poucos fazem corretamente: é preciso comparar não apenas o preço por litro, mas o custo
             real por quilômetro rodado, levando em conta a diferença de rendimento entre os dois
-            combustíveis.
+            combustíveis. Para uma visão completa dos gastos com o veículo, utilize nossa ferramenta
+            de{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total do veículo</Link>,
+            que inclui combustível, IPVA, seguro e manutenção.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -107,9 +110,14 @@ export default function CalculadoraFlexPage() {
           <p className="text-[#475569]">
             Além da questão econômica, o etanol é considerado um combustível mais sustentável. Por ser
             produzido a partir da cana-de-açúcar, a emissão líquida de CO₂ é significativamente menor
-            em comparação à gasolina, que é um combustível fóssil derivado do petróleo. O Brasil é
-            referência mundial na produção de etanol, e abastecer com esse combustível contribui para
-            a redução da pegada de carbono do transporte nacional. Use nossa calculadora acima para
+            em comparação à gasolina, que é um combustível fóssil derivado do petróleo. Se a
+            sustentabilidade é prioridade para você, confira também nosso comparador{" "}
+            <Link href="/ferramentas/eletrico-vs-combustao" className="text-[#FF4D30] hover:underline font-medium">elétrico vs combustão</Link>.
+            O Brasil é referência mundial na produção de etanol, e abastecer com esse combustível contribui para
+            a redução da pegada de carbono do transporte nacional. Não se esqueça de verificar o valor do imposto
+            anual com a{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">calculadora de IPVA</Link>.
+            Use nossa calculadora acima para
             fazer a comparação com os preços atuais da sua região e descubra quanto você pode
             economizar por mês e por ano.
           </p>
@@ -124,6 +132,29 @@ export default function CalculadoraFlexPage() {
             disponíveis no Consulta Placa Brasil, incluindo calculadora de IPVA, simulador de
             financiamento, decodificador de chassi e muito mais.
           </p>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/custo-total-veiculo" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Custo Total do Veículo</h3>
+              <p className="text-sm text-[#64748B]">Descubra quanto custa manter seu veículo por mês incluindo IPVA, seguro e combustível.</p>
+            </Link>
+            <Link href="/ferramentas/eletrico-vs-combustao" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Elétrico vs Combustão</h3>
+              <p className="text-sm text-[#64748B]">Compare os custos entre veículos elétricos e a combustão ao longo dos anos.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-ipva" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de IPVA</h3>
+              <p className="text-sm text-[#64748B]">Calcule o IPVA 2026 do seu veículo por estado com parcelamento e desconto à vista.</p>
+            </Link>
+          </div>
         </div>
       </section>
 

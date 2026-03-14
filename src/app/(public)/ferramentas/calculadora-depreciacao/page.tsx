@@ -71,7 +71,8 @@ export default function CalculadoraDepreciacaoPage() {
             veículo no Brasil, podendo representar uma perda de até 50% do valor original nos
             primeiros cinco anos de uso. Compreender como a depreciação funciona é essencial para
             tomar decisões financeiras inteligentes, seja na hora de comprar um veículo novo ou
-            seminovo, planejar a troca ou calcular o custo total de propriedade.
+            seminovo, planejar a troca ou calcular o{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total de propriedade do veículo</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -97,7 +98,9 @@ export default function CalculadoraDepreciacaoPage() {
             histórico de manutenção, a cor (cores neutras como branco, prata e preto são
             preferidas), a região do país e até o tipo de combustível também influenciam.
             Veículos flex, por exemplo, costumam ter melhor valor de revenda no Brasil do que
-            modelos movidos exclusivamente a gasolina.
+            modelos movidos exclusivamente a gasolina. Se está em dúvida entre um modelo elétrico e
+            um a combustão, confira nosso{" "}
+            <Link href="/ferramentas/eletrico-vs-combustao" className="text-[#FF4D30] hover:underline font-medium">comparador elétrico vs combustão</Link>.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -125,7 +128,9 @@ export default function CalculadoraDepreciacaoPage() {
             aceitação no mercado são práticas que ajudam a preservar o valor de revenda. Comprar
             um veículo seminovo com um ou dois anos de uso também é uma estratégia inteligente,
             pois você evita a maior faixa de depreciação que ocorre logo após a saída da
-            concessionária.
+            concessionária. Para planejar melhor a compra, experimente também nosso{" "}
+            <Link href="/ferramentas/simulador-financiamento" className="text-[#FF4D30] hover:underline font-medium">simulador de financiamento veicular</Link>{" "}
+            e veja as parcelas e juros antes de fechar negócio.
           </p>
 
           <div className="mt-8 p-4 bg-[#F8FAFC] rounded-xl border border-gray-100">
@@ -141,21 +146,23 @@ export default function CalculadoraDepreciacaoPage() {
       </section>
 
       {/* Ferramentas relacionadas */}
-      <section className="px-4 pb-8">
+      <section className="bg-white px-4 py-16">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-xl font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/ferramentas/custo-total-veiculo" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Custo Total do Veículo</span>
-              <p className="text-sm text-[#64748B] mt-1">Calcule quanto seu veículo custa por mês e por ano.</p>
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/simulador-financiamento" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Simulador de Financiamento</h3>
+              <p className="text-sm text-[#64748B]">Simule parcelas e juros para financiamento veicular e planeje sua compra.</p>
             </Link>
-            <Link href="/ferramentas/eletrico-vs-combustao" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Elétrico vs Combustão</span>
-              <p className="text-sm text-[#64748B] mt-1">Compare os custos entre carro elétrico e a combustão.</p>
+            <Link href="/ferramentas/custo-total-veiculo" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Custo Total do Veículo</h3>
+              <p className="text-sm text-[#64748B]">Calcule quanto seu veículo custa por mês e por ano, incluindo todas as despesas.</p>
             </Link>
-            <Link href="/ferramentas/simulador-financiamento" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Simulador de Financiamento</span>
-              <p className="text-sm text-[#64748B] mt-1">Simule parcelas e juros para financiamento veicular.</p>
+            <Link href="/ferramentas/eletrico-vs-combustao" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Elétrico vs Combustão</h3>
+              <p className="text-sm text-[#64748B]">Compare os custos entre carro elétrico e a combustão em até 60 meses.</p>
             </Link>
           </div>
         </div>

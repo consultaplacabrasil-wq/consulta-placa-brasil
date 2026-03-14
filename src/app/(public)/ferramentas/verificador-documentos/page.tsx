@@ -178,7 +178,12 @@ export default function VerificadorDocumentosPage() {
             que comprova a aptidão do motorista para conduzir veículos, enquanto o Certificado de
             Registro e Licenciamento de Veículo (CRLV) atesta que o automóvel está regularizado
             perante os órgãos de trânsito. Circular com qualquer um desses documentos vencidos
-            pode resultar em multas, apreensão do veículo e pontos na carteira de habilitação.
+            pode resultar em multas, apreensão do veículo e pontos na carteira — acompanhe sua
+            pontuação com o{" "}
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">
+              simulador de pontos na CNH
+            </Link>
+            .
           </p>
           <p className="text-[#475569]">
             A validade da CNH no Brasil é determinada pela faixa etária do condutor no momento da
@@ -194,14 +199,24 @@ export default function VerificadorDocumentosPage() {
             vencem em janeiro, final 2 em fevereiro, e assim por diante, até final 0 em outubro.
             O não pagamento do licenciamento impede a emissão do CRLV e configura infração
             gravíssima, com multa e remoção do veículo ao pátio do Detran. Além do licenciamento,
-            é necessário quitar o IPVA (Imposto sobre a Propriedade de Veículos Automotores) e
-            eventuais multas de trânsito pendentes para regularizar completamente o veículo.
+            é necessário quitar o IPVA — utilize a{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de IPVA
+            </Link>{" "}
+            para estimar o valor do imposto — e eventuais multas de trânsito pendentes para
+            regularizar completamente o veículo.
           </p>
           <p className="text-[#475569]">
             Nosso verificador de documentos veiculares foi desenvolvido para facilitar o controle
-            dessas obrigações. Com ele, você pode calcular automaticamente a data de vencimento da
-            sua CNH com base na idade e na data de emissão, consultar em qual mês deve realizar o
-            licenciamento do veículo e receber alertas visuais sobre a proximidade do vencimento.
+            dessas obrigações. Se você planeja comprar ou vender um veículo, confira
+            a{" "}
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de transferência veicular
+            </Link>{" "}
+            para conhecer os custos envolvidos na documentação. Com o verificador, você pode calcular
+            automaticamente a data de vencimento da sua CNH com base na idade e na data de emissão,
+            consultar em qual mês deve realizar o licenciamento do veículo e receber alertas visuais
+            sobre a proximidade do vencimento.
             O sistema utiliza cores intuitivas: verde indica que a documentação está em dia, amarelo
             alerta que o vencimento ocorrerá nos próximos 60 dias, e vermelho indica que o documento
             já está vencido.
@@ -228,6 +243,29 @@ export default function VerificadorDocumentosPage() {
             e não exigem cadastro. Mantenha seus documentos sempre atualizados e evite transtornos
             nas fiscalizações de trânsito.
           </p>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/simulador-pontos-cnh" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Simulador de Pontos na CNH</h3>
+              <p className="text-sm text-[#64748B]">Simule a pontuação da sua CNH, veja os pontos ativos, data de vencimento e risco de suspensão do direito de dirigir.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-transferencia" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Transferência</h3>
+              <p className="text-sm text-[#64748B]">Calcule o custo total para transferir um veículo, incluindo taxas do Detran, vistoria, emplacamento e ITCMD.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-ipva" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de IPVA</h3>
+              <p className="text-sm text-[#64748B]">Estime o valor do IPVA do seu veículo com base no estado, valor venal e alíquota vigente. Simule parcelamentos e descontos.</p>
+            </Link>
+          </div>
         </div>
       </section>
 

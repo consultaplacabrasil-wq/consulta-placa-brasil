@@ -72,7 +72,10 @@ export default function CustoKmCaminhaoPage() {
             envolve a soma de todos os custos operacionais — fixos e variáveis — divididos pela
             quilometragem percorrida. Sem esse controle, o caminhoneiro corre o risco de aceitar
             fretes que não cobrem sequer as despesas básicas de operação, comprometendo a
-            sustentabilidade financeira do negócio.
+            sustentabilidade financeira do negócio. Compare seus resultados com o piso estabelecido
+            pela nossa{" "}
+            <Link href="/ferramentas/calculadora-frete-antt" className="text-[#FF4D30] hover:underline font-medium">calculadora de frete ANTT</Link>{" "}
+            para garantir que seus fretes são rentáveis.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -86,7 +89,10 @@ export default function CustoKmCaminhaoPage() {
             consumir entre 2 e 3,5 km/l. Com o preço do diesel oscilando próximo de R$ 6,00 o
             litro, esse custo impacta diretamente a rentabilidade de cada viagem. Para reduzir
             o consumo, recomenda-se manter o veículo bem regulado, calibrar os pneus
-            regularmente e adotar uma condução econômica, evitando acelerações bruscas.
+            regularmente e adotar uma condução econômica, evitando acelerações bruscas. Para veículos
+            flex da frota, confira também nossa calculadora{" "}
+            <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">gasolina ou etanol</Link>{" "}
+            e descubra o combustível mais econômico.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -125,7 +131,10 @@ export default function CustoKmCaminhaoPage() {
             isso representa aproximadamente R$ 35.000 por ano ou R$ 2.917 por mês. Embora não
             seja uma despesa direta de bolso, a depreciação deve ser considerada no custo
             operacional, pois impacta o valor de revenda e a capacidade de renovação da frota.
-            Caminhões bem conservados e com baixa quilometragem tendem a depreciar menos.
+            Caminhões bem conservados e com baixa quilometragem tendem a depreciar menos. Utilize
+            nossa{" "}
+            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">calculadora de depreciação veicular</Link>{" "}
+            para projetar a desvalorização do seu caminhão nos próximos anos.
           </p>
 
           <h3 className="text-xl font-bold text-[#0F172A]">
@@ -155,21 +164,23 @@ export default function CustoKmCaminhaoPage() {
       </section>
 
       {/* Ferramentas relacionadas */}
-      <section className="px-4 pb-8">
+      <section className="bg-white px-4 py-16">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-xl font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/ferramentas/calculadora-frete-antt" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Calculadora de Frete ANTT</span>
-              <p className="text-sm text-[#64748B] mt-1">Calcule o piso mínimo de frete pela tabela ANTT.</p>
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/calculadora-frete-antt" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Frete ANTT</h3>
+              <p className="text-sm text-[#64748B]">Calcule o piso mínimo de frete rodoviário pela tabela da ANTT.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-depreciacao" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Calculadora de Depreciação</span>
-              <p className="text-sm text-[#64748B] mt-1">Estime quanto seu caminhão vai desvalorizar.</p>
+            <Link href="/ferramentas/calculadora-flex" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Gasolina ou Etanol</h3>
+              <p className="text-sm text-[#64748B]">Compare o custo entre combustíveis e escolha o mais econômico.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-flex" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30]/30 transition-colors">
-              <span className="font-semibold text-[#0F172A]">Gasolina ou Etanol?</span>
-              <p className="text-sm text-[#64748B] mt-1">Compare o custo entre combustíveis.</p>
+            <Link href="/ferramentas/calculadora-depreciacao" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Depreciação</h3>
+              <p className="text-sm text-[#64748B]">Estime quanto seu caminhão vai desvalorizar nos próximos anos.</p>
             </Link>
           </div>
         </div>

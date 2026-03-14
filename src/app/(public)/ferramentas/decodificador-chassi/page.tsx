@@ -182,7 +182,11 @@ export default function DecodificadorChassiPage() {
             O número de chassi, também conhecido como VIN (Vehicle Identification Number),
             é um código padronizado internacionalmente pela norma ISO 3779. Composto por 17
             caracteres alfanuméricos, ele funciona como uma espécie de &quot;RG&quot; do veículo,
-            sendo único para cada unidade fabricada no mundo. No Brasil, o chassi é utilizado
+            sendo único para cada unidade fabricada no mundo. Assim como a placa identifica o
+            veículo nas vias, o chassi é o código definitivo de identificação — use
+            nosso{" "}
+            <Link href="/ferramentas/identificador-placa" className="text-[#FF4D30] hover:underline font-medium">identificador de placa</Link> para
+            descobrir informações a partir do emplacamento. No Brasil, o chassi é utilizado
             pelo Detran, seguradoras e órgãos de fiscalização para identificar e rastrear
             veículos de forma inequívoca.
           </p>
@@ -206,7 +210,10 @@ export default function DecodificadorChassiPage() {
           <p className="text-[#475569]">
             A consulta chassi é uma etapa fundamental na compra de veículos usados. Ao
             decodificar o VIN, o comprador pode verificar se as informações do chassi conferem
-            com os dados do documento (CRV/CRLV), como ano do modelo e fabricante. Essa
+            com os dados do documento (CRV/CRLV), como ano do modelo e fabricante. Se você está
+            adquirindo um veículo usado, confira também a{" "}
+            <Link href="/ferramentas/calculadora-transferencia" className="text-[#FF4D30] hover:underline font-medium">calculadora de transferência</Link> para
+            estimar os custos de transferência de propriedade. Essa
             verificação simples pode evitar golpes e ajudar a identificar veículos com
             histórico de roubo, furto ou sinistro. Nosso decodificador de chassi é totalmente
             gratuito, funciona diretamente no navegador e não requer nenhum tipo de cadastro.
@@ -217,9 +224,34 @@ export default function DecodificadorChassiPage() {
               ferramentas veiculares gratuitas
             </Link>
             , como calculadora de IPVA, simulador de financiamento, calculadora de multas e
-            identificador de placas. Todas as ferramentas foram desenvolvidas para ajudar
+            o{" "}
+            <Link href="/ferramentas/gerador-placa" className="text-[#FF4D30] hover:underline font-medium">gerador visual de placa</Link>.
+            Todas as ferramentas foram desenvolvidas para ajudar
             motoristas, compradores e profissionais do setor automotivo no dia a dia.
           </p>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/identificador-placa" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Identificador de Placa</h3>
+              <p className="text-sm text-[#64748B]">Descubra informações do veículo a partir do número da placa.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-transferencia" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Transferência</h3>
+              <p className="text-sm text-[#64748B]">Estime os custos de transferência de propriedade do veículo.</p>
+            </Link>
+            <Link href="/ferramentas/gerador-placa" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Gerador Visual de Placa</h3>
+              <p className="text-sm text-[#64748B]">Gere uma imagem visual da placa do veículo no padrão Mercosul ou antigo.</p>
+            </Link>
+          </div>
         </div>
       </section>
 

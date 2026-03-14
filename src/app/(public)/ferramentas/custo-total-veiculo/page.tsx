@@ -128,7 +128,11 @@ export default function CustoTotalVeiculoPage() {
           </h3>
           <p className="text-[#475569]">
             O Imposto sobre a Propriedade de Veículos Automotores (IPVA) é cobrado anualmente por
-            cada estado brasileiro. A alíquota varia conforme a unidade federativa, indo de 2% em
+            cada estado brasileiro e pode ser estimado com precisão usando nossa{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de IPVA
+            </Link>
+            . A alíquota varia conforme a unidade federativa, indo de 2% em
             estados como Santa Catarina e Tocantins até 4% em São Paulo, Rio de Janeiro e Minas
             Gerais. O cálculo é feito sobre o valor venal do veículo, geralmente baseado na Tabela
             FIPE. Para um carro de R$ 80.000 em São Paulo, por exemplo, o IPVA seria de R$ 3.200
@@ -139,9 +143,13 @@ export default function CustoTotalVeiculoPage() {
             Combustível: o gasto que depende do seu uso
           </h3>
           <p className="text-[#475569]">
-            O combustível costuma ser uma das maiores despesas para quem roda bastante. O cálculo
-            é simples: divida a quilometragem mensal pelo consumo médio do veículo (em km/l) e
-            multiplique pelo preço do litro. Para quem percorre 1.500 km por mês com um carro
+            O combustível costuma ser uma das maiores despesas para quem roda bastante. Se o seu
+            veículo é flex, descubra qual combustível compensa mais com a calculadora{" "}
+            <Link href="/ferramentas/calculadora-flex" className="text-[#FF4D30] hover:underline font-medium">
+              gasolina ou etanol
+            </Link>
+            . O cálculo é simples: divida a quilometragem mensal pelo consumo médio do veículo
+            (em km/l) e multiplique pelo preço do litro. Para quem percorre 1.500 km por mês com um carro
             que faz 10 km/l e abastece a R$ 5,79, o gasto mensal com combustível seria de
             aproximadamente R$ 868,50, totalizando mais de R$ 10.400 por ano. Veículos com
             melhor eficiência energética e motoristas que adotam direção econômica podem reduzir
@@ -164,7 +172,12 @@ export default function CustoTotalVeiculoPage() {
             Depreciação: a perda de valor ao longo do tempo
           </h3>
           <p className="text-[#475569]">
-            A depreciação é frequentemente chamada de &quot;custo invisível&quot; do veículo. Em
+            A depreciação é frequentemente chamada de &quot;custo invisível&quot; do veículo — use
+            a{" "}
+            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">
+              calculadora de depreciação
+            </Link>{" "}
+            para estimar a perda de valor do seu automóvel. Em
             média, um carro perde cerca de 10% do seu valor por ano, sendo que a maior
             desvalorização ocorre nos primeiros anos após a compra. Um veículo adquirido por
             R$ 80.000 pode valer apenas R$ 72.000 após um ano. Embora não seja um gasto direto
@@ -226,6 +239,29 @@ export default function CustoTotalVeiculoPage() {
           >
             ← Ver todas as ferramentas
           </Link>
+        </div>
+      </section>
+
+      {/* Ferramentas relacionadas */}
+      <section className="bg-white px-4 py-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/calculadora-ipva" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de IPVA</h3>
+              <p className="text-sm text-[#64748B]">Estime o valor do IPVA do seu veículo com base no estado, valor venal e alíquota vigente. Simule parcelamentos e descontos.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-flex" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Gasolina ou Etanol</h3>
+              <p className="text-sm text-[#64748B]">Descubra qual combustível compensa mais para o seu veículo flex comparando preços e eficiência de gasolina e etanol.</p>
+            </Link>
+            <Link href="/ferramentas/calculadora-depreciacao" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Depreciação</h3>
+              <p className="text-sm text-[#64748B]">Calcule a depreciação estimada do seu veículo ao longo dos anos e descubra quanto ele valerá no futuro.</p>
+            </Link>
+          </div>
         </div>
       </section>
 

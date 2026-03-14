@@ -74,7 +74,10 @@ export default function SimuladorFinanciamentoPage() {
             O financiamento de veículos é uma das formas mais comuns de aquisição
             de carros e motos no Brasil. De acordo com dados do Banco Central,
             milhões de contratos de financiamento são firmados anualmente no país,
-            movimentando bilhões de reais. Para o consumidor, entender como
+            movimentando bilhões de reais. Além das parcelas, é importante considerar
+            custos como o IPVA — use nossa{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">calculadora de IPVA</Link> para
+            estimar esse valor. Para o consumidor, entender como
             funcionam as parcelas e os juros é fundamental para tomar uma decisão
             consciente e evitar comprometer o orçamento familiar.
           </p>
@@ -106,7 +109,9 @@ export default function SimuladorFinanciamentoPage() {
             longos resultem em parcelas menores, o custo total com juros aumenta
             consideravelmente. Um financiamento de 60 meses, por exemplo, pode
             resultar em juros totais que ultrapassam 50% do valor financiado,
-            dependendo da taxa aplicada. Utilize nosso simulador acima para
+            dependendo da taxa aplicada. Não se esqueça de verificar a{" "}
+            <Link href="/ferramentas/calculadora-depreciacao" className="text-[#FF4D30] hover:underline font-medium">calculadora de depreciação</Link> para
+            entender quanto o veículo pode perder de valor durante o período do financiamento. Utilize nosso simulador acima para
             comparar diferentes cenários e encontrar a melhor opção para o seu
             bolso.
           </p>
@@ -128,7 +133,10 @@ export default function SimuladorFinanciamentoPage() {
             Se deseja pagar menos juros ao final do contrato e pode arcar com
             parcelas maiores no início, o SAC é a melhor opção. Em geral, o
             sistema SAC resulta em um custo total menor, pois o saldo devedor é
-            amortizado mais rapidamente. Use este simulador para visualizar a
+            amortizado mais rapidamente. Para uma visão completa de todos os gastos,
+            confira a ferramenta de{" "}
+            <Link href="/ferramentas/custo-total-veiculo" className="text-[#FF4D30] hover:underline font-medium">custo total do veículo</Link>.
+            Use este simulador para visualizar a
             diferença entre os dois sistemas e tomar a melhor decisão para o seu
             financiamento.
           </p>
@@ -136,29 +144,23 @@ export default function SimuladorFinanciamentoPage() {
       </section>
 
       {/* Ferramentas relacionadas */}
-      <section className="px-4 pb-16">
+      <section className="bg-white px-4 py-16">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-lg font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/ferramentas/calculadora-ipva" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
-              <span className="font-semibold text-[#0F172A]">Calculadora de IPVA 2026</span>
-              <p className="text-sm text-[#64748B] mt-1">Calcule o IPVA do seu veículo por estado.</p>
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/calculadora-ipva" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de IPVA</h3>
+              <p className="text-sm text-[#64748B]">Calcule o IPVA 2026 do seu veículo por estado com parcelamento e desconto à vista.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-multas" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
-              <span className="font-semibold text-[#0F172A]">Calculadora de Multas</span>
-              <p className="text-sm text-[#64748B] mt-1">Consulte valores e pontos das infrações de trânsito.</p>
+            <Link href="/ferramentas/calculadora-depreciacao" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de Depreciação</h3>
+              <p className="text-sm text-[#64748B]">Estime quanto seu veículo pode desvalorizar ao longo dos anos.</p>
             </Link>
-            <Link href="/ferramentas/calculadora-flex" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
-              <span className="font-semibold text-[#0F172A]">Gasolina ou Etanol?</span>
-              <p className="text-sm text-[#64748B] mt-1">Descubra qual combustível compensa mais no seu veículo.</p>
-            </Link>
-          </div>
-          <div className="mt-6 text-center">
-            <Link
-              href="/ferramentas"
-              className="inline-flex items-center text-[#FF4D30] font-semibold hover:underline transition-colors"
-            >
-              ← Ver todas as ferramentas
+            <Link href="/ferramentas/custo-total-veiculo" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Custo Total do Veículo</h3>
+              <p className="text-sm text-[#64748B]">Descubra quanto custa manter seu veículo por mês incluindo IPVA, seguro e combustível.</p>
             </Link>
           </div>
         </div>

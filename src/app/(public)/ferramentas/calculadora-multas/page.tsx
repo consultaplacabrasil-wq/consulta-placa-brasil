@@ -80,7 +80,9 @@ export default function CalculadoraMultasPage() {
             As infrações são classificadas em quatro categorias de gravidade:
             leve (3 pontos), média (4 pontos), grave (5 pontos) e gravíssima
             (7 pontos). O condutor que acumular 40 pontos em um período de
-            12 meses terá a CNH suspensa, conforme a Lei nº 14.071/2020.
+            12 meses terá a CNH suspensa, conforme a Lei nº 14.071/2020. Para
+            acompanhar sua pontuação, utilize o{" "}
+            <Link href="/ferramentas/simulador-pontos-cnh" className="text-[#FF4D30] hover:underline font-medium">simulador de pontos na CNH</Link>.
             Para motoristas profissionais, esse limite pode chegar a 40 pontos
             sem infração gravíssima.
           </p>
@@ -127,7 +129,12 @@ export default function CalculadoraMultasPage() {
             Para evitar multas e manter a CNH limpa, respeite os limites de
             velocidade, use sempre o cinto de segurança, não utilize o celular
             enquanto dirige, mantenha o licenciamento do veículo em dia e
-            nunca dirija após consumir bebidas alcoólicas. Essas simples
+            nunca dirija após consumir bebidas alcoólicas. Lembre-se de que o IPVA em
+            atraso também gera multa — use a{" "}
+            <Link href="/ferramentas/calculadora-ipva" className="text-[#FF4D30] hover:underline font-medium">calculadora de IPVA</Link> para
+            se planejar. Além disso, confira o{" "}
+            <Link href="/ferramentas/verificador-documentos" className="text-[#FF4D30] hover:underline font-medium">verificador de documentos</Link> para
+            garantir que toda a documentação do veículo está regularizada. Essas simples
             atitudes podem poupar você de multas que variam de R$ 130,16 a
             R$ 2.934,70, além de preservar vidas no trânsito.
           </p>
@@ -135,29 +142,23 @@ export default function CalculadoraMultasPage() {
       </section>
 
       {/* Ferramentas relacionadas */}
-      <section className="px-4 pb-16">
+      <section className="bg-white px-4 py-16">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-lg font-bold text-[#0F172A] mb-4">Ferramentas relacionadas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/ferramentas/calculadora-ipva" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
-              <span className="font-semibold text-[#0F172A]">Calculadora de IPVA 2026</span>
-              <p className="text-sm text-[#64748B] mt-1">Calcule o IPVA do seu veículo por estado.</p>
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            Ferramentas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/ferramentas/simulador-pontos-cnh" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Simulador de Pontos na CNH</h3>
+              <p className="text-sm text-[#64748B]">Simule quantos pontos você tem na CNH e descubra se está próximo da suspensão.</p>
             </Link>
-            <Link href="/ferramentas/simulador-financiamento" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
-              <span className="font-semibold text-[#0F172A]">Simulador de Financiamento</span>
-              <p className="text-sm text-[#64748B] mt-1">Calcule parcelas e juros do financiamento veicular.</p>
+            <Link href="/ferramentas/calculadora-ipva" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Calculadora de IPVA</h3>
+              <p className="text-sm text-[#64748B]">Calcule o IPVA 2026 do seu veículo por estado com parcelamento e desconto à vista.</p>
             </Link>
-            <Link href="/ferramentas/decodificador-chassi" className="block p-4 bg-white rounded-xl border border-gray-100 hover:border-[#FF4D30] transition-colors">
-              <span className="font-semibold text-[#0F172A]">Decodificador de Chassi</span>
-              <p className="text-sm text-[#64748B] mt-1">Decodifique o VIN e descubra dados do veículo.</p>
-            </Link>
-          </div>
-          <div className="mt-6 text-center">
-            <Link
-              href="/ferramentas"
-              className="inline-flex items-center text-[#FF4D30] font-semibold hover:underline transition-colors"
-            >
-              ← Ver todas as ferramentas
+            <Link href="/ferramentas/verificador-documentos" className="group bg-[#F8FAFC] rounded-xl p-6 border border-gray-100 hover:border-[#FF4D30]/20 hover:shadow-md transition-all">
+              <h3 className="font-bold text-[#0F172A] group-hover:text-[#FF4D30] transition-colors mb-2">Verificador de Documentos</h3>
+              <p className="text-sm text-[#64748B]">Verifique se a documentação do seu veículo está em dia e regularizada.</p>
             </Link>
           </div>
         </div>
