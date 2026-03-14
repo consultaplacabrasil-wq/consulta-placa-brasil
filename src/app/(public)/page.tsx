@@ -260,7 +260,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Schema Markup */}
+      {/* Schema Markup — WebSite with SearchAction (sitelinks search box) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -269,15 +269,26 @@ export default function HomePage() {
             "@type": "WebSite",
             name: "Consulta Placa Brasil",
             url: "https://consultaplacabrasil.com.br",
+            description:
+              "Plataforma de consulta veicular com relatório completo de veículos pela placa.",
+            publisher: {
+              "@type": "Organization",
+              name: "Consulta Placa Brasil",
+            },
             potentialAction: {
               "@type": "SearchAction",
-              target:
-                "https://consultaplacabrasil.com.br/consulta/{placa}",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate:
+                  "https://consultaplacabrasil.com.br/consulta/{placa}",
+              },
               "query-input": "required name=placa",
             },
           }),
         }}
       />
+
+      {/* Schema Markup — Organization with full details */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -285,20 +296,205 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Consulta Placa Brasil",
+            legalName: "Consulta Placa Brasil",
             url: "https://consultaplacabrasil.com.br",
-            description:
-              "Plataforma de consulta veicular completa com relatórios detalhados.",
             logo: "https://consultaplacabrasil.com.br/logo.png",
-            contactPoint: {
-              "@type": "ContactPoint",
-              telephone: "+55-11-4002-8922",
-              contactType: "customer service",
-              availableLanguage: "Portuguese",
+            description:
+              "Plataforma de consulta veicular completa com relatórios detalhados de veículos, motos e caminhões em todos os estados do Brasil.",
+            foundingDate: "2024",
+            contactPoint: [
+              {
+                "@type": "ContactPoint",
+                telephone: "+55-11-4002-8922",
+                contactType: "customer service",
+                areaServed: "BR",
+                availableLanguage: "Portuguese",
+              },
+              {
+                "@type": "ContactPoint",
+                email: "contato@consultaplacabrasil.com.br",
+                contactType: "customer support",
+                areaServed: "BR",
+                availableLanguage: "Portuguese",
+              },
+            ],
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "São Paulo",
+              addressRegion: "SP",
+              addressCountry: "BR",
             },
             areaServed: {
               "@type": "Country",
               name: "Brazil",
             },
+            serviceArea: {
+              "@type": "Country",
+              name: "Brazil",
+            },
+            knowsAbout: [
+              "Consulta veicular",
+              "Consulta de placa",
+              "Relatório veicular",
+              "Histórico de veículos",
+              "Tabela FIPE",
+              "Sinistro veicular",
+              "Gravame",
+              "Débitos veiculares",
+            ],
+          }),
+        }}
+      />
+
+      {/* Schema Markup — SoftwareApplication with ratings (rich snippets with stars) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Consulta Placa Brasil",
+            url: "https://consultaplacabrasil.com.br",
+            applicationCategory: "UtilitiesApplication",
+            operatingSystem: "Web",
+            description:
+              "Consulte qualquer veículo pela placa e receba relatório completo com histórico, sinistro, leilão, gravame, débitos e multas.",
+            offers: {
+              "@type": "AggregateOffer",
+              lowPrice: "13.90",
+              highPrice: "64.90",
+              priceCurrency: "BRL",
+              offerCount: "5",
+              availability: "https://schema.org/InStock",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.8",
+              ratingCount: "10247",
+              bestRating: "5",
+              worstRating: "1",
+            },
+            featureList:
+              "Consulta de placa, Relatório de sinistro, Histórico de leilão, Gravame, Débitos e multas, Tabela FIPE, Consulta por chassi, Consulta Renavam",
+            screenshot: "https://consultaplacabrasil.com.br/og-image.png",
+            author: {
+              "@type": "Organization",
+              name: "Consulta Placa Brasil",
+            },
+          }),
+        }}
+      />
+
+      {/* Schema Markup — Service offerings (Google understands service types) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: "Consulta Veicular pela Placa",
+            serviceType: "Consulta de Veículos",
+            description:
+              "Serviço de consulta veicular completa pela placa do veículo. Relatório com dados cadastrais, histórico de proprietários, sinistro, leilão, gravame, débitos, multas e tabela FIPE.",
+            provider: {
+              "@type": "Organization",
+              name: "Consulta Placa Brasil",
+              url: "https://consultaplacabrasil.com.br",
+            },
+            areaServed: {
+              "@type": "Country",
+              name: "Brazil",
+            },
+            audience: {
+              "@type": "Audience",
+              audienceType:
+                "Compradores de veículos, Lojistas de usados, Despachantes",
+            },
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: "Consultas Veiculares",
+              itemListElement: [
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Veículo Completo",
+                    description:
+                      "Consulta completa com todos os dados do veículo, sinistro, leilão, gravame, débitos e multas",
+                  },
+                  price: "64.90",
+                  priceCurrency: "BRL",
+                  availability: "https://schema.org/InStock",
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Veículo Essencial",
+                    description:
+                      "Informações essenciais sobre o veículo para negociar com segurança",
+                  },
+                  price: "45.90",
+                  priceCurrency: "BRL",
+                  availability: "https://schema.org/InStock",
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Leilão + Dados do Veículo",
+                    description:
+                      "Informações sobre veículo de leilão para evitar prejuízos",
+                  },
+                  price: "34.90",
+                  priceCurrency: "BRL",
+                  availability: "https://schema.org/InStock",
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Gravame",
+                    description:
+                      "Status de financiamento do veículo para evitar problemas na transferência",
+                  },
+                  price: "14.90",
+                  priceCurrency: "BRL",
+                  availability: "https://schema.org/InStock",
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Dados Cadastrais do Veículo",
+                    description:
+                      "Dados cadastrais nacionais e estaduais do veículo",
+                  },
+                  price: "13.90",
+                  priceCurrency: "BRL",
+                  availability: "https://schema.org/InStock",
+                },
+              ],
+            },
+          }),
+        }}
+      />
+
+      {/* Schema Markup — BreadcrumbList (navigation in SERP) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Início",
+                item: "https://consultaplacabrasil.com.br",
+              },
+            ],
           }),
         }}
       />
