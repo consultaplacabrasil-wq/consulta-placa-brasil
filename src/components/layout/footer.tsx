@@ -51,7 +51,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-[#FF4D30]" />
-                Campinas, SP - Brasil
+                Campinas, SP | Brasil
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ export function Footer() {
             direitos reservados.
           </p>
           <p className="text-sm text-gray-500">
-            BYTX LTDA - CNPJ: 65.649.904/0001-98
+            BYTX LTDA | CNPJ: 65.649.904/0001-98
           </p>
         </div>
       </div>

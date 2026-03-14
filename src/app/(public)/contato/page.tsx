@@ -70,7 +70,7 @@ export default function ContatoPage() {
                   <div>
                     <p className="font-semibold text-[#0F172A]">Localização</p>
                     <p className="text-sm text-[#475569]">
-                      Campinas, SP - Brasil
+                      Campinas, SP | Brasil
                     </p>
                   </div>
                 </div>
