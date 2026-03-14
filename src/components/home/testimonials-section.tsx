@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 interface Testimonial {
   name: string;
   role: string;
+  city: string;
   text: string;
   rating: number;
 }
@@ -16,24 +17,28 @@ const testimonialsByProfile: Record<string, Testimonial[]> = {
     {
       name: "Carlos M.",
       role: "Comprador particular",
+      city: "São Paulo, SP",
       text: "Antes de fechar negócio, fiz a consulta da placa do carro e descobri sinistro grave. Me salvou de um prejuízo enorme!",
       rating: 5,
     },
     {
       name: "Ana Beatriz R.",
       role: "Compradora particular",
+      city: "Rio de Janeiro, RJ",
       text: "Usei para pesquisar a placa de um carro que vi no OLX. Em segundos já tinha o relatório completo com histórico.",
       rating: 5,
     },
     {
       name: "Roberto L.",
       role: "Comprador particular",
+      city: "Belo Horizonte, MG",
       text: "Consegui consultar o veículo pela placa rapidamente. Paguei com Pix e em segundos já tinha tudo.",
       rating: 5,
     },
     {
       name: "Fernanda S.",
       role: "Compradora particular",
+      city: "Curitiba, PR",
       text: "Precisava verificar a placa do carro antes de comprar. O relatório mostrou débitos que o vendedor nem mencionou.",
       rating: 5,
     },
@@ -42,24 +47,28 @@ const testimonialsByProfile: Record<string, Testimonial[]> = {
     {
       name: "Marcos A.",
       role: "Lojista de usados",
+      city: "Goiânia, GO",
       text: "Na minha loja de usados, faço consulta de placa de veículo de cada carro que entra no estoque. Indispensável.",
       rating: 5,
     },
     {
       name: "Patrícia V.",
       role: "Lojista de usados",
+      city: "Salvador, BA",
       text: "Uso diariamente para buscar placa de carro dos veículos que recebo na troca. Rápido e confiável.",
       rating: 5,
     },
     {
       name: "Diego F.",
       role: "Lojista de seminovos",
+      city: "Brasília, DF",
       text: "Já evitei comprar veículo de leilão graças à pesquisa de placa. O sistema mostra tudo de forma clara.",
       rating: 5,
     },
     {
       name: "Luciana M.",
       role: "Lojista de usados",
+      city: "Fortaleza, CE",
       text: "Melhor plataforma para consultar placa que já usei. Informações completas e atualizadas para minha revenda.",
       rating: 5,
     },
@@ -68,24 +77,28 @@ const testimonialsByProfile: Record<string, Testimonial[]> = {
     {
       name: "José Ricardo P.",
       role: "Despachante",
+      city: "Recife, PE",
       text: "Como despachante, preciso consultar placa de veículo o dia todo. A rapidez do sistema faz diferença no meu trabalho.",
       rating: 5,
     },
     {
       name: "Sandra B.",
       role: "Despachante",
+      city: "Porto Alegre, RS",
       text: "Uso para puxar placa de carro dos clientes antes de iniciar a transferência. Nunca tive problema.",
       rating: 5,
     },
     {
       name: "Wellington C.",
       role: "Despachante",
+      city: "Manaus, AM",
       text: "A consulta veicular pela placa é completa. Mostra gravame, sinistro, débitos e tudo que preciso para o cliente.",
       rating: 5,
     },
     {
       name: "Rita de Cássia O.",
       role: "Despachante",
+      city: "Campinas, SP",
       text: "Faço pesquisa de veículo por placa para mais de 50 clientes por mês. O sistema nunca me deixou na mão.",
       rating: 5,
     },
@@ -154,6 +167,9 @@ export function TestimonialsSection() {
                         </p>
                         <p className="text-xs text-[#94A3B8]">
                           {testimonial.role}
+                        </p>
+                        <p className="text-xs text-[#94A3B8]">
+                          {testimonial.city}
                         </p>
                       </div>
                     </CardContent>
