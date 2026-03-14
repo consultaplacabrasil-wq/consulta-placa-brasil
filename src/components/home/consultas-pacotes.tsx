@@ -89,7 +89,7 @@ export function ConsultasPacotes() {
   const [activeTab, setActiveTab] = useState<"consultas" | "pacotes">("consultas");
   const [consultas, setConsultas] = useState<ConsultaType[]>(defaultConsultas);
   const [pacotesList, setPacotesList] = useState<Pacote[]>(defaultPacotes);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { addItem } = useCartStore();
 
   useEffect(() => {

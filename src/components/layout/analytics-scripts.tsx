@@ -26,11 +26,13 @@ export async function AnalyticsScripts() {
         <meta name="google-site-verification" content={gscTag} />
       )}
 
-      {/* Google Analytics */}
+      {/* Google Analytics — defer loading with async */}
       {gaId && (
         <>
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
           <script
             async
+            defer
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
           />
           <script
