@@ -4,7 +4,7 @@ import VerificadorDocumentos from "@/components/ferramentas/verificador-document
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Verificador de Documentos Veiculares | Consulta Placa",
+  title: "Verificador de Documentos Veiculares",
   description:
     "Verifique a validade da CNH, calendário de licenciamento e situação dos documentos do veículo. Ferramenta gratuita com alertas automáticos.",
   alternates: {

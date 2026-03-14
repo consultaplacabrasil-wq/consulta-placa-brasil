@@ -5,7 +5,7 @@ import EletricoVsCombustao from "@/components/ferramentas/eletrico-vs-combustao"
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Elétrico vs Combustão: Comparador | Consulta Placa",
+  title: "Elétrico vs Combustão: Comparador",
   description:
     "Compare os custos entre carro elétrico e a combustão. Calcule custo mensal, ponto de equilíbrio e economia acumulada em 60 meses. Grátis e sem cadastro.",
   alternates: {

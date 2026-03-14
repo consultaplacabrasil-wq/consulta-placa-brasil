@@ -5,7 +5,7 @@ import CalculadoraDepreciacao from "@/components/ferramentas/calculadora-depreci
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Depreciação Veicular | Consulta Placa",
+  title: "Calculadora de Depreciação Veicular",
   description:
     "Calcule a depreciação do seu veículo para os próximos 5 anos. Descubra quanto seu carro, moto ou caminhão perde de valor por ano. Grátis e sem cadastro.",
   alternates: {

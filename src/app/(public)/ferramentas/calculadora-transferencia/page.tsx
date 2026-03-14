@@ -5,7 +5,7 @@ import CalculadoraTransferencia from "@/components/ferramentas/calculadora-trans
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Transferência Veicular | Consulta Placa",
+  title: "Calculadora de Transferência Veicular",
   description:
     "Calcule o custo para transferir um veículo entre estados, por doação ou herança. Taxas do Detran, vistoria e ITCMD.",
   alternates: {

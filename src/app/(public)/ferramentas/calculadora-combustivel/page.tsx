@@ -5,7 +5,7 @@ import CalculadoraCombustivel from "@/components/ferramentas/calculadora-combust
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Combustível por Viagem | Consulta Placa Brasil",
+  title: "Calculadora de Combustível por Viagem",
   description:
     "Calcule o custo de combustível da sua viagem. Informe distância, consumo e preço do litro para saber litros necessários, custo total e por passageiro.",
   alternates: {

@@ -4,7 +4,7 @@ import SimuladorRefinanciamento from "@/components/ferramentas/refinanciamento";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Simulador de Refinanciamento | Consulta Placa",
+  title: "Simulador de Refinanciamento",
   description:
     "Simule o refinanciamento do seu veículo e descubra se vale a pena trocar de contrato. Compare parcelas, juros totais e veja o custo real da operação.",
   alternates: {

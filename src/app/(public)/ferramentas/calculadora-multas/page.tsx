@@ -5,7 +5,7 @@ import { CalculadoraMultas } from "@/components/ferramentas/calculadora-multas";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Multas de Trânsito | Consulta Placa Brasil",
+  title: "Calculadora de Multas de Trânsito",
   description:
     "Consulte o valor das multas de trânsito do CTB, pontos na CNH e gravidade das infrações. Tabela atualizada com todas as multas de trânsito do Brasil.",
   alternates: {

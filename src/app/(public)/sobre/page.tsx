@@ -24,7 +24,7 @@ const defaultDescription =
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("sobre");
   return {
-    title: page?.seoTitle || "Quem Somos | Consulta Placa Brasil",
+    title: page?.seoTitle || "Quem Somos",
     description: page?.seoDescription || defaultDescription,
     alternates: {
       canonical:

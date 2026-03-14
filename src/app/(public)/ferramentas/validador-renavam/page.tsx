@@ -4,7 +4,7 @@ import ValidadorRenavam from "@/components/ferramentas/validador-renavam";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Validador de RENAVAM Online | Consulta Placa",
+  title: "Validador de RENAVAM Online",
   description:
     "Valide o número do RENAVAM gratuitamente com o algoritmo módulo 11. Verifique se o dígito verificador está correto e confira o detalhamento do cálculo.",
   alternates: {

@@ -5,7 +5,7 @@ import CalculadoraDPVAT from "@/components/ferramentas/calculadora-dpvat";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora DPVAT / SPVAT 2026 | Consulta Placa Brasil",
+  title: "Calculadora DPVAT / SPVAT 2026",
   description:
     "Calcule o valor do seguro DPVAT / SPVAT 2026 por tipo de veículo. Veja coberturas, como pagar e a diferença entre DPVAT e SPVAT. Grátis e sem cadastro.",
   alternates: {

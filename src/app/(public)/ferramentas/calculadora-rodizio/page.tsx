@@ -5,7 +5,7 @@ import { CalculadoraRodizio } from "@/components/ferramentas/calculadora-rodizio
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Rodízio de Veículos SP e RJ | Consulta Placa Brasil",
+  title: "Rodízio de Veículos SP e RJ",
   description:
     "Descubra o dia de rodízio do seu veículo em São Paulo e Rio de Janeiro. Consulte horários, restrições e multas por descumprimento do rodízio municipal.",
   alternates: {

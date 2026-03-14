@@ -5,7 +5,7 @@ import CalculadoraIOF from "@/components/ferramentas/calculadora-iof";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de IOF no Financiamento | Consulta Placa",
+  title: "Calculadora de IOF no Financiamento",
   description:
     "Calcule o IOF cobrado no financiamento do seu veículo. Simule para Pessoa Física, Pessoa Jurídica ou Leasing com alíquotas atualizadas.",
   alternates: {

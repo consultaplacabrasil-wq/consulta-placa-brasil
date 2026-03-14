@@ -5,7 +5,7 @@ import CalculadoraIPVA from "@/components/ferramentas/calculadora-ipva";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de IPVA 2026 | Consulta Placa Brasil",
+  title: "Calculadora de IPVA 2026",
   description:
     "Calcule o IPVA 2026 do seu veículo por estado. Simule parcelamento em até 5x, desconto à vista e confira a alíquota de cada UF. Grátis e sem cadastro.",
   alternates: {

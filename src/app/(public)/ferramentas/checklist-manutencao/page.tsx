@@ -5,7 +5,7 @@ import ChecklistManutencao from "@/components/ferramentas/checklist-manutencao";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Checklist de Manutenção Veicular | Consulta Placa Brasil",
+  title: "Checklist de Manutenção Veicular",
   description:
     "Checklist completo de manutenção veicular por quilometragem. Saiba o que revisar a cada 5.000, 10.000, 20.000, 40.000 e 60.000 km no seu carro, moto ou caminhão.",
   alternates: {

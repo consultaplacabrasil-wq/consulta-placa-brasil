@@ -5,7 +5,7 @@ import ContratoVeiculo from "@/components/ferramentas/contrato-veiculo";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Gerador de Contrato de Compra e Venda de Veículo | Consulta Placa",
+  title: "Gerador de Contrato de Compra e Venda de Veículo",
   description:
     "Gere contratos de compra e venda para carro, moto, caminhão, embarcação e ônibus com download em PDF grátis. Modelo completo com 10 cláusulas.",
   alternates: {

@@ -4,7 +4,7 @@ import { FerramentasGrid } from "@/components/ferramentas/ferramentas-grid";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Ferramentas Veiculares Gratuitas | Consulta Placa",
+  title: "Ferramentas Veiculares Gratuitas",
   description:
     "Ferramentas gratuitas para veículos: calculadora de IPVA, simulador de financiamento, multas, chassi e mais. Use sem cadastro.",
   alternates: {

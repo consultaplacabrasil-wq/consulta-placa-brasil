@@ -176,7 +176,7 @@ async function getSeoData() {
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoData();
   return {
-    title: seo?.seoTitle || "Perguntas Frequentes | Consulta Placa",
+    title: seo?.seoTitle || "Perguntas Frequentes",
     description: seo?.seoDescription || "Tire suas dúvidas sobre consulta de placa, formas de pagamento, segurança dos dados e cobertura nacional. Respostas rápidas sobre a Consulta Placa Brasil.",
     alternates: { canonical: seo?.seoCanonical || "https://consultaplacabrasil.com/faq" },
     robots: seo?.seoRobots || "index, follow",

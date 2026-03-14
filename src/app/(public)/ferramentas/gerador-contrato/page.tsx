@@ -5,7 +5,7 @@ import GeradorContrato from "@/components/ferramentas/gerador-contrato";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Gerador de Contrato de Compra e Venda de Veículo | Consulta Placa",
+  title: "Gerador de Contrato de Compra e Venda de Veículo",
   description:
     "Gere gratuitamente um contrato de compra e venda de veículo completo e pronto para imprimir. Modelo com cláusulas, assinaturas e testemunhas.",
   alternates: {

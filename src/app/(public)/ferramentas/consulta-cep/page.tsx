@@ -5,7 +5,7 @@ import ConsultaCep from "@/components/ferramentas/consulta-cep";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Consulta CEP para Transferência Veicular | Consulta Placa",
+  title: "Consulta CEP para Transferência Veicular",
   description:
     "Consulte CEPs de origem e destino para transferência de veículo. Descubra se a mudança exige novo emplacamento entre estados. Grátis e sem cadastro.",
   alternates: {

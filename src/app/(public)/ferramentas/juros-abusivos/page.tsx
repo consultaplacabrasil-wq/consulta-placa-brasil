@@ -4,7 +4,7 @@ import JurosAbusivos from "@/components/ferramentas/juros-abusivos";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Juros Abusivos | Consulta Placa",
+  title: "Calculadora de Juros Abusivos",
   description:
     "Compare a taxa de juros do seu financiamento com a média do Banco Central e descubra se há cobrança abusiva. Verifique seus direitos como consumidor.",
   alternates: {

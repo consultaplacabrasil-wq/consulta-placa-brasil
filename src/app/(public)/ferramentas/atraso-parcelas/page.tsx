@@ -4,7 +4,7 @@ import CalculadoraAtrasoParcelas from "@/components/ferramentas/atraso-parcelas"
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Atraso de Parcelas | Consulta Placa",
+  title: "Calculadora de Atraso de Parcelas",
   description:
     "Calcule multa, juros de mora, correção monetária e valor atualizado de parcelas em atraso. Suporte a múltiplas parcelas. Gratuita e sem cadastro.",
   alternates: {

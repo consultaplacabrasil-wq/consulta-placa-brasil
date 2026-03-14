@@ -5,7 +5,7 @@ import GeradorRecibo from "@/components/ferramentas/gerador-recibo";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Gerador de Recibo de Venda de Veículo | Consulta Placa",
+  title: "Gerador de Recibo de Venda de Veículo",
   description:
     "Gere gratuitamente um recibo de compra e venda de veículo pronto para imprimir. Modelo completo com dados do vendedor, comprador e veículo.",
   alternates: {

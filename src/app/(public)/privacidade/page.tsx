@@ -6,7 +6,7 @@ const defaultDesc = "Política de Privacidade da Consulta Placa Brasil. Saiba co
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("privacidade");
   return {
-    title: page?.seoTitle || "Política de Privacidade - Consulta Placa Brasil",
+    title: page?.seoTitle || "Política de Privacidade",
     description: page?.seoDescription || defaultDesc,
     alternates: { canonical: page?.seoCanonical || "https://consultaplacabrasil.com/privacidade" },
     robots: page?.seoRobots || "index, follow",

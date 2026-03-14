@@ -5,7 +5,7 @@ import { SimuladorPontosCNH } from "@/components/ferramentas/simulador-pontos-cn
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Simulador de Pontos na CNH | Consulta Placa Brasil",
+  title: "Simulador de Pontos na CNH",
   description:
     "Simule a pontuação da sua CNH, veja os pontos ativos, data de vencimento e risco de suspensão. Ferramenta gratuita baseada no CTB atualizado.",
   alternates: {

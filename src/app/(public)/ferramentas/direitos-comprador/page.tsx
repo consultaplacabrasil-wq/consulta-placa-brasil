@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Direitos do Comprador de Veículos | Consulta Placa",
+  title: "Direitos do Comprador de Veículos",
   description:
     "Conheça seus direitos na compra de veículos novos e usados, financiamento e transferência. Guia completo com base no Código de Defesa do Consumidor.",
   alternates: {

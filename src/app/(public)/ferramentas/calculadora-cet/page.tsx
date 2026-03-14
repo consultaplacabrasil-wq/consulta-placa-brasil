@@ -4,7 +4,7 @@ import CalculadoraCET from "@/components/ferramentas/calculadora-cet";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de CET Financiamento | Consulta Placa",
+  title: "Calculadora de CET Financiamento",
   description:
     "Calcule o Custo Efetivo Total (CET) do seu financiamento com juros, IOF, TAC, seguro e taxas. Compare a taxa anunciada com o custo real da operação.",
   alternates: {

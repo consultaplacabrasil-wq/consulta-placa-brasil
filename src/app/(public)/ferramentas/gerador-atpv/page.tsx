@@ -5,7 +5,7 @@ import GeradorAtpv from "@/components/ferramentas/gerador-atpv";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Gerador de ATPV-e para Transferência | Consulta Placa",
+  title: "Gerador de ATPV-e para Transferência",
   description:
     "Gere gratuitamente a Autorização para Transferência de Propriedade de Veículo (ATPV-e). Modelo completo, pronto para copiar ou imprimir.",
   alternates: {

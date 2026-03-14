@@ -5,7 +5,7 @@ import CalculadoraFreteAntt from "@/components/ferramentas/calculadora-frete-ant
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Frete ANTT | Consulta Placa Brasil",
+  title: "Calculadora de Frete ANTT",
   description:
     "Calcule o piso mínimo de frete rodoviário conforme a tabela ANTT. Informe eixos, tipo de carga, peso e distância para obter o valor estimado com pedágio.",
   alternates: {

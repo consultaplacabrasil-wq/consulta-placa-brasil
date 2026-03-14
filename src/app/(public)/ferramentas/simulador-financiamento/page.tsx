@@ -4,7 +4,7 @@ import SimuladorFinanciamento from "@/components/ferramentas/simulador-financiam
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Simulador de Financiamento Veicular | Consulta Placa Brasil",
+  title: "Simulador de Financiamento Veicular",
   description:
     "Simule o financiamento do seu veículo com Tabela Price ou SAC. Calcule parcelas, juros totais e veja a tabela de amortização. Grátis e sem cadastro.",
   alternates: {

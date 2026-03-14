@@ -5,7 +5,7 @@ import ConsultaFipe from "@/components/ferramentas/consulta-fipe";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Consulta Tabela FIPE 2026 | Consulta Placa Brasil",
+  title: "Consulta Tabela FIPE 2026",
   description:
     "Consulte a Tabela FIPE 2026 atualizada para carros, motos e caminhões. Descubra o valor de mercado do seu veículo grátis, sem cadastro e em tempo real.",
   alternates: {

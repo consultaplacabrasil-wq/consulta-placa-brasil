@@ -4,7 +4,7 @@ import IdentificadorPlaca from "@/components/ferramentas/identificador-placa";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Identificador de Placa Veicular | Consulta Placa Brasil",
+  title: "Identificador de Placa Veicular",
   description:
     "Identifique o padrão da placa do veículo (Mercosul ou antigo), valide o formato, descubra a cor e o significado. Ferramenta gratuita e sem cadastro.",
   alternates: {

@@ -4,7 +4,7 @@ import ConsultaRecall from "@/components/ferramentas/consulta-recall";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Consulta de Recall Veicular | Consulta Placa",
+  title: "Consulta de Recall Veicular",
   description:
     "Consulte recalls veiculares por marca no Brasil. Veja modelos afetados, riscos e orientações. Acesse também o portal oficial do SENATRAN para consulta por placa.",
   alternates: {

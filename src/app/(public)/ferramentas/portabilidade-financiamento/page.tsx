@@ -4,7 +4,7 @@ import PortabilidadeFinanciamento from "@/components/ferramentas/portabilidade-f
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Portabilidade de Financiamento | Consulta Placa",
+  title: "Portabilidade de Financiamento",
   description:
     "Compare seu financiamento atual com outra proposta e descubra se vale a pena fazer a portabilidade. Calcule a economia mensal e total. Gratuito.",
   alternates: {

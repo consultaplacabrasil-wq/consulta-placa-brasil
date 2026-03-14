@@ -4,7 +4,7 @@ import AntecipacaoParcelas from "@/components/ferramentas/antecipacao-parcelas";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Simulador de Antecipação de Parcelas | Consulta Placa",
+  title: "Simulador de Antecipação de Parcelas",
   description:
     "Simule a economia ao antecipar parcelas do financiamento veicular. Calcule o desconto, novo saldo devedor e compare cenários com Price e SAC. Grátis.",
   alternates: {

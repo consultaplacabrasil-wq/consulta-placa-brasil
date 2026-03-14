@@ -5,7 +5,7 @@ import CalculadoraFlex from "@/components/ferramentas/calculadora-flex";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Gasolina ou Etanol? Calculadora Flex | Consulta Placa Brasil",
+  title: "Gasolina ou Etanol? Calculadora Flex",
   description:
     "Descubra se é melhor abastecer com gasolina ou etanol no seu veículo flex. Calculadora gratuita com comparação de custo por km e economia mensal.",
   alternates: {

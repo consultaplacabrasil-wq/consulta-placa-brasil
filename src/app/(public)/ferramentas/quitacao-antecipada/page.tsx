@@ -4,7 +4,7 @@ import QuitacaoAntecipada from "@/components/ferramentas/quitacao-antecipada";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Quitação Antecipada | Consulta Placa",
+  title: "Calculadora de Quitação Antecipada",
   description:
     "Calcule o valor de quitação antecipada do seu financiamento veicular. Descubra quanto economiza quitando antes do prazo com desconto nos juros.",
   alternates: {

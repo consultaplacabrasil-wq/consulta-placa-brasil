@@ -4,7 +4,7 @@ import GeradorPlaca from "@/components/ferramentas/gerador-placa";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Gerador de Placa Mercosul e Antiga | Consulta Placa",
+  title: "Gerador de Placa Mercosul e Antiga",
   description:
     "Gere a representação visual de placas nos padrões Mercosul e antigo. Escolha tipo, categoria e veja o resultado em tempo real. Grátis e sem cadastro.",
   alternates: {

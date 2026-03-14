@@ -5,7 +5,7 @@ import CustoTotalVeiculo from "@/components/ferramentas/custo-total-veiculo";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Custo Total do Veículo por Ano | Consulta Placa Brasil",
+  title: "Custo Total do Veículo por Ano",
   description:
     "Calcule o custo total anual do seu veículo: IPVA, combustível, manutenção, depreciação, seguro e financiamento. Veja o custo por mês e por km.",
   alternates: {

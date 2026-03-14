@@ -4,7 +4,7 @@ import ValidadorChassi from "@/components/ferramentas/validador-chassi";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Validador de Chassi VIN Online | Consulta Placa Brasil",
+  title: "Validador de Chassi VIN Online",
   description:
     "Validar chassi VIN online e gratuito: verifique se o número do chassi é válido, confira o dígito verificador e detecte possíveis erros ou adulterações.",
   alternates: {

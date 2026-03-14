@@ -5,7 +5,7 @@ import CustoKmCaminhao from "@/components/ferramentas/custo-km-caminhao";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Custo por Km do Caminhão | Consulta Placa Brasil",
+  title: "Custo por Km do Caminhão",
   description:
     "Calcule o custo por quilômetro do seu caminhão: diesel, pneus, manutenção e depreciação. Compare com o piso da ANTT e descubra o frete mínimo ideal.",
   alternates: {

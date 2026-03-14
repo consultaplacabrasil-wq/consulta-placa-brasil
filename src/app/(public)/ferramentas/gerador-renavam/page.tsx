@@ -4,7 +4,7 @@ import GeradorRenavam from "@/components/ferramentas/gerador-renavam";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Gerador de RENAVAM Válido | Consulta Placa",
+  title: "Gerador de RENAVAM Válido",
   description:
     "Gere números de RENAVAM válidos com 11 dígitos para testes e desenvolvimento. Algoritmo módulo 11 com dígito verificador. Gratuito e sem cadastro.",
   alternates: {

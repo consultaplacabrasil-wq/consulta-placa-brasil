@@ -5,7 +5,7 @@ import PropostaQuitacao from "@/components/ferramentas/proposta-quitacao";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Gerador de Proposta de Quitação | Consulta Placa",
+  title: "Gerador de Proposta de Quitação",
   description:
     "Gere uma proposta formal de quitação de financiamento para enviar ao banco. Modelo gratuito com base legal no CDC, pronto para copiar ou imprimir.",
   alternates: {

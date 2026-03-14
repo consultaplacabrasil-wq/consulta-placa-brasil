@@ -4,7 +4,7 @@ import DecodificadorChassi from "@/components/ferramentas/decodificador-chassi";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Decodificador de Chassi VIN | Consulta Placa Brasil",
+  title: "Decodificador de Chassi VIN",
   description:
     "Consulta chassi VIN gratuita: decodifique o número do chassi e descubra país de fabricação, fabricante, ano do modelo e valide o dígito verificador.",
   alternates: {

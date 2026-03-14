@@ -4,7 +4,7 @@ import ConversorPlaca from "@/components/ferramentas/conversor-placa";
 import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
-  title: "Conversor de Placa Antiga para Mercosul | Consulta Placa",
+  title: "Conversor de Placa Antiga para Mercosul",
   description:
     "Converta placas veiculares do formato antigo (ABC-1234) para o padrão Mercosul (ABC1C34) e vice-versa. Ferramenta gratuita, rápida e sem cadastro.",
   alternates: {
