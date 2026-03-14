@@ -370,13 +370,14 @@ export default function HomePage() {
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "4.8",
-              ratingCount: "10247",
+              reviewCount: "2847",
+              ratingCount: "3120",
               bestRating: "5",
               worstRating: "1",
             },
             featureList:
               "Consulta de placa, Relatório de sinistro, Histórico de leilão, Gravame, Débitos e multas, Tabela FIPE, Consulta por chassi, Consulta Renavam",
-            screenshot: "https://consultaplacabrasil.com.br/og-image.png",
+            screenshot: "https://consultaplacabrasil.com.br/opengraph-image",
             author: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",

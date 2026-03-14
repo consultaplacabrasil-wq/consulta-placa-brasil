@@ -13,6 +13,8 @@
       "type": "image/png"
     }
   ],
+  "start_url": "/",
+  "description": "Consulte qualquer veículo pela placa. Relatório completo com histórico, sinistro, leilão, gravame, débitos e multas.",
   "theme_color": "#FF4D30",
   "background_color": "#ffffff",
   "display": "standalone"
