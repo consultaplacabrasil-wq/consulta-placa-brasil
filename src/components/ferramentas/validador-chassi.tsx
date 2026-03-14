@@ -175,7 +175,7 @@ export default function ValidadorChassi() {
           className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 outline-none text-lg font-mono tracking-widest uppercase transition-colors"
         />
         <p className="text-xs text-[#64748B] mt-1">
-          {chassi.length}/17 caracteres &mdash; letras I, O e Q são filtradas automaticamente
+          {chassi.length}/17 caracteres - letras I, O e Q são filtradas automaticamente
         </p>
       </div>
 

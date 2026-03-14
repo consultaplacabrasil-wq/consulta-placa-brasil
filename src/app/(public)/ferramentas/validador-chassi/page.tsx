@@ -22,7 +22,7 @@ const faqItems = [
   {
     question: "Qual a diferença entre validar e decodificar o chassi?",
     answer:
-      "Validar o chassi significa verificar se o número é estruturalmente correto — se tem 17 caracteres, não contém letras proibidas (I, O, Q) e se o dígito verificador confere com o cálculo matemático. Já decodificar o chassi é extrair informações como fabricante, país de origem e ano do modelo a partir das posições do VIN.",
+      "Validar o chassi significa verificar se o número é estruturalmente correto: se tem 17 caracteres, não contém letras proibidas (I, O, Q) e se o dígito verificador confere com o cálculo matemático. Já decodificar o chassi é extrair informações como fabricante, país de origem e ano do modelo a partir das posições do VIN.",
   },
   {
     question: "O que é o dígito verificador do chassi e como ele é calculado?",
@@ -173,7 +173,7 @@ export default function ValidadorChassiPage() {
 
       {/* SEO Content */}
       <section className="px-4 py-16 bg-[#F8FAFC]">
-        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             Por que validar o chassi VIN antes de comprar um veículo
           </h2>
@@ -182,7 +182,7 @@ export default function ValidadorChassiPage() {
             de veículo usado pode realizar antes de fechar negócio. O chassi, também chamado de VIN
             (Vehicle Identification Number), é composto por 17 caracteres alfanuméricos que seguem
             o padrão internacional ISO 3779. Cada caractere ocupa uma posição específica e carrega
-            informações sobre o veículo — mas, acima de tudo, o conjunto precisa ser
+            informações sobre o veículo, e o conjunto precisa ser
             matematicamente consistente.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -198,7 +198,7 @@ export default function ValidadorChassiPage() {
             ou clonados frequentemente passam por processos de remarcação de chassi, nos quais
             criminosos alteram caracteres para dificultar a identificação. Porém, como o dígito
             verificador depende de todos os demais caracteres, qualquer alteração isolada torna
-            o chassi matematicamente inválido — a menos que o fraudador recalcule corretamente
+            o chassi matematicamente inválido, a menos que o fraudador recalcule corretamente
             o dígito, o que nem sempre acontece.
           </p>
           <p className="text-[#475569] leading-relaxed">
@@ -230,14 +230,14 @@ export default function ValidadorChassiPage() {
             É importante lembrar que a validação do chassi por meio do dígito verificador é
             obrigatória para veículos produzidos para o mercado norte-americano e brasileiro,
             mas nem todos os fabricantes europeus seguem essa regra. Portanto, um chassi que
-            falha na verificação do dígito não necessariamente indica fraude — pode se tratar
+            falha na verificação do dígito não necessariamente indica fraude. Pode se tratar
             de um veículo importado cujo fabricante não utiliza o padrão ISO para o cálculo
             do dígito verificador. Nesses casos, é recomendável confirmar diretamente com o
             fabricante ou o Detran.
           </p>
           <p className="text-[#475569] leading-relaxed">
             Nosso validador de chassi é gratuito, funciona inteiramente no navegador e não
-            requer nenhum tipo de cadastro. Nenhum dado é enviado a servidores externos —
+            requer nenhum tipo de cadastro. Nenhum dado é enviado a servidores externos e
             todo o processamento é feito localmente no seu dispositivo. Explore também as
             demais{" "}
             <Link href="/ferramentas" className="text-[#FF4D30] hover:underline font-medium">

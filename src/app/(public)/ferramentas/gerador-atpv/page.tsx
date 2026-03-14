@@ -4,14 +4,14 @@ import Link from "next/link";
 import GeradorAtpv from "@/components/ferramentas/gerador-atpv";
 
 export const metadata: Metadata = {
-  title: "Gerador de ATPV-e para Transferência de Veículo | Consulta Placa",
+  title: "Gerador de ATPV-e para Transferência | Consulta Placa",
   description:
     "Gere gratuitamente a Autorização para Transferência de Propriedade de Veículo (ATPV-e). Modelo completo, pronto para copiar ou imprimir.",
   alternates: {
     canonical: "https://consultaplacabrasil.com/ferramentas/gerador-atpv",
   },
   openGraph: {
-    title: "Gerador de ATPV-e para Transferência de Veículo | Consulta Placa",
+    title: "Gerador de ATPV-e para Transferência | Consulta Placa",
     description:
       "Crie sua ATPV-e online, grátis e sem cadastro. Modelo auxiliar com dados do proprietário, comprador e veículo para transferência.",
     url: "https://consultaplacabrasil.com/ferramentas/gerador-atpv",

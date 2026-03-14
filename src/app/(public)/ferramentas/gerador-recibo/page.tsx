@@ -4,14 +4,14 @@ import Link from "next/link";
 import GeradorRecibo from "@/components/ferramentas/gerador-recibo";
 
 export const metadata: Metadata = {
-  title: "Gerador de Recibo de Compra e Venda de Veículo | Consulta Placa",
+  title: "Gerador de Recibo de Venda de Veículo | Consulta Placa",
   description:
     "Gere gratuitamente um recibo de compra e venda de veículo pronto para imprimir. Modelo completo com dados do vendedor, comprador e veículo.",
   alternates: {
     canonical: "https://consultaplacabrasil.com/ferramentas/gerador-recibo",
   },
   openGraph: {
-    title: "Gerador de Recibo de Compra e Venda de Veículo | Consulta Placa",
+    title: "Gerador de Recibo de Venda de Veículo | Consulta Placa",
     description:
       "Crie seu recibo de compra e venda de veículo online, grátis e sem cadastro. Modelo completo e pronto para impressão.",
     url: "https://consultaplacabrasil.com/ferramentas/gerador-recibo",

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       "Verifique a validade do RENAVAM do seu veículo com cálculo automático do dígito verificador pelo módulo 11. Ferramenta gratuita e sem cadastro.",
     url: "https://consultaplacabrasil.com/ferramentas/validador-renavam",
+    type: "website",
   },
 };
 
@@ -59,6 +60,11 @@ export default function ValidadorRenavamPage() {
       "@type": "Offer",
       price: "0",
       priceCurrency: "BRL",
+    },
+    provider: {
+      "@type": "Organization",
+      name: "Consulta Placa Brasil",
+      url: "https://consultaplacabrasil.com",
     },
   };
 
@@ -167,12 +173,12 @@ export default function ValidadorRenavamPage() {
 
       {/* SEO Content */}
       <section className="px-4 py-16 bg-[#F8FAFC]">
-        <div className="container mx-auto max-w-4xl prose prose-gray space-y-4">
+        <div className="container mx-auto max-w-4xl prose prose-gray space-y-5">
           <h2 className="text-2xl font-bold text-[#0F172A]">
             O que é o RENAVAM e como validar o número do veículo
           </h2>
           <p className="text-[#475569] leading-relaxed">
-            O RENAVAM — Registro Nacional de Veículos Automotores — é um código
+            O RENAVAM (Registro Nacional de Veículos Automotores) é um código
             numérico de 11 dígitos criado pelo Denatran (atual Senatran) para
             identificar de forma única cada veículo registrado no território
             brasileiro. Diferente da placa, que pode ser alterada em casos de
