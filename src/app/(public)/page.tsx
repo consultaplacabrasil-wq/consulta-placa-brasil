@@ -24,7 +24,7 @@ import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { FaqSection } from "@/components/home/faq-section";
 
 export const metadata: Metadata = {
-  title: "Consulta Placa Brasil — Consultar Placa de Veículo, Carro e Moto",
+  title: "Consulta Placa Brasil | Consultar Placa de Veículo, Carro e Moto",
   description:
     "Consulte qualquer veículo pela placa. Pesquise placa de carro, moto ou caminhão e receba relatório completo com histórico, sinistro, leilão, gravame, débitos e multas. Resultado instantâneo.",
   alternates: {

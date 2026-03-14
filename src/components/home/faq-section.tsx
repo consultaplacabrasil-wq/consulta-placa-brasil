@@ -46,7 +46,7 @@ const faqsByCategory: Record<string, FaqItem[]> = {
     {
       question: "Quais formas de pagamento são aceitas?",
       answer:
-        "Aceitamos Pix (com confirmação instantânea) e cartão de crédito. O Pix é a forma mais rápida — o relatório é liberado em segundos após o pagamento.",
+        "Aceitamos Pix (com confirmação instantânea) e cartão de crédito. O Pix é a forma mais rápida e o relatório é liberado em segundos após o pagamento.",
     },
     {
       question: "Quanto custa para consultar placa?",
@@ -83,7 +83,7 @@ const faqsByCategory: Record<string, FaqItem[]> = {
     {
       question: "Posso consultar a placa de qualquer veículo do Brasil?",
       answer:
-        "Sim, temos cobertura nacional completa — todos os 27 estados e Distrito Federal. Funciona para veículos com placa antiga (AAA-0000) e placa Mercosul (AAA0A00).",
+        "Sim, temos cobertura nacional completa com todos os 27 estados e Distrito Federal. Funciona para veículos com placa antiga (AAA-0000) e placa Mercosul (AAA0A00).",
     },
   ],
 };

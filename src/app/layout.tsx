@@ -12,7 +12,7 @@ const lexend = Lexend({
 export const metadata: Metadata = {
   metadataBase: new URL("https://consultaplacabrasil.com.br"),
   title: {
-    default: "Consulta Placa Brasil — Consultar Placa de Veículo, Carro e Moto",
+    default: "Consulta Placa Brasil | Consultar Placa de Veículo, Carro e Moto",
     template: "%s | Consulta Placa Brasil",
   },
   description:
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://consultaplacabrasil.com.br",
     siteName: "Consulta Placa Brasil",
-    title: "Consulta Placa Brasil — Consultar Placa de Veículo, Carro e Moto",
+    title: "Consulta Placa Brasil | Consultar Placa de Veículo, Carro e Moto",
     description:
       "Consulte qualquer veículo pela placa. Relatório completo com histórico, sinistro, leilão, gravame, débitos e multas. Resultado instantâneo.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Consulta Placa Brasil — Consultar Placa de Veículo, Carro e Moto",
+    title: "Consulta Placa Brasil | Consultar Placa de Veículo, Carro e Moto",
     description:
       "Consulte qualquer veículo pela placa. Relatório completo com histórico, sinistro, leilão, gravame, débitos e multas.",
   },

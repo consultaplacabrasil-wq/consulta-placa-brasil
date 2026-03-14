@@ -80,7 +80,7 @@ const testimonialsByProfile: Record<string, Testimonial[]> = {
     {
       name: "Wellington C.",
       role: "Despachante",
-      text: "A consulta veicular pela placa é completa. Mostra gravame, sinistro, débitos — tudo que preciso para o cliente.",
+      text: "A consulta veicular pela placa é completa. Mostra gravame, sinistro, débitos e tudo que preciso para o cliente.",
       rating: 5,
     },
     {
