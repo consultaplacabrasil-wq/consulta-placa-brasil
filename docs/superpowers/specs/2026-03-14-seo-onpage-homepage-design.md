@@ -10,6 +10,12 @@ Otimizar a homepage do Consulta Placa Brasil para posicionamento na primeira pag
 - **Blog = intencao informacional** (tratado separadamente, fora deste escopo)
 - Keywords inseridas naturalmente via depoimentos categorizados por perfil de usuario e FAQ categorizado por tema
 
+## Convencoes
+
+- Todo texto user-facing deve usar acentos/diacriticos corretos do portugues (ex: "veículo", não "veiculo")
+- As anotacoes de keywords neste documento usam ASCII por conveniencia, mas o codigo deve usar acentos
+- O telefone +55-11-4002-8922 e o contato atual exibido no header/footer do site
+
 ---
 
 ## 1. Depoimentos com Tabs por Perfil
@@ -48,8 +54,8 @@ Otimizar a homepage do Consulta Placa Brasil para posicionamento na primeira pag
 |---|---|---|---|
 | Jose Ricardo P. | Despachante | "Como despachante, preciso consultar placa de veiculo o dia todo. A rapidez do sistema faz diferenca no meu trabalho." | consultar placa de veiculo (18.1K) |
 | Sandra B. | Despachante | "Uso para puxar placa de carro dos clientes antes de iniciar a transferencia. Nunca tive problema." | puxar placa de carro (22.2K) |
-| Wellington C. | Despachante | "A consulta veicular pela placa e completa. Mostra gravame, sinistro, debitos — tudo que preciso para o cliente." | consulta veicular pela placa |
-| Rita de Cassia O. | Despachante | "Faco pesquisa de veiculo por placa para mais de 50 clientes por mes. O sistema nunca me deixou na mao." | pesquisa de veiculo por placa |
+| Wellington C. | Despachante | "A consulta veicular pela placa e completa. Mostra gravame, sinistro, debitos — tudo que preciso para o cliente." | consulta veicular pela placa (4.4K) |
+| Rita de Cassia O. | Despachante | "Faco pesquisa de veiculo por placa para mais de 50 clientes por mes. O sistema nunca me deixou na mao." | pesquisa de veiculo por placa (1.6K) |
 
 ---
 
@@ -179,18 +185,39 @@ Adicionar ao schema Organization na home:
 
 JSON-LD com todas as 14 perguntas, renderizado independente da tab ativa. O Google indexa o schema completo.
 
-### 3.5 Canonical URL na Home
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Como consultar a placa de um veiculo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basta digitar a placa no campo de busca..."
+      }
+    }
+  ]
+}
+```
 
-Adicionar `alternates.canonical` no metadata da homepage.
+Repetir o padrao `Question/Answer` para todas as 14 perguntas de todas as tabs.
 
 ---
 
 ## Arquivos Afetados
 
-1. `src/app/layout.tsx` — metadataBase, twitter cards, canonical
-2. `src/app/(public)/page.tsx` — metadata, testimonials, schemas
-3. `src/components/home/faq-section.tsx` — tabs + novo conteudo + FAQPage schema
-4. Nenhum arquivo novo necessario
+1. `src/app/layout.tsx` — metadataBase, twitter cards, canonical, keywords expandidas
+2. `src/app/(public)/page.tsx` — metadata da home, schemas (Organization, WebSite)
+3. `src/components/home/testimonials-section.tsx` — **NOVO** componente com tabs por perfil e 12 depoimentos
+4. `src/components/home/faq-section.tsx` — refatorar com tabs por categoria, novo conteudo, FAQPage schema
+
+### Notas de implementacao
+
+- O componente `TestimonialsSection` segue o mesmo padrao do `FaqSection` (client component com estado local)
+- O FAQ atual busca do `/api/admin/faq` com fallback para defaults. A nova implementacao **substitui os defaults** pelo conteudo categorizado deste spec. O fetch da API e **removido** — o conteudo do FAQ e estatico e otimizado para SEO. Se no futuro o admin precisar gerenciar FAQs, isso sera tratado em outro escopo.
+- Usar componente `Tabs` existente do shadcn/ui (`src/components/ui/tabs.tsx`) para ambas as secoes
 
 ## Fora de Escopo
 
