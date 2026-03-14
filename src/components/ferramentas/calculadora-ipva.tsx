@@ -64,6 +64,14 @@ const ESTADOS = [
 
 type TipoVeiculo = "carro" | "moto" | "caminhao";
 
+const DESCONTO_VISTA = 0.03;
+
+const tiposVeiculo: { value: TipoVeiculo; label: string }[] = [
+  { value: "carro", label: "Carro / Utilitário" },
+  { value: "moto", label: "Motocicleta" },
+  { value: "caminhao", label: "Caminhão / Ônibus" },
+];
+
 function formatarMoeda(valor: number): string {
   return valor.toLocaleString("pt-BR", {
     style: "currency",
@@ -81,8 +89,6 @@ export default function CalculadoraIPVA() {
     descontoVista: number;
     parcelas: number[];
   } | null>(null);
-
-  const DESCONTO_VISTA = 0.03;
 
   function handleValorChange(e: React.ChangeEvent<HTMLInputElement>) {
     let raw = e.target.value.replace(/\D/g, "");
@@ -116,12 +122,6 @@ export default function CalculadoraIPVA() {
 
     setResultado({ ipva, aliquota, descontoVista, parcelas });
   }
-
-  const tiposVeiculo: { value: TipoVeiculo; label: string }[] = [
-    { value: "carro", label: "Carro / Utilitário" },
-    { value: "moto", label: "Motocicleta" },
-    { value: "caminhao", label: "Caminhão / Ônibus" },
-  ];
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">

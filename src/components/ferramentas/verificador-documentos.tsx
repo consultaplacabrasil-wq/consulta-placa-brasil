@@ -51,6 +51,12 @@ function calcularValidadeCNH(dataNascimento: Date, dataEmissao: Date): { vencime
 
 type StatusAlerta = "verde" | "amarelo" | "vermelho";
 
+const statusColors: Record<StatusAlerta, { bg: string; border: string; text: string; icon: string }> = {
+  verde: { bg: "bg-green-50", border: "border-green-200", text: "text-green-800", icon: "text-green-600" },
+  amarelo: { bg: "bg-yellow-50", border: "border-yellow-200", text: "text-yellow-800", icon: "text-yellow-600" },
+  vermelho: { bg: "bg-red-50", border: "border-red-200", text: "text-red-800", icon: "text-red-600" },
+};
+
 function classificarStatus(vencimento: Date): { status: StatusAlerta; mensagem: string } {
   const hoje = new Date();
   hoje.setHours(0, 0, 0, 0);
@@ -153,12 +159,6 @@ export default function VerificadorDocumentos() {
       faixaEtaria,
     });
   }
-
-  const statusColors: Record<StatusAlerta, { bg: string; border: string; text: string; icon: string }> = {
-    verde: { bg: "bg-green-50", border: "border-green-200", text: "text-green-800", icon: "text-green-600" },
-    amarelo: { bg: "bg-yellow-50", border: "border-yellow-200", text: "text-yellow-800", icon: "text-yellow-600" },
-    vermelho: { bg: "bg-red-50", border: "border-red-200", text: "text-red-800", icon: "text-red-600" },
-  };
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">

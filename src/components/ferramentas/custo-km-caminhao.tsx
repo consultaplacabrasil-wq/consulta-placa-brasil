@@ -82,7 +82,8 @@ export default function CustoKmCaminhao() {
 
   function parseValor(str: string): number {
     if (!str) return 0;
-    return parseFloat(str.replace(/\./g, "").replace(",", "."));
+    const parsed = parseFloat(str.replace(/\./g, "").replace(",", "."));
+    return isNaN(parsed) ? 0 : parsed;
   }
 
   function calcular() {

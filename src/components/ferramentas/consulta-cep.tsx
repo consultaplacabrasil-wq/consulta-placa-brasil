@@ -145,10 +145,21 @@ export default function ConsultaCep() {
         return;
       }
 
-      const data: DadosCep = await response.json();
+      let data: DadosCep;
+      try {
+        data = await response.json();
+      } catch {
+        setErro("Resposta inválida do servidor. Tente novamente.");
+        return;
+      }
 
       if (data.erro) {
         setErro("CEP não encontrado. Verifique o número informado.");
+        return;
+      }
+
+      if (!data.localidade || !data.uf) {
+        setErro("Dados incompletos para este CEP. Tente novamente.");
         return;
       }
 

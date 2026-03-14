@@ -3,6 +3,9 @@
 import { useState, useMemo } from "react";
 import { Fuel, TrendingDown, TrendingUp, DollarSign, Gauge } from "lucide-react";
 
+const formatBRL = (value: number) =>
+  value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
 export default function CalculadoraFlex() {
   const [precoGasolina, setPrecoGasolina] = useState<string>("5.89");
   const [precoEtanol, setPrecoEtanol] = useState<string>("3.99");
@@ -45,9 +48,6 @@ export default function CalculadoraFlex() {
       percentualEconomia,
     };
   }, [precoGasolina, precoEtanol, consumoGasolina, kmMes]);
-
-  const formatBRL = (value: number) =>
-    value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
   const maxCusto = resultado
     ? Math.max(resultado.custoMensalGasolina, resultado.custoMensalEtanol)

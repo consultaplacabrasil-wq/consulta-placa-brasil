@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 const ESTADOS = [
   "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA",
@@ -35,6 +35,13 @@ export default function GeradorContrato() {
   const [contratoGerado, setContratoGerado] = useState(false);
   const [copiado, setCopiado] = useState(false);
   const contratoRef = useRef<HTMLDivElement>(null);
+  const copiadoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copiadoTimerRef.current) clearTimeout(copiadoTimerRef.current);
+    };
+  }, []);
 
   function handleValorChange(e: React.ChangeEvent<HTMLInputElement>) {
     let raw = e.target.value.replace(/\D/g, "");
@@ -173,11 +180,9 @@ Nome:
 CPF:`;
   }
 
-  async function copiarContrato() {
+  const copiarContrato = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(textoContrato());
-      setCopiado(true);
-      setTimeout(() => setCopiado(false), 2500);
     } catch {
       const textarea = document.createElement("textarea");
       textarea.value = textoContrato();
@@ -185,10 +190,11 @@ CPF:`;
       textarea.select();
       document.execCommand("copy");
       document.body.removeChild(textarea);
-      setCopiado(true);
-      setTimeout(() => setCopiado(false), 2500);
     }
-  }
+    setCopiado(true);
+    if (copiadoTimerRef.current) clearTimeout(copiadoTimerRef.current);
+    copiadoTimerRef.current = setTimeout(() => setCopiado(false), 2500);
+  }, [vendedor, comprador, veiculo, venda]);
 
   function imprimirContrato() {
     window.print();

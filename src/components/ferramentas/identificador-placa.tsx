@@ -44,13 +44,6 @@ interface Resultado {
   cor: CorPlaca;
 }
 
-function formatarPlaca(placa: string, padrao: PadraoPlaca): string {
-  if (padrao === "antigo") {
-    return placa.slice(0, 3) + "-" + placa.slice(3);
-  }
-  return placa.slice(0, 3) + placa.slice(3, 4) + placa.slice(4, 5) + placa.slice(5);
-}
-
 function identificarPlaca(placa: string): Resultado | null {
   const limpa = placa.replace(/[^A-Z0-9]/g, "").toUpperCase();
 
@@ -171,11 +164,6 @@ export default function IdentificadorPlaca() {
 
     setResultado(res);
     setErro("");
-  }
-
-  function exibirPlacaInput(): string {
-    if (placa.length <= 3) return placa;
-    return placa.slice(0, 3) + "-" + placa.slice(3);
   }
 
   return (

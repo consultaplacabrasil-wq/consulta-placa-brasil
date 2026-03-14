@@ -27,7 +27,7 @@ export default function CalculadoraCombustivel() {
     const dist = parseFloat(distancia) || 0;
     const cons = parseFloat(consumo) || 0;
     const preco = parseFloat(precoCombustivel) || 0;
-    const pass = parseInt(passageiros) || 1;
+    const pass = Math.max(1, parseInt(passageiros) || 1);
 
     if (dist <= 0 || cons <= 0 || preco <= 0) {
       setErro("Informe a distância, o consumo e o preço do combustível com valores maiores que zero.");

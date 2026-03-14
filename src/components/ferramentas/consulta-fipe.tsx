@@ -80,14 +80,16 @@ export default function ConsultaFipe() {
     setErro("");
     setLoadingMarcas(true);
 
+    let cancelled = false;
     fetch(`${API_BASE}/${tipo}/marcas`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao carregar marcas");
         return res.json();
       })
-      .then((data: MarcaItem[]) => setMarcas(data))
-      .catch(() => setErro("Não foi possível carregar as marcas. Tente novamente."))
-      .finally(() => setLoadingMarcas(false));
+      .then((data: MarcaItem[]) => { if (!cancelled) setMarcas(Array.isArray(data) ? data : []); })
+      .catch(() => { if (!cancelled) setErro("Não foi possível carregar as marcas. Tente novamente."); })
+      .finally(() => { if (!cancelled) setLoadingMarcas(false); });
+    return () => { cancelled = true; };
   }, [tipo]);
 
   // Buscar modelos quando marca muda
@@ -109,14 +111,16 @@ export default function ConsultaFipe() {
     setErro("");
     setLoadingModelos(true);
 
+    let cancelled = false;
     fetch(`${API_BASE}/${tipo}/marcas/${marcaCodigo}/modelos`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao carregar modelos");
         return res.json();
       })
-      .then((data: { modelos: ModeloItem[] }) => setModelos(data.modelos))
-      .catch(() => setErro("Não foi possível carregar os modelos. Tente novamente."))
-      .finally(() => setLoadingModelos(false));
+      .then((data: { modelos: ModeloItem[] }) => { if (!cancelled) setModelos(Array.isArray(data?.modelos) ? data.modelos : []); })
+      .catch(() => { if (!cancelled) setErro("Não foi possível carregar os modelos. Tente novamente."); })
+      .finally(() => { if (!cancelled) setLoadingModelos(false); });
+    return () => { cancelled = true; };
   }, [tipo, marcaCodigo]);
 
   // Buscar anos quando modelo muda
@@ -134,14 +138,16 @@ export default function ConsultaFipe() {
     setErro("");
     setLoadingAnos(true);
 
+    let cancelled = false;
     fetch(`${API_BASE}/${tipo}/marcas/${marcaCodigo}/modelos/${modeloCodigo}/anos`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao carregar anos");
         return res.json();
       })
-      .then((data: AnoItem[]) => setAnos(data))
-      .catch(() => setErro("Não foi possível carregar os anos disponíveis. Tente novamente."))
-      .finally(() => setLoadingAnos(false));
+      .then((data: AnoItem[]) => { if (!cancelled) setAnos(Array.isArray(data) ? data : []); })
+      .catch(() => { if (!cancelled) setErro("Não foi possível carregar os anos disponíveis. Tente novamente."); })
+      .finally(() => { if (!cancelled) setLoadingAnos(false); });
+    return () => { cancelled = true; };
   }, [tipo, marcaCodigo, modeloCodigo]);
 
   // Buscar resultado quando ano muda
@@ -155,16 +161,18 @@ export default function ConsultaFipe() {
     setErro("");
     setLoadingResultado(true);
 
+    let cancelled = false;
     fetch(`${API_BASE}/${tipo}/marcas/${marcaCodigo}/modelos/${modeloCodigo}/anos/${anoCodigo}`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao carregar resultado");
         return res.json();
       })
-      .then((data: ResultadoFipe) => setResultado(data))
-      .catch(() =>
-        setErro("Não foi possível consultar o valor FIPE. Tente novamente em alguns instantes.")
-      )
-      .finally(() => setLoadingResultado(false));
+      .then((data: ResultadoFipe) => { if (!cancelled) setResultado(data); })
+      .catch(() => {
+        if (!cancelled) setErro("Não foi possível consultar o valor FIPE. Tente novamente em alguns instantes.");
+      })
+      .finally(() => { if (!cancelled) setLoadingResultado(false); });
+    return () => { cancelled = true; };
   }, [tipo, marcaCodigo, modeloCodigo, anoCodigo]);
 
   function extrairValorNumerico(valorStr: string): string {

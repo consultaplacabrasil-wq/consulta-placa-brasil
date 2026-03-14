@@ -69,7 +69,8 @@ export default function CalculadoraFreteAntt() {
 
   function parseNumero(valor: string): number {
     if (!valor) return 0;
-    return parseFloat(valor.replace(/\./g, "").replace(",", "."));
+    const parsed = parseFloat(valor.replace(/\./g, "").replace(",", "."));
+    return isNaN(parsed) ? 0 : parsed;
   }
 
   function calcular() {
