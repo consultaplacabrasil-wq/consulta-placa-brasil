@@ -93,16 +93,23 @@ export default async function SobrePage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="bg-[#0F172A] px-4 py-16 md:py-20">
-        <div className="mx-auto max-w-4xl text-center text-white">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D30]/10 px-4 py-1.5 text-sm font-medium text-[#FF4D30] mb-6 border border-[#FF4D30]/20">
-            <Car className="h-4 w-4" />
-            Uma empresa BYTX LTDA
+      <section className="bg-[#0F172A] text-white py-10">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <nav aria-label="Breadcrumb" className="flex items-center text-sm text-gray-500 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Início</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-300">Quem Somos</span>
+          </nav>
+          <div className="flex items-center gap-3 mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold">
+              {page?.title || "Quem Somos"}
+            </h1>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FF4D30]/10 px-3 py-1 text-xs font-medium text-[#FF4D30] border border-[#FF4D30]/20">
+              <Car className="h-3 w-3" />
+              BYTX LTDA
+            </span>
           </div>
-          <h1 className="text-3xl font-bold md:text-5xl mb-4">
-            {page?.title || "Quem Somos"}
-          </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-400 max-w-2xl">
             A plataforma mais completa de consulta veicular e ferramentas
             gratuitas do Brasil, desenvolvida para proprietários de veículos,
             compradores, lojistas, despachantes e caminhoneiros.
