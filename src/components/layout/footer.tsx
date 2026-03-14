@@ -120,10 +120,15 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8 flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-sm text-gray-500">
-            &copy; 2026 Consulta Placa Brasil. Todos os
-            direitos reservados.
-          </p>
+          <div>
+            <p className="text-sm text-gray-500">
+              &copy; 2026 Consulta Placa Brasil. Todos os
+              direitos reservados.
+            </p>
+            <p className="text-xs text-gray-600 mt-1">
+              BYTX LTDA - CNPJ: 65.649.904/0001-98
+            </p>
+          </div>
           <p className="text-xs text-gray-600">
             Cobertura nacional - Todos os 27 estados + Distrito Federal
           </p>
