@@ -4,7 +4,11 @@
 
 @font-face {
   font-family: "Mechsuit";
-  src: url("/fonts/Mechsuit.otf") format("opentype");
+  src: url("/fonts/Mechsuit.woff2") format("woff2"),
+       url("/fonts/Mechsuit.woff") format("woff"),
+       url("/fonts/Mechsuit.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 
