@@ -229,6 +229,7 @@ export const blogPosts = pgTable(
     seoDescription: varchar("seo_description", { length: 160 }),
     seoCanonical: text("seo_canonical"),
     seoRobots: varchar("seo_robots", { length: 50 }).default("index, follow"),
+    seoKeyword: varchar("seo_keyword", { length: 100 }),
     // Open Graph Tab
     ogTitle: varchar("og_title", { length: 100 }),
     ogDescription: varchar("og_description", { length: 200 }),
@@ -246,6 +247,20 @@ export const blogPosts = pgTable(
     index("blog_posts_category_idx").on(table.categoryId),
     index("blog_posts_status_idx").on(table.status),
   ]
+);
+
+// Blog Redirects
+export const blogRedirects = pgTable(
+  "blog_redirects",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    oldSlug: varchar("old_slug", { length: 300 }).notNull(),
+    newSlug: varchar("new_slug", { length: 300 }).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [uniqueIndex("blog_redirects_old_slug_idx").on(table.oldSlug)]
 );
 
 // FAQs (managed via admin)
