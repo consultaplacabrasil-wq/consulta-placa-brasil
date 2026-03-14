@@ -56,6 +56,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://consultaplacabrasil.com.br",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/site.webmanifest",
   robots: {
     index: true,
     follow: true,
@@ -70,6 +83,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        <meta name="msapplication-TileColor" content="#FF4D30" />
+        <meta name="theme-color" content="#FF4D30" />
         <AnalyticsScripts />
       </head>
       <body className={`${lexend.variable} font-sans antialiased`}>
