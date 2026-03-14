@@ -62,7 +62,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: `${baseUrl}/ferramentas`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
+
+  // Tool pages
+  const toolSlugs = [
+    "calculadora-ipva", "calculadora-multas", "simulador-financiamento",
+    "calculadora-flex", "decodificador-chassi", "identificador-placa",
+    "simulador-pontos-cnh", "verificador-documentos", "calculadora-transferencia",
+    "custo-total-veiculo", "calculadora-depreciacao", "eletrico-vs-combustao",
+    "calculadora-frete-antt", "custo-km-caminhao", "gerador-placa",
+    "conversor-placa", "checklist-manutencao", "calculadora-combustivel",
+    "calculadora-rodizio", "gerador-contrato", "consulta-fipe",
+    "consulta-recall", "consulta-cep", "calculadora-dpvat",
+  ];
+
+  const toolPages: MetadataRoute.Sitemap = toolSlugs.map((slug) => ({
+    url: `${baseUrl}/ferramentas/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
 
   // Dynamic blog posts
   let blogPostEntries: MetadataRoute.Sitemap = [];
@@ -119,5 +144,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // DB not available, skip
   }
 
-  return [...staticPages, ...blogPostEntries, ...categoryEntries, ...pageEntries];
+  return [...staticPages, ...toolPages, ...blogPostEntries, ...categoryEntries, ...pageEntries];
 }
