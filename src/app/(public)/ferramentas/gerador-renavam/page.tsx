@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import GeradorRenavam from "@/components/ferramentas/gerador-renavam";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Gerador de RENAVAM Válido | Consulta Placa",
@@ -169,6 +170,13 @@ export default function GeradorRenavamPage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 import CalculadoraDPVAT from "@/components/ferramentas/calculadora-dpvat";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Calculadora DPVAT / SPVAT 2026 | Consulta Placa Brasil",
@@ -55,6 +56,13 @@ export default function CalculadoraDPVATPage() {
       <section className="py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <CalculadoraDPVAT />
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

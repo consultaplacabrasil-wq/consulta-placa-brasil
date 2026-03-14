@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import ConversorPlaca from "@/components/ferramentas/conversor-placa";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Conversor de Placa Antiga para Mercosul | Consulta Placa",
@@ -169,6 +170,13 @@ export default function ConversorPlacaPage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

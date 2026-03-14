@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 import CalculadoraFlex from "@/components/ferramentas/calculadora-flex";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Gasolina ou Etanol? Calculadora Flex | Consulta Placa Brasil",
@@ -55,6 +56,13 @@ export default function CalculadoraFlexPage() {
       <section className="py-12">
         <div className="container mx-auto px-4 max-w-4xl -mt-8">
           <CalculadoraFlex />
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

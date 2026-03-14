@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 import CustoTotalVeiculo from "@/components/ferramentas/custo-total-veiculo";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Custo Total do Veículo por Ano | Consulta Placa Brasil",
@@ -103,6 +104,13 @@ export default function CustoTotalVeiculoPage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 import GeradorRecibo from "@/components/ferramentas/gerador-recibo";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Gerador de Recibo de Venda de Veículo | Consulta Placa",
@@ -103,6 +104,13 @@ export default function GeradorReciboPage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

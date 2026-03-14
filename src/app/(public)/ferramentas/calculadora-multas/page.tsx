@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 import { CalculadoraMultas } from "@/components/ferramentas/calculadora-multas";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Calculadora de Multas de Trânsito | Consulta Placa Brasil",
@@ -55,6 +56,13 @@ export default function CalculadoraMultasPage() {
       <section className="py-8 pb-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <CalculadoraMultas />
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

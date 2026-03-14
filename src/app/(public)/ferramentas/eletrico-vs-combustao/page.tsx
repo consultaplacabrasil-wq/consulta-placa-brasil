@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 import EletricoVsCombustao from "@/components/ferramentas/eletrico-vs-combustao";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Elétrico vs Combustão: Comparador | Consulta Placa",
@@ -55,6 +56,13 @@ export default function EletricoVsCombustaoPage() {
       <section className="py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <EletricoVsCombustao />
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

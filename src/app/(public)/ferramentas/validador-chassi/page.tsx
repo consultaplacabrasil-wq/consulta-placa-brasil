@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import ValidadorChassi from "@/components/ferramentas/validador-chassi";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Validador de Chassi VIN Online | Consulta Placa Brasil",
@@ -168,6 +169,13 @@ export default function ValidadorChassiPage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

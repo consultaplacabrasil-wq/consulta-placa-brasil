@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import ConsultaRecall from "@/components/ferramentas/consulta-recall";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Consulta de Recall Veicular | Consulta Placa",
@@ -162,6 +163,13 @@ export default function ConsultaRecallPage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

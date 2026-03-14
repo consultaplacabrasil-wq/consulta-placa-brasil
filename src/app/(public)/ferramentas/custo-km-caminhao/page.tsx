@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 import CustoKmCaminhao from "@/components/ferramentas/custo-km-caminhao";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Custo por Km do Caminhão | Consulta Placa Brasil",
@@ -55,6 +56,13 @@ export default function CustoKmCaminhaoPage() {
       <section className="py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <CustoKmCaminhao />
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 

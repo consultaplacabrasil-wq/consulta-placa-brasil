@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import PortabilidadeFinanciamento from "@/components/ferramentas/portabilidade-financiamento";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Portabilidade de Financiamento | Consulta Placa",
@@ -54,6 +55,13 @@ export default function PortabilidadeFinanciamentoPage() {
       {/* Calculadora */}
       <section className="container mx-auto px-4 max-w-4xl py-8">
         <PortabilidadeFinanciamento />
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
+        </div>
       </section>
 
       {/* SEO Content */}

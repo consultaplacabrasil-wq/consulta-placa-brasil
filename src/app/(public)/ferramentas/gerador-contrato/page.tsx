@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 import GeradorContrato from "@/components/ferramentas/gerador-contrato";
+import { SugestaoCTA } from "@/components/ferramentas/sugestao-form";
 
 export const metadata: Metadata = {
   title: "Gerador de Contrato de Compra e Venda de Veículo | Consulta Placa",
@@ -103,6 +104,13 @@ export default function GeradorContratoPage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Sugerir Ferramenta */}
+      <section className="px-4 pb-4">
+        <div className="container mx-auto max-w-4xl">
+          <SugestaoCTA />
         </div>
       </section>
 
