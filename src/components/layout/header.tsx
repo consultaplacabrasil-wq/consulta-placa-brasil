@@ -53,7 +53,7 @@ export function Header() {
               <Car className="h-5 w-5 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-bold leading-tight text-[#0F172A]">
+              <span className="text-lg leading-tight text-[#0F172A]" style={{ fontFamily: "Mechsuit, sans-serif" }}>
                 Consulta<span className="text-[#FF4D30]">Placa</span>
               </span>
               <span className="text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
