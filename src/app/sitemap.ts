@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { db } from "@/lib/db";
-import { pages } from "@/lib/db/schema";
+import { pages, noticias, noticiasConfig } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -114,5 +114,52 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // DB not available, skip
   }
 
-  return [...staticPages, ...toolPages, ...pageEntries];
+  // Noticias
+  let noticiaEntries: MetadataRoute.Sitemap = [];
+  let categoriaNoticias: MetadataRoute.Sitemap = [];
+  try {
+    // Pagina principal de noticias
+    const noticiasIndex: MetadataRoute.Sitemap = [
+      {
+        url: `${baseUrl}/noticias`,
+        lastModified: new Date(),
+        changeFrequency: "daily" as const,
+        priority: 0.8,
+      },
+    ];
+
+    // Categorias ativas
+    const categoriasAtivas = await db
+      .select({ categoria: noticiasConfig.categoria })
+      .from(noticiasConfig)
+      .where(eq(noticiasConfig.ativa, true));
+
+    categoriaNoticias = categoriasAtivas.map((c) => ({
+      url: `${baseUrl}/noticias/categoria/${c.categoria}`,
+      lastModified: new Date(),
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    }));
+
+    // Noticias publicadas
+    const noticiasPublicadas = await db
+      .select({ slug: noticias.slug, updatedAt: noticias.updatedAt })
+      .from(noticias)
+      .where(eq(noticias.status, "published"));
+
+    noticiaEntries = [
+      ...noticiasIndex,
+      ...categoriaNoticias,
+      ...noticiasPublicadas.map((n) => ({
+        url: `${baseUrl}/noticias/${n.slug}`,
+        lastModified: n.updatedAt,
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      })),
+    ];
+  } catch {
+    // DB not available, skip
+  }
+
+  return [...staticPages, ...toolPages, ...pageEntries, ...noticiaEntries];
 }
