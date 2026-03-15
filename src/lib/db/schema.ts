@@ -324,6 +324,23 @@ export const noticiasConfig = pgTable(
   ]
 );
 
+// Links Internos (gerenciados pelo admin para SEO)
+export const linksInternos = pgTable(
+  "links_internos",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    url: text("url").notNull(),
+    anchors: text("anchors").array().notNull(),
+    ativo: boolean("ativo").default(true),
+    peso: integer("peso").default(1),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => [index("links_internos_ativo_idx").on(table.ativo)]
+);
+
 // Newsletter Subscribers
 export const newsletterSubscribers = pgTable(
   "newsletter_subscribers",

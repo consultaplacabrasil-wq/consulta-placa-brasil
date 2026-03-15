@@ -59,7 +59,7 @@ export async function reescreverNoticia(
 ): Promise<ArtigoGerado | null> {
   try {
     // Gerar instrução de linkagem randomizada baseada na categoria
-    const instrucaoLinkagem = gerarInstrucaoLinkagem(categoria);
+    const instrucaoLinkagem = await gerarInstrucaoLinkagem(categoria);
 
     const userPrompt = `Reescreva esta noticia automotiva:
 

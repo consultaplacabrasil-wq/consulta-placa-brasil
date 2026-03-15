@@ -179,7 +179,7 @@ export default async function NoticiaPage({ params }: PageProps) {
               prose-headings:text-[#0F172A] prose-headings:font-bold
               prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-5
               prose-p:text-[#475569] prose-p:leading-[1.8] prose-p:mb-5
-              prose-a:text-[#FF4D30] prose-a:font-semibold hover:prose-a:underline
+              prose-a:text-[#FF4D30] prose-a:underline prose-a:decoration-[#FF4D30]/40 hover:prose-a:decoration-[#FF4D30] prose-a:font-normal
               prose-strong:text-[#0F172A]
               prose-ul:text-[#475569] prose-ul:my-5 prose-li:text-[#475569] prose-li:my-1
               [&>p]:text-[17px]"

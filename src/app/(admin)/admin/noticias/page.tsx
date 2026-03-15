@@ -19,6 +19,7 @@ import {
   ThumbsUp,
   ThumbsDown,
   Clock,
+  Link2,
 } from "lucide-react";
 
 interface Noticia {
@@ -214,6 +215,13 @@ export default function AdminNoticiasPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <Link
+            href="/admin/noticias/links"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50"
+          >
+            <Link2 className="h-4 w-4" />
+            Links SEO
+          </Link>
           <Link
             href="/admin/noticias/configuracoes"
             className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50"

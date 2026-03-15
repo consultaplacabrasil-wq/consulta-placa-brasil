@@ -115,17 +115,60 @@ const CATEGORIA_TEMAS: Record<string, string[]> = {
   legislacao: ["multas-ipva", "consulta-placa", "documentacao", "situacao-veiculo"],
 };
 
+import { db } from "@/lib/db";
+import { linksInternos } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
+
+function shuffle<T>(arr: T[]): T[] {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+/**
+ * Busca links customizados do banco (gerenciados pelo admin).
+ * Cada link pode ter múltiplos textos âncora e um peso (prioridade).
+ */
+async function buscarLinksCustomizados(): Promise<
+  { texto: string; url: string }[]
+> {
+  try {
+    const links = await db
+      .select()
+      .from(linksInternos)
+      .where(eq(linksInternos.ativo, true));
+
+    const resultado: { texto: string; url: string }[] = [];
+    for (const link of links) {
+      // Repetir conforme o peso (peso 3 = 3x mais chance)
+      const peso = Math.min(link.peso || 1, 5);
+      for (let i = 0; i < peso; i++) {
+        for (const anchor of link.anchors || []) {
+          resultado.push({ texto: anchor, url: link.url });
+        }
+      }
+    }
+    return resultado;
+  } catch {
+    return [];
+  }
+}
+
 /**
  * Seleciona 1-2 keywords aleatórias relevantes para a categoria da notícia.
+ * Combina keywords hardcoded + links customizados do banco.
  * Nunca retorna as mesmas keywords para evitar padrões de spam.
  */
-export function selecionarKeywords(
+export async function selecionarKeywords(
   categoria: string,
   quantidade: number = 2
-): { texto: string; url: string }[] {
+): Promise<{ texto: string; url: string }[]> {
   const temasRelevantes = CATEGORIA_TEMAS[categoria] || ["consulta-placa", "compra-venda"];
 
-  // Coletar keywords dos temas relevantes
+  // Coletar keywords dos temas relevantes (hardcoded)
   const keywordsDisponiveis: { texto: string; url: string }[] = [];
   for (const tema of temasRelevantes) {
     const grupo = KEYWORD_GROUPS.find((g) => g.tema === tema);
@@ -134,12 +177,12 @@ export function selecionarKeywords(
     }
   }
 
-  // Embaralhar (Fisher-Yates)
-  const shuffled = [...keywordsDisponiveis];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
+  // Adicionar links customizados do banco
+  const linksCustom = await buscarLinksCustomizados();
+  keywordsDisponiveis.push(...linksCustom);
+
+  // Embaralhar
+  const shuffled = shuffle(keywordsDisponiveis);
 
   // Retornar quantidade pedida, garantindo URLs diferentes
   const selecionadas: { texto: string; url: string }[] = [];
@@ -159,9 +202,10 @@ export function selecionarKeywords(
 /**
  * Gera a instrução de linkagem para o prompt da IA.
  * Cada execução produz instruções diferentes (randomizadas).
+ * Combina links hardcoded + links gerenciados pelo admin.
  */
-export function gerarInstrucaoLinkagem(categoria: string): string {
-  const keywords = selecionarKeywords(categoria, 2);
+export async function gerarInstrucaoLinkagem(categoria: string): Promise<string> {
+  const keywords = await selecionarKeywords(categoria, 2);
 
   if (keywords.length === 0) return "";
 
