@@ -263,6 +263,67 @@ export const blogRedirects = pgTable(
   (table) => [uniqueIndex("blog_redirects_old_slug_idx").on(table.oldSlug)]
 );
 
+// Noticias Automotivas
+export const noticias = pgTable(
+  "noticias",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    titulo: varchar("titulo", { length: 255 }).notNull(),
+    slug: varchar("slug", { length: 300 }).notNull(),
+    resumo: text("resumo").notNull(),
+    conteudo: text("conteudo").notNull(),
+    categoria: varchar("categoria", { length: 50 }).notNull(),
+    tags: text("tags").array(),
+    status: postStatusEnum("status").default("draft").notNull(),
+    publishedAt: timestamp("published_at"),
+    viewCount: integer("view_count").default(0),
+    // Origem (uso interno — filtro de duplicatas)
+    origemUrlOriginal: text("origem_url_original"),
+    geradoPorIA: boolean("gerado_por_ia").default(true),
+    // SEO
+    seoTitle: varchar("seo_title", { length: 70 }),
+    seoDescription: varchar("seo_description", { length: 160 }),
+    seoCanonical: text("seo_canonical"),
+    // CTA
+    ctaExibir: boolean("cta_exibir").default(true),
+    ctaTexto: text("cta_texto").default(
+      "Vai comprar um veículo? Consulte a placa antes!"
+    ),
+    ctaLink: text("cta_link").default("https://consultaplacabrasil.com/"),
+    // Timestamps
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex("noticias_slug_idx").on(table.slug),
+    index("noticias_categoria_idx").on(table.categoria),
+    index("noticias_status_idx").on(table.status),
+  ]
+);
+
+// Noticias Config
+export const noticiasConfig = pgTable(
+  "noticias_config",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    categoria: varchar("categoria", { length: 50 }).notNull(),
+    categoriaLabel: varchar("categoria_label", { length: 100 }).notNull(),
+    ativa: boolean("ativa").default(true),
+    limiteDiario: integer("limite_diario").default(10),
+    feedUrl: text("feed_url").notNull(),
+    autoPublish: boolean("auto_publish").default(false),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex("noticias_config_categoria_idx").on(table.categoria),
+  ]
+);
+
 // FAQs (managed via admin)
 export const faqs = pgTable("faqs", {
   id: text("id")
