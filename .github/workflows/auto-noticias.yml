@@ -1,0 +1,28 @@
+name: Auto Noticias
+
+on:
+  schedule:
+    - cron: '0 */1 * * *'  # A cada 1 hora
+  workflow_dispatch: # Permite execução manual pelo GitHub
+
+jobs:
+  buscar-noticias:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Buscar e publicar noticias
+        run: |
+          response=$(curl -s -w "\n%{http_code}" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "https://consultaplacabrasil.com/api/cron/noticias")
+
+          http_code=$(echo "$response" | tail -1)
+          body=$(echo "$response" | sed '$d')
+
+          echo "Status: $http_code"
+          echo "$body" | head -50
+
+          if [ "$http_code" != "200" ]; then
+            echo "::error::Cron falhou com status $http_code"
+            exit 1
+          fi
