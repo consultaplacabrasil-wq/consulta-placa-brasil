@@ -105,6 +105,17 @@ export default function AdminNoticiasPage() {
     titulo: string;
   } | null>(null);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<"date" | "titulo" | "categoria" | "views">("date");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
+
+  function toggleSort(field: "date" | "titulo" | "categoria" | "views") {
+    if (sortBy === field) {
+      setSortDir(sortDir === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(field);
+      setSortDir(field === "titulo" || field === "categoria" ? "asc" : "desc");
+    }
+  }
 
   const fetchNoticias = useCallback(async () => {
     try {
@@ -143,6 +154,19 @@ export default function AdminNoticiasPage() {
       noticia.titulo.toLowerCase().includes(search.toLowerCase()) ||
       noticia.resumo.toLowerCase().includes(search.toLowerCase());
     return matchesStatus && matchesCategoria && matchesSearch;
+  }).sort((a, b) => {
+    const dir = sortDir === "asc" ? 1 : -1;
+    switch (sortBy) {
+      case "titulo":
+        return dir * a.titulo.localeCompare(b.titulo, "pt-BR");
+      case "categoria":
+        return dir * a.categoria.localeCompare(b.categoria, "pt-BR");
+      case "views":
+        return dir * ((a.viewCount || 0) - (b.viewCount || 0));
+      case "date":
+      default:
+        return dir * (new Date(a.publishedAt || a.createdAt).getTime() - new Date(b.publishedAt || b.createdAt).getTime());
+    }
   });
 
   const stats = {
@@ -341,6 +365,7 @@ export default function AdminNoticiasPage() {
                 { key: "recalls", label: "Recalls" },
                 { key: "mercado-usados", label: "Mercado Usados" },
                 { key: "legislacao", label: "Legislação" },
+                { key: "multas", label: "Multas" },
               ] as const
             ).map(({ key, label }) => (
               <button
@@ -395,6 +420,31 @@ export default function AdminNoticiasPage() {
             </p>
           </div>
         ) : (
+          <>
+          {/* Sort headers */}
+          <div className="flex items-center gap-4 border-b border-gray-100 px-4 py-2 text-xs font-semibold text-[#94A3B8] uppercase tracking-wider">
+            <div className="flex-1 min-w-0">
+              <button onClick={() => toggleSort("titulo")} className="flex items-center gap-1 hover:text-[#0F172A] transition-colors">
+                Título {sortBy === "titulo" && (sortDir === "asc" ? "↑" : "↓")}
+              </button>
+            </div>
+            <div className="hidden sm:block w-24">
+              <button onClick={() => toggleSort("categoria")} className="flex items-center gap-1 hover:text-[#0F172A] transition-colors">
+                Categoria {sortBy === "categoria" && (sortDir === "asc" ? "↑" : "↓")}
+              </button>
+            </div>
+            <div className="hidden md:block w-24">
+              <button onClick={() => toggleSort("date")} className="flex items-center gap-1 hover:text-[#0F172A] transition-colors">
+                Data {sortBy === "date" && (sortDir === "asc" ? "↑" : "↓")}
+              </button>
+            </div>
+            <div className="hidden md:block w-16 text-right">
+              <button onClick={() => toggleSort("views")} className="flex items-center gap-1 ml-auto hover:text-[#0F172A] transition-colors">
+                Views {sortBy === "views" && (sortDir === "asc" ? "↑" : "↓")}
+              </button>
+            </div>
+            <div className="w-36 shrink-0" />
+          </div>
           <div className="divide-y divide-gray-50">
             {filteredNoticias.map((noticia) => {
               const st = statusConfig[noticia.status] || statusConfig.draft;
@@ -431,23 +481,28 @@ export default function AdminNoticiasPage() {
                           <StatusIcon className="h-3 w-3" />
                           {st.label}
                         </span>
-                        {cat && (
-                          <span
-                            className={`rounded-full px-2 py-0.5 text-xs font-medium ${cat.bgClass} ${cat.textClass}`}
-                          >
-                            {cat.label}
-                          </span>
-                        )}
-                        <span className="text-xs text-[#94A3B8]">
-                          {formatDate(noticia.createdAt)}
+                        {/* Mobile: show category, date, views inline */}
+                        <span className="sm:hidden text-xs text-[#94A3B8]">
+                          {cat?.label} · {formatDate(noticia.publishedAt || noticia.createdAt)} · {noticia.viewCount || 0} views
                         </span>
-                        {(noticia.viewCount || 0) > 0 && (
-                          <span className="flex items-center gap-1 text-xs text-[#94A3B8]">
-                            <Eye className="h-3 w-3" />
-                            {noticia.viewCount.toLocaleString("pt-BR")}
-                          </span>
-                        )}
                       </div>
+                    </div>
+                    {/* Desktop columns */}
+                    {cat && (
+                      <div className="hidden sm:block w-24 shrink-0">
+                        <span
+                          className={`rounded-full px-2 py-0.5 text-xs font-medium ${cat.bgClass} ${cat.textClass}`}
+                        >
+                          {cat.label}
+                        </span>
+                      </div>
+                    )}
+                    <div className="hidden md:block w-24 shrink-0 text-xs text-[#475569]">
+                      {formatDate(noticia.publishedAt || noticia.createdAt)}
+                    </div>
+                    <div className="hidden md:flex w-16 shrink-0 items-center justify-end gap-1 text-xs text-[#475569]">
+                      <Eye className="h-3 w-3 text-[#94A3B8]" />
+                      {(noticia.viewCount || 0).toLocaleString("pt-BR")}
                     </div>
                   </div>
 
@@ -565,6 +620,7 @@ export default function AdminNoticiasPage() {
               );
             })}
           </div>
+          </>
         )}
       </div>
 
