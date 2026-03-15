@@ -56,6 +56,8 @@ noticias
 └── updatedAt           timestamp DEFAULT now()
 ```
 
+Convencao: propriedades camelCase no Drizzle mapeando para snake_case no banco (ex: `origemUrlOriginal: text("origem_url_original")`), seguindo o padrao existente do projeto.
+
 Indices: unique em slug, index em categoria, index em status.
 
 ### 1.2 Tabela `noticias_config`
@@ -146,7 +148,8 @@ Tom jornalistico conforme briefing:
 - Sem em dash (--), sem caracteres especiais
 - Sem expressoes como "neste artigo", "confira", "voce sabia"
 - Quando envolver compra/venda, mencionar importancia de verificar procedencia
-- Resposta em JSON: titulo, resumo, conteudo (HTML), tags, seoTitle, seoDescription, categoria
+- Resposta em JSON: titulo, resumo, conteudo (HTML), tags, seoTitle, seoDescription
+- Nota: categoria NAO e pedida na resposta da IA — ja e conhecida pelo script (processa por categoria)
 
 ### 2.4 Filtro de Duplicatas
 
@@ -184,6 +187,38 @@ CRON_SECRET=chave-secreta-longa
 ```
 
 Executa a cada 4 horas. Volume controlado pelo limiteDiario na noticias_config.
+
+Nota: arquivo `vercel.json` sera criado (nao existe no projeto atualmente).
+
+### 2.7 Timeout e Processamento
+
+Vercel serverless tem limite de timeout (10s hobby, 60s pro). Para evitar estourar:
+- Processar UMA categoria por execucao do cron
+- Alternar categorias a cada execucao (round-robin ou por parametro)
+- Com 4 categorias e cron a cada 4h, cada categoria e processada 1-2x por dia
+- Alternativa: cron a cada 1h, processando 1 categoria por vez = cada categoria 6x/dia
+
+Configurar `maxDuration` na route:
+```typescript
+export const maxDuration = 60 // segundos (requer Vercel Pro)
+```
+
+### 2.8 Tratamento de Erros
+
+- Se DeepSeek retornar JSON invalido: pula a noticia, loga o erro
+- Se API estiver fora: aborta a execucao, retorna erro no response
+- Se slug ja existir (colisao): adiciona sufixo numerico (ex: "titulo-2")
+- Erros nao interrompem o processamento das demais noticias da mesma execucao
+
+### 2.9 Timezone
+
+"Hoje" para contagem do limite diario usa timezone America/Sao_Paulo.
+
+### 2.10 Migracao
+
+- Gerar migration via `drizzle-kit generate`
+- Executar via `drizzle-kit push` ou `drizzle-kit migrate`
+- Seed da noticias_config (4 categorias iniciais) como script separado
 
 ---
 
@@ -241,10 +276,20 @@ Executa a cada 4 horas. Volume controlado pelo limiteDiario na noticias_config.
 - CTA final
 
 SEO:
-- Meta title: "[Titulo] | Consulta Placa Brasil"
-- Meta description: campo resumo
+- Meta title: seoTitle ou "[Titulo] | Consulta Placa Brasil"
+- Meta description: seoDescription ou campo resumo
 - Schema markup: NewsArticle (JSON-LD)
-- Open Graph tags
+- Open Graph: og:title derivado de seoTitle, og:description de seoDescription, og:type "article"
+- Sem campos OG dedicados na tabela — derivados dos campos SEO existentes
+
+### 4.2.1 Slug de categorias nos tabs
+
+Os tabs de categoria na listagem sao links para `/noticias/categoria/[slug]` (nao filtros client-side), garantindo URLs indexaveis pelo Google.
+
+### 4.2.2 publishedAt
+
+- Quando autoPublish=true: `publishedAt` e preenchido na criacao
+- Quando autoPublish=false: `publishedAt` e preenchido quando o admin aprova (draft → published)
 
 ### 4.3 Categoria `/noticias/categoria/[slug]` (SSR)
 
@@ -303,3 +348,7 @@ slugify           — geracao de slugs
 | Status draft inicial | Aprovacao manual ate confiar no sistema |
 | SSR nas paginas de noticias | SEO melhor que CSR, diferente do blog atual |
 | noticias_config no banco | Controle total pelo admin sem mexer em codigo |
+| OG derivado de campos SEO | Sem colunas extras, og:title = seoTitle, og:description = seoDescription |
+| Processar 1 categoria por cron | Evita timeout do serverless, round-robin entre categorias |
+| Tabs como links, nao filtros | URLs indexaveis /noticias/categoria/[slug] para SEO |
+| Sem soft-delete (deletedAt) | Usa status inactive em vez de deletedAt, diferente do blog — intencional |
