@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://consultaplacabrasil.com/contato",
   },
   openGraph: {
+    type: "website",
     title: "Contato | Consulta Placa Brasil",
     description:
       "Entre em contato com a Consulta Placa Brasil. Atendimento por e-mail, telefone e WhatsApp.",

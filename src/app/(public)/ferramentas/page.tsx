@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://consultaplacabrasil.com/ferramentas",
   },
   openGraph: {
+    type: "website",
     title: "Ferramentas Veiculares Gratuitas | Consulta Placa Brasil",
     description:
       "Calculadoras e simuladores gratuitos para veículos. IPVA, financiamento, multas, chassi, etanol vs gasolina e mais.",

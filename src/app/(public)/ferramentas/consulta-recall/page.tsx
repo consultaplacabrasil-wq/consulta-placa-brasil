@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://consultaplacabrasil.com/ferramentas/consulta-recall",
   },
   openGraph: {
+    type: "website",
     title: "Consulta de Recall Veicular | Consulta Placa",
     description:
       "Verifique os recalls mais recentes por marca, modelos afetados, riscos identificados e como proceder. Ferramenta informativa gratuita.",

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://consultaplacabrasil.com/ferramentas/verificador-documentos",
   },
   openGraph: {
+    type: "website",
     title: "Verificador de Documentos Veiculares | Consulta Placa",
     description:
       "Consulte a validade da CNH e o calendário de licenciamento do seu veículo. Alertas visuais de vencimento e regras por faixa etária.",

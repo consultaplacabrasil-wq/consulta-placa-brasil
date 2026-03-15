@@ -13,6 +13,7 @@ export const metadata: Metadata = {
       "https://consultaplacabrasil.com/ferramentas/simulador-pontos-cnh",
   },
   openGraph: {
+    type: "website",
     title: "Simulador de Pontos na CNH | Consulta Placa Brasil",
     description:
       "Simule a pontuação da sua CNH, veja pontos ativos e risco de suspensão. Ferramenta gratuita baseada no CTB.",

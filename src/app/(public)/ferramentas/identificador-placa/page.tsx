@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://consultaplacabrasil.com/ferramentas/identificador-placa",
   },
   openGraph: {
+    type: "website",
     title: "Identificador de Placa Veicular | Consulta Placa Brasil",
     description:
       "Descubra se a placa do veículo segue o padrão Mercosul ou antigo, valide o formato e veja a representação visual. Grátis e sem cadastro.",
