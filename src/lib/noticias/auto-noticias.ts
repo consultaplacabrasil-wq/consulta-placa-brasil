@@ -79,8 +79,15 @@ export async function executarAutoNoticias(
         continue;
       }
 
-      // Buscar RSS
-      const noticiasRSS = await buscarNoticiasRSS(config.feedUrl);
+      // Buscar RSS de todos os feeds da categoria
+      const allFeeds = [
+        config.feedUrl,
+        ...(config.feedUrls || []),
+      ].filter(Boolean);
+
+      const noticiasRSS = (
+        await Promise.all(allFeeds.map((url) => buscarNoticiasRSS(url)))
+      ).flat();
       resultado.encontradas = noticiasRSS.length;
 
       let publicadas = 0;

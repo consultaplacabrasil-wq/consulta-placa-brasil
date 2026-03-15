@@ -315,6 +315,7 @@ export const noticiasConfig = pgTable(
     ativa: boolean("ativa").default(true),
     limiteDiario: integer("limite_diario").default(10),
     feedUrl: text("feed_url").notNull(),
+    feedUrls: text("feed_urls").array(),
     autoPublish: boolean("auto_publish").default(false),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),

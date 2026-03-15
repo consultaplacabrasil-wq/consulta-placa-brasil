@@ -11,6 +11,7 @@ interface NoticiaConfig {
   ativa: boolean;
   limiteDiario: number;
   feedUrl: string;
+  feedUrls: string[] | null;
   autoPublish: boolean;
   createdAt: string;
   updatedAt: string;
@@ -70,6 +71,7 @@ export default function AdminNoticiasConfigPage() {
           limiteDiario: config.limiteDiario,
           autoPublish: config.autoPublish,
           feedUrl: config.feedUrl,
+          feedUrls: config.feedUrls,
         }),
       });
       if (res.ok) {
@@ -315,20 +317,34 @@ export default function AdminNoticiasConfigPage() {
                     />
                   </div>
 
-                  {/* Feed URL */}
+                  {/* Feed URLs */}
                   <div>
                     <label className="mb-1.5 block text-sm font-medium text-[#475569]">
-                      Feed URL
+                      Feed URLs (um por linha)
                     </label>
-                    <input
-                      type="text"
-                      value={config.feedUrl}
-                      onChange={(e) =>
-                        updateConfig(config.id, "feedUrl", e.target.value)
-                      }
-                      placeholder="https://..."
-                      className="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
+                    <textarea
+                      value={[
+                        config.feedUrl,
+                        ...(config.feedUrls || []),
+                      ]
+                        .filter(Boolean)
+                        .join("\n")}
+                      onChange={(e) => {
+                        const lines = e.target.value
+                          .split("\n")
+                          .map((l) => l.trim())
+                          .filter(Boolean);
+                        const [first, ...rest] = lines;
+                        updateConfig(config.id, "feedUrl", first || "");
+                        updateConfig(config.id, "feedUrls", rest.length > 0 ? rest : null);
+                      }}
+                      placeholder="https://news.google.com/rss/search?q=..."
+                      rows={3}
+                      className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30] resize-y"
                     />
+                    <p className="mt-1 text-xs text-[#94A3B8]">
+                      Cole múltiplas URLs de feeds RSS, uma por linha
+                    </p>
                   </div>
                 </div>
 
