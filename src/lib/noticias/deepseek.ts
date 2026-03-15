@@ -69,6 +69,8 @@ ${instrucaoLinkagem}`;
 
     const response = await client.chat.completions.create({
       model: "deepseek-chat",
+      max_tokens: 4096,
+      temperature: 0.7,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: userPrompt },
@@ -76,7 +78,17 @@ ${instrucaoLinkagem}`;
     });
 
     const content = response.choices[0]?.message?.content;
-    if (!content) return null;
+    if (!content) {
+      console.error("DeepSeek retornou resposta vazia");
+      return null;
+    }
+
+    // Verificar se a resposta foi truncada
+    const finishReason = response.choices[0]?.finish_reason;
+    if (finishReason === "length") {
+      console.error("DeepSeek truncou a resposta (finish_reason=length)");
+      return null;
+    }
 
     // Limpar possivel markdown wrapping
     const jsonStr = content
@@ -86,9 +98,16 @@ ${instrucaoLinkagem}`;
 
     const parsed = JSON.parse(jsonStr) as ArtigoGerado;
 
-    // Validacao basica
+    // Validacao: campos obrigatorios
     if (!parsed.titulo || !parsed.conteudo || !parsed.resumo) {
-      console.error("JSON incompleto do DeepSeek:", parsed);
+      console.error("JSON incompleto do DeepSeek:", JSON.stringify(parsed).substring(0, 200));
+      return null;
+    }
+
+    // Validacao: conteudo minimo (300 palavras = ~1500 caracteres)
+    const textoLimpo = parsed.conteudo.replace(/<[^>]*>/g, "");
+    if (textoLimpo.length < 500) {
+      console.error(`Conteudo muito curto (${textoLimpo.length} chars). Descartado.`);
       return null;
     }
 
