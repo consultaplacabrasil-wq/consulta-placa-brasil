@@ -323,63 +323,43 @@ export default function AdminNoticiasConfigPage() {
                       Feeds RSS
                     </label>
                     <div className="space-y-2">
-                      {[config.feedUrl, ...(config.feedUrls || [])]
-                        .filter(Boolean)
-                        .map((url, idx) => (
+                      {(() => {
+                        const allUrls = [config.feedUrl || "", ...(config.feedUrls || [])];
+                        return allUrls.map((url, idx) => (
                           <div key={idx} className="flex gap-2">
                             <input
                               type="text"
                               value={url}
                               onChange={(e) => {
-                                const allUrls = [
-                                  config.feedUrl,
-                                  ...(config.feedUrls || []),
-                                ].filter(Boolean);
-                                allUrls[idx] = e.target.value;
-                                const [first, ...rest] = allUrls;
-                                updateConfig(config.id, "feedUrl", first || "");
-                                updateConfig(
-                                  config.id,
-                                  "feedUrls",
-                                  rest.length > 0 ? rest : null
-                                );
+                                const updated = [...allUrls];
+                                updated[idx] = e.target.value;
+                                updateConfig(config.id, "feedUrl", updated[0] || "");
+                                updateConfig(config.id, "feedUrls", updated.slice(1));
                               }}
-                              className="h-9 flex-1 rounded-lg border border-gray-200 bg-white px-3 text-sm text-[#0F172A] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
+                              placeholder="https://news.google.com/rss/search?q=..."
+                              className="h-9 flex-1 rounded-lg border border-gray-200 bg-white px-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
                             />
                             {idx > 0 && (
                               <button
                                 type="button"
                                 onClick={() => {
-                                  const allUrls = [
-                                    config.feedUrl,
-                                    ...(config.feedUrls || []),
-                                  ].filter(Boolean);
-                                  allUrls.splice(idx, 1);
-                                  const [first, ...rest] = allUrls;
-                                  updateConfig(
-                                    config.id,
-                                    "feedUrl",
-                                    first || ""
-                                  );
-                                  updateConfig(
-                                    config.id,
-                                    "feedUrls",
-                                    rest.length > 0 ? rest : null
-                                  );
+                                  const updated = allUrls.filter((_, i) => i !== idx);
+                                  updateConfig(config.id, "feedUrl", updated[0] || "");
+                                  updateConfig(config.id, "feedUrls", updated.slice(1));
                                 }}
-                                className="flex h-9 w-9 items-center justify-center rounded-lg border border-red-200 text-red-500 hover:bg-red-50 transition-colors"
+                                className="flex h-9 w-9 items-center justify-center rounded-lg border border-red-200 text-red-500 hover:bg-red-50 transition-colors flex-shrink-0"
                                 title="Remover feed"
                               >
                                 ✕
                               </button>
                             )}
                           </div>
-                        ))}
+                        ));
+                      })()}
                       <button
                         type="button"
                         onClick={() => {
-                          const rest = config.feedUrls || [];
-                          updateConfig(config.id, "feedUrls", [...rest, ""]);
+                          updateConfig(config.id, "feedUrls", [...(config.feedUrls || []), ""]);
                         }}
                         className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-gray-300 px-3 py-1.5 text-xs font-medium text-[#475569] hover:border-[#FF4D30] hover:text-[#FF4D30] transition-colors"
                       >
