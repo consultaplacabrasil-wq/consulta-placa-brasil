@@ -113,6 +113,7 @@ const CATEGORIA_TEMAS: Record<string, string[]> = {
   recalls: ["recall", "consulta-placa", "situacao-veiculo", "compra-venda"],
   "mercado-usados": ["compra-venda", "consulta-placa", "fipe", "situacao-veiculo", "documentacao"],
   legislacao: ["multas-ipva", "consulta-placa", "documentacao", "situacao-veiculo"],
+  multas: ["multas-ipva", "consulta-placa", "situacao-veiculo", "documentacao"],
 };
 
 import { db } from "@/lib/db";

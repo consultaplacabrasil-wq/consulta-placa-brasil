@@ -36,7 +36,7 @@ interface Noticia {
 }
 
 type StatusFilter = "all" | "published" | "draft" | "inactive";
-type CategoriaFilter = "all" | "detran" | "recalls" | "mercado-usados" | "legislacao";
+type CategoriaFilter = "all" | "detran" | "recalls" | "mercado-usados" | "legislacao" | "multas";
 
 const statusConfig: Record<
   string,
@@ -85,6 +85,11 @@ const categoriaConfig: Record<
     label: "Legislação",
     bgClass: "bg-purple-100",
     textClass: "text-purple-700",
+  },
+  multas: {
+    label: "Multas",
+    bgClass: "bg-orange-100",
+    textClass: "text-orange-700",
   },
 };
 

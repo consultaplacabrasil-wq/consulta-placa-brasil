@@ -26,6 +26,12 @@ const categorias = [
     feedUrl:
       "https://news.google.com/rss/search?q=transito+legislacao+brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419",
   },
+  {
+    categoria: "multas",
+    categoriaLabel: "Multas e Infrações",
+    feedUrl:
+      "https://news.google.com/rss/search?q=multas+transito+brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+  },
 ];
 
 async function seed() {
@@ -35,7 +41,7 @@ async function seed() {
       .values(cat)
       .onConflictDoNothing({ target: noticiasConfig.categoria });
   }
-  console.log("Seed concluido: 4 categorias inseridas");
+  console.log("Seed concluido: 5 categorias inseridas");
   process.exit(0);
 }
 

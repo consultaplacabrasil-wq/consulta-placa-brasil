@@ -22,6 +22,11 @@ const CATEGORIAS: Record<string, { label: string; bg: string; text: string }> =
       bg: "bg-purple-100",
       text: "text-purple-700",
     },
+    multas: {
+      label: "Multas e Infrações",
+      bg: "bg-orange-100",
+      text: "text-orange-700",
+    },
   };
 
 export function getCategoriaLabel(slug: string): string {
