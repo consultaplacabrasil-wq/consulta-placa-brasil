@@ -91,9 +91,11 @@ export async function executarAutoNoticias(
       resultado.encontradas = noticiasRSS.length;
 
       let publicadas = 0;
+      // Limitar a 1 noticia por execucao para evitar timeout na Vercel
+      const maxPorExecucao = 1;
 
       for (const noticiaRSS of noticiasRSS) {
-        if (publicadas >= restante) break;
+        if (publicadas >= maxPorExecucao || publicadas >= restante) break;
 
         // Verificar duplicata
         const duplicata = await isDuplicata(

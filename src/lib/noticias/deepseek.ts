@@ -68,7 +68,7 @@ Resumo: ${descricao}
 ${instrucaoLinkagem}`;
 
     const response = await client.chat.completions.create({
-      model: "deepseek-reasoner",
+      model: "deepseek-chat",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: userPrompt },
