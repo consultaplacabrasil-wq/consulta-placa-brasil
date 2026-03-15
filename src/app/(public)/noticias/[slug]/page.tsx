@@ -184,15 +184,6 @@ export default async function NoticiaPage({ params }: PageProps) {
             dangerouslySetInnerHTML={{ __html: noticia.conteudo }}
           />
 
-          {/* CTA mid-article */}
-          {noticia.ctaExibir && (
-            <NoticiaCTAConsulta
-              texto={noticia.ctaTexto || undefined}
-              link={noticia.ctaLink || undefined}
-              variante={0}
-            />
-          )}
-
           {/* Tags */}
           {noticia.tags && noticia.tags.length > 0 && (
             <div className="mt-8 flex flex-wrap gap-2">
@@ -215,8 +206,13 @@ export default async function NoticiaPage({ params }: PageProps) {
             }))}
           />
 
-          {/* Final CTA - variante diferente do mid-article */}
-          <NoticiaCTAConsulta variante={2} />
+          {/* CTA final - após conteúdo e tags */}
+          {noticia.ctaExibir && (
+            <NoticiaCTAConsulta
+              texto={noticia.ctaTexto || undefined}
+              link={noticia.ctaLink || undefined}
+            />
+          )}
         </article>
       </div>
     </>
