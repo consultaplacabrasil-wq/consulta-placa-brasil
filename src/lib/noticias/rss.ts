@@ -74,7 +74,9 @@ export async function buscarNoticiasRSS(
     }
 
     const xml = await response.text();
-    return parseItems(xml);
+    const items = parseItems(xml);
+    console.log(`RSS feed ${feedUrl.substring(0, 60)}... status=${response.status} items=${items.length} xmlLength=${xml.length}`);
+    return items;
   } catch (error) {
     console.error(`Erro ao buscar feed RSS: ${feedUrl}`, error);
     return [];
