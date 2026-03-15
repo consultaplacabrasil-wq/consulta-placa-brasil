@@ -101,7 +101,8 @@ export async function executarAutoNoticias(
         // Reescrever com DeepSeek
         const artigo = await reescreverNoticia(
           noticiaRSS.titulo,
-          noticiaRSS.descricao
+          noticiaRSS.descricao,
+          config.categoria
         );
 
         if (!artigo) {

@@ -184,11 +184,12 @@ export default async function NoticiaPage({ params }: PageProps) {
             dangerouslySetInnerHTML={{ __html: noticia.conteudo }}
           />
 
-          {/* CTA */}
+          {/* CTA mid-article */}
           {noticia.ctaExibir && (
             <NoticiaCTAConsulta
               texto={noticia.ctaTexto || undefined}
               link={noticia.ctaLink || undefined}
+              variante={0}
             />
           )}
 
@@ -214,8 +215,8 @@ export default async function NoticiaPage({ params }: PageProps) {
             }))}
           />
 
-          {/* Final CTA */}
-          <NoticiaCTAConsulta />
+          {/* Final CTA - variante diferente do mid-article */}
+          <NoticiaCTAConsulta variante={2} />
         </article>
       </div>
     </>

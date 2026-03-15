@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { gerarInstrucaoLinkagem } from "./keywords";
 
 const client = new OpenAI({
   apiKey: process.env.DEEPSEEK_API_KEY,
@@ -36,7 +37,7 @@ Formato de resposta (JSON):
   "tituloSEO": "Titulo SEO otimizado",
   "metaDescription": "Meta description",
   "resumo": "Linha fina / subtitulo jornalistico",
-  "conteudo": "Materia completa em formato HTML simples (apenas p, h2, strong, em, ul, li)",
+  "conteudo": "Materia completa em formato HTML simples (apenas p, h2, strong, em, ul, li, a)",
   "tags": ["tag1", "tag2", "tag3"]
 }
 
@@ -53,13 +54,18 @@ export interface ArtigoGerado {
 
 export async function reescreverNoticia(
   titulo: string,
-  descricao: string
+  descricao: string,
+  categoria: string = "detran"
 ): Promise<ArtigoGerado | null> {
   try {
+    // Gerar instrução de linkagem randomizada baseada na categoria
+    const instrucaoLinkagem = gerarInstrucaoLinkagem(categoria);
+
     const userPrompt = `Reescreva esta noticia automotiva:
 
 Titulo: ${titulo}
-Resumo: ${descricao}`;
+Resumo: ${descricao}
+${instrucaoLinkagem}`;
 
     const response = await client.chat.completions.create({
       model: "deepseek-reasoner",
