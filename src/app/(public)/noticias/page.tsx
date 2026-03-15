@@ -4,6 +4,7 @@ import { noticias, noticiasConfig } from "@/lib/db/schema";
 import { eq, desc, sql } from "drizzle-orm";
 import Link from "next/link";
 import NoticiaCard from "@/components/noticias/NoticiaCard";
+import NewsletterForm from "@/components/noticias/NewsletterForm";
 
 export const metadata: Metadata = {
   title: "Notícias Automotivas",
@@ -92,9 +93,9 @@ export default async function NoticiasPage({
           ))}
         </div>
 
-        {/* Grid */}
+        {/* Grid - first 6 */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {result.map((n) => (
+          {result.slice(0, 6).map((n) => (
             <NoticiaCard
               key={n.id}
               titulo={n.titulo}
@@ -105,6 +106,29 @@ export default async function NoticiasPage({
             />
           ))}
         </div>
+
+        {/* Newsletter form between cards */}
+        {result.length > 0 && (
+          <div className="mt-8">
+            <NewsletterForm />
+          </div>
+        )}
+
+        {/* Grid - remaining */}
+        {result.length > 6 && (
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {result.slice(6).map((n) => (
+              <NoticiaCard
+                key={n.id}
+                titulo={n.titulo}
+                slug={n.slug}
+                resumo={n.resumo}
+                categoria={n.categoria}
+                publishedAt={n.publishedAt?.toISOString() || null}
+              />
+            ))}
+          </div>
+        )}
 
         {result.length === 0 && (
           <p className="text-center text-[#94A3B8] mt-12">

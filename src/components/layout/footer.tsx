@@ -1,12 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Car, Phone, Mail, MapPin } from "lucide-react";
+import NewsletterFooterForm from "./newsletter-footer-form";
 
 const footerLinks = {
   plataforma: [
     { href: "/", label: "Consultar Placa" },
     { href: "/ferramentas", label: "Ferramentas Gratuitas" },
     { href: "/blog", label: "Blog" },
+    { href: "/noticias", label: "Notícias" },
     { href: "/faq", label: "FAQ" },
     { href: "/contato", label: "Contato" },
   ],
@@ -75,23 +77,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Empresa */}
+          {/* Newsletter */}
           <div>
             <span className="mb-4 block text-sm font-semibold uppercase tracking-wider text-[#FF4D30]">
-              Empresa
+              Newsletter
             </span>
-            <ul className="space-y-2.5">
-              {footerLinks.empresa.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-gray-400 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-gray-400 mb-4">
+              Receba notícias automotivas semanalmente no seu email.
+            </p>
+            <NewsletterFooterForm />
           </div>
 
           {/* Legal */}

@@ -324,6 +324,26 @@ export const noticiasConfig = pgTable(
   ]
 );
 
+// Newsletter Subscribers
+export const newsletterSubscribers = pgTable(
+  "newsletter_subscribers",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    email: varchar("email", { length: 255 }).notNull(),
+    status: varchar("status", { length: 20 }).default("pendente").notNull(),
+    confirmToken: text("confirm_token"),
+    confirmedAt: timestamp("confirmed_at"),
+    unsubscribedAt: timestamp("unsubscribed_at"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex("newsletter_email_idx").on(table.email),
+    index("newsletter_status_idx").on(table.status),
+  ]
+);
+
 // FAQs (managed via admin)
 export const faqs = pgTable("faqs", {
   id: text("id")

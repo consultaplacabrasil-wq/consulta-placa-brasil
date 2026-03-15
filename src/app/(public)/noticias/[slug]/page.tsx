@@ -10,6 +10,7 @@ import NoticiaBadge, {
 } from "@/components/noticias/NoticiaBadge";
 import NoticiaCTAConsulta from "@/components/noticias/NoticiaCTAConsulta";
 import NoticiaRelacionadas from "@/components/noticias/NoticiaRelacionadas";
+import NewsletterForm from "@/components/noticias/NewsletterForm";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -197,6 +198,11 @@ export default async function NoticiaPage({ params }: PageProps) {
               ))}
             </div>
           )}
+
+          {/* Newsletter */}
+          <div className="mt-8">
+            <NewsletterForm />
+          </div>
 
           {/* Related */}
           <NoticiaRelacionadas
