@@ -24,6 +24,7 @@ import {
   ShieldAlert,
   Loader2,
   UserCog,
+  Newspaper,
 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -43,6 +44,7 @@ const sidebarLinks: SidebarLink[] = [
   { href: "/admin/consultas", label: "Consultas Clientes", icon: Search },
   { href: "/admin/pagamentos", label: "Pagamentos", icon: CreditCard, adminOnly: true },
   { href: "/admin/blog", label: "Blog", icon: PenSquare, adminOnly: true },
+  { href: "/admin/noticias", label: "Notícias", icon: Newspaper, adminOnly: true },
   { href: "/admin/faq", label: "FAQ", icon: HelpCircle, adminOnly: true },
   { href: "/admin/paginas", label: "Páginas", icon: Layers, adminOnly: true },
   { href: "/admin/cupons", label: "Cupons", icon: Tag, adminOnly: true },
