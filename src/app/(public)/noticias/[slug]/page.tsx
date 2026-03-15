@@ -11,6 +11,7 @@ import NoticiaBadge, {
 import NoticiaCTAConsulta from "@/components/noticias/NoticiaCTAConsulta";
 import NoticiaRelacionadas from "@/components/noticias/NoticiaRelacionadas";
 import NewsletterForm from "@/components/noticias/NewsletterForm";
+import NoticiaViewCounter from "@/components/noticias/NoticiaViewCounter";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,13 +25,6 @@ const getNoticia = cache(async (slug: string) => {
     .limit(1);
 
   if (result.length === 0) return null;
-
-  // Increment view count (cache ensures this runs only once per request)
-  await db
-    .update(noticias)
-    .set({ viewCount: sql`${noticias.viewCount} + 1` })
-    .where(eq(noticias.id, result[0].id));
-
   return result[0];
 });
 
@@ -134,6 +128,7 @@ export default async function NoticiaPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <NoticiaViewCounter slug={slug} />
       <div className="min-h-screen bg-[#F8FAFC]">
         {/* Breadcrumb */}
         <div className="bg-white border-b border-gray-200">
