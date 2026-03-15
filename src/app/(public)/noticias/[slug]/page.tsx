@@ -177,17 +177,18 @@ export default async function NoticiaPage({ params }: PageProps) {
           <div
             className="mt-8 prose prose-lg max-w-none
               prose-headings:text-[#0F172A] prose-headings:font-bold
-              prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-              prose-p:text-[#475569] prose-p:leading-relaxed
-              prose-a:text-[#FF4D30] hover:prose-a:underline
+              prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-5
+              prose-p:text-[#475569] prose-p:leading-[1.8] prose-p:mb-5
+              prose-a:text-[#FF4D30] prose-a:font-semibold hover:prose-a:underline
               prose-strong:text-[#0F172A]
-              prose-ul:text-[#475569] prose-li:text-[#475569]"
+              prose-ul:text-[#475569] prose-ul:my-5 prose-li:text-[#475569] prose-li:my-1
+              [&>p]:text-[17px]"
             dangerouslySetInnerHTML={{ __html: noticia.conteudo }}
           />
 
           {/* Tags */}
           {noticia.tags && noticia.tags.length > 0 && (
-            <div className="mt-8 flex flex-wrap gap-2">
+            <div className="mt-10 flex flex-wrap gap-2">
               {noticia.tags.map((tag) => (
                 <span
                   key={tag}
@@ -200,9 +201,17 @@ export default async function NoticiaPage({ params }: PageProps) {
           )}
 
           {/* Newsletter */}
-          <div className="mt-8">
+          <div className="mt-10">
             <NewsletterForm />
           </div>
+
+          {/* CTA - antes das relacionadas */}
+          {noticia.ctaExibir && (
+            <NoticiaCTAConsulta
+              texto={noticia.ctaTexto || undefined}
+              link={noticia.ctaLink || undefined}
+            />
+          )}
 
           {/* Related */}
           <NoticiaRelacionadas
@@ -211,14 +220,6 @@ export default async function NoticiaPage({ params }: PageProps) {
               publishedAt: r.publishedAt?.toISOString() || null,
             }))}
           />
-
-          {/* CTA final - após conteúdo e tags */}
-          {noticia.ctaExibir && (
-            <NoticiaCTAConsulta
-              texto={noticia.ctaTexto || undefined}
-              link={noticia.ctaLink || undefined}
-            />
-          )}
         </article>
       </div>
     </>
