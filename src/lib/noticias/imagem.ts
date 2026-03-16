@@ -52,9 +52,10 @@ export async function buscarImagemPexels(
     if (!photo) return null;
 
     // large2x = 1880px — atende requisito mínimo 1200px do Google Discover
+    // Alt usa o título do artigo para SEO (palavras-chave relevantes em PT-BR)
     return {
       url: photo.src.large2x,
-      alt: photo.alt || titulo,
+      alt: titulo,
     };
   } catch {
     return null;
