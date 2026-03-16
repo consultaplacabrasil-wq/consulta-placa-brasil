@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import { ConsultasPacotes } from "@/components/home/consultas-pacotes";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
-import UltimasNoticias from "@/components/noticias/UltimasNoticias";
 import { FaqSection } from "@/components/home/faq-section";
 
 export const metadata: Metadata = {
@@ -232,9 +231,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Ultimas Noticias */}
-      <UltimasNoticias />
 
       {/* Testimonials */}
       <TestimonialsSection />
