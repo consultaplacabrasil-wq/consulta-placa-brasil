@@ -84,6 +84,13 @@ export default function CheckoutPage() {
   const [cardCvv, setCardCvv] = useState("");
   const [installments, setInstallments] = useState("1");
 
+  // Pix data from Asaas
+  const [pixData, setPixData] = useState<{
+    qrCodeBase64: string;
+    copyPaste: string;
+    expirationDate: string;
+  } | null>(null);
+
   // Coupon (local for input)
   const [couponCode, setCouponCode] = useState("");
   const [couponLoading, setCouponLoading] = useState(false);
@@ -95,7 +102,7 @@ export default function CheckoutPage() {
   const pixDiscount = paymentMethod === "pix" ? (subtotal - discount) * 0.05 : 0;
   const total = subtotal - discount - pixDiscount;
 
-  const pixCode = "00020126580014br.gov.bcb.pix0136consulta-placa-brasil-checkout-" + Date.now();
+  const pixCode = pixData?.copyPaste || "";
 
   function formatCardNumber(v: string) {
     return v.replace(/\D/g, "").replace(/(.{4})/g, "$1 ").trim().slice(0, 19);
@@ -173,6 +180,8 @@ export default function CheckoutPage() {
     setIsSubmitting(true);
 
     try {
+      const [expiryMonth, expiryYear] = cardExpiry.split("/");
+
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -186,6 +195,14 @@ export default function CheckoutPage() {
           paymentMethod: paymentMethod === "pix" ? "pix" : "credit_card",
           couponId: storeCoupon?.id,
           couponDiscountPercent: storeCoupon?.discountPercent,
+          installments: paymentMethod === "card" ? Number(installments) : undefined,
+          card: paymentMethod === "card" ? {
+            holderName: cardName,
+            number: cardNumber,
+            expiryMonth: expiryMonth || "",
+            expiryYear: expiryYear || "",
+            ccv: cardCvv,
+          } : undefined,
         }),
       });
 
@@ -210,16 +227,18 @@ export default function CheckoutPage() {
         });
       }
 
-      setStep("processing");
-      setTimeout(() => {
-        if (paymentMethod === "pix") {
-          setStep("pix");
-        } else {
-          setStep("success");
-        }
-      }, 2000);
+      if (paymentMethod === "pix" && data.pix) {
+        setPixData(data.pix);
+        setStep("pix");
+      } else if (data.cardStatus === "CONFIRMED") {
+        setStep("success");
+      } else {
+        // Card payment pending (rare, usually confirms instantly)
+        setStep("success");
+      }
     } catch {
       setCheckoutError("Erro de conexão. Tente novamente.");
+    } finally {
       setIsSubmitting(false);
     }
   }
@@ -231,8 +250,8 @@ export default function CheckoutPage() {
   }
 
   function handleConfirmPix() {
-    setStep("processing");
-    setTimeout(() => setStep("success"), 2500);
+    clearCart();
+    router.push("/painel");
   }
 
   // Empty cart
@@ -327,11 +346,19 @@ export default function CheckoutPage() {
                 <p className="text-sm text-[#475569] mt-1">Escaneie o QR Code ou copie o código Pix</p>
               </div>
 
-              <div className="mx-auto mb-6 flex h-48 w-48 items-center justify-center rounded-2xl bg-gray-100 border-2 border-dashed border-gray-300">
-                <div className="text-center">
-                  <QrCode className="mx-auto h-16 w-16 text-gray-400" />
-                  <p className="text-xs text-gray-400 mt-2">QR Code Pix</p>
-                </div>
+              <div className="mx-auto mb-6 flex h-48 w-48 items-center justify-center rounded-2xl bg-white border-2 border-gray-200 overflow-hidden">
+                {pixData?.qrCodeBase64 ? (
+                  <img
+                    src={`data:image/png;base64,${pixData.qrCodeBase64}`}
+                    alt="QR Code Pix"
+                    className="h-full w-full object-contain p-2"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <QrCode className="mx-auto h-16 w-16 text-gray-400" />
+                    <p className="text-xs text-gray-400 mt-2">QR Code Pix</p>
+                  </div>
+                )}
               </div>
 
               <div className="mb-6">
@@ -358,8 +385,11 @@ export default function CheckoutPage() {
               </div>
 
               <Button onClick={handleConfirmPix} className="w-full bg-[#22C55E] hover:bg-[#16A34A] text-white font-semibold h-12">
-                Já realizei o pagamento
+                Já realizei o pagamento - Ir ao Painel
               </Button>
+              <p className="text-xs text-center text-[#94A3B8] mt-2">
+                O status será atualizado automaticamente quando o Pix for confirmado.
+              </p>
             </CardContent>
           </Card>
         </div>

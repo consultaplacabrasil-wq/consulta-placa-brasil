@@ -4,6 +4,11 @@ import { db } from "@/lib/db";
 import { users, payments, reportRequests, coupons } from "@/lib/db/schema";
 import { eq, sql } from "drizzle-orm";
 import { auth } from "@/lib/auth";
+import {
+  findOrCreateCustomer,
+  createPixPayment,
+  createCardPayment,
+} from "@/lib/asaas";
 
 interface CheckoutItem {
   id: string;
@@ -27,6 +32,8 @@ export async function POST(req: NextRequest) {
       paymentMethod,
       couponId,
       couponDiscountPercent,
+      card,
+      installments,
     } = body as {
       items: CheckoutItem[];
       name: string;
@@ -37,6 +44,14 @@ export async function POST(req: NextRequest) {
       paymentMethod: "pix" | "credit_card";
       couponId?: string;
       couponDiscountPercent?: number;
+      card?: {
+        holderName: string;
+        number: string;
+        expiryMonth: string;
+        expiryYear: string;
+        ccv: string;
+      };
+      installments?: number;
     };
 
     if (!items?.length || !name || !email || !cpfCnpj) {
@@ -71,7 +86,10 @@ export async function POST(req: NextRequest) {
 
       if (existingEmail) {
         return NextResponse.json(
-          { error: "Este e-mail já está cadastrado. Faça login primeiro.", code: "EMAIL_EXISTS" },
+          {
+            error: "Este e-mail já está cadastrado. Faça login primeiro.",
+            code: "EMAIL_EXISTS",
+          },
           { status: 409 }
         );
       }
@@ -85,7 +103,10 @@ export async function POST(req: NextRequest) {
 
       if (existingCpf) {
         return NextResponse.json(
-          { error: "Este CPF/CNPJ já está cadastrado. Faça login primeiro.", code: "CPF_EXISTS" },
+          {
+            error: "Este CPF/CNPJ já está cadastrado. Faça login primeiro.",
+            code: "CPF_EXISTS",
+          },
           { status: 409 }
         );
       }
@@ -110,8 +131,9 @@ export async function POST(req: NextRequest) {
     const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
     const discountPercent = couponDiscountPercent || 0;
     const discountAmount = subtotal * (discountPercent / 100);
-    const pixDiscount = paymentMethod === "pix" ? (subtotal - discountAmount) * 0.05 : 0;
-    const total = subtotal - discountAmount - pixDiscount;
+    const pixDiscount =
+      paymentMethod === "pix" ? (subtotal - discountAmount) * 0.05 : 0;
+    const total = Math.round((subtotal - discountAmount - pixDiscount) * 100) / 100;
 
     // Increment coupon usage
     if (couponId) {
@@ -121,7 +143,7 @@ export async function POST(req: NextRequest) {
         .where(eq(coupons.id, couponId));
     }
 
-    // Create payment
+    // Create payment record in DB
     const [payment] = await db
       .insert(payments)
       .values({
@@ -129,12 +151,13 @@ export async function POST(req: NextRequest) {
         amount: total.toFixed(2),
         method: paymentMethod === "pix" ? "pix" : "credit_card",
         status: "pending",
+        installments: installments || 1,
         couponId: couponId || null,
         discountAmount: discountAmount > 0 ? discountAmount.toFixed(2) : null,
       })
       .returning({ id: payments.id });
 
-    // Create report requests for items with plates
+    // Create report requests
     for (const item of items) {
       for (let i = 0; i < item.quantity; i++) {
         await db.insert(reportRequests).values({
@@ -147,12 +170,114 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({
-      paymentId: payment.id,
-      total,
-      isNewUser,
-      userId,
-    });
+    // Description for Asaas
+    const description = items
+      .map((i) => `${i.name}${i.quantity > 1 ? ` x${i.quantity}` : ""}`)
+      .join(", ");
+
+    // Create customer and payment in Asaas
+    try {
+      const customerId = await findOrCreateCustomer({
+        name: name.trim(),
+        email: email.toLowerCase().trim(),
+        cpfCnpj,
+        phone,
+      });
+
+      // Update user with Asaas customer ID
+      await db
+        .update(users)
+        .set({ asaasCustomerId: customerId })
+        .where(eq(users.id, userId));
+
+      if (paymentMethod === "pix") {
+        const pixResult = await createPixPayment({
+          customerId,
+          value: total,
+          description,
+          externalReference: payment.id,
+        });
+
+        // Save Asaas payment ID
+        await db
+          .update(payments)
+          .set({ asaasId: pixResult.paymentId })
+          .where(eq(payments.id, payment.id));
+
+        return NextResponse.json({
+          paymentId: payment.id,
+          total,
+          isNewUser,
+          userId,
+          pix: {
+            qrCodeBase64: pixResult.pixQrCodeUrl,
+            copyPaste: pixResult.pixCopyPaste,
+            expirationDate: pixResult.expirationDate,
+          },
+        });
+      } else {
+        // Credit card
+        if (!card) {
+          return NextResponse.json(
+            { error: "Dados do cartão são obrigatórios" },
+            { status: 400 }
+          );
+        }
+
+        const cardResult = await createCardPayment({
+          customerId,
+          value: total,
+          description,
+          externalReference: payment.id,
+          installmentCount: installments || 1,
+          card,
+          cardHolderInfo: {
+            name: name.trim(),
+            email: email.toLowerCase().trim(),
+            cpfCnpj,
+            phone,
+          },
+        });
+
+        // Save Asaas payment ID
+        await db
+          .update(payments)
+          .set({
+            asaasId: cardResult.paymentId,
+            status: cardResult.status === "CONFIRMED" ? "confirmed" : "pending",
+          })
+          .where(eq(payments.id, payment.id));
+
+        // If card payment confirmed immediately, update report requests
+        if (cardResult.status === "CONFIRMED") {
+          await db
+            .update(reportRequests)
+            .set({ status: "processing" })
+            .where(eq(reportRequests.paymentId, payment.id));
+        }
+
+        return NextResponse.json({
+          paymentId: payment.id,
+          total,
+          isNewUser,
+          userId,
+          cardStatus: cardResult.status,
+        });
+      }
+    } catch (asaasError) {
+      console.error("Asaas error:", asaasError);
+      // Payment record exists in DB but Asaas failed - return error
+      // Don't delete the DB record, admin can manually handle
+      return NextResponse.json(
+        {
+          error:
+            asaasError instanceof Error
+              ? asaasError.message
+              : "Erro ao processar pagamento. Tente novamente.",
+        },
+        { status: 502 }
+      );
+    }
   } catch (error) {
     console.error("Checkout error:", error);
     return NextResponse.json(
