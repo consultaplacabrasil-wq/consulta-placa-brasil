@@ -194,7 +194,7 @@ export default async function NoticiaPage({ params }: PageProps) {
                 />
               </div>
               <figcaption className="mt-2 text-xs text-[#94A3B8] text-center">
-                Imagem ilustrativa. Fonte:{" "}
+                Foto ilustrativa. As imagens utilizadas são meramente ilustrativas e não retratam os fatos noticiados. Fonte:{" "}
                 <a
                   href="https://www.pexels.com"
                   target="_blank"
