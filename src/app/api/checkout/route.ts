@@ -131,9 +131,7 @@ export async function POST(req: NextRequest) {
     const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
     const discountPercent = couponDiscountPercent || 0;
     const discountAmount = subtotal * (discountPercent / 100);
-    const pixDiscount =
-      paymentMethod === "pix" ? (subtotal - discountAmount) * 0.05 : 0;
-    const total = Math.round((subtotal - discountAmount - pixDiscount) * 100) / 100;
+    const total = Math.round((subtotal - discountAmount) * 100) / 100;
 
     // Increment coupon usage
     if (couponId) {

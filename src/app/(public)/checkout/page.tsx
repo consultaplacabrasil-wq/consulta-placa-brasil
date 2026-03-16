@@ -33,7 +33,6 @@ import {
   AlertCircle,
   X,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 type CheckoutStep = "review" | "payment" | "processing" | "pix" | "success";
 
@@ -99,8 +98,7 @@ export default function CheckoutPage() {
   const subtotal = totalPrice();
   const discountPercent = storeCoupon?.discountPercent || 0;
   const discount = subtotal * (discountPercent / 100);
-  const pixDiscount = paymentMethod === "pix" ? (subtotal - discount) * 0.05 : 0;
-  const total = subtotal - discount - pixDiscount;
+  const total = subtotal - discount;
 
   const pixCode = pixData?.copyPaste || "";
 
@@ -525,7 +523,6 @@ export default function CheckoutPage() {
                         <p className="font-semibold text-[#0F172A] text-sm">Pix</p>
                         <p className="text-xs text-[#475569]">Instantâneo</p>
                       </div>
-                      {paymentMethod === "pix" && <Badge className="ml-auto bg-[#FF4D30] text-white text-[10px]">-5%</Badge>}
                     </button>
                     <button
                       onClick={() => setPaymentMethod("card")}
@@ -605,12 +602,6 @@ export default function CheckoutPage() {
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-[#FF4D30]">Cupom ({storeCoupon.discountPercent}%)</span>
                         <span className="text-[#FF4D30]">-{formatCurrency(discount)}</span>
-                      </div>
-                    )}
-                    {paymentMethod === "pix" && (
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-[#FF4D30]">Desconto Pix (5%)</span>
-                        <span className="text-[#FF4D30]">-{formatCurrency(pixDiscount)}</span>
                       </div>
                     )}
                     <div className="flex items-center justify-between pt-2 border-t border-[#E2E8F0]">
