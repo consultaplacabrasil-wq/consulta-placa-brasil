@@ -59,11 +59,12 @@ export default async function PainelPage() {
 
   const userId = session.user.id;
 
-  // Fetch stats
+  // Fetch stats - only count confirmed/received payments for totals
   const [paymentStats] = await db
     .select({
       totalPayments: sql<number>`count(*)`,
-      totalSpent: sql<number>`coalesce(sum(cast(${payments.amount} as numeric)), 0)`,
+      totalSpent: sql<number>`coalesce(sum(case when ${payments.status} in ('confirmed', 'received') then cast(${payments.amount} as numeric) else 0 end), 0)`,
+      confirmedPayments: sql<number>`count(case when ${payments.status} in ('confirmed', 'received') then 1 end)`,
     })
     .from(payments)
     .where(eq(payments.userId, userId));
@@ -93,21 +94,21 @@ export default async function PainelPage() {
 
   const stats = [
     {
-      title: "Total de Consultas",
+      title: "Consultas",
       value: String(reportStats?.totalReports || 0),
-      description: "consultas realizadas",
+      description: "consultas solicitadas",
       icon: Search,
       color: "bg-blue-100 text-blue-600",
     },
     {
-      title: "Relatórios Gerados",
-      value: String(paymentStats?.totalPayments || 0),
-      description: "pagamentos",
+      title: "Pagamentos",
+      value: String(paymentStats?.confirmedPayments || 0),
+      description: "pagamentos confirmados",
       icon: FileText,
       color: "bg-orange-100 text-orange-600",
     },
     {
-      title: "Gasto Total",
+      title: "Total Pago",
       value: formatCurrency(Number(paymentStats?.totalSpent || 0)),
       description: "em consultas e pacotes",
       icon: CreditCard,

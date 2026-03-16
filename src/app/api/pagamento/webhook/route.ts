@@ -25,37 +25,50 @@ interface AsaasWebhookPayload {
 
 export async function POST(request: NextRequest) {
   try {
-    // Validate webhook token
-    const incomingToken = request.headers.get("asaas-access-token") || "";
+    const payload: AsaasWebhookPayload = await request.json();
+
+    // Validate webhook token - Asaas sends it in different ways
+    const incomingToken =
+      request.headers.get("asaas-access-token") ||
+      request.nextUrl.searchParams.get("access_token") ||
+      "";
     const expectedToken = await getWebhookToken();
 
-    if (!expectedToken || !incomingToken || incomingToken !== expectedToken) {
-      console.warn("Webhook: invalid token");
+    if (expectedToken && incomingToken !== expectedToken) {
+      console.warn("Webhook: invalid token received:", incomingToken ? "token mismatch" : "no token");
       return NextResponse.json({ error: "Token inválido" }, { status: 401 });
     }
-
-    const payload: AsaasWebhookPayload = await request.json();
     const { event, payment: asaasPayment } = payload;
-    const paymentDbId = asaasPayment.externalReference;
 
-    console.log(`Webhook received: ${event} for payment ${asaasPayment.id} (ref: ${paymentDbId})`);
+    console.log(`Webhook received: ${event} for asaas payment ${asaasPayment.id} (ref: ${asaasPayment.externalReference})`);
 
-    if (!paymentDbId) {
-      console.warn("Webhook: no externalReference");
-      return NextResponse.json({ received: true });
+    // Find payment in DB by externalReference (our payment ID) or by asaasId
+    let dbPayment = null;
+
+    if (asaasPayment.externalReference) {
+      const [found] = await db
+        .select()
+        .from(payments)
+        .where(eq(payments.id, asaasPayment.externalReference))
+        .limit(1);
+      dbPayment = found;
     }
-
-    // Find payment in DB
-    const [dbPayment] = await db
-      .select()
-      .from(payments)
-      .where(eq(payments.id, paymentDbId))
-      .limit(1);
 
     if (!dbPayment) {
-      console.warn(`Webhook: payment ${paymentDbId} not found in DB`);
+      const [found] = await db
+        .select()
+        .from(payments)
+        .where(eq(payments.asaasId, asaasPayment.id))
+        .limit(1);
+      dbPayment = found;
+    }
+
+    if (!dbPayment) {
+      console.warn(`Webhook: payment not found for asaas ${asaasPayment.id} / ref ${asaasPayment.externalReference}`);
       return NextResponse.json({ received: true });
     }
+
+    const paymentDbId = dbPayment.id;
 
     switch (event) {
       case "PAYMENT_CONFIRMED":
