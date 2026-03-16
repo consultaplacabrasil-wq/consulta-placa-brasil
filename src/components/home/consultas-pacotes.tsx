@@ -87,9 +87,9 @@ const defaultPacotes: Pacote[] = [
 
 export function ConsultasPacotes() {
   const [activeTab, setActiveTab] = useState<"consultas" | "pacotes">("consultas");
-  const [consultas, setConsultas] = useState<ConsultaType[]>(defaultConsultas);
-  const [pacotesList, setPacotesList] = useState<Pacote[]>(defaultPacotes);
-  const [loading, setLoading] = useState(false);
+  const [consultas, setConsultas] = useState<ConsultaType[]>([]);
+  const [pacotesList, setPacotesList] = useState<Pacote[]>([]);
+  const [loading, setLoading] = useState(true);
   const { addItem } = useCartStore();
 
   useEffect(() => {
@@ -99,17 +99,21 @@ export function ConsultasPacotes() {
           fetch("/api/admin/consultas-types"),
           fetch("/api/admin/pacotes"),
         ]);
+        let loadedConsultas: ConsultaType[] = [];
+        let loadedPacotes: Pacote[] = [];
         if (consultasRes.ok) {
           const data = await consultasRes.json();
-          const active = data.filter((c: ConsultaType) => c.ativo !== false);
-          if (active.length > 0) setConsultas(active);
+          loadedConsultas = data.filter((c: ConsultaType) => c.ativo !== false);
         }
         if (pacotesRes.ok) {
           const data = await pacotesRes.json();
-          if (data.length > 0) setPacotesList(data);
+          loadedPacotes = data;
         }
+        setConsultas(loadedConsultas.length > 0 ? loadedConsultas : defaultConsultas);
+        setPacotesList(loadedPacotes.length > 0 ? loadedPacotes : defaultPacotes);
       } catch {
-        // Keep default data on error
+        setConsultas(defaultConsultas);
+        setPacotesList(defaultPacotes);
       } finally {
         setLoading(false);
       }
