@@ -17,19 +17,49 @@ import {
   Tag,
   ChevronLeft,
   Search,
+  CheckCircle,
+  Loader2,
+  X,
 } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function CartDrawer() {
-  const { items, isOpen, closeCart, removeItem, updateQuantity, clearCart, totalPrice } =
+  const { items, isOpen, closeCart, removeItem, updateQuantity, clearCart, totalPrice, coupon, setCoupon } =
     useCartStore();
   const router = useRouter();
-  const [coupon, setCoupon] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [couponLoading, setCouponLoading] = useState(false);
+  const [couponError, setCouponError] = useState("");
 
-  const total = totalPrice();
+  const subtotal = totalPrice();
+  const discountAmount = coupon ? subtotal * (coupon.discountPercent / 100) : 0;
+  const total = subtotal - discountAmount;
   const itemCount = items.reduce((sum, i) => sum + i.quantity, 0);
+
+  async function handleApplyCoupon() {
+    if (!couponCode.trim()) return;
+    setCouponLoading(true);
+    setCouponError("");
+    try {
+      const res = await fetch("/api/coupon/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: couponCode.trim().toUpperCase() }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setCouponError(data.error || "Cupom inválido");
+        return;
+      }
+      setCoupon(data);
+      setCouponCode("");
+    } catch {
+      setCouponError("Erro ao validar cupom");
+    } finally {
+      setCouponLoading(false);
+    }
+  }
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && closeCart()}>
@@ -139,21 +169,49 @@ export function CartDrawer() {
         {items.length > 0 && (
           <div className="border-t border-gray-100 px-4 py-4 space-y-4">
             {/* Coupon */}
-            <div className="flex items-center gap-2">
-              <div className="relative flex-1">
-                <input
-                  type="text"
-                  value={coupon}
-                  onChange={(e) => setCoupon(e.target.value)}
-                  placeholder="Cupom de Desconto"
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm placeholder:text-gray-400 focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
-                />
-                <Tag className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300" />
+            {coupon ? (
+              <div className="flex items-center justify-between rounded-lg bg-green-50 border border-green-200 px-3 py-2.5">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-600" />
+                  <span className="text-sm font-medium text-green-700">
+                    {coupon.code} (-{coupon.discountPercent}%)
+                  </span>
+                </div>
+                <button onClick={() => setCoupon(null)} className="text-gray-400 hover:text-red-500">
+                  <X className="h-4 w-4" />
+                </button>
               </div>
-              <button className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#FF4D30] text-[#FF4D30] hover:bg-[#FF4D30] hover:text-white transition-colors">
-                <Search className="h-4 w-4" />
-              </button>
-            </div>
+            ) : (
+              <div>
+                <div className="flex items-center gap-2">
+                  <div className="relative flex-1">
+                    <input
+                      type="text"
+                      value={couponCode}
+                      onChange={(e) => { setCouponCode(e.target.value.toUpperCase()); setCouponError(""); }}
+                      placeholder="Cupom de Desconto"
+                      className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm placeholder:text-gray-400 focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
+                      onKeyDown={(e) => e.key === "Enter" && handleApplyCoupon()}
+                    />
+                    <Tag className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300" />
+                  </div>
+                  <button
+                    onClick={handleApplyCoupon}
+                    disabled={couponLoading}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#FF4D30] text-[#FF4D30] hover:bg-[#FF4D30] hover:text-white transition-colors disabled:opacity-50"
+                  >
+                    {couponLoading ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Search className="h-4 w-4" />
+                    )}
+                  </button>
+                </div>
+                {couponError && (
+                  <p className="mt-1 text-xs text-red-500">{couponError}</p>
+                )}
+              </div>
+            )}
 
             {/* Order Summary */}
             <div className="space-y-2">
@@ -171,6 +229,12 @@ export function CartDrawer() {
                   </span>
                 </div>
               ))}
+              {coupon && (
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-[#FF4D30]">Desconto ({coupon.discountPercent}%)</span>
+                  <span className="text-[#FF4D30]">-{formatCurrency(discountAmount)}</span>
+                </div>
+              )}
               <div className="flex items-center justify-between border-t border-gray-100 pt-2">
                 <span className="text-base font-bold text-[#0F172A]">Valor Total</span>
                 <span className="text-base font-bold text-[#0F172A]">

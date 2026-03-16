@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { AnalyticsScripts } from "@/components/layout/analytics-scripts";
+import { AuthProvider } from "@/components/providers/session-provider";
 import "./globals.css";
 
 const lexend = Lexend({
@@ -89,8 +90,10 @@ export default function RootLayout({
         <AnalyticsScripts />
       </head>
       <body className={`${lexend.variable} font-sans antialiased`}>
-        {children}
-        <Toaster />
+        <AuthProvider>
+          {children}
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useSession, signIn } from "next-auth/react";
 import { useCartStore } from "@/store/cart-store";
 import { formatCurrency } from "@/constants";
 import { Button } from "@/components/ui/button";
@@ -27,23 +28,54 @@ import {
   User,
   Mail,
   Phone,
+  Eye,
+  EyeOff,
+  AlertCircle,
+  X,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 type CheckoutStep = "review" | "payment" | "processing" | "pix" | "success";
 
+function validatePassword(pw: string): string[] {
+  const errors: string[] = [];
+  if (pw.length < 8) errors.push("Mínimo 8 caracteres");
+  if (!/[A-Z]/.test(pw)) errors.push("1 letra maiúscula");
+  if (!/[0-9]/.test(pw)) errors.push("1 número");
+  if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(pw)) errors.push("1 caractere especial");
+  // Sequential numbers (123, 234, etc.)
+  for (let i = 0; i < pw.length - 2; i++) {
+    const a = pw.charCodeAt(i), b = pw.charCodeAt(i + 1), c = pw.charCodeAt(i + 2);
+    if (b === a + 1 && c === b + 1) { errors.push("Sem sequências (ex: 123, abc)"); break; }
+  }
+  // Repeated characters (111, aaa)
+  for (let i = 0; i < pw.length - 2; i++) {
+    if (pw[i] === pw[i + 1] && pw[i + 1] === pw[i + 2]) { errors.push("Sem caracteres repetidos (ex: 111, aaa)"); break; }
+  }
+  return errors;
+}
+
 export default function CheckoutPage() {
   const router = useRouter();
-  const { items, removeItem, updateQuantity, clearCart, totalPrice } = useCartStore();
+  const { data: session } = useSession();
+  const isLoggedIn = !!session?.user;
+  const { items, removeItem, updateQuantity, clearCart, totalPrice, coupon: storeCoupon, setCoupon: setStoreCoupon } = useCartStore();
   const [step, setStep] = useState<CheckoutStep>("review");
   const [paymentMethod, setPaymentMethod] = useState<"pix" | "card">("pix");
   const [copied, setCopied] = useState(false);
 
   // Customer info
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState(session?.user?.name || "");
+  const [email, setEmail] = useState(session?.user?.email || "");
   const [phone, setPhone] = useState("");
   const [cpf, setCpf] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Field errors
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [checkoutError, setCheckoutError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Card form
   const [cardNumber, setCardNumber] = useState("");
@@ -52,12 +84,14 @@ export default function CheckoutPage() {
   const [cardCvv, setCardCvv] = useState("");
   const [installments, setInstallments] = useState("1");
 
-  // Coupon
-  const [coupon, setCoupon] = useState("");
-  const [couponApplied, setCouponApplied] = useState(false);
+  // Coupon (local for input)
+  const [couponCode, setCouponCode] = useState("");
+  const [couponLoading, setCouponLoading] = useState(false);
+  const [couponError, setCouponError] = useState("");
 
   const subtotal = totalPrice();
-  const discount = couponApplied ? subtotal * 0.1 : 0;
+  const discountPercent = storeCoupon?.discountPercent || 0;
+  const discount = subtotal * (discountPercent / 100);
   const pixDiscount = paymentMethod === "pix" ? (subtotal - discount) * 0.05 : 0;
   const total = subtotal - discount - pixDiscount;
 
@@ -88,15 +122,106 @@ export default function CheckoutPage() {
     return clean;
   }
 
-  function handlePay() {
-    setStep("processing");
-    setTimeout(() => {
-      if (paymentMethod === "pix") {
-        setStep("pix");
-      } else {
-        setStep("success");
+  async function handleApplyCoupon() {
+    if (!couponCode.trim()) return;
+    setCouponLoading(true);
+    setCouponError("");
+    try {
+      const res = await fetch("/api/coupon/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: couponCode.trim().toUpperCase() }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setCouponError(data.error || "Cupom inválido");
+        return;
       }
-    }, 2000);
+      setStoreCoupon(data);
+      setCouponCode("");
+    } catch {
+      setCouponError("Erro ao validar cupom");
+    } finally {
+      setCouponLoading(false);
+    }
+  }
+
+  async function handlePay() {
+    setCheckoutError("");
+    const errors: Record<string, string> = {};
+
+    if (!name.trim()) errors.name = "Nome obrigatório";
+    if (!email.trim()) errors.email = "E-mail obrigatório";
+    if (!cpf.trim() || cpf.replace(/\D/g, "").length < 11) errors.cpf = "CPF obrigatório";
+    if (!phone.trim() || phone.replace(/\D/g, "").length < 10) errors.phone = "Telefone obrigatório";
+
+    if (!isLoggedIn) {
+      if (!password) {
+        errors.password = "Senha obrigatória";
+      } else {
+        const pwErrors = validatePassword(password);
+        if (pwErrors.length > 0) errors.password = pwErrors.join(", ");
+      }
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+
+    setFieldErrors({});
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items,
+          name: name.trim(),
+          email: email.toLowerCase().trim(),
+          cpfCnpj: cpf,
+          phone: phone,
+          password: !isLoggedIn ? password : undefined,
+          paymentMethod: paymentMethod === "pix" ? "pix" : "credit_card",
+          couponId: storeCoupon?.id,
+          couponDiscountPercent: storeCoupon?.discountPercent,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        if (data.code === "EMAIL_EXISTS" || data.code === "CPF_EXISTS") {
+          setCheckoutError(data.error + ' <a href="/login" class="underline font-semibold">Ir para o login</a>');
+        } else {
+          setCheckoutError(data.error || "Erro ao processar pagamento");
+        }
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Auto-login if new user
+      if (data.isNewUser) {
+        await signIn("credentials", {
+          email: email.toLowerCase().trim(),
+          password,
+          redirect: false,
+        });
+      }
+
+      setStep("processing");
+      setTimeout(() => {
+        if (paymentMethod === "pix") {
+          setStep("pix");
+        } else {
+          setStep("success");
+        }
+      }, 2000);
+    } catch {
+      setCheckoutError("Erro de conexão. Tente novamente.");
+      setIsSubmitting(false);
+    }
   }
 
   function handleCopyPix() {
@@ -271,6 +396,22 @@ export default function CheckoutPage() {
             </div>
           </div>
 
+          {/* Logged in banner */}
+          {isLoggedIn && (
+            <div className="mb-6 rounded-lg bg-green-50 border border-green-200 p-3 flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-600" />
+              <span className="text-sm text-green-700">Logado como <strong>{session.user?.email}</strong></span>
+            </div>
+          )}
+
+          {/* Checkout error */}
+          {checkoutError && (
+            <div className="mb-6 rounded-lg bg-red-50 border border-red-200 p-3 flex items-center gap-2">
+              <AlertCircle className="h-4 w-4 text-red-600 shrink-0" />
+              <span className="text-sm text-red-700" dangerouslySetInnerHTML={{ __html: checkoutError }} />
+            </div>
+          )}
+
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             <div className="space-y-6 lg:col-span-2">
               {/* Customer Info */}
@@ -281,33 +422,58 @@ export default function CheckoutPage() {
                 <CardContent className="space-y-3">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="text-xs font-medium text-[#475569] mb-1 block">Nome completo</label>
+                      <label className="text-xs font-medium text-[#475569] mb-1 block">Nome completo *</label>
                       <div className="relative">
                         <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#94A3B8]" />
-                        <Input placeholder="Seu nome" value={name} onChange={(e) => setName(e.target.value)} className="pl-9" />
+                        <Input placeholder="Seu nome" value={name} onChange={(e) => { setName(e.target.value); setFieldErrors(p => ({ ...p, name: "" })); }} className={`pl-9 ${fieldErrors.name ? "border-red-400" : ""}`} />
                       </div>
+                      {fieldErrors.name && <p className="text-xs text-red-500 mt-1">{fieldErrors.name}</p>}
                     </div>
                     <div>
-                      <label className="text-xs font-medium text-[#475569] mb-1 block">CPF</label>
-                      <Input placeholder="000.000.000-00" value={cpf} onChange={(e) => setCpf(formatCpf(e.target.value))} maxLength={14} />
+                      <label className="text-xs font-medium text-[#475569] mb-1 block">CPF *</label>
+                      <Input placeholder="000.000.000-00" value={cpf} onChange={(e) => { setCpf(formatCpf(e.target.value)); setFieldErrors(p => ({ ...p, cpf: "" })); }} maxLength={14} className={fieldErrors.cpf ? "border-red-400" : ""} />
+                      {fieldErrors.cpf && <p className="text-xs text-red-500 mt-1">{fieldErrors.cpf}</p>}
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="text-xs font-medium text-[#475569] mb-1 block">E-mail</label>
+                      <label className="text-xs font-medium text-[#475569] mb-1 block">E-mail *</label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#94A3B8]" />
-                        <Input placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className="pl-9" />
+                        <Input placeholder="seu@email.com" value={email} onChange={(e) => { setEmail(e.target.value); setFieldErrors(p => ({ ...p, email: "" })); }} className={`pl-9 ${fieldErrors.email ? "border-red-400" : ""}`} />
                       </div>
+                      {fieldErrors.email && <p className="text-xs text-red-500 mt-1">{fieldErrors.email}</p>}
                     </div>
                     <div>
-                      <label className="text-xs font-medium text-[#475569] mb-1 block">Telefone</label>
+                      <label className="text-xs font-medium text-[#475569] mb-1 block">Telefone *</label>
                       <div className="relative">
                         <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#94A3B8]" />
-                        <Input placeholder="(11) 99999-9999" value={phone} onChange={(e) => setPhone(formatPhone(e.target.value))} className="pl-9" maxLength={15} />
+                        <Input placeholder="(11) 99999-9999" value={phone} onChange={(e) => { setPhone(formatPhone(e.target.value)); setFieldErrors(p => ({ ...p, phone: "" })); }} className={`pl-9 ${fieldErrors.phone ? "border-red-400" : ""}`} maxLength={15} />
                       </div>
+                      {fieldErrors.phone && <p className="text-xs text-red-500 mt-1">{fieldErrors.phone}</p>}
                     </div>
                   </div>
+
+                  {/* Password (only for non-logged-in users) */}
+                  {!isLoggedIn && (
+                    <div>
+                      <label className="text-xs font-medium text-[#475569] mb-1 block">Senha * <span className="text-gray-400 font-normal">(criar conta para acompanhar pedidos)</span></label>
+                      <div className="relative">
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#94A3B8]" />
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Mín. 8 chars, 1 maiúscula, 1 número, 1 especial"
+                          value={password}
+                          onChange={(e) => { setPassword(e.target.value); setFieldErrors(p => ({ ...p, password: "" })); }}
+                          className={`pl-9 pr-10 ${fieldErrors.password ? "border-red-400" : ""}`}
+                        />
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                          {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </button>
+                      </div>
+                      {fieldErrors.password && <p className="text-xs text-red-500 mt-1">{fieldErrors.password}</p>}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
 
@@ -405,9 +571,9 @@ export default function CheckoutPage() {
                       <span className="text-[#475569]">Subtotal</span>
                       <span className="text-[#0F172A]">{formatCurrency(subtotal)}</span>
                     </div>
-                    {couponApplied && (
+                    {storeCoupon && (
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-[#FF4D30]">Cupom (10%)</span>
+                        <span className="text-[#FF4D30]">Cupom ({storeCoupon.discountPercent}%)</span>
                         <span className="text-[#FF4D30]">-{formatCurrency(discount)}</span>
                       </div>
                     )}
@@ -423,9 +589,17 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  <Button onClick={handlePay} className="w-full gap-2 bg-[#FF4D30] py-6 text-base font-semibold hover:bg-[#E8432A] rounded-xl">
-                    <Lock className="h-5 w-5" />
-                    {paymentMethod === "pix" ? "Gerar Pix" : "Pagar com Cartão"}
+                  <Button
+                    onClick={handlePay}
+                    disabled={isSubmitting}
+                    className="w-full gap-2 bg-[#FF4D30] py-6 text-base font-semibold hover:bg-[#E8432A] rounded-xl disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                    ) : (
+                      <Lock className="h-5 w-5" />
+                    )}
+                    {isSubmitting ? "Processando..." : paymentMethod === "pix" ? "Gerar Pix" : "Pagar com Cartão"}
                   </Button>
 
                   <div className="flex flex-wrap items-center justify-center gap-3 pt-1 text-xs text-[#94A3B8]">
@@ -534,19 +708,36 @@ export default function CheckoutPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Coupon */}
-                <div className="flex gap-2">
-                  <div className="relative flex-1">
-                    <Tag className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#475569]" />
-                    <Input placeholder="Cupom de desconto" value={coupon} onChange={(e) => setCoupon(e.target.value.toUpperCase())} className="pl-9" />
+                {storeCoupon ? (
+                  <div className="flex items-center justify-between rounded-lg bg-green-50 border border-green-200 px-3 py-2.5">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <span className="text-sm font-medium text-green-700">
+                        {storeCoupon.code} (-{storeCoupon.discountPercent}%)
+                      </span>
+                    </div>
+                    <button onClick={() => setStoreCoupon(null)} className="text-gray-400 hover:text-red-500">
+                      <X className="h-4 w-4" />
+                    </button>
                   </div>
-                  <Button variant="outline" onClick={() => { if (coupon.length > 0) setCouponApplied(true); }}>
-                    Aplicar
-                  </Button>
-                </div>
-                {couponApplied && (
-                  <div className="flex items-center gap-2 text-sm text-[#FF4D30]">
-                    <CheckCircle className="h-4 w-4" />
-                    Cupom aplicado! 10% de desconto.
+                ) : (
+                  <div>
+                    <div className="flex gap-2">
+                      <div className="relative flex-1">
+                        <Tag className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#475569]" />
+                        <Input
+                          placeholder="Cupom de desconto"
+                          value={couponCode}
+                          onChange={(e) => { setCouponCode(e.target.value.toUpperCase()); setCouponError(""); }}
+                          className="pl-9"
+                          onKeyDown={(e) => e.key === "Enter" && handleApplyCoupon()}
+                        />
+                      </div>
+                      <Button variant="outline" onClick={handleApplyCoupon} disabled={couponLoading}>
+                        {couponLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Aplicar"}
+                      </Button>
+                    </div>
+                    {couponError && <p className="mt-1 text-xs text-red-500">{couponError}</p>}
                   </div>
                 )}
 
@@ -555,9 +746,9 @@ export default function CheckoutPage() {
                     <span className="text-[#475569]">Subtotal ({items.reduce((s, i) => s + i.quantity, 0)} itens)</span>
                     <span className="text-[#0F172A]">{formatCurrency(subtotal)}</span>
                   </div>
-                  {couponApplied && (
+                  {storeCoupon && (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-[#FF4D30]">Desconto (10%)</span>
+                      <span className="text-[#FF4D30]">Desconto ({storeCoupon.discountPercent}%)</span>
                       <span className="text-[#FF4D30]">-{formatCurrency(discount)}</span>
                     </div>
                   )}
