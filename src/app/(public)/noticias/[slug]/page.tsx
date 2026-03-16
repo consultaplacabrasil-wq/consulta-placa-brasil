@@ -182,16 +182,29 @@ export default async function NoticiaPage({ params }: PageProps) {
 
           {/* Imagem hero */}
           {noticia.imagemUrl && (
-            <div className="mt-6 relative w-full aspect-[16/9] rounded-xl overflow-hidden">
-              <Image
-                src={noticia.imagemUrl}
-                alt={noticia.imagemAlt || noticia.titulo}
-                fill
-                priority
-                sizes="(max-width: 896px) 100vw, 896px"
-                className="object-cover"
-              />
-            </div>
+            <figure className="mt-6">
+              <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden">
+                <Image
+                  src={noticia.imagemUrl}
+                  alt={noticia.imagemAlt || noticia.titulo}
+                  fill
+                  priority
+                  sizes="(max-width: 896px) 100vw, 896px"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-2 text-xs text-[#94A3B8] text-center">
+                Imagem ilustrativa. Fonte:{" "}
+                <a
+                  href="https://www.pexels.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-[#475569]"
+                >
+                  Pexels
+                </a>
+              </figcaption>
+            </figure>
           )}
 
           {/* Content */}
