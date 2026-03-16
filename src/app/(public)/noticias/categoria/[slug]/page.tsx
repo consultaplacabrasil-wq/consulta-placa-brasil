@@ -64,6 +64,8 @@ export default async function CategoriaPage({
         resumo: noticias.resumo,
         categoria: noticias.categoria,
         publishedAt: noticias.publishedAt,
+        imagemUrl: noticias.imagemUrl,
+        imagemAlt: noticias.imagemAlt,
       })
       .from(noticias)
       .where(whereClause)
@@ -138,6 +140,8 @@ export default async function CategoriaPage({
               resumo={n.resumo}
               categoria={n.categoria}
               publishedAt={n.publishedAt?.toISOString() || null}
+              imagemUrl={n.imagemUrl}
+              imagemAlt={n.imagemAlt}
             />
           ))}
         </div>

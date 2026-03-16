@@ -5,6 +5,7 @@ import { noticias } from "@/lib/db/schema";
 import { eq, and, ne, desc, sql } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import NoticiaBadge, {
   getCategoriaLabel,
 } from "@/components/noticias/NoticiaBadge";
@@ -74,6 +75,9 @@ export async function generateMetadata({
       type: "article",
       url: `https://consultaplacabrasil.com/noticias/${slug}`,
       publishedTime: noticia.publishedAt?.toISOString(),
+      ...(noticia.imagemUrl && {
+        images: [{ url: noticia.imagemUrl, alt: noticia.imagemAlt || title, width: 1880, height: 1253 }],
+      }),
     },
   };
 }
@@ -120,6 +124,14 @@ export default async function NoticiaPage({ params }: PageProps) {
         url: "https://consultaplacabrasil.com/logo.webp",
       },
     },
+    ...(noticia.imagemUrl && {
+      image: {
+        "@type": "ImageObject",
+        url: noticia.imagemUrl,
+        width: 1880,
+        height: 1253,
+      },
+    }),
   };
 
   return (
@@ -167,6 +179,20 @@ export default async function NoticiaPage({ params }: PageProps) {
             <time>{formatDate(noticia.publishedAt)}</time>
             <span>{readTime} min de leitura</span>
           </div>
+
+          {/* Imagem hero */}
+          {noticia.imagemUrl && (
+            <div className="mt-6 relative w-full aspect-[16/9] rounded-xl overflow-hidden">
+              <Image
+                src={noticia.imagemUrl}
+                alt={noticia.imagemAlt || noticia.titulo}
+                fill
+                priority
+                sizes="(max-width: 896px) 100vw, 896px"
+                className="object-cover"
+              />
+            </div>
+          )}
 
           {/* Content */}
           <div

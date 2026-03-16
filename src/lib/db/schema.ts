@@ -286,6 +286,9 @@ export const noticias = pgTable(
     seoTitle: varchar("seo_title", { length: 70 }),
     seoDescription: varchar("seo_description", { length: 160 }),
     seoCanonical: text("seo_canonical"),
+    // Imagem
+    imagemUrl: text("imagem_url"),
+    imagemAlt: varchar("imagem_alt", { length: 255 }),
     // CTA
     ctaExibir: boolean("cta_exibir").default(true),
     ctaTexto: text("cta_texto").default(

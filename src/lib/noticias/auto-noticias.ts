@@ -5,6 +5,7 @@ import { buscarNoticiasRSS } from "./rss";
 import { isDuplicata } from "./dedup";
 import { reescreverNoticia } from "./deepseek";
 import { gerarSlugUnico } from "./slugify";
+import { buscarImagemPexels } from "./imagem";
 
 interface ResultadoExecucao {
   categoria: string;
@@ -123,6 +124,9 @@ export async function executarAutoNoticias(
         // Gerar slug unico
         const slug = await gerarSlugUnico(artigo.titulo);
 
+        // Buscar imagem no Pexels
+        const imagem = await buscarImagemPexels(artigo.titulo, config.categoria);
+
         // Determinar status
         const status = config.autoPublish ? "published" : "draft";
 
@@ -140,6 +144,8 @@ export async function executarAutoNoticias(
           geradoPorIA: true,
           seoTitle: artigo.tituloSEO?.substring(0, 70),
           seoDescription: artigo.metaDescription?.substring(0, 160),
+          imagemUrl: imagem?.url || null,
+          imagemAlt: imagem?.alt?.substring(0, 255) || null,
           ctaExibir: true,
           ctaTexto: "Vai comprar um veículo? Consulte a placa antes!",
           ctaLink: "https://consultaplacabrasil.com/",
