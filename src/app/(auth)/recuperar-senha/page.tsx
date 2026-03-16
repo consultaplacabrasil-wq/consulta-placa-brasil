@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Mail, ArrowLeft, CheckCircle } from "lucide-react";
+import { Mail, ArrowLeft, CheckCircle, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,15 +12,34 @@ export default function RecuperarSenhaPage() {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setError("");
     setIsLoading(true);
-    // TODO: integrate with password recovery API
-    setTimeout(() => {
-      setIsLoading(false);
+
+    try {
+      const res = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.toLowerCase().trim() }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Erro ao enviar e-mail");
+        setIsLoading(false);
+        return;
+      }
+
       setSent(true);
-    }, 1000);
+    } catch {
+      setError("Erro de conexão. Tente novamente.");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   if (sent) {
@@ -32,13 +51,14 @@ export default function RecuperarSenhaPage() {
           </div>
           <CardTitle className="text-2xl font-bold text-[#0F172A]">E-mail enviado!</CardTitle>
           <CardDescription className="text-gray-500">
-            Enviamos um link de recuperacao para <strong>{email}</strong>. Verifique sua caixa de entrada e a pasta de spam.
+            Se existe uma conta com o e-mail <strong>{email}</strong>, enviamos um link de recuperação.
+            Verifique sua caixa de entrada e a pasta de spam.
           </CardDescription>
         </CardHeader>
         <CardFooter className="flex flex-col gap-3">
           <Button
             className="w-full bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold"
-            onClick={() => setSent(false)}
+            onClick={() => { setSent(false); setError(""); }}
           >
             Enviar novamente
           </Button>
@@ -64,6 +84,13 @@ export default function RecuperarSenhaPage() {
       </CardHeader>
 
       <CardContent>
+        {error && (
+          <div className="mb-4 rounded-lg bg-red-50 border border-red-200 p-3 flex items-center gap-2">
+            <AlertCircle className="h-4 w-4 text-red-600 shrink-0" />
+            <span className="text-sm text-red-700">{error}</span>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email" className="text-[#0F172A]">E-mail</Label>
@@ -86,7 +113,7 @@ export default function RecuperarSenhaPage() {
             className="w-full bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold"
             disabled={isLoading}
           >
-            {isLoading ? "Enviando..." : "Enviar link de recuperacao"}
+            {isLoading ? "Enviando..." : "Enviar link de recuperação"}
           </Button>
         </form>
       </CardContent>
