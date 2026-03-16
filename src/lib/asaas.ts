@@ -203,6 +203,24 @@ export async function createCardPayment(params: {
   };
 }
 
+// Check payment status from Asaas
+export async function checkPaymentStatus(asaasPaymentId: string): Promise<{
+  status: string;
+  value: number;
+  confirmedDate?: string;
+} | null> {
+  try {
+    const data = await asaasFetch(`/payments/${asaasPaymentId}`);
+    return {
+      status: data.status,
+      value: data.value,
+      confirmedDate: data.confirmedDate,
+    };
+  } catch {
+    return null;
+  }
+}
+
 // Get webhook token from DB
 export async function getWebhookToken(): Promise<string> {
   const config = await getAsaasConfig();

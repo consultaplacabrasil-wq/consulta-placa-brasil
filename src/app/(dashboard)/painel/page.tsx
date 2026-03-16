@@ -17,7 +17,8 @@ import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { payments, reportRequests } from "@/lib/db/schema";
-import { eq, desc, sql } from "drizzle-orm";
+import { eq, desc, sql, and, inArray } from "drizzle-orm";
+import { checkPaymentStatus } from "@/lib/asaas";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Painel - ConsultaPlaca" };
@@ -58,6 +59,45 @@ export default async function PainelPage() {
   if (!session?.user?.id) redirect("/login");
 
   const userId = session.user.id;
+
+  // Sync pending payments with Asaas (check if any were confirmed)
+  try {
+    const pendingPayments = await db
+      .select({ id: payments.id, asaasId: payments.asaasId })
+      .from(payments)
+      .where(and(eq(payments.userId, userId), eq(payments.status, "pending")))
+      .limit(10);
+
+    for (const p of pendingPayments) {
+      if (!p.asaasId) continue;
+      const asaasStatus = await checkPaymentStatus(p.asaasId);
+      if (!asaasStatus) continue;
+
+      const confirmedStatuses = ["CONFIRMED", "RECEIVED", "RECEIVED_IN_CASH"];
+      if (confirmedStatuses.includes(asaasStatus.status)) {
+        await db
+          .update(payments)
+          .set({ status: "confirmed", paidAt: new Date() })
+          .where(eq(payments.id, p.id));
+        await db
+          .update(reportRequests)
+          .set({ status: "processing" })
+          .where(eq(reportRequests.paymentId, p.id));
+      } else if (asaasStatus.status === "OVERDUE") {
+        await db
+          .update(payments)
+          .set({ status: "overdue" })
+          .where(eq(payments.id, p.id));
+      } else if (["REFUNDED", "REFUND_REQUESTED"].includes(asaasStatus.status)) {
+        await db
+          .update(payments)
+          .set({ status: "refunded" })
+          .where(eq(payments.id, p.id));
+      }
+    }
+  } catch (err) {
+    console.error("Error syncing payments:", err);
+  }
 
   // Fetch stats - only count confirmed/received payments for totals
   const [paymentStats] = await db

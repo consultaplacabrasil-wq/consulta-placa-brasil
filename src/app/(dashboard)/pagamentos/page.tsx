@@ -3,8 +3,9 @@ import { Receipt, CheckCircle, Clock, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { payments } from "@/lib/db/schema";
-import { eq, desc } from "drizzle-orm";
+import { payments, reportRequests } from "@/lib/db/schema";
+import { eq, desc, and } from "drizzle-orm";
+import { checkPaymentStatus } from "@/lib/asaas";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Pagamentos - ConsultaPlaca" };
@@ -26,6 +27,33 @@ const statusConfig: Record<string, { label: string; color: string; bg: string; i
 export default async function PagamentosPage() {
   const session = await auth();
   if (!session?.user?.id) redirect("/login");
+
+  // Sync pending payments with Asaas
+  try {
+    const pendingPayments = await db
+      .select({ id: payments.id, asaasId: payments.asaasId })
+      .from(payments)
+      .where(and(eq(payments.userId, session.user.id), eq(payments.status, "pending")))
+      .limit(10);
+
+    for (const p of pendingPayments) {
+      if (!p.asaasId) continue;
+      const asaasStatus = await checkPaymentStatus(p.asaasId);
+      if (!asaasStatus) continue;
+
+      const confirmedStatuses = ["CONFIRMED", "RECEIVED", "RECEIVED_IN_CASH"];
+      if (confirmedStatuses.includes(asaasStatus.status)) {
+        await db.update(payments).set({ status: "confirmed", paidAt: new Date() }).where(eq(payments.id, p.id));
+        await db.update(reportRequests).set({ status: "processing" }).where(eq(reportRequests.paymentId, p.id));
+      } else if (asaasStatus.status === "OVERDUE") {
+        await db.update(payments).set({ status: "overdue" }).where(eq(payments.id, p.id));
+      } else if (["REFUNDED", "REFUND_REQUESTED"].includes(asaasStatus.status)) {
+        await db.update(payments).set({ status: "refunded" }).where(eq(payments.id, p.id));
+      }
+    }
+  } catch (err) {
+    console.error("Error syncing payments:", err);
+  }
 
   const userPayments = await db
     .select()
