@@ -14,7 +14,6 @@ function getAllUrls(): string[] {
     "/sobre",
     "/contato",
     "/faq",
-    "/blog",
     "/termos",
     "/privacidade",
     "/cookies",

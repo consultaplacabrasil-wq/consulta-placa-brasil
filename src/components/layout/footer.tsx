@@ -7,7 +7,6 @@ const footerLinks = {
   plataforma: [
     { href: "/", label: "Consultar Placa" },
     { href: "/ferramentas", label: "Ferramentas Gratuitas" },
-    { href: "/blog", label: "Blog" },
     { href: "/noticias", label: "Notícias" },
     { href: "/faq", label: "FAQ" },
     { href: "/contato", label: "Contato" },
