@@ -1,23 +1,23 @@
-import { neon } from "@neondatabase/serverless";
-import { drizzle, type NeonHttpDatabase } from "drizzle-orm/neon-http";
+import { Pool } from "pg";
+import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
 import * as schema from "./schema";
 
-let _db: NeonHttpDatabase<typeof schema> | null = null;
+let _db: NodePgDatabase<typeof schema> | null = null;
 
-function getDb(): NeonHttpDatabase<typeof schema> {
+function getDb(): NodePgDatabase<typeof schema> {
   if (!_db) {
     if (!process.env.DATABASE_URL) {
       throw new Error(
         "DATABASE_URL não configurada. Crie um arquivo .env com a variável DATABASE_URL."
       );
     }
-    const sql = neon(process.env.DATABASE_URL);
-    _db = drizzle(sql, { schema });
+    const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+    _db = drizzle(pool, { schema });
   }
   return _db;
 }
 
-export const db = new Proxy({} as NeonHttpDatabase<typeof schema>, {
+export const db = new Proxy({} as NodePgDatabase<typeof schema>, {
   get(_target, prop, receiver) {
     const realDb = getDb();
     const value = Reflect.get(realDb, prop, receiver);
@@ -28,4 +28,4 @@ export const db = new Proxy({} as NeonHttpDatabase<typeof schema>, {
   },
 });
 
-export type Database = NeonHttpDatabase<typeof schema>;
+export type Database = NodePgDatabase<typeof schema>;

@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { requireRole } from "@/lib/auth/admin-guard";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
+import { formatarNome } from "@/lib/utils/name-formatter";
 
 export async function GET() {
   const { error } = await requireRole("admin");
@@ -70,7 +71,7 @@ export async function POST(req: NextRequest) {
     const hashedPassword = await bcrypt.hash(body.password, 12);
 
     const [created] = await db.insert(users).values({
-      name: body.name,
+      name: formatarNome(body.name),
       email: body.email,
       password: hashedPassword,
       role,
@@ -109,7 +110,7 @@ export async function PUT(req: NextRequest) {
     const updateData: Record<string, unknown> = {
       updatedAt: new Date(),
     };
-    if (body.name !== undefined) updateData.name = body.name;
+    if (body.name !== undefined) updateData.name = formatarNome(body.name);
     if (body.email !== undefined) updateData.email = body.email;
     if (body.role !== undefined) {
       const allowedRoles = ["user", "editor", "admin"];

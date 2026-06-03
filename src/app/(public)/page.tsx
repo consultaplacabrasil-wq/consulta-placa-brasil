@@ -19,6 +19,7 @@ import {
   Users,
   FileText,
 } from "lucide-react";
+
 import { ConsultasPacotes } from "@/components/home/consultas-pacotes";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { FaqSection } from "@/components/home/faq-section";
@@ -100,8 +101,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="bg-white px-4 py-16 md:py-24 border-b border-gray-100">
         <div className="mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left - Text */}
+          <div className="text-center max-w-3xl mx-auto">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D30] px-4 py-1.5 text-sm font-medium text-white mb-6">
                 <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
@@ -111,10 +111,16 @@ export default function HomePage() {
                 Consulta Placa{" "}
                 <span className="text-[#FF4D30]">Brasil</span>
               </h1>
-              <p className="mb-8 text-lg text-[#64748B] leading-relaxed max-w-xl">
+              <p className="mb-8 text-lg text-[#64748B] leading-relaxed max-w-xl mx-auto">
                 Maior portal para consulta de placas e veículos dos Detrans do Brasil, com informações completas, atualizadas e confiáveis para proprietários, despachantes e profissionais do setor automotivo.
               </p>
-              <div className="flex flex-wrap gap-6 text-sm text-[#64748B]">
+
+              {/* Campo de consulta — primeira dobra */}
+              <div className="mx-auto mb-8 max-w-lg">
+                <PlateSearch size="large" variant="hero" />
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-6 text-sm text-[#64748B]">
                 <span className="flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-[#FF4D30]" />
                   Consulta básica grátis
@@ -130,10 +136,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right - Search Card */}
-            <div className="flex justify-center lg:justify-end">
-              <PlateSearch size="large" variant="card" className="w-full max-w-sm" />
-            </div>
           </div>
         </div>
       </section>
@@ -158,7 +160,9 @@ export default function HomePage() {
       </section>
 
       {/* Consultas & Pacotes (dinâmicos do banco) */}
-      <ConsultasPacotes />
+      <div id="consultas">
+        <ConsultasPacotes />
+      </div>
 
       {/* How it works */}
       <section className="bg-[#F8FAFC] px-4 py-16 md:py-20">

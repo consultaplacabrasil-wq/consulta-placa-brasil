@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Loader2 } from "lucide-react";
@@ -9,7 +9,7 @@ import { formatPlate, validatePlate, PLATE_ERROR_MESSAGE } from "@/constants";
 
 interface PlateSearchProps {
   size?: "default" | "large";
-  variant?: "default" | "card";
+  variant?: "default" | "card" | "hero";
   className?: string;
 }
 
@@ -18,9 +18,14 @@ export function PlateSearch({ size = "default", variant = "default", className }
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Zera o loading quando a navegação completa (inclusive para a mesma rota)
+  useEffect(() => {
+    setLoading(false);
+  }, [pathname]);
 
   const isLarge = size === "large";
-  const isCard = variant === "card";
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = formatPlate(e.target.value);
@@ -45,10 +50,16 @@ export function PlateSearch({ size = "default", variant = "default", className }
     }
 
     setLoading(true);
-    router.push(`/consulta/${formatted}`);
+    const target = `/consulta/${formatted}`;
+    if (window.location.pathname === target) {
+      router.refresh();
+    } else {
+      router.push(target);
+    }
   }
 
-  if (isCard) {
+  // Variant: card (usado em seções internas)
+  if (variant === "card") {
     return (
       <form
         onSubmit={handleSubmit}
@@ -84,12 +95,52 @@ export function PlateSearch({ size = "default", variant = "default", className }
           Consultar Agora
         </Button>
         <p className="mt-3 text-center text-xs text-gray-600">
-          Consulta básica gratuita - Sem cadastro
+          Consulta básica gratuita · Sem cadastro
         </p>
       </form>
     );
   }
 
+  // Variant: hero (primeira dobra da homepage — fundo branco, destaque máximo)
+  if (variant === "hero") {
+    return (
+      <form onSubmit={handleSubmit} className={`w-full ${className || ""}`}>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="relative flex-1">
+            <Input
+              type="text"
+              placeholder="Digite a placa  ex: ABC1D23"
+              value={plate}
+              onChange={handleChange}
+              className="h-14 text-center text-xl font-bold tracking-[0.3em] uppercase rounded-xl border-2 border-gray-200 bg-white text-[#0F172A] placeholder:text-gray-300 placeholder:tracking-normal placeholder:text-base placeholder:font-normal focus:border-[#FF4D30] shadow-sm"
+              maxLength={7}
+              autoComplete="off"
+            />
+          </div>
+          <Button
+            type="submit"
+            disabled={loading}
+            className="h-14 px-8 gap-2 bg-[#FF4D30] hover:bg-[#E8432A] text-white font-bold text-base rounded-xl shadow-md shadow-[#FF4D30]/30 shrink-0"
+          >
+            {loading ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : (
+              <Search className="h-5 w-5" />
+            )}
+            Consultar Grátis
+          </Button>
+        </div>
+        {error && (
+          <p className="mt-2 text-sm text-red-500 text-center">{error}</p>
+        )}
+        <p className="mt-3 text-center text-xs text-[#94A3B8]">
+          🔒 Consulta básica 100% gratuita · Sem cadastro · Resultado instantâneo
+        </p>
+      </form>
+    );
+  }
+
+  // Variant: default (rodapé, CTA, etc — fundo escuro/colorido)
   return (
     <form
       onSubmit={handleSubmit}

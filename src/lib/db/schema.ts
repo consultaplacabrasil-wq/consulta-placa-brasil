@@ -135,6 +135,10 @@ export const reportRequests = pgTable("report_requests", {
   reportType: reportTypeEnum("report_type").notNull(),
   status: requestStatusEnum("status").default("pending_payment").notNull(),
   paymentId: text("payment_id").references(() => payments.id),
+  // Tipo de serviço InfoSimples para executar
+  apiService: varchar("api_service", { length: 50 }).default("completa"),
+  // Nome da consulta/pacote comprado
+  consultaName: varchar("consulta_name", { length: 200 }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -175,6 +179,8 @@ export const consultaTypes = pgTable("consulta_types", {
   popular: boolean("popular").default(false),
   active: boolean("active").default(true),
   sortOrder: integer("sort_order").default(0),
+  // Tipo de serviço InfoSimples: dados_cadastrais, debitos_multas, completa
+  apiService: varchar("api_service", { length: 50 }).default("completa"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -191,6 +197,10 @@ export const pacotes = pgTable("pacotes", {
   popular: boolean("popular").default(false),
   active: boolean("active").default(true),
   sortOrder: integer("sort_order").default(0),
+  // Quantidade de consultas incluídas no pacote
+  credits: integer("credits").default(1),
+  // Tipo de serviço InfoSimples associado ao pacote
+  apiService: varchar("api_service", { length: 50 }).default("completa"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

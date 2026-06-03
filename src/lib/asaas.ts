@@ -221,8 +221,8 @@ export async function checkPaymentStatus(asaasPaymentId: string): Promise<{
   }
 }
 
-// Get webhook token from DB
+// Get webhook token — DB primeiro, env como fallback
 export async function getWebhookToken(): Promise<string> {
   const config = await getAsaasConfig();
-  return config.webhookToken;
+  return config.webhookToken || process.env.ASAAS_WEBHOOK_TOKEN || "";
 }

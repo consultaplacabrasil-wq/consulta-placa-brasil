@@ -3,6 +3,8 @@ import { hash } from "bcryptjs";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { formatarNome, validarNomeCompleto } from "@/lib/utils/name-formatter";
+import { validatePasswordStrength } from "@/lib/utils/password-validator";
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,7 +18,20 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check existing email
+    // Validar nome completo (nome + sobrenome)
+    const nomeFormatado = formatarNome(name);
+    const nomeError = validarNomeCompleto(nomeFormatado);
+    if (nomeError) {
+      return NextResponse.json({ error: nomeError }, { status: 400 });
+    }
+
+    // Validar força da senha
+    const passwordError = validatePasswordStrength(password);
+    if (passwordError) {
+      return NextResponse.json({ error: passwordError }, { status: 400 });
+    }
+
+    // Verificar e-mail duplicado
     const [existingEmail] = await db
       .select({ id: users.id })
       .from(users)
@@ -30,12 +45,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check existing CPF
+    // Verificar CPF/CNPJ duplicado
     const cleanCpf = cpfCnpj.replace(/\D/g, "");
     const [existingCpf] = await db
       .select({ id: users.id })
       .from(users)
-      .where(eq(users.cpfCnpj, cpfCnpj))
+      .where(eq(users.cpfCnpj, cleanCpf))
       .limit(1);
 
     if (existingCpf) {
@@ -50,9 +65,9 @@ export async function POST(req: NextRequest) {
     const [newUser] = await db
       .insert(users)
       .values({
-        name: name.trim(),
+        name: nomeFormatado,
         email: email.toLowerCase().trim(),
-        cpfCnpj,
+        cpfCnpj: cleanCpf,
         password: hashedPassword,
         role: "user",
       })
