@@ -1,22 +1,24 @@
-import { auth } from "@/lib/auth";
+import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// Rotas que exigem autenticação
-const PROTECTED_DASHBOARD = /^\/(dashboard|painel|perfil|consultas|relatorios|pagamentos)(\/|$)/;
+const PROTECTED_DASHBOARD = /^\/(painel|perfil|consultas|relatorios|pagamentos|relatorio)(\/|$)/;
 const PROTECTED_ADMIN = /^\/admin(\/|$)/;
-
-// Rotas públicas que usuários logados não devem acessar
 const AUTH_ROUTES = ["/login", "/cadastro", "/recuperar-senha", "/redefinir-senha"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const session = await auth();
-  const isAuthenticated = !!session?.user;
-  const userRole = (session?.user as { role?: string } | undefined)?.role;
+  // getToken lê do cookie JWT — sem banco de dados (compatível com Edge Runtime)
+  const token = await getToken({
+    req: request,
+    secret: process.env.AUTH_SECRET,
+  });
 
-  // Redirecionar usuários autenticados para fora das rotas de auth
+  const isAuthenticated = !!token;
+  const userRole = token?.role as string | undefined;
+
+  // Usuários autenticados saem das páginas de auth
   if (isAuthenticated && AUTH_ROUTES.some((r) => pathname.startsWith(r))) {
     const redirectTo = userRole === "admin" || userRole === "editor" ? "/admin" : "/painel";
     return NextResponse.redirect(new URL(redirectTo, request.url));
@@ -48,7 +50,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/(dashboard|painel|perfil|consultas|relatorios|pagamentos)(.*)",
+    "/(painel|perfil|consultas|relatorios|pagamentos|relatorio)(.*)",
     "/admin(.*)",
     "/login",
     "/cadastro",
