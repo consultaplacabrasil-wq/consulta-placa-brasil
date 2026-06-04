@@ -156,6 +156,87 @@ function Divider() {
   );
 }
 
+function humanizeLabel(key: string): string {
+  return key
+    .replace(/_/g, " ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+const HIDDEN_KEYS = new Set(["error", "errors", "_erros", "message", "status_code", "tax", "balance", "valor_consulta"]);
+
+// Renderizador genérico: exibe qualquer objeto/array/valor de forma legível
+function renderGenericData(value: unknown, depth = 0): React.ReactNode {
+  if (value === null || value === undefined || value === "") return null;
+
+  // Primitivo
+  if (typeof value !== "object") {
+    return <span style={{ fontSize: 13, color: "#1e293b", fontWeight: 700 }}>{String(value)}</span>;
+  }
+
+  // Array
+  if (Array.isArray(value)) {
+    if (value.length === 0) return null;
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        {value.map((item, i) => (
+          <div key={i} style={{
+            border: "1px solid #e5e7eb",
+            borderLeft: "4px solid #FF4D30",
+            borderRadius: 8,
+            padding: "12px 16px",
+            background: "#fff",
+          }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>
+              Registro {i + 1}
+            </div>
+            {renderGenericData(item, depth + 1)}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  // Objeto
+  const entries = Object.entries(value as Record<string, unknown>).filter(
+    ([k, v]) => !HIDDEN_KEYS.has(k) && v !== null && v !== undefined && v !== ""
+  );
+  if (entries.length === 0) return null;
+
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: depth === 0 ? "1fr 1fr" : "1fr", gap: "0 24px" }}>
+      {entries.map(([k, v]) => {
+        const isNested = typeof v === "object" && v !== null;
+        if (isNested) {
+          return (
+            <div key={k} style={{ gridColumn: "1 / -1", padding: "8px 0" }}>
+              <span style={{ display: "block", fontSize: 11, color: "#FF4D30", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>
+                {humanizeLabel(k)}
+              </span>
+              {renderGenericData(v, depth + 1)}
+            </div>
+          );
+        }
+        return <FieldRow key={k} label={humanizeLabel(k)} value={String(v)} />;
+      })}
+    </div>
+  );
+}
+
+// Seção genérica que só renderiza se houver dados
+function GenericSection({ icon, title, accent, data }: {
+  icon: LucideIcon; title: string; accent: string; data: unknown;
+}) {
+  const content = renderGenericData(data);
+  if (!content) return null;
+  return (
+    <div style={{ padding: "0 8px" }}>
+      <SectionBar icon={icon} title={title} accent={accent} />
+      <SectionBody>{content}</SectionBody>
+    </div>
+  );
+}
+
 /* ─────────────────────────────────────────────────────────
    MAIN PAGE
    ───────────────────────────────────────────────────────── */
@@ -173,7 +254,17 @@ export default async function RelatorioPage({ params }: Props) {
     .where(and(eq(reportRequests.id, report.requestId), eq(reportRequests.userId, session.user.id))).limit(1);
   if (!request) notFound();
 
-  const data = report.data as { veiculo?: Record<string, unknown>; debitos?: Record<string, unknown>; gravame?: Record<string, unknown> };
+  const data = report.data as {
+    veiculo?: Record<string, unknown>;
+    debitos?: Record<string, unknown>;
+    multas?: Record<string, unknown>;
+    gravame?: Record<string, unknown>;
+    leilao?: Record<string, unknown>;
+    roubo_furto?: Record<string, unknown>;
+    recall?: Record<string, unknown>;
+    proprietario?: Record<string, unknown>;
+    renajud?: Record<string, unknown>;
+  };
   const v = data.veiculo || {};
   const str = (val: unknown) => (val ? String(val) : "");
 
@@ -283,15 +374,14 @@ export default async function RelatorioPage({ params }: Props) {
         <div style={{ background: "#f8fafc", padding: "24px 0", display: "flex", flexDirection: "column", gap: 20 }}>
 
           {/* ═══════════════ ALERTAS ═══════════════ */}
-          {(report.type === "complete" || report.type === "premium") && (
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, padding: "0 8px" }}>
-              <AlertBadge icon={FileText} label="Dados Cadastrais" danger={false} />
-              <AlertBadge icon={CreditCard} label={hasDebitos ? "Possui Débitos" : "Sem Débitos"} danger={!!hasDebitos} />
-              {report.type === "premium" && (
-                <AlertBadge icon={Lock} label={hasActiveGravame ? "Gravame Ativo!" : hasGravame ? "Gravame Baixado" : "Sem Gravame"} danger={hasActiveGravame} />
-              )}
-            </div>
-          )}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, padding: "0 8px" }}>
+            <AlertBadge icon={FileText} label="Dados Cadastrais" danger={false} />
+            {data.debitos && <AlertBadge icon={CreditCard} label={hasDebitos ? "Possui Débitos" : "Sem Débitos"} danger={!!hasDebitos} />}
+            {data.gravame && <AlertBadge icon={Lock} label={hasActiveGravame ? "Gravame Ativo!" : hasGravame ? "Gravame Baixado" : "Sem Gravame"} danger={hasActiveGravame} />}
+            {data.roubo_furto && <AlertBadge icon={Shield} label="Roubo/Furto" danger={false} />}
+            {data.leilao && <AlertBadge icon={AlertTriangle} label="Leilão" danger={false} />}
+            {data.recall && <AlertBadge icon={AlertTriangle} label="Recall" danger={false} />}
+          </div>
 
           {/* ═══════════════ DADOS ORIGINAIS ═══════════════ */}
           <div style={{ padding: "0 8px" }}>
@@ -328,9 +418,9 @@ export default async function RelatorioPage({ params }: Props) {
           </div>
 
           {/* ═══════════════ DÉBITOS ═══════════════ */}
-          {(report.type === "complete" || report.type === "premium") && (
+          {data.debitos && (
             <div style={{ padding: "0 8px" }}>
-              <SectionBar icon={CreditCard} title="Débitos e Multas" accent="#1e293b" />
+              <SectionBar icon={CreditCard} title="Débitos Veiculares" accent="#1e293b" />
               <SectionBody>
                 {hasDebitos ? (
                   <div>
@@ -350,7 +440,7 @@ export default async function RelatorioPage({ params }: Props) {
           )}
 
           {/* ═══════════════ GRAVAME ═══════════════ */}
-          {report.type === "premium" && (
+          {data.gravame && (
             <div style={{ padding: "0 8px" }}>
               <SectionBar icon={Lock} title="Gravame (Financiamento)" accent="#1e293b" />
               <SectionBody>
@@ -399,6 +489,24 @@ export default async function RelatorioPage({ params }: Props) {
               </SectionBody>
             </div>
           )}
+
+          {/* ═══════════════ MULTAS (RENAINF) ═══════════════ */}
+          <GenericSection icon={AlertTriangle} title="Multas e Infrações (Renainf)" accent="#b45309" data={data.multas} />
+
+          {/* ═══════════════ LEILÃO ═══════════════ */}
+          <GenericSection icon={AlertTriangle} title="Histórico de Leilão" accent="#7c3aed" data={data.leilao} />
+
+          {/* ═══════════════ ROUBO E FURTO ═══════════════ */}
+          <GenericSection icon={Shield} title="Roubo e Furto" accent="#dc2626" data={data.roubo_furto} />
+
+          {/* ═══════════════ RECALL ═══════════════ */}
+          <GenericSection icon={AlertTriangle} title="Recall do Fabricante" accent="#0891b2" data={data.recall} />
+
+          {/* ═══════════════ PROPRIETÁRIO ═══════════════ */}
+          <GenericSection icon={Users} title="Proprietário Atual" accent="#1e293b" data={data.proprietario} />
+
+          {/* ═══════════════ RESTRIÇÕES JUDICIAIS (RENAJUD) ═══════════════ */}
+          <GenericSection icon={Lock} title="Restrições Judiciais (Renajud)" accent="#1e293b" data={data.renajud} />
 
           {/* ═══════════════ OBSERVAÇÕES ═══════════════ */}
           <div style={{ padding: "0 8px" }}>

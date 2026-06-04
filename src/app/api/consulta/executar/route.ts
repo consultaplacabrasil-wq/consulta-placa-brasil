@@ -3,7 +3,18 @@ import { db } from "@/lib/db";
 import { reportRequests, reports } from "@/lib/db/schema";
 import { eq, and } from "drizzle-orm";
 import { auth } from "@/lib/auth";
-import { executarConsulta, TipoConsulta } from "@/lib/apibrasil";
+import { executarConsulta } from "@/lib/apibrasil";
+
+// Mapeia o serviço da consulta para o enum report.type (basic/complete/premium)
+function mapReportType(apiService: string): "basic" | "complete" | "premium" {
+  if (["dados", "dados_cadastrais", "gravame", "agregados-basica", "gravame-v2"].includes(apiService)) {
+    return "basic";
+  }
+  if (["debitos", "debitos_multas", "leilao", "debitos-v4"].includes(apiService)) {
+    return "complete";
+  }
+  return "premium";
+}
 
 const PLATE_REGEX = /^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$/;
 
@@ -59,17 +70,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Determine which API service to use
-    const apiService = (request.apiService || "completa") as TipoConsulta;
+    const apiService = request.apiService || "premium";
 
     // Execute the consultation via APIBrasil
     const resultado = await executarConsulta(formattedPlate, apiService);
-
-    // Determine report type based on apiService
-    const reportType = apiService === "dados_cadastrais"
-      ? "basic"
-      : apiService === "debitos_multas"
-        ? "complete"
-        : "premium";
 
     // Save the report
     const [report] = await db
@@ -77,7 +81,7 @@ export async function POST(req: NextRequest) {
       .values({
         requestId,
         plate: formattedPlate,
-        type: reportType as "basic" | "complete" | "premium",
+        type: mapReportType(apiService),
         data: resultado,
         expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
       })

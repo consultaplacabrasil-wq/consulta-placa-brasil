@@ -8,35 +8,75 @@ function getToken(): string {
 }
 
 // ============================================================
-// Tipos
+// Tipos de consulta (mapeamento serviço → APIs do APIBrasil)
 // ============================================================
+// Cada "serviço" (apiService da consulta_types) dispara um conjunto
+// de chamadas ao APIBrasil. Os valores são os parâmetros "tipo".
 
+export const CONSULTA_APIS: Record<string, string[]> = {
+  // 5 consultas novas
+  dados: ["agregados-v2"],
+  gravame: ["gravame"],
+  debitos: ["agregados-v2", "debitos-v4", "renainf"],
+  leilao: ["agregados-v2", "leilao-score", "recall"],
+  premium: [
+    "base-nacional-v2",
+    "debitos-v4",
+    "renainf",
+    "gravame",
+    "leilao-score",
+    "roubo-furto-v2",
+    "recall",
+  ],
+
+  // Compatibilidade com dados antigos (consulta_types legadas)
+  dados_cadastrais: ["agregados-v2"],
+  debitos_multas: ["agregados-v2", "debitos-v4", "renainf"],
+  completa: [
+    "base-nacional-v2",
+    "debitos-v4",
+    "renainf",
+    "gravame",
+    "leilao-score",
+    "roubo-furto-v2",
+    "recall",
+  ],
+  "agregados-basica": ["agregados-v2"],
+  "debitos-v4": ["agregados-v2", "debitos-v4"],
+  "gravame-v2": ["gravame"],
+};
+
+// Mapeia cada "tipo" do APIBrasil para a chave usada no relatório
+const TIPO_TO_KEY: Record<string, string> = {
+  "agregados-v2": "veiculo",
+  "agregados-basica": "veiculo",
+  "base-nacional-v2": "veiculo",
+  "debitos-v4": "debitos",
+  renainf: "multas",
+  gravame: "gravame",
+  "gravame-v2": "gravame",
+  "leilao-score": "leilao",
+  "roubo-furto-v2": "roubo_furto",
+  recall: "recall",
+  "proprietario-atual-v2": "proprietario",
+  renajud: "renajud",
+};
+
+// ============================================================
+// Tipo legado (mantido para não quebrar imports existentes)
+// ============================================================
 export type TipoConsulta = "dados_cadastrais" | "debitos_multas" | "completa";
 
 interface ApiBrasilResponse {
   error: boolean;
   message: string;
-  balance?: string;
-  tax?: string;
-  valor_consulta?: number;
   data?: Record<string, unknown>;
 }
 
-// Map our consultation types to APIBrasil "tipo" parameter
-const TIPO_MAP: Record<string, string> = {
-  "agregados-basica": "agregados-basica",
-  "debitos-v4": "debitos-v4",
-  "gravame-v2": "gravame-v2",
-};
-
 // ============================================================
-// Fetch genérico
+// Fetch genérico de um tipo
 // ============================================================
-
-async function apiBrasilFetch(
-  tipo: string,
-  placa: string
-): Promise<ApiBrasilResponse> {
+async function apiBrasilFetch(tipo: string, placa: string): Promise<Record<string, unknown>> {
   const res = await fetch(`${APIBRASIL_BASE_URL}${CONSULTA_ENDPOINT}`, {
     method: "POST",
     headers: {
@@ -44,104 +84,76 @@ async function apiBrasilFetch(
       Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify({ tipo, placa }),
+    cache: "no-store",
   });
 
-  const data: ApiBrasilResponse = await res.json();
-
-  if (data.error) {
-    console.error(`APIBrasil error [${tipo}]:`, data.message);
-    throw new Error(data.message || "Erro na consulta");
+  if (!res.ok) {
+    const body = (await res.json().catch(() => ({}))) as ApiBrasilResponse;
+    if (res.status === 402) {
+      throw new Error("Saldo insuficiente na APIBrasil. Recarregue sua conta.");
+    }
+    throw new Error(body.message || `APIBrasil HTTP ${res.status} (${tipo})`);
   }
 
-  return data;
+  const data = (await res.json()) as ApiBrasilResponse;
+  if (data.error) {
+    throw new Error(data.message || `Erro na consulta ${tipo}`);
+  }
+  return (data.data as Record<string, unknown>) || {};
 }
 
 // ============================================================
-// Consultas individuais
+// Executar consulta — chama todas as APIs do serviço em paralelo
 // ============================================================
-
-export async function consultaDadosCadastrais(placa: string) {
-  return apiBrasilFetch("agregados-basica", placa);
+export interface ConsultaResultado {
+  veiculo: Record<string, unknown>;
+  debitos?: Record<string, unknown>;
+  multas?: Record<string, unknown>;
+  gravame?: Record<string, unknown>;
+  leilao?: Record<string, unknown>;
+  roubo_furto?: Record<string, unknown>;
+  recall?: Record<string, unknown>;
+  proprietario?: Record<string, unknown>;
+  renajud?: Record<string, unknown>;
+  _erros?: string[];
 }
-
-export async function consultaDebitos(placa: string) {
-  return apiBrasilFetch("debitos-v4", placa);
-}
-
-export async function consultaGravame(placa: string) {
-  return apiBrasilFetch("gravame-v2", placa);
-}
-
-// ============================================================
-// Helpers
-// ============================================================
-
-export function consultaPrecisaRenavam(): boolean {
-  return false; // APIBrasil só precisa da placa
-}
-
-// ============================================================
-// Executar consulta principal
-// ============================================================
 
 export async function executarConsulta(
   placa: string,
-  tipo: TipoConsulta
-): Promise<{
-  veiculo: Record<string, unknown>;
-  debitos?: Record<string, unknown>;
-  gravame?: Record<string, unknown>;
-}> {
-  const placaNormalizada = placa.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+  apiService: string
+): Promise<ConsultaResultado> {
+  const placaNorm = placa.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+  const tipos = CONSULTA_APIS[apiService] || CONSULTA_APIS["dados"];
 
-  if (tipo === "dados_cadastrais") {
-    const res = await consultaDadosCadastrais(placaNormalizada);
-    return {
-      veiculo: (res.data as Record<string, unknown>) || {},
-    };
-  }
+  const settled = await Promise.allSettled(
+    tipos.map((tipo) => apiBrasilFetch(tipo, placaNorm))
+  );
 
-  if (tipo === "debitos_multas") {
-    // Busca dados + débitos em paralelo
-    const [dadosRes, debitosRes] = await Promise.allSettled([
-      consultaDadosCadastrais(placaNormalizada),
-      consultaDebitos(placaNormalizada),
-    ]);
+  const result: ConsultaResultado = { veiculo: {}, _erros: [] };
 
-    const veiculo =
-      dadosRes.status === "fulfilled"
-        ? ((dadosRes.value.data as Record<string, unknown>) || {})
-        : { placa: placaNormalizada };
+  settled.forEach((res, i) => {
+    const tipo = tipos[i];
+    const key = TIPO_TO_KEY[tipo] || tipo;
+    if (res.status === "fulfilled") {
+      if (key === "veiculo") {
+        result.veiculo = { ...result.veiculo, ...res.value };
+      } else {
+        (result as unknown as Record<string, unknown>)[key] = res.value;
+      }
+    } else {
+      result._erros?.push(`${tipo}: ${res.reason?.message || "falhou"}`);
+    }
+  });
 
-    const debitos =
-      debitosRes.status === "fulfilled"
-        ? ((debitosRes.value.data as Record<string, unknown>) || {})
-        : undefined;
+  // Garante ao menos a placa nos dados do veículo
+  if (!result.veiculo.placa) result.veiculo.placa = placaNorm;
 
-    return { veiculo, debitos };
-  }
+  return result;
+}
 
-  // tipo === "completa" → dados + débitos + gravame
-  const [dadosRes, debitosRes, gravameRes] = await Promise.allSettled([
-    consultaDadosCadastrais(placaNormalizada),
-    consultaDebitos(placaNormalizada),
-    consultaGravame(placaNormalizada),
-  ]);
-
-  const veiculo =
-    dadosRes.status === "fulfilled"
-      ? ((dadosRes.value.data as Record<string, unknown>) || {})
-      : { placa: placaNormalizada };
-
-  const debitos =
-    debitosRes.status === "fulfilled"
-      ? ((debitosRes.value.data as Record<string, unknown>) || {})
-      : undefined;
-
-  const gravame =
-    gravameRes.status === "fulfilled"
-      ? ((gravameRes.value.data as Record<string, unknown>) || {})
-      : undefined;
-
-  return { veiculo, debitos, gravame };
+// ============================================================
+// Helper legado
+// ============================================================
+export function consultaPrecisaRenavam(): boolean {
+  return false;
 }
