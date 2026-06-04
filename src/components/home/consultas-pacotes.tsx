@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useCartStore } from "@/store/cart-store";
 import { formatCurrency } from "@/constants";
 import { ChevronRight, Loader2 } from "lucide-react";
+import { PremiumFeaturedCard } from "@/components/consulta/premium-featured-card";
 
 interface ConsultaType {
   id: string;
@@ -97,6 +98,27 @@ export function ConsultasPacotes() {
             Consulte agora e faça a melhor escolha!
           </p>
         </div>
+
+        {/* Card de destaque do Premium */}
+        {(() => {
+          const premium = consultas.find((c) => c.apiService === "premium");
+          if (!premium) return null;
+          return (
+            <PremiumFeaturedCard
+              item={premium}
+              onBuy={(p) =>
+                addItem({
+                  id: p.id,
+                  name: p.nome,
+                  type: "consulta",
+                  originalPrice: p.precoOriginal || p.preco,
+                  price: p.preco,
+                  apiService: p.apiService || "premium",
+                })
+              }
+            />
+          );
+        })()}
 
         {/* Tabs */}
         <div className="flex justify-center mb-10">

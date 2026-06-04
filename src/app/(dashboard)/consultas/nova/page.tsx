@@ -6,6 +6,7 @@ import { useCartStore } from "@/store/cart-store";
 import { formatCurrency } from "@/constants";
 import { ChevronRight, Loader2, ArrowLeft, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { PremiumFeaturedCard } from "@/components/consulta/premium-featured-card";
 
 interface ConsultaType {
   id: string;
@@ -124,6 +125,28 @@ export default function NovaConsultaPage() {
         </div>
       ) : (
         <>
+          {/* Card de destaque do Premium */}
+          {(() => {
+            const premium = consultas.find((c) => c.apiService === "premium");
+            if (!premium) return null;
+            return (
+              <PremiumFeaturedCard
+                item={premium}
+                onBuy={(p) => {
+                  addItem({
+                    id: p.id,
+                    name: p.nome,
+                    type: "consulta",
+                    originalPrice: p.precoOriginal || p.preco,
+                    price: p.preco,
+                    apiService: p.apiService || "premium",
+                  });
+                  router.push("/checkout");
+                }}
+              />
+            );
+          })()}
+
           {/* Tabs */}
           <div className="flex justify-center">
             <div className="inline-flex rounded-full border border-gray-200 bg-white p-1">
