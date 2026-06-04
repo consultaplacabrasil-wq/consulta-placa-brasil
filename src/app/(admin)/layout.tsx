@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 import {
   Car,
   LayoutDashboard,
@@ -13,7 +14,6 @@ import {
   LogOut,
   Menu,
   Shield,
-  ChevronDown,
   HelpCircle,
   Globe,
   Tag,
@@ -28,6 +28,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { NotificationBell } from "@/components/admin/notification-bell";
+import { UserMenu } from "@/components/admin/user-menu";
 
 interface SidebarLink {
   href: string;
@@ -114,7 +115,7 @@ function SidebarContent({
           Ver Site
         </Link>
         <button
-          onClick={() => { onNavigate?.(); window.location.href = "/login"; }}
+          onClick={() => { onNavigate?.(); signOut({ callbackUrl: "/login" }); }}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-400 hover:bg-red-500/10 transition-colors"
         >
           <LogOut className="h-5 w-5" />
@@ -227,21 +228,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
           <div className="flex items-center gap-3">
             <NotificationBell />
-            <div className="flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-gray-100 cursor-pointer transition-colors">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F172A] text-white text-sm font-semibold">
-                {userName.charAt(0).toUpperCase()}
-              </div>
-              <div className="hidden sm:block">
-                <p className="text-sm font-medium text-[#0F172A]">{userName}</p>
-                <p className="text-[10px] text-[#94A3B8]">{userEmail}</p>
-              </div>
-              {userRole === "editor" && (
-                <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full font-medium">
-                  Atendente
-                </span>
-              )}
-              <ChevronDown className="h-4 w-4 text-[#94A3B8]" />
-            </div>
+            <UserMenu userName={userName} userEmail={userEmail} userRole={userRole} />
           </div>
         </header>
 
