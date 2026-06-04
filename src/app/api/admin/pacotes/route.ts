@@ -4,6 +4,9 @@ import { pacotes } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { requireRole } from "@/lib/auth/admin-guard";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // Mapeia do frontend (pt) para o schema do banco (en)
 function mapToDb(body: Record<string, unknown>) {
   return {

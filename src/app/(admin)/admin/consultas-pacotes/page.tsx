@@ -107,7 +107,7 @@ export default function AdminConsultasPacotesPage() {
   const fetchConsultas = useCallback(async () => {
     setLoadingConsultas(true);
     try {
-      const res = await fetch("/api/admin/consultas-types");
+      const res = await fetch("/api/admin/consultas-types", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         setConsultas(data);
@@ -122,7 +122,7 @@ export default function AdminConsultasPacotesPage() {
   const fetchPacotes = useCallback(async () => {
     setLoadingPacotes(true);
     try {
-      const res = await fetch("/api/admin/pacotes");
+      const res = await fetch("/api/admin/pacotes", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         setPacotes(data);

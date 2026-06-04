@@ -41,8 +41,8 @@ export function ConsultasPacotes() {
     async function fetchData() {
       try {
         const [consultasRes, pacotesRes] = await Promise.all([
-          fetch("/api/admin/consultas-types"),
-          fetch("/api/admin/pacotes"),
+          fetch("/api/admin/consultas-types", { cache: "no-store" }),
+          fetch("/api/admin/pacotes", { cache: "no-store" }),
         ]);
         if (consultasRes.ok) {
           const data = await consultasRes.json();
