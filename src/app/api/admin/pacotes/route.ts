@@ -12,7 +12,10 @@ function mapToDb(body: Record<string, unknown>) {
     price: String(body.valor),
     originalPrice: body.valorOriginal ? String(body.valorOriginal) : null,
     popular: body.popular as boolean,
+    active: body.ativo !== false,
     sortOrder: body.ordem as number,
+    credits: (body.credits as number) || 1,
+    apiService: (body.apiService as string) || "completa",
   };
 }
 
@@ -25,7 +28,10 @@ function mapToFrontend(row: Record<string, unknown>) {
     valor: Number(row.price),
     valorOriginal: row.originalPrice ? Number(row.originalPrice) : 0,
     popular: row.popular || false,
+    ativo: row.active !== false,
     ordem: row.sortOrder || 0,
+    credits: row.credits || 1,
+    apiService: row.apiService || "completa",
   };
 }
 

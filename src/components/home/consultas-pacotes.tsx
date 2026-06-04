@@ -14,6 +14,7 @@ interface ConsultaType {
   beneficios: string[];
   popular: boolean;
   ativo: boolean;
+  apiService?: string;
 }
 
 interface Pacote {
@@ -23,67 +24,10 @@ interface Pacote {
   valor: number;
   valorOriginal: number;
   popular: boolean;
+  ativo: boolean;
+  credits?: number;
+  apiService?: string;
 }
-
-const defaultConsultas: ConsultaType[] = [
-  {
-    id: "consulta-completa",
-    nome: "Veículo Completo",
-    descricao: "A consulta mais completa do mercado, com informações e dados exclusivos sobre o veículo!",
-    preco: 64.90,
-    precoOriginal: 74.90,
-    beneficios: [],
-    popular: true,
-    ativo: true,
-  },
-  {
-    id: "consulta-essencial",
-    nome: "Veículo Essencial",
-    descricao: "Informações essenciais sobre o veículo, que te ajudam a negociar com mais segurança e acertar na escolha do seu próximo carro.",
-    preco: 45.90,
-    precoOriginal: 52.90,
-    beneficios: [],
-    popular: false,
-    ativo: true,
-  },
-  {
-    id: "consulta-leilao",
-    nome: "Leilão + Dados do Veículo",
-    descricao: "Informações sobre o veículo de leilão, que te ajudam a negociar o melhor valor e evitar prejuízos!",
-    preco: 34.90,
-    precoOriginal: 40.90,
-    beneficios: [],
-    popular: false,
-    ativo: true,
-  },
-  {
-    id: "consulta-gravame",
-    nome: "Gravame",
-    descricao: "Informações sobre o status de financiamento do veículo que te ajudam a evitar problemas na hora da transferência!",
-    preco: 14.90,
-    precoOriginal: 17.90,
-    beneficios: [],
-    popular: false,
-    ativo: true,
-  },
-  {
-    id: "consulta-cadastral",
-    nome: "Dados Cadastrais do Veículo",
-    descricao: "Informações sobre a situação do veículo que te ajudam a validar dados cadastrais nacionais e estaduais!",
-    preco: 13.90,
-    precoOriginal: 15.90,
-    beneficios: [],
-    popular: false,
-    ativo: true,
-  },
-];
-
-const defaultPacotes: Pacote[] = [
-  { id: "pacote-1000", nome: "PACOTE 1000", descricao: "", valor: 800.00, valorOriginal: 1000.00, popular: true },
-  { id: "pacote-500", nome: "PACOTE 500", descricao: "", valor: 425.00, valorOriginal: 500.00, popular: false },
-  { id: "pacote-300", nome: "PACOTE 300", descricao: "", valor: 270.00, valorOriginal: 300.00, popular: false },
-  { id: "pacote-150", nome: "PACOTE 150", descricao: "", valor: 142.50, valorOriginal: 150.00, popular: false },
-];
 
 export function ConsultasPacotes() {
   const [activeTab, setActiveTab] = useState<"consultas" | "pacotes">("consultas");
@@ -99,21 +43,16 @@ export function ConsultasPacotes() {
           fetch("/api/admin/consultas-types"),
           fetch("/api/admin/pacotes"),
         ]);
-        let loadedConsultas: ConsultaType[] = [];
-        let loadedPacotes: Pacote[] = [];
         if (consultasRes.ok) {
           const data = await consultasRes.json();
-          loadedConsultas = data.filter((c: ConsultaType) => c.ativo !== false);
+          setConsultas(data.filter((c: ConsultaType) => c.ativo !== false));
         }
         if (pacotesRes.ok) {
           const data = await pacotesRes.json();
-          loadedPacotes = data;
+          setPacotesList(data.filter((p: Pacote) => p.ativo !== false));
         }
-        setConsultas(loadedConsultas.length > 0 ? loadedConsultas : defaultConsultas);
-        setPacotesList(loadedPacotes.length > 0 ? loadedPacotes : defaultPacotes);
       } catch {
-        setConsultas(defaultConsultas);
-        setPacotesList(defaultPacotes);
+        // Se falhar ao buscar da API, não mostra nada (admin controla)
       } finally {
         setLoading(false);
       }
@@ -130,6 +69,18 @@ export function ConsultasPacotes() {
       </section>
     );
   }
+
+  // Se não tem nenhuma consulta nem pacote ativo, não mostra a seção
+  if (consultas.length === 0 && pacotesList.length === 0) {
+    return null;
+  }
+
+  // Ajusta tab ativa se uma das categorias estiver vazia
+  const effectiveTab = activeTab === "consultas" && consultas.length === 0
+    ? "pacotes"
+    : activeTab === "pacotes" && pacotesList.length === 0
+    ? "consultas"
+    : activeTab;
 
   return (
     <section className="bg-[#F9FAFB] px-4 py-16 md:py-20">
@@ -154,7 +105,7 @@ export function ConsultasPacotes() {
               <button
                 onClick={() => setActiveTab("consultas")}
                 className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-colors ${
-                  activeTab === "consultas"
+                  effectiveTab === "consultas"
                     ? "bg-[#FF4D30] text-white"
                     : "text-[#0F172A] hover:bg-gray-50"
                 }`}
@@ -166,7 +117,7 @@ export function ConsultasPacotes() {
               <button
                 onClick={() => setActiveTab("pacotes")}
                 className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-colors ${
-                  activeTab === "pacotes"
+                  effectiveTab === "pacotes"
                     ? "bg-[#FF4D30] text-white"
                     : "text-[#0F172A] hover:bg-gray-50"
                 }`}
@@ -178,7 +129,7 @@ export function ConsultasPacotes() {
         </div>
 
         {/* Consultas Grid */}
-        {activeTab === "consultas" && (
+        {effectiveTab === "consultas" && (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {consultas.map((item) => (
               <div
@@ -235,6 +186,7 @@ export function ConsultasPacotes() {
                       type: "consulta",
                       originalPrice: item.precoOriginal || item.preco,
                       price: item.preco,
+                      apiService: item.apiService || "completa",
                     })
                   }
                   className="w-full rounded-lg bg-[#FF4D30] py-3 text-sm font-bold uppercase text-white transition-colors hover:bg-[#E8432A]"
@@ -247,7 +199,7 @@ export function ConsultasPacotes() {
         )}
 
         {/* Pacotes Grid */}
-        {activeTab === "pacotes" && (
+        {effectiveTab === "pacotes" && (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {pacotesList.map((item) => (
               <div
@@ -296,6 +248,8 @@ export function ConsultasPacotes() {
                       type: "pacote",
                       originalPrice: item.valorOriginal || item.valor,
                       price: item.valor,
+                      apiService: item.apiService || "completa",
+                      credits: item.credits || 1,
                     })
                   }
                   className="mt-auto w-full rounded-lg bg-[#FF4D30] py-3 text-sm font-bold text-white transition-colors hover:bg-[#E8432A]"

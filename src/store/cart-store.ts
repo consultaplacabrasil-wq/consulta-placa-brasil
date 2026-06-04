@@ -12,6 +12,8 @@ export interface CartItem {
   originalPrice?: number;
   price: number;
   quantity: number;
+  apiService?: string;
+  credits?: number;
 }
 
 export interface CouponData {

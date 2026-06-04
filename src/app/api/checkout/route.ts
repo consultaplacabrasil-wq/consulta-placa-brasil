@@ -17,6 +17,8 @@ interface CheckoutItem {
   price: number;
   quantity: number;
   plate?: string;
+  apiService?: string;
+  credits?: number;
 }
 
 export async function POST(req: NextRequest) {
@@ -157,13 +159,26 @@ export async function POST(req: NextRequest) {
 
     // Create report requests
     for (const item of items) {
-      for (let i = 0; i < item.quantity; i++) {
+      // Pacotes geram N créditos (report requests)
+      const totalCredits = item.type === "pacote" && item.credits
+        ? item.credits * item.quantity
+        : item.quantity;
+
+      const reportType = item.apiService === "dados_cadastrais"
+        ? "basic"
+        : item.apiService === "debitos_multas"
+          ? "complete"
+          : "premium";
+
+      for (let i = 0; i < totalCredits; i++) {
         await db.insert(reportRequests).values({
           userId,
-          plate: item.plate || "PENDENTE",
-          reportType: "basic",
+          plate: "PENDENTE",
+          reportType: reportType as "basic" | "complete" | "premium",
           status: "pending_payment",
           paymentId: payment.id,
+          apiService: item.apiService || "completa",
+          consultaName: item.name,
         });
       }
     }

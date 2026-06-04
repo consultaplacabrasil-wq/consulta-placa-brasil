@@ -31,6 +31,7 @@ interface ConsultaType {
   popular: boolean;
   ordem: number;
   ativo: boolean;
+  apiService: string;
 }
 
 interface Pacote {
@@ -40,11 +41,20 @@ interface Pacote {
   valorOriginal?: number;
   descricao: string;
   popular: boolean;
+  ativo: boolean;
   ordem: number;
+  credits: number;
+  apiService: string;
 }
 
 type ConsultaForm = Omit<ConsultaType, "id">;
 type PacoteForm = Omit<Pacote, "id">;
+
+const API_SERVICE_OPTIONS = [
+  { value: "dados_cadastrais", label: "Dados Cadastrais (básica)" },
+  { value: "debitos_multas", label: "Débitos e Multas (intermediária)" },
+  { value: "completa", label: "Completa (todos os dados)" },
+];
 
 const emptyConsultaForm: ConsultaForm = {
   nome: "",
@@ -55,6 +65,7 @@ const emptyConsultaForm: ConsultaForm = {
   popular: false,
   ordem: 0,
   ativo: true,
+  apiService: "completa",
 };
 
 const emptyPacoteForm: PacoteForm = {
@@ -63,7 +74,10 @@ const emptyPacoteForm: PacoteForm = {
   valorOriginal: 0,
   descricao: "",
   popular: false,
+  ativo: true,
   ordem: 0,
+  credits: 1,
+  apiService: "completa",
 };
 
 // ── Component ──────────────────────────────────────────────────────────────────
@@ -185,6 +199,7 @@ export default function AdminConsultasPacotesPage() {
       popular: consulta.popular,
       ordem: consulta.ordem,
       ativo: consulta.ativo,
+      apiService: consulta.apiService || "completa",
     });
     setShowConsultaForm(true);
   };
@@ -270,7 +285,10 @@ export default function AdminConsultasPacotesPage() {
       valorOriginal: pacote.valorOriginal ?? 0,
       descricao: pacote.descricao,
       popular: pacote.popular,
+      ativo: pacote.ativo,
       ordem: pacote.ordem,
+      credits: pacote.credits || 1,
+      apiService: pacote.apiService || "completa",
     });
     setShowPacoteForm(true);
   };
@@ -423,6 +441,26 @@ export default function AdminConsultasPacotesPage() {
                       Exibido como valor riscado (opcional)
                     </p>
                   </div>
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
+                    Tipo de Consulta (API)
+                  </label>
+                  <select
+                    className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm"
+                    value={consultaForm.apiService}
+                    onChange={(e) =>
+                      setConsultaForm((prev) => ({ ...prev, apiService: e.target.value }))
+                    }
+                  >
+                    {API_SERVICE_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
+                  </select>
+                  <p className="text-xs text-[#94A3B8] mt-1">
+                    Define quais dados serão retornados na consulta
+                  </p>
                 </div>
 
                 <div>
@@ -748,6 +786,44 @@ export default function AdminConsultasPacotesPage() {
                   </div>
                 </div>
 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
+                      Quantidade de Consultas
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="5"
+                      value={pacoteForm.credits || ""}
+                      onChange={(e) =>
+                        setPacoteForm((prev) => ({
+                          ...prev,
+                          credits: parseInt(e.target.value) || 1,
+                        }))
+                      }
+                    />
+                    <p className="text-xs text-[#94A3B8] mt-1">
+                      Créditos de consulta incluídos no pacote
+                    </p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
+                      Tipo de Consulta (API)
+                    </label>
+                    <select
+                      className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm"
+                      value={pacoteForm.apiService}
+                      onChange={(e) =>
+                        setPacoteForm((prev) => ({ ...prev, apiService: e.target.value }))
+                      }
+                    >
+                      {API_SERVICE_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
                 <div>
                   <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
                     Descrição
@@ -761,8 +837,8 @@ export default function AdminConsultasPacotesPage() {
                   />
                 </div>
 
-                {/* Checkbox */}
-                <div className="flex items-center gap-2">
+                {/* Checkboxes */}
+                <div className="flex items-center gap-6">
                   <label className="flex items-center gap-2 text-sm text-[#0F172A] cursor-pointer">
                     <Checkbox
                       checked={pacoteForm.popular}
@@ -775,6 +851,18 @@ export default function AdminConsultasPacotesPage() {
                     />
                     <Star className="h-3.5 w-3.5 text-amber-500" />
                     Popular
+                  </label>
+                  <label className="flex items-center gap-2 text-sm text-[#0F172A] cursor-pointer">
+                    <Checkbox
+                      checked={pacoteForm.ativo}
+                      onCheckedChange={(checked) =>
+                        setPacoteForm((prev) => ({
+                          ...prev,
+                          ativo: checked === true,
+                        }))
+                      }
+                    />
+                    Ativo
                   </label>
                 </div>
 
@@ -824,7 +912,9 @@ export default function AdminConsultasPacotesPage() {
                 .map((pacote) => (
                   <Card
                     key={pacote.id}
-                    className="border-0 shadow-sm transition-all hover:shadow-md"
+                    className={`border-0 shadow-sm transition-all hover:shadow-md ${
+                      !pacote.ativo ? "opacity-60" : ""
+                    }`}
                   >
                     <CardContent className="flex items-center gap-4 py-4">
                       <div className="hidden sm:flex items-center text-[#94A3B8]">
@@ -842,6 +932,15 @@ export default function AdminConsultasPacotesPage() {
                               Popular
                             </span>
                           )}
+                          <span
+                            className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
+                              pacote.ativo
+                                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                                : "bg-gray-100 text-gray-500 border border-gray-200"
+                            }`}
+                          >
+                            {pacote.ativo ? "Ativo" : "Inativo"}
+                          </span>
                         </div>
                         <p className="text-xs text-[#64748B] mt-0.5 truncate">
                           {pacote.descricao}

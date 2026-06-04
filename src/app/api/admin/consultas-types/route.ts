@@ -15,6 +15,7 @@ function mapToDb(body: Record<string, unknown>) {
     popular: body.popular as boolean,
     active: body.ativo as boolean,
     sortOrder: body.ordem as number,
+    apiService: (body.apiService as string) || "completa",
   };
 }
 
@@ -30,6 +31,7 @@ function mapToFrontend(row: Record<string, unknown>) {
     popular: row.popular || false,
     ativo: row.active !== false,
     ordem: row.sortOrder || 0,
+    apiService: row.apiService || "completa",
   };
 }
 
