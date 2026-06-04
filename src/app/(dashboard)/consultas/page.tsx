@@ -5,24 +5,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { reportRequests } from "@/lib/db/schema";
+import { reportRequests, reports } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
+import { ConsultaPlateForm } from "./consulta-plate-form";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Consultas - ConsultaPlaca" };
 
 const statusConfig: Record<string, { label: string; color: string; bg: string; icon: typeof CheckCircle }> = {
   pending_payment: { label: "Aguardando pagamento", color: "text-yellow-700", bg: "bg-yellow-50 border-yellow-200", icon: Clock },
-  processing: { label: "Processando", color: "text-blue-700", bg: "bg-blue-50 border-blue-200", icon: Loader2 },
+  processing: { label: "Aguardando placa", color: "text-blue-700", bg: "bg-blue-50 border-blue-200", icon: Search },
   completed: { label: "Concluída", color: "text-green-700", bg: "bg-green-50 border-green-200", icon: CheckCircle },
   failed: { label: "Falhou", color: "text-red-700", bg: "bg-red-50 border-red-200", icon: XCircle },
   cancelled: { label: "Cancelada", color: "text-gray-700", bg: "bg-gray-50 border-gray-200", icon: XCircle },
-};
-
-const typeLabels: Record<string, string> = {
-  basic: "Básico",
-  complete: "Completo",
-  premium: "Premium",
 };
 
 export default async function ConsultasPage() {
@@ -35,6 +30,21 @@ export default async function ConsultasPage() {
     .where(eq(reportRequests.userId, session.user.id))
     .orderBy(desc(reportRequests.createdAt));
 
+  // Get report IDs for completed requests
+  const completedIds = requests.filter((r) => r.status === "completed").map((r) => r.id);
+  const reportMap: Record<string, string> = {};
+
+  if (completedIds.length > 0) {
+    for (const reqId of completedIds) {
+      const [report] = await db
+        .select({ id: reports.id })
+        .from(reports)
+        .where(eq(reports.requestId, reqId))
+        .limit(1);
+      if (report) reportMap[reqId] = report.id;
+    }
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -42,7 +52,7 @@ export default async function ConsultasPage() {
           <h1 className="text-2xl font-bold text-[#0F172A]">Consultas</h1>
           <p className="text-gray-500 text-sm">Histórico de consultas realizadas</p>
         </div>
-        <Link href="/">
+        <Link href="/consultas/nova">
           <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
             <Search className="h-4 w-4" />
             Nova Consulta
@@ -66,39 +76,39 @@ export default async function ConsultasPage() {
                 Nenhuma consulta realizada
               </h3>
               <p className="text-sm text-gray-500 max-w-sm mb-6">
-                Você ainda não realizou nenhuma consulta. Comece pesquisando uma placa para obter informações detalhadas do veículo.
+                Você ainda não realizou nenhuma consulta. Compre uma consulta para começar.
               </p>
-              <Link href="/">
+              <Link href="/consultas/nova">
                 <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
                   <Search className="h-4 w-4" />
-                  Realizar primeira consulta
+                  Comprar consulta
                 </Button>
               </Link>
             </div>
           ) : (
-            <>
-              {/* Table headers */}
-              <div className="hidden sm:grid sm:grid-cols-5 gap-4 pb-3 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                <span>Placa</span>
-                <span>Tipo</span>
-                <span>Data</span>
-                <span>Status</span>
-                <span className="text-right">Ações</span>
-              </div>
+            <div className="space-y-4">
+              {requests.map((r) => {
+                const status = statusConfig[r.status] || statusConfig.pending_payment;
+                const StatusIcon = status.icon;
+                const reportId = reportMap[r.id];
+                const isProcessing = r.status === "processing";
 
-              <div className="divide-y divide-gray-100">
-                {requests.map((r) => {
-                  const status = statusConfig[r.status] || statusConfig.pending_payment;
-                  const StatusIcon = status.icon;
-                  return (
-                    <div key={r.id} className="py-3 sm:grid sm:grid-cols-5 sm:gap-4 sm:items-center">
-                      <span className="font-mono font-semibold text-[#0F172A] text-sm">
-                        {r.plate}
-                      </span>
-                      <span className="text-sm text-[#475569]">
-                        {typeLabels[r.reportType] || r.reportType}
-                      </span>
-                      <span className="text-sm text-[#475569]">
+                return (
+                  <div
+                    key={r.id}
+                    className="rounded-xl border border-gray-200 p-4 space-y-3"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${status.bg} ${status.color}`}>
+                          <StatusIcon className={`h-3.5 w-3.5 ${r.status === "processing" ? "" : ""}`} />
+                          {status.label}
+                        </span>
+                        {r.consultaName && (
+                          <span className="text-sm text-gray-500">{r.consultaName}</span>
+                        )}
+                      </div>
+                      <span className="text-xs text-gray-400">
                         {new Intl.DateTimeFormat("pt-BR", {
                           day: "2-digit",
                           month: "2-digit",
@@ -107,29 +117,48 @@ export default async function ConsultasPage() {
                           minute: "2-digit",
                         }).format(r.createdAt)}
                       </span>
-                      <div>
-                        <span className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium ${status.bg} ${status.color}`}>
-                          <StatusIcon className="h-3 w-3" />
-                          {status.label}
+                    </div>
+
+                    {/* Se já tem placa e está concluída */}
+                    {r.status === "completed" && r.plate !== "PENDENTE" && (
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono font-bold text-lg text-[#0F172A]">
+                          {r.plate}
                         </span>
-                      </div>
-                      <div className="text-right">
-                        {r.status === "completed" ? (
+                        {reportId && (
                           <Link
-                            href={`/relatorio/${r.id}`}
-                            className="text-sm text-[#FF4D30] hover:underline font-medium"
+                            href={`/relatorio/${reportId}`}
+                            className="inline-flex items-center gap-1.5 rounded-lg bg-[#FF4D30] px-4 py-2 text-sm font-semibold text-white hover:bg-[#E8432A] transition-colors"
                           >
-                            Ver relatório
+                            <FileSearch className="h-4 w-4" />
+                            Ver Relatório
                           </Link>
-                        ) : (
-                          <span className="text-sm text-gray-400">-</span>
                         )}
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </>
+                    )}
+
+                    {/* Se está processando (pagamento confirmado), mostrar campo de placa */}
+                    {isProcessing && (
+                      <ConsultaPlateForm requestId={r.id} apiService={r.apiService || "completa"} />
+                    )}
+
+                    {/* Se pagamento pendente */}
+                    {r.status === "pending_payment" && (
+                      <p className="text-sm text-gray-500">
+                        Aguardando confirmação do pagamento para liberar a consulta.
+                      </p>
+                    )}
+
+                    {/* Se falhou */}
+                    {r.status === "failed" && (
+                      <p className="text-sm text-red-500">
+                        Ocorreu um erro ao processar esta consulta. Entre em contato com o suporte.
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           )}
         </CardContent>
       </Card>

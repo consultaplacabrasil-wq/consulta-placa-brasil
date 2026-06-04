@@ -164,7 +164,7 @@ export default async function PainelPage() {
           <h1 className="text-2xl font-bold text-[#0F172A]">Olá, {session.user.name || "Usuário"}!</h1>
           <p className="text-sm text-[#64748B]">Bem-vindo ao seu painel de controle</p>
         </div>
-        <Link href="/consultas">
+        <Link href="/consultas/nova">
           <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
             <Search className="h-4 w-4" />
             Nova Consulta
@@ -292,7 +292,7 @@ export default async function PainelPage() {
             </CardHeader>
             <CardContent>
               <div className="grid gap-2">
-                <Link href="/consultas" className="group">
+                <Link href="/consultas/nova" className="group">
                   <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF5F3]">
                     <div className="flex items-center gap-3">
                       <Search className="h-5 w-5 text-[#FF4D30]" />
