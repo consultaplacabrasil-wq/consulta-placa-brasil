@@ -3,8 +3,11 @@ module.exports = {
   apps: [
     {
       name: "consulta-placa-veiculos",
-      script: "node_modules/.bin/next",
+      // Aponta direto para o entry JS do Next (o .bin/next é um wrapper shell
+      // que o PM2 tenta interpretar como JS e quebra)
+      script: "node_modules/next/dist/bin/next",
       args: "start",
+      interpreter: "node",
       cwd: "/var/www/consulta-placa-veiculos",
       instances: 1,        // aumente para 2 quando tiver mais tráfego
       exec_mode: "fork",

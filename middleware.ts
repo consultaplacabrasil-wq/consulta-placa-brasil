@@ -10,9 +10,11 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // getToken lê do cookie JWT — sem banco de dados (compatível com Edge Runtime)
+  // Em produção (HTTPS) o cookie tem prefixo __Secure-, então secureCookie deve ser true
   const token = await getToken({
     req: request,
     secret: process.env.AUTH_SECRET,
+    secureCookie: process.env.NODE_ENV === "production",
   });
 
   const isAuthenticated = !!token;
