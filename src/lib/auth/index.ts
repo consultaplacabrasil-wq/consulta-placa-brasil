@@ -5,6 +5,7 @@ import { compare } from "bcryptjs";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { formatarNome } from "@/lib/utils/name-formatter";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true, // necessário atrás de proxy reverso (Nginx/Cloudflare)
@@ -55,10 +56,41 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
+    // Ao logar com Google, cria o usuário no banco se ainda não existir
+    async signIn({ user, account }) {
+      if (account?.provider === "google" && user.email) {
+        const email = user.email.toLowerCase().trim();
+        const [existing] = await db
+          .select({ id: users.id })
+          .from(users)
+          .where(eq(users.email, email))
+          .limit(1);
+
+        if (!existing) {
+          await db.insert(users).values({
+            name: formatarNome(user.name || email.split("@")[0]),
+            email,
+            role: "user",
+            emailVerified: true,
+            avatarUrl: user.image,
+          });
+        }
+      }
+      return true;
+    },
     async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = (user as { role?: string }).role || "user";
+      // No primeiro login, busca id e role do banco (vale para Google e credentials)
+      if (user?.email) {
+        const [dbUser] = await db
+          .select({ id: users.id, role: users.role })
+          .from(users)
+          .where(eq(users.email, user.email.toLowerCase().trim()))
+          .limit(1);
+
+        if (dbUser) {
+          token.id = dbUser.id;
+          token.role = dbUser.role;
+        }
       }
       return token;
     },
