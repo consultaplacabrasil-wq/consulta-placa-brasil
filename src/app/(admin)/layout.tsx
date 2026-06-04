@@ -13,7 +13,6 @@ import {
   LogOut,
   Menu,
   Shield,
-  Bell,
   ChevronDown,
   HelpCircle,
   Globe,
@@ -28,6 +27,7 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { NotificationBell } from "@/components/admin/notification-bell";
 
 interface SidebarLink {
   href: string;
@@ -226,12 +226,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
 
           <div className="flex items-center gap-3">
-            <button className="relative flex h-9 w-9 items-center justify-center rounded-lg text-[#475569] hover:bg-gray-100 transition-colors">
-              <Bell className="h-5 w-5" />
-              <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#FF4D30] text-[9px] font-bold text-white">
-                3
-              </span>
-            </button>
+            <NotificationBell />
             <div className="flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-gray-100 cursor-pointer transition-colors">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F172A] text-white text-sm font-semibold">
                 {userName.charAt(0).toUpperCase()}
