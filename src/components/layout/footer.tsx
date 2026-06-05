@@ -6,6 +6,7 @@ import NewsletterFooterForm from "./newsletter-footer-form";
 const footerLinks = {
   plataforma: [
     { href: "/", label: "Consultar Placa" },
+    { href: "/sobre", label: "Sobre Nós" },
     { href: "/ferramentas", label: "Ferramentas Gratuitas" },
     { href: "/noticias", label: "Notícias" },
     { href: "/faq", label: "FAQ" },

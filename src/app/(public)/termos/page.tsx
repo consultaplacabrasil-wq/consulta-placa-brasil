@@ -114,7 +114,7 @@ export default async function TermosPage() {
       <section className="bg-white px-4 py-12 md:py-16">
         <div
           className="prose prose-gray mx-auto max-w-4xl"
-          dangerouslySetInnerHTML={{ __html: page?.content || defaultContent }}
+          dangerouslySetInnerHTML={{ __html: (page?.content && page.content.replace(/<[^>]*>/g, "").trim().length > 20) ? page.content : defaultContent }}
         />
       </section>
 
