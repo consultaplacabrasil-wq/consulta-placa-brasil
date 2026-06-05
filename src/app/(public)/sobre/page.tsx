@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 const defaultDescription =
-  "Conheça a Consulta Placa Brasil, uma empresa BYTX LTDA. Nossa missão é ser a maior plataforma de dados veiculares do Brasil com 40+ ferramentas gratuitas.";
+  "Conheça a Consulta Placa Brasil, operada pela CONSULTA PLACA BRASIL LTDA. Nossa missão é ser a maior plataforma de dados veiculares do Brasil com 40+ ferramentas gratuitas.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("sobre");
@@ -106,7 +106,7 @@ export default async function SobrePage() {
             </h1>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FF4D30]/10 px-3 py-1 text-xs font-medium text-[#FF4D30] border border-[#FF4D30]/20">
               <Car className="h-3 w-3" />
-              BYTX LTDA
+              CONSULTA PLACA BRASIL LTDA
             </span>
           </div>
           <p className="text-gray-400 max-w-2xl">
@@ -155,17 +155,15 @@ export default async function SobrePage() {
                 brasileiros que compram, vendem e financiam veículos todos os
                 dias. As informações veiculares estavam dispersas,
                 difíceis de acessar e, muitas vezes, caras. A{" "}
-                <strong className="text-[#0F172A]">BYTX</strong> decidiu mudar
+                <strong className="text-[#0F172A]">Consulta Placa Brasil</strong> decidiu mudar
                 isso.
               </p>
               <p className="text-[#475569] leading-relaxed">
-                O Consulta Placa Brasil é uma das plataformas do conglomerado
-                de serviços digitais da{" "}
-                <strong className="text-[#0F172A]">BYTX LTDA</strong>, empresa
-                de infraestrutura digital sediada em Campinas, SP. Toda a
-                gestão, desenvolvimento e operação são realizados pela BYTX,
-                que é proprietária desta e de diversas outras plataformas
-                digitais no Brasil. O Consulta Placa Brasil reúne em uma única
+                O Consulta Placa Brasil é operado pela{" "}
+                <strong className="text-[#0F172A]">CONSULTA PLACA BRASIL LTDA</strong>, empresa
+                de tecnologia e serviços digitais sediada em Brasília/DF. Toda a
+                gestão, desenvolvimento e operação são realizados internamente,
+                com foco em segurança veicular e transparência. O Consulta Placa Brasil reúne em uma única
                 plataforma tudo o que o proprietário de veículo precisa: desde a{" "}
                 <Link
                   href="/"
@@ -186,8 +184,8 @@ export default async function SobrePage() {
               </p>
               <p className="text-[#475569] leading-relaxed">
                 Mais do que um site de consulta, o Consulta Placa Brasil é um
-                ecossistema completo de ferramentas veiculares, parte da visão
-                da BYTX de construir plataformas que empoderam o consumidor
+                ecossistema completo de ferramentas veiculares, parte da nossa
+                visão de construir uma plataforma que empodera o consumidor
                 brasileiro com informação, transparência e segurança.
               </p>
             </div>
@@ -344,39 +342,37 @@ export default async function SobrePage() {
           <section className="bg-white px-4 py-12 md:py-16">
             <div className="mx-auto max-w-4xl">
               <h2 className="text-2xl font-bold text-[#0F172A] mb-5">
-                Sobre a BYTX
+                Sobre a Empresa
               </h2>
               <div className="bg-[#F8FAFC] rounded-2xl p-8 border border-gray-100 space-y-4">
                 <p className="text-[#475569] leading-relaxed">
                   A{" "}
-                  <strong className="text-[#0F172A]">BYTX LTDA</strong> (CNPJ:
-                  65.649.904/0001-98) é uma empresa brasileira de infraestrutura
-                  digital sediada em Campinas, São Paulo, que desenvolve e opera
-                  um conglomerado de plataformas digitais em múltiplos segmentos.
+                  <strong className="text-[#0F172A]">CONSULTA PLACA BRASIL LTDA</strong> (CNPJ:
+                  66.962.276/0001-69) é uma empresa brasileira de tecnologia e
+                  serviços digitais sediada em Brasília, Distrito Federal,
+                  especializada em consulta e segurança veicular.
                 </p>
                 <p className="text-[#475569] leading-relaxed">
-                  O Consulta Placa Brasil é uma das propriedades digitais da
-                  BYTX, que atua na construção, operação e monetização de
-                  plataformas na internet com foco em eficiência técnica,
-                  automação e escalabilidade. Toda a gestão operacional,
-                  financeira e tecnológica desta plataforma é de
-                  responsabilidade da BYTX.
+                  Toda a gestão operacional, financeira e tecnológica desta
+                  plataforma é de responsabilidade da CONSULTA PLACA BRASIL LTDA,
+                  com foco em eficiência técnica, segurança da informação e
+                  transparência com seus usuários.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div className="text-sm">
                     <p className="text-[#94A3B8]">Razão Social</p>
-                    <p className="font-semibold text-[#0F172A]">BYTX LTDA</p>
+                    <p className="font-semibold text-[#0F172A]">CONSULTA PLACA BRASIL LTDA</p>
                   </div>
                   <div className="text-sm">
                     <p className="text-[#94A3B8]">CNPJ</p>
                     <p className="font-semibold text-[#0F172A]">
-                      65.649.904/0001-98
+                      66.962.276/0001-69
                     </p>
                   </div>
                   <div className="text-sm">
                     <p className="text-[#94A3B8]">Sede</p>
                     <p className="font-semibold text-[#0F172A]">
-                      Campinas, SP
+                      Brasília, DF
                     </p>
                   </div>
                   <div className="text-sm">
@@ -439,13 +435,15 @@ export default async function SobrePage() {
             mainEntity: {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
-              legalName: "BYTX LTDA",
+              legalName: "CONSULTA PLACA BRASIL LTDA",
               url: "https://consultaplacabrasil.com",
               foundingDate: "2024",
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Campinas",
-                addressRegion: "SP",
+                streetAddress: "SRTVS Quadra 701, Conj. L, Bloco 01, nº 38 - Asa Sul",
+                addressLocality: "Brasília",
+                addressRegion: "DF",
+                postalCode: "70340-000",
                 addressCountry: "BR",
               },
             },

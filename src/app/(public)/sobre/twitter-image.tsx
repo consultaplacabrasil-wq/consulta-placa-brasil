@@ -6,7 +6,7 @@ export const contentType = ogContentType;
 export default function Image() {
   return generateOgImage({
     title: "Quem Somos",
-    description: "Conheça a Consulta Placa Brasil, uma empresa BYTX LTDA",
+    description: "Conheça a Consulta Placa Brasil, operada pela CONSULTA PLACA BRASIL LTDA",
     badge: "Sobre",
   });
 }
