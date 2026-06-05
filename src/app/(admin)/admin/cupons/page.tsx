@@ -197,7 +197,7 @@ export default function AdminCuponsPage() {
         </div>
         <Button
           onClick={handleNew}
-          className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2"
+          className="w-full sm:w-auto bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2"
         >
           <Plus className="h-4 w-4" />
           Novo Cupom
@@ -391,8 +391,8 @@ export default function AdminCuponsPage() {
             <CardTitle className="text-base font-semibold">Lista de Cupons</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+            <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+              <table className="w-full min-w-[720px] text-sm">
                 <thead>
                   <tr className="border-b border-gray-100">
                     <th className="pb-3 text-left font-medium text-[#94A3B8]">Nome</th>
@@ -453,7 +453,7 @@ export default function AdminCuponsPage() {
                             <span className="text-[#94A3B8]"> / {coupon.maxUsage}</span>
                           )}
                         </td>
-                        <td className="py-3 text-[#475569]">
+                        <td className="py-3 text-[#475569] whitespace-nowrap">
                           {coupon.expiresAt
                             ? new Date(coupon.expiresAt).toLocaleDateString("pt-BR")
                             : "Sem expiração"}

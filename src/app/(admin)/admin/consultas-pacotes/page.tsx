@@ -343,7 +343,7 @@ export default function AdminConsultasPacotesPage() {
       {activeTab === "consultas" && (
         <div className="space-y-4">
           {/* Action bar */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-[#64748B]">
               {consultas.length} consulta{consultas.length !== 1 ? "s" : ""} cadastrada
               {consultas.length !== 1 ? "s" : ""}
@@ -354,7 +354,7 @@ export default function AdminConsultasPacotesPage() {
                   resetConsultaForm();
                   setShowConsultaForm(true);
                 }}
-                className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2"
+                className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2 w-full sm:w-auto"
               >
                 <Plus className="h-4 w-4" />
                 Nova Consulta
@@ -601,12 +601,12 @@ export default function AdminConsultasPacotesPage() {
                       !consulta.ativo ? "opacity-60" : ""
                     }`}
                   >
-                    <CardContent className="flex items-center gap-4 py-4">
+                    <CardContent className="flex flex-wrap items-center gap-4 py-4 sm:flex-nowrap">
                       <div className="hidden sm:flex items-center text-[#94A3B8]">
                         <GripVertical className="h-5 w-5" />
                       </div>
 
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 basis-full sm:basis-auto">
                         <div className="flex items-center gap-2 flex-wrap">
                           <h3 className="text-sm font-semibold text-[#0F172A]">
                             {consulta.nome}
@@ -654,7 +654,7 @@ export default function AdminConsultasPacotesPage() {
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-1 shrink-0">
+                      <div className="flex items-center gap-1 shrink-0 ml-auto sm:ml-0">
                         <Button
                           variant="ghost"
                           size="sm"
@@ -686,7 +686,7 @@ export default function AdminConsultasPacotesPage() {
       {activeTab === "pacotes" && (
         <div className="space-y-4">
           {/* Action bar */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-[#64748B]">
               {pacotes.length} pacote{pacotes.length !== 1 ? "s" : ""} cadastrado
               {pacotes.length !== 1 ? "s" : ""}
@@ -697,7 +697,7 @@ export default function AdminConsultasPacotesPage() {
                   resetPacoteForm();
                   setShowPacoteForm(true);
                 }}
-                className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2"
+                className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2 w-full sm:w-auto"
               >
                 <Plus className="h-4 w-4" />
                 Novo Pacote
@@ -916,12 +916,12 @@ export default function AdminConsultasPacotesPage() {
                       !pacote.ativo ? "opacity-60" : ""
                     }`}
                   >
-                    <CardContent className="flex items-center gap-4 py-4">
+                    <CardContent className="flex flex-wrap items-center gap-4 py-4 sm:flex-nowrap">
                       <div className="hidden sm:flex items-center text-[#94A3B8]">
                         <GripVertical className="h-5 w-5" />
                       </div>
 
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 basis-full sm:basis-auto">
                         <div className="flex items-center gap-2 flex-wrap">
                           <h3 className="text-sm font-semibold text-[#0F172A]">
                             {pacote.nome}
@@ -963,7 +963,7 @@ export default function AdminConsultasPacotesPage() {
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-1 shrink-0">
+                      <div className="flex items-center gap-1 shrink-0 ml-auto sm:ml-0">
                         <Button
                           variant="ghost"
                           size="sm"

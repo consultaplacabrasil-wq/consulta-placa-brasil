@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 import {
   Car,
   LayoutDashboard,
@@ -69,9 +70,8 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
       <div className="border-t border-gray-100 px-3 py-4">
         <button
           onClick={() => {
-            // TODO: integrate with auth logout
             onNavigate?.();
-            window.location.href = "/login";
+            signOut({ callbackUrl: "/login" });
           }}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-500 hover:bg-red-50 transition-colors"
         >

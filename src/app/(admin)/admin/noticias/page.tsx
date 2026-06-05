@@ -243,17 +243,17 @@ export default function AdminNoticiasPage() {
             Gerencie as notícias geradas automaticamente
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <Link
             href="/admin/noticias/links"
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50 sm:w-auto"
           >
             <Link2 className="h-4 w-4" />
             Links SEO
           </Link>
           <Link
             href="/admin/noticias/configuracoes"
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50 sm:w-auto"
           >
             <Settings className="h-4 w-4" />
             Configurações
@@ -383,14 +383,14 @@ export default function AdminNoticiasPage() {
           </div>
         </div>
 
-        <div className="relative self-start">
+        <div className="relative w-full self-start sm:w-auto">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#94A3B8]" />
           <input
             type="text"
             placeholder="Buscar notícias..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="h-9 rounded-lg border border-gray-200 bg-white pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30]"
+            className="h-9 w-full rounded-lg border border-gray-200 bg-white pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:border-[#FF4D30] focus:outline-none focus:ring-1 focus:ring-[#FF4D30] sm:w-auto"
           />
         </div>
       </div>
@@ -456,9 +456,9 @@ export default function AdminNoticiasPage() {
               return (
                 <div
                   key={noticia.id}
-                  className="flex items-center justify-between px-4 py-3 transition-colors hover:bg-gray-50"
+                  className="flex flex-wrap items-center justify-between gap-y-2 px-4 py-3 transition-colors hover:bg-gray-50 sm:flex-nowrap"
                 >
-                  <div className="flex min-w-0 flex-1 items-center gap-4">
+                  <div className="flex w-full min-w-0 flex-1 items-center gap-4 sm:w-auto">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FFF5F3]">
                       <FileText className="h-5 w-5 text-[#FF4D30]" />
                     </div>
@@ -506,7 +506,7 @@ export default function AdminNoticiasPage() {
                     </div>
                   </div>
 
-                  <div className="ml-4 flex shrink-0 items-center gap-1">
+                  <div className="flex w-full shrink-0 items-center justify-end gap-1 sm:ml-4 sm:w-auto">
                     {/* Quick approve/reject for drafts */}
                     {noticia.status === "draft" && (
                       <>

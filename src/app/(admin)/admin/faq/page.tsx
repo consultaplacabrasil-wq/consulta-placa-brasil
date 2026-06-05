@@ -288,7 +288,7 @@ export default function AdminFaqPage() {
             Gerencie as perguntas frequentes e configurações de SEO
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 rounded-xl bg-[#FFF5F3] px-3 py-1.5">
             <HelpCircle className="h-4 w-4 text-[#FF4D30]" />
             <span className="text-sm font-semibold text-[#FF4D30]">{faqList.length}</span>
@@ -402,7 +402,7 @@ export default function AdminFaqPage() {
                     </label>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 pt-2">
+                <div className="flex flex-wrap items-center gap-3 pt-2">
                   <Button
                     onClick={saveFaq}
                     disabled={saving || !form.question.trim() || !form.answer.trim()}
@@ -510,7 +510,7 @@ export default function AdminFaqPage() {
                             </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-1 shrink-0">
+                        <div className="flex flex-wrap items-center gap-1 shrink-0">
                           <button
                             onClick={() => toggleActive(faq)}
                             className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"

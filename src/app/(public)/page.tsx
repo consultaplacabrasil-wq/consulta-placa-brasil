@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import { PlateSearch } from "@/components/consulta/plate-search";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -18,6 +19,7 @@ import {
   Receipt,
   Users,
   FileText,
+  ArrowUp,
 } from "lucide-react";
 
 import { ConsultasPacotes } from "@/components/home/consultas-pacotes";
@@ -251,7 +253,15 @@ export default function HomePage() {
             comprar.
           </p>
           <div className="mx-auto flex max-w-lg justify-center">
-            <PlateSearch size="large" />
+            <Link href="#consultas">
+              <Button
+                size="lg"
+                className="gap-2 bg-white text-[#FF4D30] hover:bg-white/90 font-semibold rounded-lg px-8 h-12 text-base shadow-lg"
+              >
+                <ArrowUp className="h-5 w-5" />
+                Ver consultas disponíveis
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

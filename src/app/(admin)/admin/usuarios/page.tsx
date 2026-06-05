@@ -196,11 +196,11 @@ export default function AdminUsuariosPage() {
           <h1 className="text-2xl font-bold text-[#0F172A]">Usuários</h1>
           <p className="text-sm text-[#64748B]">{users.length} usuários cadastrados</p>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={exportCsv} className="gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <Button variant="outline" onClick={exportCsv} className="w-full sm:w-auto gap-2">
             Exportar CSV
           </Button>
-          <Button onClick={handleNew} className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2">
+          <Button onClick={handleNew} className="w-full sm:w-auto bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2">
             <UserPlus className="h-4 w-4" /> Adicionar
           </Button>
         </div>
@@ -213,7 +213,7 @@ export default function AdminUsuariosPage() {
       )}
 
       {/* Stats */}
-      <div className="grid gap-4 sm:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
           { label: "Total", value: users.length, color: "bg-blue-100", ic: "text-blue-600", Icon: Users },
           { label: "Administradores", value: adminCount, color: "bg-purple-100", ic: "text-purple-600", Icon: Shield },
@@ -293,25 +293,25 @@ export default function AdminUsuariosPage() {
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#94A3B8]" />
               <Input placeholder="Buscar por nome, e-mail, CPF ou ID..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-9" />
             </div>
-            <div className="flex flex-wrap gap-2">
-              <select value={roleFilter} onChange={(e) => setRoleFilter(e.target.value as typeof roleFilter)} className="h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#475569]">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+              <select value={roleFilter} onChange={(e) => setRoleFilter(e.target.value as typeof roleFilter)} className="w-full h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#475569]">
                 <option value="">Todos os tipos</option>
                 <option value="admin">Administradores</option>
                 <option value="editor">Atendentes</option>
                 <option value="user">Clientes</option>
               </select>
-              <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value as typeof statusFilter)} className="h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#475569]">
+              <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value as typeof statusFilter)} className="w-full h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#475569]">
                 <option value="">Todos os status</option>
                 <option value="ativo">Ativos</option>
                 <option value="inativo">Inativos</option>
               </select>
-              <select value={periodFilter} onChange={(e) => setPeriodFilter(e.target.value as typeof periodFilter)} className="h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#475569]">
+              <select value={periodFilter} onChange={(e) => setPeriodFilter(e.target.value as typeof periodFilter)} className="w-full h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#475569]">
                 <option value="">Qualquer data</option>
                 <option value="hoje">Hoje</option>
                 <option value="7">Últimos 7 dias</option>
                 <option value="30">Últimos 30 dias</option>
               </select>
-              <select value={sortBy} onChange={(e) => setSortBy(e.target.value as typeof sortBy)} className="h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#475569]">
+              <select value={sortBy} onChange={(e) => setSortBy(e.target.value as typeof sortBy)} className="w-full h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#475569]">
                 <option value="recentes">Mais recentes</option>
                 <option value="antigos">Mais antigos</option>
                 <option value="az">Nome (A-Z)</option>
@@ -327,15 +327,15 @@ export default function AdminUsuariosPage() {
             <div className="flex flex-col items-center justify-center py-12"><Users className="h-12 w-12 text-[#94A3B8] mb-3" /><p className="text-[#475569] font-medium">Nenhum usuário encontrado</p></div>
           ) : (
             <>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+              <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                <table className="w-full min-w-[640px] text-sm">
                   <thead>
                     <tr className="border-b border-gray-100">
                       <th className="pb-3 text-left font-medium text-[#94A3B8]">Usuário</th>
                       <th className="pb-3 text-left font-medium text-[#94A3B8] hidden md:table-cell">CPF/CNPJ</th>
                       <th className="pb-3 text-left font-medium text-[#94A3B8]">Tipo</th>
                       <th className="pb-3 text-left font-medium text-[#94A3B8]">Status</th>
-                      <th className="pb-3 text-left font-medium text-[#94A3B8] hidden lg:table-cell">Cadastro</th>
+                      <th className="pb-3 text-left font-medium text-[#94A3B8] hidden lg:table-cell whitespace-nowrap">Cadastro</th>
                       <th className="pb-3 text-right font-medium text-[#94A3B8]">Ações</th>
                     </tr>
                   </thead>
@@ -359,7 +359,7 @@ export default function AdminUsuariosPage() {
                               ? <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-700"><CheckCircle2 className="h-3 w-3" /> Ativo</span>
                               : <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-700"><Ban className="h-3 w-3" /> Inativo</span>}
                           </td>
-                          <td className="py-3 text-[#475569] hidden lg:table-cell">{new Date(user.createdAt).toLocaleDateString("pt-BR")}</td>
+                          <td className="py-3 text-[#475569] hidden lg:table-cell whitespace-nowrap">{new Date(user.createdAt).toLocaleDateString("pt-BR")}</td>
                           <td className="py-3 text-right">
                             <div className="flex items-center justify-end gap-1">
                               <Link href={`/admin/clientes/${user.id}`} className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 text-[#475569]" title="Ver detalhes e histórico"><Eye className="h-4 w-4" /></Link>
@@ -381,9 +381,9 @@ export default function AdminUsuariosPage() {
               </div>
 
               {totalPages > 1 && (
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between pt-4 border-t border-gray-100 mt-4">
                   <p className="text-xs text-[#94A3B8]">Página {currentPage} de {totalPages} · {filtered.length} registros</p>
-                  <div className="flex items-center gap-1">
+                  <div className="flex flex-wrap items-center gap-1">
                     <button onClick={() => setCurrentPage((p) => Math.max(1, p - 1))} disabled={currentPage === 1} className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 disabled:opacity-40"><ChevronLeft className="h-4 w-4" /></button>
                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                       let page = i + 1;

@@ -135,7 +135,7 @@ export default function AdminSeoPage() {
           </div>
 
           <Card className="border-0 shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between">
+            <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <CardTitle className="text-base font-semibold">URLs do Sitemap</CardTitle>
               <a
                 href="/sitemap.xml"
@@ -194,7 +194,7 @@ export default function AdminSeoPage() {
       {/* Robots Tab */}
       {activeTab === "robots" && (
         <Card className="border-0 shadow-sm">
-          <CardHeader className="flex flex-row items-center justify-between">
+          <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <CardTitle className="text-base font-semibold">Robots.txt</CardTitle>
             <a
               href="/robots.txt"
@@ -206,7 +206,7 @@ export default function AdminSeoPage() {
             </a>
           </CardHeader>
           <CardContent>
-            <div className="rounded-lg bg-gray-50 p-4 font-mono text-sm text-[#0F172A] whitespace-pre-line">
+            <div className="overflow-x-auto rounded-lg bg-gray-50 p-4 font-mono text-sm text-[#0F172A] whitespace-pre">
 {`User-agent: *
 Allow: /
 Disallow: /admin/

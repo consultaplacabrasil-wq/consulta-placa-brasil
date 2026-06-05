@@ -216,25 +216,27 @@ export default function AdminPaginasPage() {
     return (
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={handleBack}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-[#475569] hover:bg-gray-50"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </button>
-          <div className="flex-1">
-            <h1 className="text-2xl font-bold text-[#0F172A]">
-              {isNew ? "Nova Página" : `Editar: ${editing!.title}`}
-            </h1>
-            <p className="text-sm text-[#64748B]">
-              {isNew ? "Crie uma nova página institucional" : `Slug: /${form.slug}`}
-            </p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="flex items-center gap-3 min-w-0">
+            <button
+              onClick={handleBack}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-gray-200 text-[#475569] hover:bg-gray-50"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </button>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-2xl font-bold text-[#0F172A] truncate">
+                {isNew ? "Nova Página" : `Editar: ${editing!.title}`}
+              </h1>
+              <p className="text-sm text-[#64748B] truncate">
+                {isNew ? "Crie uma nova página institucional" : `Slug: /${form.slug}`}
+              </p>
+            </div>
           </div>
           <Button
             onClick={handleSave}
             disabled={saving}
-            className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2"
+            className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2 w-full sm:w-auto sm:ml-auto"
           >
             {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
             Salvar
@@ -613,7 +615,7 @@ export default function AdminPaginasPage() {
         </div>
         <Button
           onClick={handleNew}
-          className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2"
+          className="bg-[#FF4D30] hover:bg-[#E8432A] text-white gap-2 w-full sm:w-auto"
         >
           <Plus className="h-4 w-4" />
           Nova Página
@@ -659,8 +661,8 @@ export default function AdminPaginasPage() {
             <CardTitle className="text-base font-semibold">Todas as Páginas</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+            <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+              <table className="w-full min-w-[640px] text-sm">
                 <thead>
                   <tr className="border-b border-gray-100">
                     <th className="pb-3 text-left font-medium text-[#94A3B8]">Título</th>
@@ -700,7 +702,7 @@ export default function AdminPaginasPage() {
                           )}
                         </span>
                       </td>
-                      <td className="py-3 text-[#475569]">
+                      <td className="py-3 text-[#475569] whitespace-nowrap">
                         {new Date(page.updatedAt).toLocaleDateString("pt-BR")}
                       </td>
                       <td className="py-3 text-right">
