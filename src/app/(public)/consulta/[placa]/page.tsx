@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +11,7 @@ import {
 } from "lucide-react";
 import { PlateSearch } from "@/components/consulta/plate-search";
 import { getVehiclePreview } from "@/lib/consulta-preview";
+import { auth } from "@/lib/auth";
 
 interface Props {
   params: Promise<{ placa: string }>;
@@ -40,6 +42,12 @@ const lockedSections = [
 export default async function ConsultaPage({ params }: Props) {
   const { placa } = await params;
   const placaNorm = placa.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+
+  // Consulta grátis exige cadastro/login (captura lead e evita abuso de bots)
+  const session = await auth();
+  if (!session?.user) {
+    redirect(`/cadastro?callbackUrl=/consulta/${placaNorm}`);
+  }
 
   const headersList = await headers();
   const ip =

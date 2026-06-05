@@ -35,6 +35,13 @@ export default function LoginPage() {
         return;
       }
 
+      // Se veio de uma página protegida (ex: consulta grátis), volta para ela
+      const callbackUrl = new URLSearchParams(window.location.search).get("callbackUrl");
+      if (callbackUrl) {
+        router.push(callbackUrl);
+        return;
+      }
+
       // Fetch session to check role
       const sessionRes = await fetch("/api/auth/session");
       const session = await sessionRes.json();

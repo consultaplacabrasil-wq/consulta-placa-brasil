@@ -116,7 +116,8 @@ export default function CadastroPage() {
       });
 
       if (result?.ok) {
-        router.push("/painel");
+        const callbackUrl = new URLSearchParams(window.location.search).get("callbackUrl");
+        router.push(callbackUrl || "/painel");
       } else {
         router.push("/login");
       }
