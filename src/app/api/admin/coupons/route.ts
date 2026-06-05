@@ -4,6 +4,8 @@ import { coupons } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { requireRole } from "@/lib/auth/admin-guard";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const { error } = await requireRole("admin");
   if (error) return error;
@@ -23,25 +25,37 @@ export async function POST(req: NextRequest) {
   if (error) return error;
   try {
     const body = await req.json();
+    const discountType = body.discountType === "fixed" ? "fixed" : "percent";
 
-    if (!body.name || !body.code || body.discountPercent == null) {
+    if (!body.name || !body.code) {
       return NextResponse.json(
-        { error: "Nome, código e porcentagem de desconto são obrigatórios" },
+        { error: "Nome e código são obrigatórios" },
         { status: 400 }
       );
     }
 
-    if (body.discountPercent < 1 || body.discountPercent > 100) {
-      return NextResponse.json(
-        { error: "Porcentagem de desconto deve ser entre 1 e 100" },
-        { status: 400 }
-      );
+    if (discountType === "percent") {
+      if (body.discountPercent == null || body.discountPercent < 1 || body.discountPercent > 100) {
+        return NextResponse.json(
+          { error: "Porcentagem de desconto deve ser entre 1 e 100" },
+          { status: 400 }
+        );
+      }
+    } else {
+      if (body.discountValue == null || Number(body.discountValue) <= 0) {
+        return NextResponse.json(
+          { error: "Valor do desconto fixo deve ser maior que zero" },
+          { status: 400 }
+        );
+      }
     }
 
     const [created] = await db.insert(coupons).values({
       name: body.name,
       code: body.code.toUpperCase(),
-      discountPercent: body.discountPercent,
+      discountType,
+      discountPercent: discountType === "percent" ? body.discountPercent : 0,
+      discountValue: discountType === "fixed" ? String(body.discountValue) : null,
       active: body.active ?? true,
       maxUsage: body.maxUsage || null,
       expiresAt: body.expiresAt ? new Date(body.expiresAt) : null,
@@ -61,21 +75,25 @@ export async function PUT(req: NextRequest) {
   if (error) return error;
   try {
     const body = await req.json();
-    const { id, ...data } = body;
+    const { id } = body;
 
     if (!id) {
-      return NextResponse.json(
-        { error: "ID obrigatório" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "ID obrigatório" }, { status: 400 });
     }
 
-    if (data.code) {
-      data.code = data.code.toUpperCase();
+    // Whitelist de campos (evita mass assignment de usageCount, etc.)
+    const data: Record<string, unknown> = {};
+    if (body.name !== undefined) data.name = body.name;
+    if (body.code !== undefined) data.code = String(body.code).toUpperCase();
+    if (body.active !== undefined) data.active = !!body.active;
+    if (body.maxUsage !== undefined) data.maxUsage = body.maxUsage || null;
+    if (body.expiresAt !== undefined) data.expiresAt = body.expiresAt ? new Date(body.expiresAt) : null;
+    if (body.discountType !== undefined) {
+      data.discountType = body.discountType === "fixed" ? "fixed" : "percent";
     }
-
-    if (data.expiresAt) {
-      data.expiresAt = new Date(data.expiresAt);
+    if (body.discountPercent !== undefined) data.discountPercent = body.discountPercent;
+    if (body.discountValue !== undefined) {
+      data.discountValue = body.discountValue ? String(body.discountValue) : null;
     }
 
     const [updated] = await db

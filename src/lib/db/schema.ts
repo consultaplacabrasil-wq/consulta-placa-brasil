@@ -429,6 +429,9 @@ export const coupons = pgTable(
     name: varchar("name", { length: 100 }).notNull(),
     code: varchar("code", { length: 50 }).notNull(),
     discountPercent: integer("discount_percent").notNull(),
+    // Tipo de desconto: "percent" (usa discountPercent) ou "fixed" (usa discountValue em R$)
+    discountType: varchar("discount_type", { length: 10 }).default("percent").notNull(),
+    discountValue: decimal("discount_value", { precision: 10, scale: 2 }),
     active: boolean("active").default(true),
     usageCount: integer("usage_count").default(0),
     maxUsage: integer("max_usage"),

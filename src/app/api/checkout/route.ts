@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { hash } from "bcryptjs";
 import { db } from "@/lib/db";
-import { users, payments, reportRequests, coupons } from "@/lib/db/schema";
-import { eq, sql } from "drizzle-orm";
+import { users, payments, reportRequests } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import {
   findOrCreateCustomer,
   createPixPayment,
   createCardPayment,
 } from "@/lib/asaas";
+import { validateCouponById, computeDiscount } from "@/lib/coupon";
 
 interface CheckoutItem {
   id: string;
@@ -33,7 +34,6 @@ export async function POST(req: NextRequest) {
       password,
       paymentMethod,
       couponId,
-      couponDiscountPercent,
       card,
       installments,
     } = body as {
@@ -45,7 +45,6 @@ export async function POST(req: NextRequest) {
       password?: string;
       paymentMethod: "pix" | "credit_card";
       couponId?: string;
-      couponDiscountPercent?: number;
       card?: {
         holderName: string;
         number: string;
@@ -131,17 +130,20 @@ export async function POST(req: NextRequest) {
 
     // Calculate totals
     const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
-    const discountPercent = couponDiscountPercent || 0;
-    const discountAmount = subtotal * (discountPercent / 100);
-    const total = Math.round((subtotal - discountAmount) * 100) / 100;
 
-    // Increment coupon usage
+    // Re-valida o cupom no servidor (não confia no valor vindo do front).
+    // O uso (usageCount) só é incrementado quando o pagamento for confirmado (webhook).
+    let discountAmount = 0;
+    let validCouponId: string | null = null;
     if (couponId) {
-      await db
-        .update(coupons)
-        .set({ usageCount: sql`${coupons.usageCount} + 1` })
-        .where(eq(coupons.id, couponId));
+      const couponResult = await validateCouponById(couponId);
+      if (couponResult.ok) {
+        discountAmount = computeDiscount(couponResult.coupon, subtotal);
+        validCouponId = couponResult.coupon.id;
+      }
+      // Se o cupom não for mais válido, segue sem desconto (não bloqueia a compra)
     }
+    const total = Math.round((subtotal - discountAmount) * 100) / 100;
 
     // Create payment record in DB
     const [payment] = await db
@@ -152,7 +154,7 @@ export async function POST(req: NextRequest) {
         method: paymentMethod === "pix" ? "pix" : "credit_card",
         status: "pending",
         installments: installments || 1,
-        couponId: couponId || null,
+        couponId: validCouponId,
         discountAmount: discountAmount > 0 ? discountAmount.toFixed(2) : null,
       })
       .returning({ id: payments.id });

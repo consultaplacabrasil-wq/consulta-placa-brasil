@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Users, UserPlus, Search, Pencil, X, Save, Loader2, Shield, Info,
-  ChevronLeft, ChevronRight, Ban, CheckCircle2,
+  ChevronLeft, ChevronRight, Ban, CheckCircle2, Eye,
 } from "lucide-react";
+import Link from "next/link";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
 
 interface User {
@@ -361,6 +362,7 @@ export default function AdminUsuariosPage() {
                           <td className="py-3 text-[#475569] hidden lg:table-cell">{new Date(user.createdAt).toLocaleDateString("pt-BR")}</td>
                           <td className="py-3 text-right">
                             <div className="flex items-center justify-end gap-1">
+                              <Link href={`/admin/clientes/${user.id}`} className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 text-[#475569]" title="Ver detalhes e histórico"><Eye className="h-4 w-4" /></Link>
                               <button onClick={() => handleEdit(user)} className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 text-[#475569]" title="Editar / Alterar senha"><Pencil className="h-4 w-4" /></button>
                               <button
                                 onClick={() => toggleActive(user)}

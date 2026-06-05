@@ -23,7 +23,9 @@ interface Coupon {
   id: string;
   name: string;
   code: string;
+  discountType: string;
   discountPercent: number;
+  discountValue: string | null;
   active: boolean;
   usageCount: number;
   maxUsage: number | null;
@@ -34,7 +36,9 @@ interface Coupon {
 const emptyCoupon = {
   name: "",
   code: "",
+  discountType: "percent",
   discountPercent: 10,
+  discountValue: "",
   maxUsage: "",
   expiresAt: "",
 };
@@ -51,7 +55,7 @@ export default function AdminCuponsPage() {
   const fetchCoupons = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/admin/coupons");
+      const res = await fetch("/api/admin/coupons", { cache: "no-store" });
       if (!res.ok) throw new Error("Erro ao buscar cupons");
       const data = await res.json();
       setCoupons(data);
@@ -82,7 +86,9 @@ export default function AdminCuponsPage() {
     setForm({
       name: coupon.name,
       code: coupon.code,
+      discountType: coupon.discountType || "percent",
       discountPercent: coupon.discountPercent,
+      discountValue: coupon.discountValue?.toString() || "",
       maxUsage: coupon.maxUsage?.toString() || "",
       expiresAt: coupon.expiresAt ? coupon.expiresAt.slice(0, 10) : "",
     });
@@ -96,14 +102,21 @@ export default function AdminCuponsPage() {
   }
 
   async function handleSave() {
-    if (!form.name || !form.code || !form.discountPercent) {
-      showMsg("error", "Nome, código e porcentagem são obrigatórios");
+    if (!form.name || !form.code) {
+      showMsg("error", "Nome e código são obrigatórios");
       return;
     }
 
-    if (form.discountPercent < 1 || form.discountPercent > 100) {
-      showMsg("error", "Porcentagem de desconto deve ser entre 1 e 100");
-      return;
+    if (form.discountType === "percent") {
+      if (!form.discountPercent || form.discountPercent < 1 || form.discountPercent > 100) {
+        showMsg("error", "Porcentagem de desconto deve ser entre 1 e 100");
+        return;
+      }
+    } else {
+      if (!form.discountValue || Number(form.discountValue) <= 0) {
+        showMsg("error", "Valor do desconto fixo deve ser maior que zero");
+        return;
+      }
     }
 
     setSaving(true);
@@ -112,7 +125,9 @@ export default function AdminCuponsPage() {
       const payload: Record<string, unknown> = {
         name: form.name,
         code: form.code,
-        discountPercent: Number(form.discountPercent),
+        discountType: form.discountType,
+        discountPercent: Number(form.discountPercent) || 0,
+        discountValue: form.discountType === "fixed" ? Number(form.discountValue) : null,
         maxUsage: form.maxUsage ? Number(form.maxUsage) : null,
         expiresAt: form.expiresAt || null,
       };
@@ -277,22 +292,43 @@ export default function AdminCuponsPage() {
                 />
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
-                  Desconto (%)
+                  Tipo de Desconto
                 </label>
-                <Input
-                  type="number"
-                  min={1}
-                  max={100}
-                  value={form.discountPercent}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, discountPercent: Number(e.target.value) }))
-                  }
-                  placeholder="10"
-                />
+                <select
+                  value={form.discountType}
+                  onChange={(e) => setForm((f) => ({ ...f, discountType: e.target.value }))}
+                  className="w-full h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#FF4D30]/20 focus:border-[#FF4D30]"
+                >
+                  <option value="percent">Porcentagem (%)</option>
+                  <option value="fixed">Valor fixo (R$)</option>
+                </select>
               </div>
+              {form.discountType === "percent" ? (
+                <div>
+                  <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">Desconto (%)</label>
+                  <Input
+                    type="number" min={1} max={100}
+                    value={form.discountPercent}
+                    onChange={(e) => setForm((f) => ({ ...f, discountPercent: Number(e.target.value) }))}
+                    placeholder="10"
+                  />
+                </div>
+              ) : (
+                <div>
+                  <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">Desconto (R$)</label>
+                  <Input
+                    type="number" min={0} step="0.01"
+                    value={form.discountValue}
+                    onChange={(e) => setForm((f) => ({ ...f, discountValue: e.target.value }))}
+                    placeholder="10.00"
+                  />
+                </div>
+              )}
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className="text-sm font-medium text-[#0F172A] mb-1.5 block">
                   Máximo de Usos
@@ -387,7 +423,9 @@ export default function AdminCuponsPage() {
                         </td>
                         <td className="py-3">
                           <span className="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-700">
-                            {coupon.discountPercent}%
+                            {coupon.discountType === "fixed"
+                              ? `R$ ${Number(coupon.discountValue || 0).toFixed(2).replace(".", ",")}`
+                              : `${coupon.discountPercent}%`}
                           </span>
                         </td>
                         <td className="py-3">

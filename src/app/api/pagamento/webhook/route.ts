@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { payments, reportRequests } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
+import { payments, reportRequests, coupons } from "@/lib/db/schema";
+import { eq, sql } from "drizzle-orm";
 import { getWebhookToken } from "@/lib/asaas";
 
 type AsaasEvent =
@@ -89,6 +89,14 @@ export async function POST(request: NextRequest) {
           .set({ status: "processing" })
           .where(eq(reportRequests.paymentId, paymentDbId));
 
+        // Incrementa o uso do cupom só agora (pagamento confirmado)
+        if (dbPayment.couponId) {
+          await db
+            .update(coupons)
+            .set({ usageCount: sql`${coupons.usageCount} + 1` })
+            .where(eq(coupons.id, dbPayment.couponId));
+        }
+
         console.log(`Payment ${paymentDbId} confirmed`);
         break;
       }
@@ -129,6 +137,14 @@ export async function POST(request: NextRequest) {
           .set({ status: "cancelled" })
           .where(eq(reportRequests.paymentId, paymentDbId));
 
+        // Devolve o uso do cupom (pagamento reembolsado)
+        if (dbPayment.couponId) {
+          await db
+            .update(coupons)
+            .set({ usageCount: sql`GREATEST(${coupons.usageCount} - 1, 0)` })
+            .where(eq(coupons.id, dbPayment.couponId));
+        }
+
         console.log(`Payment ${paymentDbId} refunded`);
         break;
       }
@@ -143,6 +159,14 @@ export async function POST(request: NextRequest) {
           .update(reportRequests)
           .set({ status: "cancelled" })
           .where(eq(reportRequests.paymentId, paymentDbId));
+
+        // Devolve o uso do cupom (chargeback)
+        if (dbPayment.couponId) {
+          await db
+            .update(coupons)
+            .set({ usageCount: sql`GREATEST(${coupons.usageCount} - 1, 0)` })
+            .where(eq(coupons.id, dbPayment.couponId));
+        }
 
         console.log(`Payment ${paymentDbId} chargeback`);
         break;
