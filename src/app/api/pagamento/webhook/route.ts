@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { payments, reportRequests, coupons } from "@/lib/db/schema";
+import { payments, reportRequests, coupons, users } from "@/lib/db/schema";
 import { eq, sql } from "drizzle-orm";
 import { getWebhookToken } from "@/lib/asaas";
+import { sendPurchaseConfirmedEmail } from "@/lib/email";
 
 type AsaasEvent =
   | "PAYMENT_CONFIRMED"
@@ -95,6 +96,20 @@ export async function POST(request: NextRequest) {
             .update(coupons)
             .set({ usageCount: sql`${coupons.usageCount} + 1` })
             .where(eq(coupons.id, dbPayment.couponId));
+        }
+
+        // E-mail de compra aprovada
+        try {
+          const [u] = await db
+            .select({ name: users.name, email: users.email })
+            .from(users)
+            .where(eq(users.id, dbPayment.userId))
+            .limit(1);
+          if (u?.email) {
+            await sendPurchaseConfirmedEmail(u.email, u.name || "Cliente", String(dbPayment.amount));
+          }
+        } catch (e) {
+          console.error("Erro ao enviar e-mail de compra:", e);
         }
 
         console.log(`Payment ${paymentDbId} confirmed`);

@@ -5,6 +5,7 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
+import { sendPasswordChangedEmail } from "@/lib/email";
 
 // GET — buscar dados do perfil
 export async function GET() {
@@ -58,7 +59,7 @@ export async function PATCH(req: NextRequest) {
       if (passwordError) return NextResponse.json({ error: passwordError }, { status: 400 });
 
       const [user] = await db
-        .select({ password: users.password })
+        .select({ password: users.password, name: users.name, email: users.email })
         .from(users)
         .where(eq(users.id, session.user.id))
         .limit(1);
@@ -74,6 +75,9 @@ export async function PATCH(req: NextRequest) {
 
       const hashed = await bcrypt.hash(newPassword, 12);
       await db.update(users).set({ password: hashed, updatedAt: new Date() }).where(eq(users.id, session.user.id));
+
+      // E-mail de alerta de alteração de senha
+      sendPasswordChangedEmail(user.email, user.name || "Usuário").catch(() => {});
 
       return NextResponse.json({ success: true, message: "Senha alterada com sucesso" });
     }

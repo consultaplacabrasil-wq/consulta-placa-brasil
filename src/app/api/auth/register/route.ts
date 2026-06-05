@@ -5,6 +5,7 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { formatarNome, validarNomeCompleto } from "@/lib/utils/name-formatter";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
+import { sendWelcomeEmail } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   try {
@@ -72,6 +73,9 @@ export async function POST(req: NextRequest) {
         role: "user",
       })
       .returning({ id: users.id });
+
+    // E-mail de boas-vindas (não bloqueia o cadastro se falhar)
+    sendWelcomeEmail(email.toLowerCase().trim(), nomeFormatado).catch(() => {});
 
     return NextResponse.json({ id: newUser.id, success: true });
   } catch (error) {
