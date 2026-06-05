@@ -49,9 +49,13 @@ export function PlateSearch({ size = "default", variant = "default", className }
       return;
     }
 
-    setLoading(true);
-    // Leva o cliente para a seção de consultas (planos pagos)
-    router.push(`/?placa=${formatted}#consultas`);
+    // Leva o cliente para a seção de planos pagos
+    const el = typeof document !== "undefined" ? document.getElementById("consultas") : null;
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#consultas");
+    }
   }
 
   // Variant: card (usado em seções internas)
