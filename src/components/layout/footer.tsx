@@ -19,6 +19,8 @@ const footerLinks = {
     { href: "/termos", label: "Termos de Uso" },
     { href: "/privacidade", label: "Política de Privacidade" },
     { href: "/cookies", label: "Política de Cookies" },
+    { href: "/reembolso", label: "Política de Reembolso" },
+    { href: "/aviso-legal", label: "Aviso Legal" },
     { href: "/lgpd", label: "LGPD" },
   ],
 };

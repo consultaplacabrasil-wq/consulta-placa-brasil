@@ -21,20 +21,39 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const defaultContent = `
-<h2>1. Coleta de Dados</h2>
-<p>Coletamos dados pessoais necessários para a prestação dos serviços, incluindo nome, e-mail, CPF e dados de pagamento.</p>
-<h2>2. Uso dos Dados</h2>
-<p>Os dados são utilizados exclusivamente para: processamento de consultas, pagamentos, comunicação e melhoria dos serviços.</p>
-<h2>3. Compartilhamento</h2>
-<p>Não compartilhamos dados pessoais com terceiros, exceto quando necessário para processamento de pagamentos ou por determinação legal.</p>
-<h2>4. Segurança</h2>
-<p>Utilizamos criptografia e práticas de segurança avançadas para proteger seus dados contra acessos não autorizados.</p>
-<h2>5. Direitos do Titular</h2>
-<p>Conforme a LGPD, você tem direito a: acesso, correção, exclusão, portabilidade e revogação do consentimento de seus dados pessoais.</p>
-<h2>6. Cookies</h2>
-<p>Utilizamos cookies para melhorar a experiência. Consulte nossa <a href="/cookies">Política de Cookies</a> para mais detalhes.</p>
-<h2>7. Contato</h2>
-<p>Para exercer seus direitos ou tirar dúvidas: contato@consultaplacabrasil.com</p>
+<p>Esta Política de Privacidade descreve como a <strong>Consulta Placa Brasil</strong> (CONSULTA PLACA BRASIL LTDA, CNPJ 66.962.276/0001-69) coleta, utiliza, armazena e protege os dados pessoais de seus usuários, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD).</p>
+
+<h2>1. Dados que Coletamos</h2>
+<ul>
+  <li><strong>Dados cadastrais:</strong> nome, e-mail, CPF/CNPJ e telefone;</li>
+  <li><strong>Dados de pagamento:</strong> processados por gateway parceiro (não armazenamos dados completos de cartão);</li>
+  <li><strong>Dados de uso:</strong> placas consultadas, histórico de consultas e relatórios gerados;</li>
+  <li><strong>Dados técnicos:</strong> endereço IP, navegador e cookies.</li>
+</ul>
+
+<h2>2. Finalidades do Tratamento</h2>
+<p>Utilizamos os dados para: criar e gerenciar sua conta; processar consultas e pagamentos; gerar relatórios; enviar comunicações e notificações; prevenir fraudes; e cumprir obrigações legais.</p>
+
+<h2>3. Base Legal</h2>
+<p>O tratamento se fundamenta na execução de contrato, no cumprimento de obrigação legal, no legítimo interesse e, quando aplicável, no consentimento do titular.</p>
+
+<h2>4. Compartilhamento de Dados</h2>
+<p>Não vendemos seus dados. Compartilhamos apenas o necessário com: processadores de pagamento, provedores de infraestrutura/e-mail e fontes/parceiros de dados veiculares, além de autoridades quando exigido por lei.</p>
+
+<h2>5. Armazenamento e Segurança</h2>
+<p>Adotamos medidas técnicas e organizacionais (criptografia, controle de acesso, senhas com hash) para proteger seus dados. Os dados são mantidos pelo tempo necessário às finalidades e às obrigações legais.</p>
+
+<h2>6. Direitos do Titular (LGPD)</h2>
+<p>Você pode, a qualquer momento, solicitar: confirmação e acesso aos dados; correção; anonimização ou exclusão; portabilidade; informação sobre compartilhamento; e revogação do consentimento. As solicitações podem ser feitas pelo e-mail abaixo ou pela página <a href="/lgpd">LGPD</a>.</p>
+
+<h2>7. Cookies</h2>
+<p>Utilizamos cookies para melhorar a experiência. Consulte nossa <a href="/cookies">Política de Cookies</a>.</p>
+
+<h2>8. Alterações</h2>
+<p>Esta Política pode ser atualizada periodicamente. A versão vigente estará sempre disponível nesta página.</p>
+
+<h2>9. Encarregado / Contato</h2>
+<p>Para exercer seus direitos ou esclarecer dúvidas sobre privacidade: contato@consultaplacabrasil.com</p>
 `;
 
 export default async function PrivacidadePage() {
