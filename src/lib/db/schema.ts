@@ -60,6 +60,7 @@ export const users = pgTable(
     role: userRoleEnum("role").default("user").notNull(),
     avatarUrl: text("avatar_url"),
     emailVerified: boolean("email_verified").default(false),
+    active: boolean("active").default(true).notNull(),
     asaasCustomerId: varchar("asaas_customer_id", { length: 100 }),
     resetToken: varchar("reset_token", { length: 255 }),
     resetTokenExpiresAt: timestamp("reset_token_expires_at"),

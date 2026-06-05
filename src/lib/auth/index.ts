@@ -3,9 +3,54 @@ import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import { compare } from "bcryptjs";
 import { db } from "@/lib/db";
-import { users } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
+import { users, apiLogs } from "@/lib/db/schema";
+import { eq, and, gte, sql } from "drizzle-orm";
 import { formatarNome } from "@/lib/utils/name-formatter";
+
+const MAX_LOGIN_ATTEMPTS = 5;
+const LOGIN_WINDOW_MS = 15 * 60 * 1000; // 15 minutos
+
+function getReqIp(request?: Request): string {
+  try {
+    const xff = request?.headers?.get("x-forwarded-for");
+    return xff?.split(",")[0]?.trim() || request?.headers?.get("x-real-ip") || "desconhecido";
+  } catch {
+    return "desconhecido";
+  }
+}
+
+async function countRecentFailures(ip: string): Promise<number> {
+  try {
+    const since = new Date(Date.now() - LOGIN_WINDOW_MS);
+    const rows = await db
+      .select({ count: sql<number>`count(*)::int` })
+      .from(apiLogs)
+      .where(
+        and(
+          eq(apiLogs.endpoint, "login-failed"),
+          gte(apiLogs.createdAt, since),
+          sql`${apiLogs.requestBody}->>'ip' = ${ip}`
+        )
+      );
+    return rows[0]?.count ?? 0;
+  } catch {
+    return 0; // se o banco falhar, não bloqueia
+  }
+}
+
+async function logLoginFailure(ip: string, email: string): Promise<void> {
+  try {
+    await db.insert(apiLogs).values({
+      endpoint: "login-failed",
+      method: "POST",
+      statusCode: 401,
+      requestBody: { ip, email },
+      responseTimeMs: 0,
+    });
+  } catch {
+    /* silencioso */
+  }
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true, // necessário atrás de proxy reverso (Nginx/Cloudflare)
@@ -21,13 +66,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Senha", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
         const email = credentials.email as string;
         const password = credentials.password as string;
+        const ip = getReqIp(request as Request);
+
+        // Rate limit: bloqueia após muitas tentativas falhas do mesmo IP
+        const failures = await countRecentFailures(ip);
+        if (failures >= MAX_LOGIN_ATTEMPTS) {
+          throw new Error("Muitas tentativas de login. Aguarde 15 minutos e tente novamente.");
+        }
 
         const [user] = await db
           .select()
@@ -36,12 +88,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           .limit(1);
 
         if (!user || !user.password) {
+          await logLoginFailure(ip, email);
           return null;
+        }
+
+        // Bloqueia login de usuários desativados
+        if (user.active === false) {
+          throw new Error("Conta desativada. Entre em contato com o suporte.");
         }
 
         const isValid = await compare(password, user.password);
 
         if (!isValid) {
+          await logLoginFailure(ip, email);
           return null;
         }
 
