@@ -123,15 +123,15 @@ export default function HomePage() {
               <div className="flex flex-wrap justify-center gap-6 text-sm text-[#64748B]">
                 <span className="flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-[#FF4D30]" />
-                  Consulta básica grátis
+                  Cobertura nacional
                 </span>
                 <span className="flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-[#FF4D30]" />
-                  Sem cadastro necessário
+                  Dados oficiais dos Detrans
                 </span>
                 <span className="flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-[#FF4D30]" />
-                  Dados atualizados
+                  Resultado na hora
                 </span>
               </div>
             </div>

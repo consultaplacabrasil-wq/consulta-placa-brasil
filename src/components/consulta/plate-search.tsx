@@ -50,12 +50,8 @@ export function PlateSearch({ size = "default", variant = "default", className }
     }
 
     setLoading(true);
-    const target = `/consulta/${formatted}`;
-    if (window.location.pathname === target) {
-      router.refresh();
-    } else {
-      router.push(target);
-    }
+    // Leva o cliente para a seção de consultas (planos pagos)
+    router.push(`/?placa=${formatted}#consultas`);
   }
 
   // Variant: card (usado em seções internas)
@@ -95,7 +91,7 @@ export function PlateSearch({ size = "default", variant = "default", className }
           Consultar Agora
         </Button>
         <p className="mt-3 text-center text-xs text-gray-600">
-          Consulta básica gratuita · Sem cadastro
+          Dados oficiais dos Detrans · Resultado na hora
         </p>
       </form>
     );
@@ -127,14 +123,14 @@ export function PlateSearch({ size = "default", variant = "default", className }
             ) : (
               <Search className="h-5 w-5" />
             )}
-            Consultar Grátis
+            Consultar Placa
           </Button>
         </div>
         {error && (
           <p className="mt-2 text-sm text-red-500 text-center">{error}</p>
         )}
         <p className="mt-3 text-center text-xs text-[#94A3B8]">
-          🔒 Consulta básica 100% gratuita · Sem cadastro · Resultado instantâneo
+          🔒 Dados oficiais dos Detrans · Resultado na hora
         </p>
       </form>
     );
