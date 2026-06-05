@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useSession, signIn } from "next-auth/react";
@@ -94,6 +94,22 @@ export default function CheckoutPage() {
   const [couponCode, setCouponCode] = useState("");
   const [couponLoading, setCouponLoading] = useState(false);
   const [couponError, setCouponError] = useState("");
+
+  // Pré-preenche os dados do cliente logado (CPF, telefone, nome, e-mail)
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    fetch("/api/user/profile", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((p) => {
+        if (!p) return;
+        if (p.name) setName((v) => v || p.name);
+        if (p.email) setEmail((v) => v || p.email);
+        if (p.cpfCnpj) setCpf((v) => v || p.cpfCnpj);
+        if (p.phone) setPhone((v) => v || p.phone);
+      })
+      .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn]);
 
   const subtotal = totalPrice();
   const discountPercent = storeCoupon?.discountPercent || 0;

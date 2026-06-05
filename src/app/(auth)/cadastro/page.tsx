@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { User, Mail, Lock, Eye, EyeOff, FileText, AlertCircle } from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff, FileText, AlertCircle, Phone } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,6 +39,7 @@ export default function CadastroPage() {
     name: "",
     email: "",
     cpfCnpj: "",
+    phone: "",
     password: "",
     confirmPassword: "",
   });
@@ -49,6 +50,14 @@ export default function CadastroPage() {
     if (field === "password") {
       setPasswordErrors(value ? validatePassword(value) : []);
     }
+  }
+
+  function formatPhone(value: string) {
+    const d = value.replace(/\D/g, "").slice(0, 11);
+    if (d.length <= 10) {
+      return d.replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{4})(\d)/, "$1-$2");
+    }
+    return d.replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2");
   }
 
   function formatCpfCnpj(value: string) {
@@ -96,6 +105,7 @@ export default function CadastroPage() {
           name: form.name.trim(),
           email: form.email.toLowerCase().trim(),
           cpfCnpj: form.cpfCnpj,
+          phone: form.phone,
           password: form.password,
         }),
       });
@@ -189,6 +199,23 @@ export default function CadastroPage() {
                 value={form.cpfCnpj}
                 onChange={(e) => handleChange("cpfCnpj", formatCpfCnpj(e.target.value))}
                 maxLength={18}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="phone" className="text-[#0F172A]">Telefone / WhatsApp</Label>
+            <div className="relative">
+              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="(11) 99999-9999"
+                className="pl-10"
+                value={form.phone}
+                onChange={(e) => handleChange("phone", formatPhone(e.target.value))}
+                maxLength={16}
                 required
               />
             </div>

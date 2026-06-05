@@ -10,7 +10,7 @@ import { sendWelcomeEmail } from "@/lib/email";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, cpfCnpj, password } = body;
+    const { name, email, cpfCnpj, password, phone } = body;
 
     if (!name || !email || !cpfCnpj || !password) {
       return NextResponse.json(
@@ -69,6 +69,7 @@ export async function POST(req: NextRequest) {
         name: nomeFormatado,
         email: email.toLowerCase().trim(),
         cpfCnpj: cleanCpf,
+        phone: phone ? phone.replace(/\D/g, "") : null,
         password: hashedPassword,
         role: "user",
       })

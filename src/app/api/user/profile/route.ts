@@ -21,6 +21,7 @@ export async function GET() {
         name: users.name,
         email: users.email,
         cpfCnpj: users.cpfCnpj,
+        phone: users.phone,
         role: users.role,
         createdAt: users.createdAt,
       })

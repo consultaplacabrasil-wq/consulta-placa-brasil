@@ -57,6 +57,7 @@ export const users = pgTable(
     email: varchar("email", { length: 255 }).notNull(),
     password: text("password"),
     cpfCnpj: varchar("cpf_cnpj", { length: 18 }),
+    phone: varchar("phone", { length: 20 }),
     role: userRoleEnum("role").default("user").notNull(),
     avatarUrl: text("avatar_url"),
     emailVerified: boolean("email_verified").default(false),
