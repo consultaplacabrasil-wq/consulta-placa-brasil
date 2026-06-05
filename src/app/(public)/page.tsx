@@ -115,11 +115,6 @@ export default function HomePage() {
                 Maior portal para consulta de placas e veículos dos Detrans do Brasil, com informações completas, atualizadas e confiáveis para proprietários, despachantes e profissionais do setor automotivo.
               </p>
 
-              {/* Campo de consulta — primeira dobra */}
-              <div className="mx-auto mb-8 max-w-lg">
-                <PlateSearch size="large" variant="hero" />
-              </div>
-
               <div className="flex flex-wrap justify-center gap-6 text-sm text-[#64748B]">
                 <span className="flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-[#FF4D30]" />
