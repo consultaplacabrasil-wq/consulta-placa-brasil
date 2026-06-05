@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const defaultContent = `
-<p>Esta Política de Reembolso esclarece as regras de pagamento, estorno e cancelamento da plataforma <strong>Consulta Placa Brasil</strong> (CONSULTA PLACA BRASIL LTDA, CNPJ 66.962.276/0001-69).</p>
+<p>Esta Política de Reembolso esclarece as regras de pagamento, estorno e cancelamento da plataforma <strong>Consulta Placa Brasil</strong> (CONSULTA PLACA BRASIL LTDA, CNPJ 66.962.276/0001-69, com sede no Setor SRTVS Quadra 701, Conj. L, Bloco 01, nº 38, Asa Sul, Brasília/DF, CEP 70340-000, telefone (61) 3246-9277).</p>
 
 <h2>1. Natureza do Serviço</h2>
 <p>As consultas veiculares são serviços digitais de entrega imediata. O relatório é gerado e disponibilizado assim que a consulta é processada.</p>

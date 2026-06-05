@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const defaultContent = `
-<p>Esta Política de Privacidade descreve como a <strong>Consulta Placa Brasil</strong> (CONSULTA PLACA BRASIL LTDA, CNPJ 66.962.276/0001-69) coleta, utiliza, armazena e protege os dados pessoais de seus usuários, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD).</p>
+<p>Esta Política de Privacidade descreve como a <strong>Consulta Placa Brasil</strong> (CONSULTA PLACA BRASIL LTDA, CNPJ 66.962.276/0001-69, com sede no Setor SRTVS Quadra 701, Conj. L, Bloco 01, nº 38, Asa Sul, Brasília/DF, CEP 70340-000) coleta, utiliza, armazena e protege os dados pessoais de seus usuários, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD).</p>
 
 <h2>1. Dados que Coletamos</h2>
 <ul>

@@ -49,12 +49,16 @@ export function Footer() {
             </p>
             <div className="space-y-2.5 text-sm text-gray-400">
               <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-[#FF4D30]" />
+                (61) 3246-9277
+              </div>
+              <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-[#FF4D30]" />
                 contato@consultaplacabrasil.com
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-[#FF4D30]" />
-                Brasília, DF | Brasil
+              <div className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 text-[#FF4D30] mt-0.5 shrink-0" />
+                <span>SRTVS Quadra 701, Conj. L, Bloco 01, nº 38<br />Asa Sul, Brasília/DF · CEP 70340-000</span>
               </div>
             </div>
           </div>

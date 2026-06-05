@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const defaultContent = `
-<p>Este Aviso Legal aplica-se a todos os relatórios e informações fornecidos pela plataforma <strong>Consulta Placa Brasil</strong> (CONSULTA PLACA BRASIL LTDA, CNPJ 66.962.276/0001-69).</p>
+<p>Este Aviso Legal aplica-se a todos os relatórios e informações fornecidos pela plataforma <strong>Consulta Placa Brasil</strong> (CONSULTA PLACA BRASIL LTDA, CNPJ 66.962.276/0001-69, com sede no Setor SRTVS Quadra 701, Conj. L, Bloco 01, nº 38, Asa Sul, Brasília/DF, CEP 70340-000, telefone (61) 3246-9277).</p>
 
 <h2>1. Caráter Informativo</h2>
 <p>Todas as informações e relatórios têm <strong>caráter exclusivamente informativo</strong>. São compilados a partir de fontes públicas, privadas e parceiras, e refletem os dados disponíveis no momento da consulta.</p>

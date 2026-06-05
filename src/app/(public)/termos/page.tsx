@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const defaultContent = `
-<p>Estes Termos de Uso regulam o acesso e a utilização da plataforma <strong>Consulta Placa Brasil</strong>, operada por CONSULTA PLACA BRASIL LTDA, inscrita no CNPJ sob nº 66.962.276/0001-69, com sede em Brasília/DF. Leia atentamente antes de utilizar nossos serviços.</p>
+<p>Estes Termos de Uso regulam o acesso e a utilização da plataforma <strong>Consulta Placa Brasil</strong>, operada por CONSULTA PLACA BRASIL LTDA, inscrita no CNPJ sob nº 66.962.276/0001-69, com sede no Setor SRTVS Quadra 701, Conj. L, Bloco 01, nº 38, Asa Sul, Brasília/DF, CEP 70340-000, telefone (61) 3246-9277. Leia atentamente antes de utilizar nossos serviços.</p>
 
 <h2>1. Aceitação dos Termos</h2>
 <p>Ao acessar ou utilizar o site Consulta Placa Brasil, o usuário declara que leu, compreendeu e concorda integralmente com estes Termos de Uso e com a nossa Política de Privacidade. Caso não concorde, o usuário não deve utilizar a plataforma.</p>

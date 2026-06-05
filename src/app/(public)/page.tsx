@@ -312,8 +312,10 @@ export default function HomePage() {
             },
             address: {
               "@type": "PostalAddress",
-              addressLocality: "Campinas",
-              addressRegion: "SP",
+              streetAddress: "SRTVS Quadra 701, Conj. L, Bloco 01, nº 38 - Asa Sul",
+              addressLocality: "Brasília",
+              addressRegion: "DF",
+              postalCode: "70340-000",
               addressCountry: "BR",
             },
             areaServed: {

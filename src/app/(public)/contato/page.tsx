@@ -66,12 +66,25 @@ export default function ContatoPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/10 shrink-0">
+                    <Phone className="w-5 h-5 text-[#FF4D30]" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-[#0F172A]">Telefone</p>
+                    <a href="tel:+556132469277" className="text-[#FF4D30] hover:underline text-sm">
+                      (61) 3246-9277
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF4D30]/10 shrink-0">
                     <MapPin className="w-5 h-5 text-[#FF4D30]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#0F172A]">Localização</p>
+                    <p className="font-semibold text-[#0F172A]">Endereço</p>
                     <p className="text-sm text-[#475569]">
-                      Campinas, SP | Brasil
+                      SRTVS Quadra 701, Conj. L, Bloco 01, nº 38<br />
+                      Asa Sul, Brasília/DF · CEP 70340-000
                     </p>
                   </div>
                 </div>
@@ -112,10 +125,13 @@ export default function ContatoPage() {
               "@type": "Organization",
               name: "Consulta Placa Brasil",
               email: "contato@consultaplacabrasil.com",
+              telephone: "+556132469277",
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Campinas",
-                addressRegion: "SP",
+                streetAddress: "SRTVS Quadra 701, Conj. L, Bloco 01, nº 38 - Asa Sul",
+                addressLocality: "Brasília",
+                addressRegion: "DF",
+                postalCode: "70340-000",
                 addressCountry: "BR",
               },
             },
