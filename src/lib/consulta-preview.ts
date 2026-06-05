@@ -72,7 +72,7 @@ export async function fetchApiBrasilBasica(placa: string): Promise<Record<string
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ tipo: "agregados-basica", placa }),
+    body: JSON.stringify({ tipo: "agregados-v2", placa }),
     cache: "no-store",
   });
 
