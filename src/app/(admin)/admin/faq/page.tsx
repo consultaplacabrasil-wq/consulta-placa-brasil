@@ -376,7 +376,7 @@ export default function AdminFaqPage() {
                     className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-[#0F172A] placeholder:text-[#94A3B8] outline-none focus:border-[#FF4D30] focus:ring-2 focus:ring-[#FF4D30]/20 transition-all resize-none"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="mb-1.5 block text-sm font-medium text-[#475569]">
                       Ordem de exibição

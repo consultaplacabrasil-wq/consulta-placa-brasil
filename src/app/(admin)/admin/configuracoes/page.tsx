@@ -856,7 +856,7 @@ export default function AdminConfiguracoesPage() {
               <p className="text-sm font-medium text-blue-800">
                 Credenciais padrão do Admin:
               </p>
-              <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                 <div>
                   <p className="text-blue-600">E-mail:</p>
                   <p className="font-mono text-blue-900">admin@consultaplacabrasil.com</p>
