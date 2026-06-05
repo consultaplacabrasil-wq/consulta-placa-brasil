@@ -62,7 +62,7 @@ export default async function ReembolsoPage() {
         </div>
       </section>
       <section className="bg-white px-4 py-12 md:py-16">
-        <div className="prose prose-gray mx-auto max-w-4xl" dangerouslySetInnerHTML={{ __html: page?.content || defaultContent }} />
+        <div className="legal-content mx-auto max-w-4xl" dangerouslySetInnerHTML={{ __html: page?.content || defaultContent }} />
       </section>
     </div>
   );
