@@ -132,15 +132,22 @@ export function ConsultaGratisHero() {
                 <p className="bg-[#0F172A] px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#FF4D30]">
                   Veículo
                 </p>
-                <Row label="Marca / Modelo" value={result.marcaModelo} alt />
-                <Row label="Fabricação / Modelo" value={
-                  result.anoFabricacao || result.anoModelo
-                    ? `${result.anoFabricacao || "—"} / ${result.anoModelo || "—"}`
-                    : null
-                } />
-                <Row label="Cor" value={result.cor} alt />
-                <Row label="Chassi" value={result.chassi} />
-                <Row label="Combustível" value={result.combustivel} alt />
+                {(() => {
+                  const ano =
+                    result.anoFabricacao || result.anoModelo
+                      ? `${result.anoFabricacao || "—"} / ${result.anoModelo || "—"}`
+                      : null;
+                  const rows = [
+                    { label: "Marca / Modelo", value: result.marcaModelo },
+                    { label: "Fabricação / Modelo", value: ano },
+                    { label: "Cor", value: result.cor },
+                    { label: "Chassi", value: result.chassi },
+                    { label: "Combustível", value: result.combustivel },
+                  ].filter((r) => r.value);
+                  return rows.map((r, i) => (
+                    <Row key={r.label} label={r.label} value={r.value} alt={i % 2 === 0} />
+                  ));
+                })()}
               </div>
 
               <div className="flex flex-col justify-between rounded-xl border border-dashed border-[#FF4D30]/40 bg-[#FFF5F3] p-4">

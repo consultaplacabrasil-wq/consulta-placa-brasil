@@ -168,10 +168,27 @@ export interface PreviewVeiculo {
   combustivel: string | null;
 }
 
+// Converte para string só valores primitivos (objetos viram null, evita "[object Object]")
 function str(v: unknown): string | null {
-  if (v === null || v === undefined) return null;
+  if (v === null || v === undefined || typeof v === "object") return null;
   const s = String(v).trim();
   return s.length ? s : null;
+}
+
+// Primeiro valor não-vazio
+function pick(...vals: unknown[]): string | null {
+  for (const v of vals) {
+    const s = str(v);
+    if (s) return s;
+  }
+  return null;
+}
+
+// Trata um campo que pode ser objeto aninhado (Agregados Simples) ou plano (v2)
+function asObj(v: unknown): Record<string, unknown> {
+  return v && typeof v === "object" && !Array.isArray(v)
+    ? (v as Record<string, unknown>)
+    : {};
 }
 
 // Mostra só os últimos 7 caracteres do chassi (ex.: **********0000302)
@@ -187,19 +204,24 @@ export async function consultaGratis(placa: string): Promise<PreviewVeiculo> {
   const placaNorm = placa.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
   const d = await apiBrasilFetch(TIPO_GRATIS, placaNorm);
 
-  const marca = str(d.marca);
-  const modelo = str(d.modelo);
+  // Agregados Simples: marca é objeto { fabricante, modelo }, ano é { fabricacao, modelo }
+  // Agregados Própria (v2): marca/modelo/anoFabricacao/anoModelo são campos planos
+  const marcaObj = asObj(d.marca);
+  const anoObj = asObj(d.ano);
+
   const marcaModelo =
-    str(d.marcaModelo) || [marca, modelo].filter(Boolean).join("/") || null;
+    pick(d.marcaModelo, marcaObj.modelo, marcaObj.fabricante) ||
+    [str(d.marca), str(d.modelo)].filter(Boolean).join("/") ||
+    null;
 
   return {
     placa: placaNorm,
     marcaModelo,
-    anoFabricacao: str(d.anoFabricacao),
-    anoModelo: str(d.anoModelo),
-    cor: str(d.corVeiculo) || str(d.cor),
+    anoFabricacao: pick(anoObj.fabricacao, d.anoFabricacao),
+    anoModelo: pick(anoObj.modelo, d.anoModelo),
+    cor: pick(d.cor, d.corVeiculo),
     chassi: maskChassi(d.chassi),
-    combustivel: str(d.combustivel) || str(d.codigoCombustivel),
+    combustivel: pick(d.combustivel, d.codigoCombustivel),
   };
 }
 
