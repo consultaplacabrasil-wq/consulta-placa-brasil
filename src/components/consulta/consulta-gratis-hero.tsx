@@ -19,14 +19,14 @@ interface PreviewVeiculo {
 function Row({ label, value, alt }: { label: string; value: string | null; alt?: boolean }) {
   return (
     <div
-      className={`flex items-center justify-between gap-4 px-4 py-2.5 ${
+      className={`flex items-start justify-between gap-3 px-4 py-2.5 ${
         alt ? "bg-[#F1F5F9]" : ""
       }`}
     >
-      <span className="text-xs font-semibold uppercase tracking-wide text-[#64748B]">
+      <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-[#64748B]">
         {label}
       </span>
-      <span className="text-right text-sm font-bold text-[#0F172A]">
+      <span className="min-w-0 break-words text-right text-sm font-bold text-[#0F172A]">
         {value || "—"}
       </span>
     </div>
