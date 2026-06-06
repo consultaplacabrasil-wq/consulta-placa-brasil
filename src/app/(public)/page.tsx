@@ -22,6 +22,7 @@ import {
   ArrowUp,
 } from "lucide-react";
 
+import { ConsultaGratisHero } from "@/components/consulta/consulta-gratis-hero";
 import { ConsultasPacotes } from "@/components/home/consultas-pacotes";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { FaqSection } from "@/components/home/faq-section";
@@ -116,6 +117,11 @@ export default function HomePage() {
               <p className="mb-8 text-lg text-[#64748B] leading-relaxed max-w-xl mx-auto">
                 Maior portal para consulta de placas e veículos dos Detrans do Brasil, com informações completas, atualizadas e confiáveis para proprietários, despachantes e profissionais do setor automotivo.
               </p>
+
+              {/* Consulta grátis — primeira dobra */}
+              <div className="mb-8">
+                <ConsultaGratisHero />
+              </div>
 
               <div className="flex flex-wrap justify-center gap-6 text-sm text-[#64748B]">
                 <span className="flex items-center gap-2">

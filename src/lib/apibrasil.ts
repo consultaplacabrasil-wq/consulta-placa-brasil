@@ -152,6 +152,58 @@ export async function executarConsulta(
 }
 
 // ============================================================
+// Consulta GRÁTIS (preview na primeira dobra) — "Agregados Simples"
+// ============================================================
+// Usa o tipo mais barato (R$0,02). Configurável por env para trocar
+// facilmente o produto sem mexer no código.
+const TIPO_GRATIS = process.env.APIBRASIL_TIPO_GRATIS || "agregados-simples";
+
+export interface PreviewVeiculo {
+  placa: string;
+  marcaModelo: string | null;
+  anoFabricacao: string | null;
+  anoModelo: string | null;
+  cor: string | null;
+  chassi: string | null; // mascarado
+  combustivel: string | null;
+}
+
+function str(v: unknown): string | null {
+  if (v === null || v === undefined) return null;
+  const s = String(v).trim();
+  return s.length ? s : null;
+}
+
+// Mostra só os últimos 7 caracteres do chassi (ex.: **********0000302)
+function maskChassi(chassi: unknown): string | null {
+  const c = str(chassi);
+  if (!c) return null;
+  if (c.length <= 7) return c;
+  const visivel = c.slice(-7);
+  return "*".repeat(Math.max(3, c.length - 7)) + visivel;
+}
+
+export async function consultaGratis(placa: string): Promise<PreviewVeiculo> {
+  const placaNorm = placa.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+  const d = await apiBrasilFetch(TIPO_GRATIS, placaNorm);
+
+  const marca = str(d.marca);
+  const modelo = str(d.modelo);
+  const marcaModelo =
+    str(d.marcaModelo) || [marca, modelo].filter(Boolean).join("/") || null;
+
+  return {
+    placa: placaNorm,
+    marcaModelo,
+    anoFabricacao: str(d.anoFabricacao),
+    anoModelo: str(d.anoModelo),
+    cor: str(d.corVeiculo) || str(d.cor),
+    chassi: maskChassi(d.chassi),
+    combustivel: str(d.combustivel) || str(d.codigoCombustivel),
+  };
+}
+
+// ============================================================
 // Helper legado
 // ============================================================
 export function consultaPrecisaRenavam(): boolean {
