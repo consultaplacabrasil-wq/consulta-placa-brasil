@@ -19,14 +19,14 @@ interface PreviewVeiculo {
 function Row({ label, value, alt }: { label: string; value: string | null; alt?: boolean }) {
   return (
     <div
-      className={`flex items-start justify-between gap-3 px-4 py-2.5 ${
+      className={`flex items-center justify-between gap-4 px-4 py-3 ${
         alt ? "bg-[#F1F5F9]" : ""
       }`}
     >
       <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-[#64748B]">
         {label}
       </span>
-      <span className="min-w-0 break-words text-right text-sm font-bold text-[#0F172A]">
+      <span className="min-w-0 text-right text-sm font-bold text-[#0F172A]">
         {value || "—"}
       </span>
     </div>
@@ -101,8 +101,20 @@ export function ConsultaGratisHero() {
 
   // ----- Resultado: preview do veículo + CTA de conversão -----
   if (result) {
+    const ano =
+      result.anoFabricacao || result.anoModelo
+        ? `${result.anoFabricacao || "—"} / ${result.anoModelo || "—"}`
+        : null;
+    const rows = [
+      { label: "Marca / Modelo", value: result.marcaModelo },
+      { label: "Fabricação / Modelo", value: ano },
+      { label: "Cor", value: result.cor },
+      { label: "Chassi", value: result.chassi },
+      { label: "Combustível", value: result.combustivel },
+    ].filter((r) => r.value);
+
     return (
-      <div className="mx-auto w-full max-w-3xl text-left">
+      <div className="mx-auto w-full max-w-xl text-left">
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl shadow-black/5">
           {/* Cabeçalho */}
           <div className="flex items-center gap-2 bg-[#0F172A] px-5 py-4 text-white">
@@ -112,18 +124,18 @@ export function ConsultaGratisHero() {
             </h3>
           </div>
 
-          {/* Corpo */}
-          <div className="grid grid-cols-1 gap-5 p-5 md:grid-cols-[auto_1fr]">
+          {/* Corpo — empilhado: placa → veículo → consulta */}
+          <div className="space-y-5 p-5">
             {/* Placa */}
             <div className="flex flex-col items-center gap-3">
-              <div className="w-44 overflow-hidden rounded-lg border-2 border-[#0F172A] bg-white shadow-sm">
+              <div className="w-52 overflow-hidden rounded-lg border-2 border-[#0F172A] bg-white shadow-sm">
                 <div className="flex items-center justify-between bg-[#0B3CA3] px-2 py-1">
-                  <span className="text-[8px] font-bold tracking-widest text-white">
+                  <span className="text-[9px] font-bold tracking-widest text-white">
                     BRASIL
                   </span>
-                  <span className="text-[10px]">🇧🇷</span>
+                  <span className="text-[11px]">🇧🇷</span>
                 </div>
-                <div className="py-2 text-center text-2xl font-extrabold tracking-[0.15em] text-[#0F172A]">
+                <div className="py-2 text-center text-3xl font-extrabold tracking-[0.2em] text-[#0F172A]">
                   {result.placa}
                 </div>
               </div>
@@ -133,51 +145,35 @@ export function ConsultaGratisHero() {
               </span>
             </div>
 
-            {/* Dados */}
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-              <div className="overflow-hidden rounded-xl border border-gray-100">
-                <p className="bg-[#0F172A] px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#FF4D30]">
-                  Veículo
-                </p>
-                {(() => {
-                  const ano =
-                    result.anoFabricacao || result.anoModelo
-                      ? `${result.anoFabricacao || "—"} / ${result.anoModelo || "—"}`
-                      : null;
-                  const rows = [
-                    { label: "Marca / Modelo", value: result.marcaModelo },
-                    { label: "Fabricação / Modelo", value: ano },
-                    { label: "Cor", value: result.cor },
-                    { label: "Chassi", value: result.chassi },
-                    { label: "Combustível", value: result.combustivel },
-                  ].filter((r) => r.value);
-                  return rows.map((r, i) => (
-                    <Row key={r.label} label={r.label} value={r.value} alt={i % 2 === 0} />
-                  ));
-                })()}
-              </div>
+            {/* Veículo */}
+            <div className="overflow-hidden rounded-xl border border-gray-200">
+              <p className="bg-[#0F172A] px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-[#FF4D30]">
+                Veículo
+              </p>
+              {rows.map((r, i) => (
+                <Row key={r.label} label={r.label} value={r.value} alt={i % 2 === 0} />
+              ))}
+            </div>
 
-              <div className="flex flex-col justify-between rounded-xl border border-dashed border-[#FF4D30]/40 bg-[#FFF5F3] p-4">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-[#FF4D30]">
-                    Consulta
-                  </p>
-                  <div className="mt-3 space-y-2 text-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[#64748B]">Entrada</span>
-                      <span className="font-bold text-[#0F172A]">{result.placa}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[#64748B]">Tipo</span>
-                      <span className="font-bold text-[#0F172A]">Gratuita</span>
-                    </div>
-                  </div>
+            {/* Consulta */}
+            <div className="rounded-xl border border-dashed border-[#FF4D30]/40 bg-[#FFF5F3] p-4">
+              <p className="text-xs font-bold uppercase tracking-wide text-[#FF4D30]">
+                Consulta
+              </p>
+              <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
+                <div className="flex flex-col">
+                  <span className="text-xs text-[#64748B]">Entrada</span>
+                  <span className="font-bold text-[#0F172A]">{result.placa}</span>
                 </div>
-                <p className="mt-4 text-xs leading-relaxed text-[#64748B]">
-                  Estes são os dados básicos. O histórico completo é liberado na
-                  consulta paga.
-                </p>
+                <div className="flex flex-col">
+                  <span className="text-xs text-[#64748B]">Tipo</span>
+                  <span className="font-bold text-[#0F172A]">Gratuita</span>
+                </div>
               </div>
+              <p className="mt-3 border-t border-[#FF4D30]/10 pt-3 text-xs leading-relaxed text-[#64748B]">
+                Estes são os dados básicos. O histórico completo é liberado na
+                consulta paga.
+              </p>
             </div>
           </div>
 
