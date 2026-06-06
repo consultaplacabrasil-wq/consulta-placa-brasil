@@ -157,6 +157,10 @@ export async function executarConsulta(
 // Usa o tipo mais barato (R$0,02). Configurável por env para trocar
 // facilmente o produto sem mexer no código.
 const TIPO_GRATIS = process.env.APIBRASIL_TIPO_GRATIS || "agregados-simples";
+// Fallback: se a base barata (Simples) não achar a placa, tenta a Própria
+// (cobertura ~92%) para não perder a prévia/conversão. "" desliga o fallback.
+const TIPO_GRATIS_FALLBACK =
+  process.env.APIBRASIL_TIPO_GRATIS_FALLBACK ?? "agregados-v2";
 
 export interface PreviewVeiculo {
   placa: string;
@@ -200,10 +204,8 @@ function maskChassi(chassi: unknown): string | null {
   return "*".repeat(Math.max(3, c.length - 7)) + visivel;
 }
 
-export async function consultaGratis(placa: string): Promise<PreviewVeiculo> {
-  const placaNorm = placa.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
-  const d = await apiBrasilFetch(TIPO_GRATIS, placaNorm);
-
+// Normaliza a resposta da APIBrasil (entende Simples aninhado e Própria plano)
+function normalizePreview(placaNorm: string, d: Record<string, unknown>): PreviewVeiculo {
   // Agregados Simples: marca é objeto { fabricante, modelo }, ano é { fabricacao, modelo }
   // Agregados Própria (v2): marca/modelo/anoFabricacao/anoModelo são campos planos
   const marcaObj = asObj(d.marca);
@@ -223,6 +225,50 @@ export async function consultaGratis(placa: string): Promise<PreviewVeiculo> {
     chassi: maskChassi(d.chassi),
     combustivel: pick(d.combustivel, d.codigoCombustivel),
   };
+}
+
+// Detecta "placa não encontrada na base" (vs. erro real de serviço/saldo)
+function isNotFound(err: unknown): boolean {
+  const m = (err instanceof Error ? err.message : String(err)).toLowerCase();
+  return (
+    m.includes("encontr") ||
+    m.includes("banco de dados") ||
+    m.includes("not found") ||
+    m.includes("http 404")
+  );
+}
+
+export async function consultaGratis(placa: string): Promise<PreviewVeiculo> {
+  const placaNorm = placa.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+  const temFallback = !!TIPO_GRATIS_FALLBACK && TIPO_GRATIS_FALLBACK !== TIPO_GRATIS;
+
+  // 1ª tentativa: base barata (Simples)
+  let d: Record<string, unknown> | null = null;
+  try {
+    d = await apiBrasilFetch(TIPO_GRATIS, placaNorm);
+  } catch (err) {
+    // Só cai pro fallback se foi "não encontrada" (não em erro de saldo/serviço)
+    if (temFallback && isNotFound(err)) {
+      d = await apiBrasilFetch(TIPO_GRATIS_FALLBACK, placaNorm);
+      return normalizePreview(placaNorm, d);
+    }
+    throw err;
+  }
+
+  let preview = normalizePreview(placaNorm, d);
+
+  // A Simples respondeu 200 mas sem dados úteis → tenta a Própria
+  if (!preview.marcaModelo && temFallback) {
+    try {
+      const d2 = await apiBrasilFetch(TIPO_GRATIS_FALLBACK, placaNorm);
+      const p2 = normalizePreview(placaNorm, d2);
+      if (p2.marcaModelo) preview = p2;
+    } catch {
+      /* mantém o resultado da Simples */
+    }
+  }
+
+  return preview;
 }
 
 // ============================================================

@@ -18,6 +18,9 @@ module.exports = {
         // agregados-simples = R$0,02. Troque aqui se o slug do produto na
         // conta APIBrasil for diferente e rode: pm2 reload <app> --update-env
         APIBRASIL_TIPO_GRATIS: "agregados-simples",
+        // Fallback quando a Simples não acha a placa (cobertura ~92%, R$0,08).
+        // Garante a prévia/conversão. Use "" para desligar o fallback.
+        APIBRASIL_TIPO_GRATIS_FALLBACK: "agregados-v2",
       },
       // Reinício automático em caso de crash
       autorestart: true,
