@@ -38,6 +38,7 @@ export function ConsultaGratisHero() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<PreviewVeiculo | null>(null);
+  const [notFound, setNotFound] = useState<string | null>(null);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = formatPlate(e.target.value);
@@ -62,6 +63,7 @@ export function ConsultaGratisHero() {
 
     setLoading(true);
     setError("");
+    setNotFound(null);
     try {
       const res = await fetch("/api/consulta/gratis", {
         method: "POST",
@@ -70,7 +72,11 @@ export function ConsultaGratisHero() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data?.error || "Não foi possível consultar agora. Tente novamente.");
+        if (res.status === 404 || data?.notFound) {
+          setNotFound(formatted);
+        } else {
+          setError(data?.error || "Não foi possível consultar agora. Tente novamente.");
+        }
         return;
       }
       setResult(data.veiculo);
@@ -83,6 +89,7 @@ export function ConsultaGratisHero() {
 
   function novaConsulta() {
     setResult(null);
+    setNotFound(null);
     setPlate("");
     setError("");
   }
@@ -198,6 +205,42 @@ export function ConsultaGratisHero() {
                 Consultar outra placa
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ----- Placa não encontrada na prévia → converte para a consulta paga -----
+  if (notFound) {
+    return (
+      <div className="mx-auto w-full max-w-lg">
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-lg shadow-black/5">
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#FFF5F3]">
+            <Search className="h-6 w-6 text-[#FF4D30]" />
+          </div>
+          <p className="text-sm text-[#64748B]">
+            Não encontramos a prévia gratuita para a placa{" "}
+            <span className="font-bold text-[#0F172A]">{notFound}</span>.
+          </p>
+          <p className="mx-auto mt-2 max-w-sm text-sm text-[#64748B]">
+            A <strong className="text-[#0F172A]">consulta completa</strong> acessa
+            bases mais amplas, com histórico, débitos, multas, leilão, gravame e mais.
+          </p>
+          <button
+            onClick={irParaConsultas}
+            className="mx-auto mt-4 inline-flex items-center gap-2 rounded-xl bg-[#FF4D30] px-7 py-3 text-sm font-bold uppercase text-white shadow-md shadow-[#FF4D30]/30 transition-colors hover:bg-[#E8432A]"
+          >
+            Ver consultas
+            <ArrowRight className="h-4 w-4" />
+          </button>
+          <div className="mt-3">
+            <button
+              onClick={novaConsulta}
+              className="text-xs font-medium text-[#64748B] underline-offset-2 hover:text-[#0F172A] hover:underline"
+            >
+              Tentar outra placa
+            </button>
           </div>
         </div>
       </div>

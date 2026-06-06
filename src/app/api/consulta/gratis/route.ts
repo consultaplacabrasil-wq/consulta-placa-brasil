@@ -92,13 +92,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ veiculo });
   } catch (error) {
     const msg = error instanceof Error ? error.message : "erro";
-    await log(ip, "?", 500, Date.now() - t0, msg);
-
-    let userMessage = "Não foi possível consultar agora. Tente novamente em instantes.";
     const m = msg.toLowerCase();
-    if (m.includes("não encontrada") || m.includes("nao encontrada") || m.includes("not found")) {
-      userMessage = "Não encontramos os dados dessa placa. Confira e tente novamente.";
-    } else if (m.includes("saldo") || m.includes("crédito") || m.includes("credit")) {
+
+    // Placa não encontrada na base → resposta amigável que ainda converte
+    if (m.includes("encontr") || m.includes("banco de dados") || m.includes("not found")) {
+      await log(ip, "?", 404, Date.now() - t0, "sem-dados");
+      return NextResponse.json(
+        {
+          error: "Não encontramos a prévia gratuita desta placa.",
+          notFound: true,
+        },
+        { status: 404 }
+      );
+    }
+
+    await log(ip, "?", 500, Date.now() - t0, msg);
+    let userMessage = "Não foi possível consultar agora. Tente novamente em instantes.";
+    if (m.includes("saldo") || m.includes("crédito") || m.includes("credit")) {
       userMessage = "Serviço de consulta temporariamente indisponível. Tente mais tarde.";
     }
     return NextResponse.json({ error: userMessage }, { status: 502 });
