@@ -14,6 +14,10 @@ module.exports = {
       env_production: {
         NODE_ENV: "production",
         PORT: 3000,
+        // Tipo da APIBrasil usado na consulta GRÁTIS (preview da home).
+        // agregados-simples = R$0,02. Troque aqui se o slug do produto na
+        // conta APIBrasil for diferente e rode: pm2 reload <app> --update-env
+        APIBRASIL_TIPO_GRATIS: "agregados-simples",
       },
       // Reinício automático em caso de crash
       autorestart: true,
