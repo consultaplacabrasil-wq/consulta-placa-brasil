@@ -249,12 +249,9 @@ export function ConsultaGratisHero() {
         {/* Campo no formato de placa Mercosul */}
         <div className="mx-auto w-full max-w-[300px]">
           <div className="overflow-hidden rounded-xl border-[3px] border-[#0F172A] bg-white shadow-lg shadow-black/10">
-            {/* Faixa azul (Mercosul) */}
-            <div className="flex items-center justify-between bg-[#0B3CA3] px-3 py-1.5">
-              <span className="text-[9px] font-bold tracking-[0.15em] text-white/80">
-                MERCOSUL
-              </span>
-              <span className="text-[10px] font-bold tracking-[0.25em] text-white">
+            {/* Faixa azul */}
+            <div className="flex items-center justify-center gap-2 bg-[#0B3CA3] px-3 py-1.5">
+              <span className="text-[11px] font-bold tracking-[0.3em] text-white">
                 BRASIL
               </span>
               <span className="text-xs leading-none">🇧🇷</span>
@@ -288,7 +285,10 @@ export function ConsultaGratisHero() {
         </Button>
 
         {error && <p className="mt-2 text-center text-sm text-red-500">{error}</p>}
-        <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-[#94A3B8]">
+        <p className="mt-2 text-center text-xs text-[#94A3B8]">
+          Aceita placa antiga (ABC1234) e Mercosul (ABC1D23)
+        </p>
+        <p className="mt-2 flex items-center justify-center gap-1.5 text-center text-xs text-[#94A3B8]">
           <Lock className="h-3.5 w-3.5" />
           Consulta gratuita · Dados oficiais dos Detrans · Resultado na hora
         </p>
