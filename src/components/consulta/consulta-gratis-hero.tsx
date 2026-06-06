@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Loader2, Car, ArrowRight, ShieldCheck, Lock } from "lucide-react";
 import { formatPlate, validatePlate, PLATE_ERROR_MESSAGE } from "@/constants";
@@ -245,34 +244,49 @@ export function ConsultaGratisHero() {
 
   // ----- Formulário inicial -----
   return (
-    <div className="mx-auto w-full max-w-lg">
+    <div className="mx-auto w-full max-w-md">
       <form onSubmit={handleSubmit} className="w-full">
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <div className="relative flex-1">
-            <Input
+        {/* Campo no formato de placa Mercosul */}
+        <div className="mx-auto w-full max-w-[300px]">
+          <div className="overflow-hidden rounded-xl border-[3px] border-[#0F172A] bg-white shadow-lg shadow-black/10">
+            {/* Faixa azul (Mercosul) */}
+            <div className="flex items-center justify-between bg-[#0B3CA3] px-3 py-1.5">
+              <span className="text-[9px] font-bold tracking-[0.15em] text-white/80">
+                MERCOSUL
+              </span>
+              <span className="text-[10px] font-bold tracking-[0.25em] text-white">
+                BRASIL
+              </span>
+              <span className="text-xs leading-none">🇧🇷</span>
+            </div>
+            {/* Caracteres da placa */}
+            <input
               type="text"
-              placeholder="Digite a placa  ex: ABC1D23"
+              placeholder="ABC1D23"
               value={plate}
               onChange={handleChange}
-              className="h-14 text-center text-xl font-bold uppercase tracking-[0.3em] rounded-xl border-2 border-gray-200 bg-white text-[#0F172A] placeholder:text-gray-300 placeholder:text-base placeholder:font-normal placeholder:tracking-normal shadow-sm focus:border-[#FF4D30]"
               maxLength={7}
               autoComplete="off"
               inputMode="text"
+              aria-label="Placa do veículo"
+              className="w-full bg-white py-3 text-center text-4xl font-extrabold uppercase tracking-[0.18em] text-[#0F172A] placeholder:font-bold placeholder:text-gray-300 focus:outline-none"
             />
           </div>
-          <Button
-            type="submit"
-            disabled={loading}
-            className="h-14 shrink-0 gap-2 rounded-xl bg-[#FF4D30] px-8 text-base font-bold text-white shadow-md shadow-[#FF4D30]/30 hover:bg-[#E8432A]"
-          >
-            {loading ? (
-              <Loader2 className="h-5 w-5 animate-spin" />
-            ) : (
-              <Search className="h-5 w-5" />
-            )}
-            {loading ? "Consultando..." : "Consultar Placa"}
-          </Button>
         </div>
+
+        <Button
+          type="submit"
+          disabled={loading}
+          className="mx-auto mt-4 flex h-14 w-full max-w-[300px] items-center justify-center gap-2 rounded-xl bg-[#FF4D30] text-base font-bold text-white shadow-md shadow-[#FF4D30]/30 hover:bg-[#E8432A]"
+        >
+          {loading ? (
+            <Loader2 className="h-5 w-5 animate-spin" />
+          ) : (
+            <Search className="h-5 w-5" />
+          )}
+          {loading ? "Consultando..." : "Consultar Placa"}
+        </Button>
+
         {error && <p className="mt-2 text-center text-sm text-red-500">{error}</p>}
         <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-[#94A3B8]">
           <Lock className="h-3.5 w-3.5" />

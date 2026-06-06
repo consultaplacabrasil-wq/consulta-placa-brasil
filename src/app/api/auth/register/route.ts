@@ -5,6 +5,7 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { formatarNome, validarNomeCompleto } from "@/lib/utils/name-formatter";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
+import { validateCpfCnpj } from "@/lib/utils/document-validator";
 import { sendWelcomeEmail } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
@@ -12,7 +13,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { name, email, cpfCnpj, password, phone } = body;
 
-    if (!name || !email || !cpfCnpj || !password) {
+    if (!name || !email || !cpfCnpj || !password || !phone) {
       return NextResponse.json(
         { error: "Todos os campos são obrigatórios" },
         { status: 400 }
@@ -24,6 +25,14 @@ export async function POST(req: NextRequest) {
     const nomeError = validarNomeCompleto(nomeFormatado);
     if (nomeError) {
       return NextResponse.json({ error: nomeError }, { status: 400 });
+    }
+
+    // Validar CPF/CNPJ (dígitos verificadores)
+    if (!validateCpfCnpj(cpfCnpj)) {
+      return NextResponse.json(
+        { error: "CPF ou CNPJ inválido" },
+        { status: 400 }
+      );
     }
 
     // Validar força da senha

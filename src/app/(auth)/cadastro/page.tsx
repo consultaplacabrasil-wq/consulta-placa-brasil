@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
@@ -10,6 +10,61 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+
+function onlyDigits(s: string): string {
+  return s.replace(/\D/g, "");
+}
+
+function validateCpf(value: string): boolean {
+  const c = onlyDigits(value);
+  if (c.length !== 11 || /^(\d)\1{10}$/.test(c)) return false;
+  let sum = 0;
+  for (let i = 0; i < 9; i++) sum += parseInt(c[i]) * (10 - i);
+  let d1 = 11 - (sum % 11);
+  if (d1 >= 10) d1 = 0;
+  if (d1 !== parseInt(c[9])) return false;
+  sum = 0;
+  for (let i = 0; i < 10; i++) sum += parseInt(c[i]) * (11 - i);
+  let d2 = 11 - (sum % 11);
+  if (d2 >= 10) d2 = 0;
+  return d2 === parseInt(c[10]);
+}
+
+function validateCnpj(value: string): boolean {
+  const c = onlyDigits(value);
+  if (c.length !== 14 || /^(\d)\1{13}$/.test(c)) return false;
+  const calc = (len: number) => {
+    const weights =
+      len === 12
+        ? [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+        : [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    let sum = 0;
+    for (let i = 0; i < len; i++) sum += parseInt(c[i]) * weights[i];
+    const r = sum % 11;
+    return r < 2 ? 0 : 11 - r;
+  };
+  if (calc(12) !== parseInt(c[12])) return false;
+  return calc(13) === parseInt(c[13]);
+}
+
+// Valida CPF (11 dígitos) ou CNPJ (14 dígitos)
+function validateCpfCnpj(value: string): boolean {
+  const d = onlyDigits(value);
+  if (d.length === 11) return validateCpf(d);
+  if (d.length === 14) return validateCnpj(d);
+  return false;
+}
+
+// Label com indicador de campo obrigatório (sem quebrar por causa do flex do Label)
+function RequiredLabel({ htmlFor, children }: { htmlFor: string; children: ReactNode }) {
+  return (
+    <Label htmlFor={htmlFor} className="text-[#0F172A]">
+      <span>
+        {children} <span className="text-[#FF4D30]">*</span>
+      </span>
+    </Label>
+  );
+}
 
 function validatePassword(pw: string): string[] {
   const errors: string[] = [];
@@ -35,6 +90,7 @@ export default function CadastroPage() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [error, setError] = useState("");
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+  const [cpfCnpjError, setCpfCnpjError] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -49,6 +105,15 @@ export default function CadastroPage() {
     setError("");
     if (field === "password") {
       setPasswordErrors(value ? validatePassword(value) : []);
+    }
+    if (field === "cpfCnpj") {
+      const digits = onlyDigits(value);
+      // Só valida quando o documento está completo (11 = CPF, 14 = CNPJ)
+      if (digits.length === 11 || digits.length === 14) {
+        setCpfCnpjError(validateCpfCnpj(digits) ? "" : "CPF ou CNPJ inválido. Verifique os números.");
+      } else {
+        setCpfCnpjError("");
+      }
     }
   }
 
@@ -78,6 +143,17 @@ export default function CadastroPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+
+    if (!form.name.trim() || !form.email.trim() || !form.cpfCnpj || !form.phone || !form.password) {
+      setError("Preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    if (!validateCpfCnpj(form.cpfCnpj)) {
+      setCpfCnpjError("CPF ou CNPJ inválido. Verifique os números.");
+      setError("CPF ou CNPJ inválido.");
+      return;
+    }
 
     if (form.password !== form.confirmPassword) {
       setError("As senhas não coincidem.");
@@ -156,7 +232,7 @@ export default function CadastroPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-[#0F172A]">Nome completo</Label>
+            <RequiredLabel htmlFor="name">Nome completo</RequiredLabel>
             <div className="relative">
               <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
@@ -172,7 +248,7 @@ export default function CadastroPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-[#0F172A]">E-mail</Label>
+            <RequiredLabel htmlFor="email">E-mail</RequiredLabel>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
@@ -188,24 +264,27 @@ export default function CadastroPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="cpfCnpj" className="text-[#0F172A]">CPF ou CNPJ</Label>
+            <RequiredLabel htmlFor="cpfCnpj">CPF ou CNPJ</RequiredLabel>
             <div className="relative">
               <FileText className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 id="cpfCnpj"
                 type="text"
                 placeholder="000.000.000-00"
-                className="pl-10"
+                className={`pl-10 ${cpfCnpjError ? "border-red-400 focus-visible:ring-red-400" : ""}`}
                 value={form.cpfCnpj}
                 onChange={(e) => handleChange("cpfCnpj", formatCpfCnpj(e.target.value))}
                 maxLength={18}
                 required
               />
             </div>
+            {cpfCnpjError && (
+              <p className="text-xs text-red-500">{cpfCnpjError}</p>
+            )}
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="phone" className="text-[#0F172A]">Telefone / WhatsApp</Label>
+            <RequiredLabel htmlFor="phone">Telefone / WhatsApp</RequiredLabel>
             <div className="relative">
               <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
@@ -222,7 +301,7 @@ export default function CadastroPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-[#0F172A]">Senha</Label>
+            <RequiredLabel htmlFor="password">Senha</RequiredLabel>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
@@ -253,7 +332,7 @@ export default function CadastroPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="confirmPassword" className="text-[#0F172A]">Confirmar senha</Label>
+            <RequiredLabel htmlFor="confirmPassword">Confirmar senha</RequiredLabel>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
@@ -276,23 +355,32 @@ export default function CadastroPage() {
             </div>
           </div>
 
-          <div className="flex items-start space-x-2">
+          <div className="flex items-start gap-2.5">
             <Checkbox
               id="terms"
               checked={acceptedTerms}
               onCheckedChange={(checked) => setAcceptedTerms(checked as boolean)}
+              className="mt-0.5 shrink-0"
             />
-            <Label htmlFor="terms" className="text-sm text-gray-600 leading-tight cursor-pointer">
+            <label
+              htmlFor="terms"
+              className="cursor-pointer text-sm leading-relaxed text-gray-600"
+            >
               Li e aceito os{" "}
-              <Link href="/termos" className="text-[#FF4D30] hover:underline">
+              <Link href="/termos" className="font-medium text-[#FF4D30] hover:underline whitespace-nowrap">
                 Termos de Uso
               </Link>{" "}
               e a{" "}
-              <Link href="/privacidade" className="text-[#FF4D30] hover:underline">
+              <Link href="/privacidade" className="font-medium text-[#FF4D30] hover:underline">
                 Política de Privacidade
               </Link>
-            </Label>
+              .
+            </label>
           </div>
+
+          <p className="text-xs text-gray-400">
+            <span className="text-[#FF4D30]">*</span> Campos obrigatórios
+          </p>
 
           <Button
             type="submit"
