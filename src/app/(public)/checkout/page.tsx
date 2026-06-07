@@ -76,6 +76,10 @@ export default function CheckoutPage() {
   const [checkoutError, setCheckoutError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Login embutido: detecta e-mail já cadastrado e pede só a senha (sem sair do checkout)
+  const [emailExists, setEmailExists] = useState(false);
+  const [checkingEmail, setCheckingEmail] = useState(false);
+
   // Card form
   const [cardNumber, setCardNumber] = useState("");
   const [cardName, setCardName] = useState("");
@@ -167,32 +171,33 @@ export default function CheckoutPage() {
     }
   }
 
-  async function handlePay() {
-    setCheckoutError("");
-    const errors: Record<string, string> = {};
-
-    if (!name.trim()) errors.name = "Nome obrigatório";
-    if (!email.trim()) errors.email = "E-mail obrigatório";
-    if (!cpf.trim() || cpf.replace(/\D/g, "").length < 11) errors.cpf = "CPF obrigatório";
-    if (!phone.trim() || phone.replace(/\D/g, "").length < 10) errors.phone = "Telefone obrigatório";
-
-    if (!isLoggedIn) {
-      if (!password) {
-        errors.password = "Senha obrigatória";
-      } else {
-        const pwErrors = validatePassword(password);
-        if (pwErrors.length > 0) errors.password = pwErrors.join(", ");
-      }
-    }
-
-    if (Object.keys(errors).length > 0) {
-      setFieldErrors(errors);
+  // Quando o cliente sai do campo de e-mail, checa se já existe conta.
+  // Se existir e ele não estiver logado, o campo de senha vira "entrar".
+  async function handleEmailBlur() {
+    const e = email.toLowerCase().trim();
+    if (isLoggedIn || !e.includes("@")) {
+      setEmailExists(false);
       return;
     }
+    setCheckingEmail(true);
+    try {
+      const res = await fetch("/api/auth/check-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: e }),
+      });
+      const data = await res.json();
+      setEmailExists(!!data.exists);
+    } catch {
+      // Em caso de falha, segue como cadastro normal (o servidor ainda valida)
+      setEmailExists(false);
+    } finally {
+      setCheckingEmail(false);
+    }
+  }
 
-    setFieldErrors({});
-    setIsSubmitting(true);
-
+  // Envia a compra para a API. asLoggedIn = já autenticamos agora (login embutido).
+  async function submitPurchase(asLoggedIn: boolean) {
     try {
       const [expiryMonth, expiryYear] = cardExpiry.split("/");
 
@@ -205,7 +210,7 @@ export default function CheckoutPage() {
           email: email.toLowerCase().trim(),
           cpfCnpj: cpf,
           phone: phone,
-          password: !isLoggedIn ? password : undefined,
+          password: isLoggedIn || asLoggedIn ? undefined : password,
           paymentMethod: paymentMethod === "pix" ? "pix" : "credit_card",
           couponId: storeCoupon?.id,
           couponDiscountPercent: storeCoupon?.discountPercent,
@@ -223,8 +228,12 @@ export default function CheckoutPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        if (data.code === "EMAIL_EXISTS" || data.code === "CPF_EXISTS") {
-          setCheckoutError(data.error + ' <a href="/login" class="underline font-semibold">Ir para o login</a>');
+        if (data.code === "EMAIL_EXISTS") {
+          // Cliente já tem conta — entra em modo login embutido
+          setEmailExists(true);
+          setFieldErrors((p) => ({ ...p, password: "Você já tem conta com esse e-mail. Digite sua senha para entrar e continuar." }));
+        } else if (data.code === "CPF_EXISTS") {
+          setCheckoutError(data.error + ' <a href="/login?callbackUrl=/checkout" class="underline font-semibold">Ir para o login</a>');
         } else {
           setCheckoutError(data.error || "Erro ao processar pagamento");
         }
@@ -232,7 +241,7 @@ export default function CheckoutPage() {
         return;
       }
 
-      // Auto-login if new user
+      // Auto-login se for usuário novo (acabou de criar conta no checkout)
       if (data.isNewUser) {
         await signIn("credentials", {
           email: email.toLowerCase().trim(),
@@ -252,9 +261,55 @@ export default function CheckoutPage() {
       }
     } catch {
       setCheckoutError("Erro de conexão. Tente novamente.");
-    } finally {
       setIsSubmitting(false);
     }
+  }
+
+  async function handlePay() {
+    setCheckoutError("");
+    const errors: Record<string, string> = {};
+
+    if (!name.trim()) errors.name = "Nome obrigatório";
+    if (!email.trim()) errors.email = "E-mail obrigatório";
+    if (!cpf.trim() || cpf.replace(/\D/g, "").length < 11) errors.cpf = "CPF obrigatório";
+    if (!phone.trim() || phone.replace(/\D/g, "").length < 10) errors.phone = "Telefone obrigatório";
+
+    if (!isLoggedIn) {
+      if (!password) {
+        errors.password = emailExists ? "Digite a senha da sua conta" : "Senha obrigatória";
+      } else if (!emailExists) {
+        // Só exige senha forte para CRIAR conta; no login basta digitar a senha existente
+        const pwErrors = validatePassword(password);
+        if (pwErrors.length > 0) errors.password = pwErrors.join(", ");
+      }
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+
+    setFieldErrors({});
+    setIsSubmitting(true);
+
+    // Login embutido: cliente já tem conta → autentica aqui mesmo antes de comprar
+    if (!isLoggedIn && emailExists) {
+      const result = await signIn("credentials", {
+        email: email.toLowerCase().trim(),
+        password,
+        redirect: false,
+      });
+      if (result?.error) {
+        setFieldErrors({ password: "Senha incorreta. Use a senha da sua conta ou recupere em 'Esqueci a senha'." });
+        setIsSubmitting(false);
+        return;
+      }
+      // Autenticado: o cookie de sessão já está setado, segue a compra como logado
+      await submitPurchase(true);
+      return;
+    }
+
+    await submitPurchase(false);
   }
 
   function handleCopyPix() {
@@ -484,9 +539,10 @@ export default function CheckoutPage() {
                       <label className="text-xs font-medium text-[#475569] mb-1 block">E-mail *</label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#94A3B8]" />
-                        <Input placeholder="seu@email.com" value={email} onChange={(e) => { setEmail(e.target.value); setFieldErrors(p => ({ ...p, email: "" })); }} className={`pl-9 ${fieldErrors.email ? "border-red-400" : ""}`} />
+                        <Input placeholder="seu@email.com" value={email} onChange={(e) => { setEmail(e.target.value); setEmailExists(false); setFieldErrors(p => ({ ...p, email: "" })); }} onBlur={handleEmailBlur} className={`pl-9 ${fieldErrors.email ? "border-red-400" : ""}`} />
                       </div>
                       {fieldErrors.email && <p className="text-xs text-red-500 mt-1">{fieldErrors.email}</p>}
+                      {checkingEmail && <p className="text-xs text-[#94A3B8] mt-1">Verificando e-mail...</p>}
                     </div>
                     <div>
                       <label className="text-xs font-medium text-[#475569] mb-1 block">Telefone *</label>
@@ -501,12 +557,23 @@ export default function CheckoutPage() {
                   {/* Password (only for non-logged-in users) */}
                   {!isLoggedIn && (
                     <div>
-                      <label className="text-xs font-medium text-[#475569] mb-1 block">Senha * <span className="text-gray-400 font-normal">(criar conta para acompanhar pedidos)</span></label>
+                      {emailExists && (
+                        <div className="mb-2 rounded-lg bg-blue-50 border border-blue-200 px-3 py-2 flex items-center gap-2">
+                          <CheckCircle className="h-4 w-4 text-blue-600 shrink-0" />
+                          <span className="text-xs text-blue-700">Você já tem conta com este e-mail. Digite sua senha para entrar e continuar a compra.</span>
+                        </div>
+                      )}
+                      <label className="text-xs font-medium text-[#475569] mb-1 block">
+                        Senha *{" "}
+                        <span className="text-gray-400 font-normal">
+                          {emailExists ? "(senha da sua conta)" : "(criar conta para acompanhar pedidos)"}
+                        </span>
+                      </label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#94A3B8]" />
                         <Input
                           type={showPassword ? "text" : "password"}
-                          placeholder="Mín. 8 chars, 1 maiúscula, 1 número, 1 especial"
+                          placeholder={emailExists ? "Sua senha" : "Mín. 8 chars, 1 maiúscula, 1 número, 1 especial"}
                           value={password}
                           onChange={(e) => { setPassword(e.target.value); setFieldErrors(p => ({ ...p, password: "" })); }}
                           className={`pl-9 pr-10 ${fieldErrors.password ? "border-red-400" : ""}`}
@@ -516,6 +583,11 @@ export default function CheckoutPage() {
                         </button>
                       </div>
                       {fieldErrors.password && <p className="text-xs text-red-500 mt-1">{fieldErrors.password}</p>}
+                      {emailExists && (
+                        <Link href="/recuperar-senha" className="text-xs text-[#FF4D30] hover:underline mt-1 inline-block">
+                          Esqueci a senha
+                        </Link>
+                      )}
                     </div>
                   )}
                 </CardContent>
@@ -636,7 +708,11 @@ export default function CheckoutPage() {
                     ) : (
                       <Lock className="h-5 w-5" />
                     )}
-                    {isSubmitting ? "Processando..." : paymentMethod === "pix" ? "Gerar Pix" : "Pagar com Cartão"}
+                    {isSubmitting
+                      ? "Processando..."
+                      : !isLoggedIn && emailExists
+                        ? paymentMethod === "pix" ? "Entrar e gerar Pix" : "Entrar e pagar"
+                        : paymentMethod === "pix" ? "Gerar Pix" : "Pagar com Cartão"}
                   </Button>
 
                   <div className="flex flex-wrap items-center justify-center gap-3 pt-1 text-xs text-[#94A3B8]">
