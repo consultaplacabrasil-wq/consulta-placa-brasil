@@ -456,9 +456,9 @@ export default function AdminNoticiasPage() {
               return (
                 <div
                   key={noticia.id}
-                  className="flex flex-wrap items-center justify-between gap-y-2 px-4 py-3 transition-colors hover:bg-gray-50 sm:flex-nowrap"
+                  className="flex flex-col gap-3 px-4 py-3 transition-colors hover:bg-gray-50 sm:flex-row sm:items-center sm:justify-between"
                 >
-                  <div className="flex w-full min-w-0 flex-1 items-center gap-4 sm:w-auto">
+                  <div className="flex w-full min-w-0 items-center gap-3 sm:w-auto sm:flex-1 sm:gap-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FFF5F3]">
                       <FileText className="h-5 w-5 text-[#FF4D30]" />
                     </div>
@@ -506,7 +506,7 @@ export default function AdminNoticiasPage() {
                     </div>
                   </div>
 
-                  <div className="flex w-full shrink-0 items-center justify-end gap-1 sm:ml-4 sm:w-auto">
+                  <div className="flex w-full flex-wrap items-center gap-1 border-t border-gray-100 pt-3 sm:ml-4 sm:w-auto sm:flex-nowrap sm:justify-end sm:border-t-0 sm:pt-0">
                     {/* Quick approve/reject for drafts */}
                     {noticia.status === "draft" && (
                       <>
