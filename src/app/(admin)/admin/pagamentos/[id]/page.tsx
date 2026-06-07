@@ -14,6 +14,7 @@ import {
   Clock,
   FileText,
   Tag,
+  RefreshCw,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -57,18 +58,43 @@ export default function PaymentDetailPage({ params }: { params: Promise<{ id: st
   const [payment, setPayment] = useState<PaymentDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [verifying, setVerifying] = useState(false);
+  const [verifyMsg, setVerifyMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
-  useEffect(() => {
-    fetch(`/api/admin/payments?search=${id}&limit=100`)
+  function loadPayment() {
+    return fetch(`/api/admin/payments?search=${id}&limit=100`)
       .then((res) => res.json())
       .then((data) => {
         const found = data.payments?.find((p: PaymentDetail) => p.id === id);
         if (found) setPayment(found);
         else setError("Pagamento não encontrado");
       })
-      .catch(() => setError("Erro ao carregar pagamento"))
-      .finally(() => setLoading(false));
+      .catch(() => setError("Erro ao carregar pagamento"));
+  }
+
+  useEffect(() => {
+    loadPayment().finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  async function handleVerify() {
+    setVerifying(true);
+    setVerifyMsg(null);
+    try {
+      const res = await fetch(`/api/admin/payments/${id}/verificar`, { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) {
+        setVerifyMsg({ ok: false, text: data.error || "Erro ao verificar pagamento." });
+      } else {
+        setVerifyMsg({ ok: data.paid, text: data.message || "Verificação concluída." });
+        if (data.updated) await loadPayment();
+      }
+    } catch {
+      setVerifyMsg({ ok: false, text: "Erro de conexão ao verificar pagamento." });
+    } finally {
+      setVerifying(false);
+    }
+  }
 
   if (loading) {
     return (
@@ -108,7 +134,34 @@ export default function PaymentDetailPage({ params }: { params: Promise<{ id: st
           <h1 className="text-2xl font-bold text-[#0F172A]">Detalhes do Pagamento</h1>
           <p className="text-sm text-[#64748B]">ID: {payment.id.slice(0, 8)}...</p>
         </div>
+
+        {payment.status !== "confirmed" && payment.status !== "received" && payment.asaasId && (
+          <button
+            onClick={handleVerify}
+            disabled={verifying}
+            className="ml-auto inline-flex items-center gap-2 rounded-lg bg-[#FF4D30] px-4 py-2 text-sm font-medium text-white hover:bg-[#e63e23] disabled:opacity-60"
+          >
+            {verifying ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <RefreshCw className="h-4 w-4" />
+            )}
+            Verificar status no Asaas
+          </button>
+        )}
       </div>
+
+      {verifyMsg && (
+        <div
+          className={`rounded-lg border px-4 py-3 text-sm ${
+            verifyMsg.ok
+              ? "border-green-200 bg-green-50 text-green-700"
+              : "border-yellow-200 bg-yellow-50 text-yellow-700"
+          }`}
+        >
+          {verifyMsg.text}
+        </div>
+      )}
 
       {/* Status + Amount Banner */}
       <div className={`flex items-center justify-between rounded-xl px-5 py-4 ${st.class}`}>

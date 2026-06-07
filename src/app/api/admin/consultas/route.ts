@@ -44,6 +44,7 @@ export async function GET(req: NextRequest) {
     // Build search condition
     const searchConditions = search
       ? or(
+          ilike(reportRequests.id, `%${search}%`),
           ilike(reportRequests.plate, `%${search}%`),
           ilike(users.name, `%${search}%`),
           ilike(users.email, `%${search}%`),
