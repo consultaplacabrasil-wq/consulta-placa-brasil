@@ -52,26 +52,36 @@ export async function GET() {
     ]);
 
     // ── Gráficos (últimos 7 dias) ──────────────────────────────
-    const salesRaw = await db.execute(sql`
+    // Não-críticos: se algum falhar, retorna vazio sem derrubar a dashboard.
+    const safeRows = async (q: Promise<{ rows: unknown[] }>) => {
+      try {
+        return (await q).rows;
+      } catch (e) {
+        console.error("Dashboard chart query falhou:", e);
+        return [];
+      }
+    };
+
+    const salesRows = await safeRows(db.execute(sql`
       SELECT to_char(date_trunc('day', created_at), 'YYYY-MM-DD') AS dia,
              COUNT(*)::int AS qtd,
              COALESCE(SUM(amount), 0)::text AS receita
       FROM payments
       WHERE status = 'confirmed' AND created_at >= NOW() - INTERVAL '6 days'
       GROUP BY dia ORDER BY dia
-    `);
-    const regsRaw = await db.execute(sql`
+    `));
+    const regsRows = await safeRows(db.execute(sql`
       SELECT to_char(date_trunc('day', created_at), 'YYYY-MM-DD') AS dia,
              COUNT(*)::int AS qtd, '0' AS receita
       FROM users
       WHERE created_at >= NOW() - INTERVAL '6 days'
       GROUP BY dia ORDER BY dia
-    `);
-    const topRaw = await db.execute(sql`
-      SELECT COALESCE(consulta_name, report_type) AS nome, COUNT(*)::int AS qtd
+    `));
+    const topRows = await safeRows(db.execute(sql`
+      SELECT COALESCE(consulta_name, report_type::text) AS nome, COUNT(*)::int AS qtd
       FROM report_requests
       GROUP BY nome ORDER BY qtd DESC LIMIT 5
-    `);
+    `));
 
     // Monta série de 7 dias completa (preenche dias sem dados)
     const buildSeries = (rows: DayRow[]) => {
@@ -92,9 +102,9 @@ export async function GET() {
       return out;
     };
 
-    const salesSeries = buildSeries(salesRaw.rows as unknown as DayRow[]);
-    const regsSeries = buildSeries(regsRaw.rows as unknown as DayRow[]);
-    const topConsultas = (topRaw.rows as unknown as TopRow[]).map((r) => ({ nome: r.nome, qtd: Number(r.qtd) }));
+    const salesSeries = buildSeries(salesRows as unknown as DayRow[]);
+    const regsSeries = buildSeries(regsRows as unknown as DayRow[]);
+    const topConsultas = (topRows as unknown as TopRow[]).map((r) => ({ nome: r.nome, qtd: Number(r.qtd) }));
 
     const totalPaymentsMonth = totalPaymentsMonthResult[0]?.count || 0;
     const confirmedCount = confirmedPaymentsResult[0]?.count || 0;
