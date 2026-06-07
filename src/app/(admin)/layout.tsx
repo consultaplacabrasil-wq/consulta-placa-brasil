@@ -200,7 +200,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main area */}
-      <div className="flex flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col">
         {/* Top header */}
         <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 lg:px-8">
           <div className="flex items-center gap-3">
@@ -235,7 +235,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </header>
 
         {/* Page content */}
-        <main className="flex-1 p-4 lg:p-8">
+        <main className="min-w-0 flex-1 overflow-x-hidden p-4 lg:p-8">
           {isRestricted ? (
             <div className="flex flex-col items-center justify-center py-20">
               <ShieldAlert className="h-16 w-16 text-red-400 mb-4" />
