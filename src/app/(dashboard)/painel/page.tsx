@@ -11,6 +11,7 @@ import {
   Download,
   CheckCircle,
   Clock,
+  Sparkles,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ import { db } from "@/lib/db";
 import { payments, reportRequests } from "@/lib/db/schema";
 import { eq, desc, sql, and, inArray } from "drizzle-orm";
 import { checkPaymentStatus } from "@/lib/asaas";
+import { ConsultaPlateForm } from "../consultas/consulta-plate-form";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Painel - ConsultaPlaca" };
@@ -132,6 +134,13 @@ export default async function PainelPage() {
     .orderBy(desc(payments.createdAt))
     .limit(3);
 
+  // Créditos já pagos aguardando placa (prontos para usar)
+  const availableCredits = await db
+    .select()
+    .from(reportRequests)
+    .where(and(eq(reportRequests.userId, userId), eq(reportRequests.status, "processing")))
+    .orderBy(desc(reportRequests.createdAt));
+
   const stats = [
     {
       title: "Consultas",
@@ -166,11 +175,36 @@ export default async function PainelPage() {
         </div>
         <Link href="/consultas/nova">
           <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
-            <Search className="h-4 w-4" />
-            Nova Consulta
+            <CreditCard className="h-4 w-4" />
+            Comprar Consulta
           </Button>
         </Link>
       </div>
+
+      {/* Consultas disponíveis para usar (pagas, aguardando placa) */}
+      {availableCredits.length > 0 && (
+        <Card className="border-2 border-[#FF4D30] bg-[#FFF7F5] shadow-sm">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-base font-semibold text-[#0F172A]">
+              <Sparkles className="h-5 w-5 text-[#FF4D30]" />
+              Você tem {availableCredits.length} consulta{availableCredits.length > 1 ? "s" : ""} pronta{availableCredits.length > 1 ? "s" : ""} para usar
+            </CardTitle>
+            <p className="text-sm text-[#64748B]">
+              Informe a placa do veículo para gerar seu relatório — já está pago, sem custo adicional.
+            </p>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {availableCredits.map((c) => (
+              <div key={c.id} className="rounded-xl border border-[#FF4D30]/20 bg-white p-4">
+                {c.consultaName && (
+                  <p className="mb-2 text-sm font-semibold text-[#0F172A]">{c.consultaName}</p>
+                )}
+                <ConsultaPlateForm requestId={c.id} apiService={c.apiService || "completa"} />
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
 
       {/* Stats */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -292,11 +326,20 @@ export default async function PainelPage() {
             </CardHeader>
             <CardContent>
               <div className="grid gap-2">
-                <Link href="/consultas/nova" className="group">
+                <Link href="/consultas" className="group">
                   <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF5F3]">
                     <div className="flex items-center gap-3">
                       <Search className="h-5 w-5 text-[#FF4D30]" />
-                      <span className="text-sm font-medium text-[#0F172A]">Nova Consulta</span>
+                      <span className="text-sm font-medium text-[#0F172A]">Minhas Consultas</span>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#FF4D30]" />
+                  </div>
+                </Link>
+                <Link href="/consultas/nova" className="group">
+                  <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:border-[#FF4D30] hover:bg-[#FFF5F3]">
+                    <div className="flex items-center gap-3">
+                      <CreditCard className="h-5 w-5 text-[#FF4D30]" />
+                      <span className="text-sm font-medium text-[#0F172A]">Comprar Consulta</span>
                     </div>
                     <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#FF4D30]" />
                   </div>

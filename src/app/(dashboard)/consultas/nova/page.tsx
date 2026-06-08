@@ -107,7 +107,7 @@ export default function NovaConsultaPage() {
           >
             <ArrowLeft className="h-4 w-4" /> Voltar
           </Link>
-          <h1 className="text-2xl font-bold text-[#0F172A]">Nova Consulta</h1>
+          <h1 className="text-2xl font-bold text-[#0F172A]">Comprar Consulta</h1>
           <p className="text-sm text-[#64748B]">
             Escolha o tipo de consulta ou um pacote e finalize a compra
           </p>

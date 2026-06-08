@@ -350,7 +350,7 @@ export default function CheckoutPage() {
             <CheckCircle className="h-10 w-10 text-[#22C55E]" />
           </div>
           <h1 className="text-2xl font-bold text-[#0F172A] mb-2">Pagamento Confirmado!</h1>
-          <p className="text-[#475569] mb-2">Sua compra foi processada com sucesso.</p>
+          <p className="text-[#475569] mb-2">Agora é só informar a placa para gerar seu relatório.</p>
           <p className="text-sm text-[#94A3B8] mb-4">
             Valor pago: <span className="font-semibold text-[#0F172A]">{formatCurrency(total)}</span>
           </p>
@@ -365,17 +365,17 @@ export default function CheckoutPage() {
           </div>
           <div className="flex flex-col gap-3">
             <Button
-              onClick={() => { clearCart(); router.push("/painel"); }}
+              onClick={() => { clearCart(); router.push("/consultas"); }}
               className="w-full bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold h-12"
             >
-              Ir para o Painel
+              Informar placa e consultar
             </Button>
             <Button
               variant="outline"
-              onClick={() => { clearCart(); router.push("/"); }}
+              onClick={() => { clearCart(); router.push("/painel"); }}
               className="w-full h-12"
             >
-              Voltar ao Início
+              Ir para o Painel
             </Button>
           </div>
         </div>

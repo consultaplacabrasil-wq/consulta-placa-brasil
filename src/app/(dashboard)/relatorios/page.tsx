@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { FileText, FolderOpen, Eye, Download, Search } from "lucide-react";
+import { FileText, FolderOpen, Eye, Download, Search, CreditCard } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -48,8 +48,8 @@ export default async function RelatoriosPage() {
         </div>
         <Link href="/consultas/nova">
           <Button className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2">
-            <Search className="h-4 w-4" />
-            Nova Consulta
+            <CreditCard className="h-4 w-4" />
+            Comprar Consulta
           </Button>
         </Link>
       </div>
