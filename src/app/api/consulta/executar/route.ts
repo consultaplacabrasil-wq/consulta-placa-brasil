@@ -4,17 +4,7 @@ import { reportRequests, reports } from "@/lib/db/schema";
 import { eq, and } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { executarConsulta } from "@/lib/apibrasil";
-
-// Mapeia o serviço da consulta para o enum report.type (basic/complete/premium)
-function mapReportType(apiService: string): "basic" | "complete" | "premium" {
-  if (["dados", "dados_cadastrais", "gravame", "agregados-basica", "gravame-v2"].includes(apiService)) {
-    return "basic";
-  }
-  if (["debitos", "debitos_multas", "leilao", "debitos-v4"].includes(apiService)) {
-    return "complete";
-  }
-  return "premium";
-}
+import { mapReportType } from "@/lib/utils/report-type";
 
 const PLATE_REGEX = /^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$/;
 

@@ -10,6 +10,7 @@ import {
   createCardPayment,
 } from "@/lib/asaas";
 import { validateCouponById, computeDiscount } from "@/lib/coupon";
+import { mapReportType } from "@/lib/utils/report-type";
 
 interface CheckoutItem {
   id: string;
@@ -166,11 +167,7 @@ export async function POST(req: NextRequest) {
         ? item.credits * item.quantity
         : item.quantity;
 
-      const reportType = item.apiService === "dados_cadastrais"
-        ? "basic"
-        : item.apiService === "debitos_multas"
-          ? "complete"
-          : "premium";
+      const reportType = mapReportType(item.apiService || "completa");
 
       for (let i = 0; i < totalCredits; i++) {
         await db.insert(reportRequests).values({
