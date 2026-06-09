@@ -10,10 +10,17 @@ export interface ModeloQuesito {
   nota: number; // 0-10
 }
 
+export interface ModeloManutencao {
+  nivel: string; // "Baixo" | "Médio" | "Alto"
+  custoMedioAnual: string; // ex.: "R$ 1.500 a R$ 2.500"
+  resumo: string;
+}
+
 export interface ModeloInsights {
   satisfacao: number; // 0-10
   quesitos: ModeloQuesito[];
   resumo: string;
+  manutencao?: ModeloManutencao;
 }
 
 const QUESITOS = [
@@ -37,11 +44,17 @@ Regras:
 
 Quesitos obrigatórios (use exatamente estes nomes): ${QUESITOS.join(", ")}.
 
+Inclua também uma estimativa de MANUTENÇÃO do modelo (custo e facilidade), baseada no conhecimento geral de mercado:
+- nivel: "Baixo", "Médio" ou "Alto"
+- custoMedioAnual: uma faixa estimada em reais (ex.: "R$ 1.500 a R$ 2.500"), considerando uso normal
+- resumo: texto curto (200-400 caracteres) sobre custo de peças, disponibilidade, revisões e pontos de atenção de manutenção. Deixe claro que é uma ESTIMATIVA do modelo.
+
 Formato de resposta (JSON puro, sem markdown, sem texto extra):
 {
   "satisfacao": 8.8,
   "quesitos": [{"nome": "Conforto", "nota": 9.0}, ...todos os quesitos...],
-  "resumo": "texto..."
+  "resumo": "texto...",
+  "manutencao": { "nivel": "Médio", "custoMedioAnual": "R$ 1.500 a R$ 2.500", "resumo": "texto..." }
 }`;
 
 export async function gerarInsightsModelo(modelo: string): Promise<ModeloInsights | null> {

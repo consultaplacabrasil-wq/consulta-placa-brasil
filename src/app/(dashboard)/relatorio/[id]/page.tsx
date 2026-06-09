@@ -6,6 +6,7 @@ import { ModelInsightsView } from "./model-insights-view";
 import { FipeVariation } from "./fipe-variation";
 import { getFipePrecos } from "@/lib/fipe";
 import { getCachedInsights } from "@/lib/modelo/insights-cache";
+import { getBlogReviews } from "@/lib/modelo/blog-reviews";
 import {
   CheckCircle,
   AlertTriangle,
@@ -326,6 +327,7 @@ export async function ReportContent({ report, consultaName, headerActions }: {
   // Dados externos renderizados no servidor (garante presença no PDF)
   const fipePrecos = await getFipePrecos(fipeCodigo);
   const cachedInsights = await getCachedInsights(modeloStr);
+  const blogReviews = await getBlogReviews(g("marca", "fabricante"), g("familia") || g("modelo") || modeloStr);
 
   const tipoLabel = report.type === "basic" ? "Consulta Veicular Segura" : report.type === "complete" ? "Consulta Veicular Segura" : "Consulta Veicular Completa";
   const gravameRaw = data.gravame as Record<string, unknown> | undefined;
@@ -336,6 +338,29 @@ export async function ReportContent({ report, consultaName, headerActions }: {
   const isOk = (val: unknown) => { const x = str(val).toLowerCase(); return !x || x === "0" || x === "0.00" || x === "quitado" || x === "regular" || x === "nada consta" || x === "nenhum"; };
 
   const dateStr = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "America/Sao_Paulo" }).format(report.createdAt);
+
+  // ── Análise de comercialização (estimativa, com base nos itens consultados) ──
+  const temModulosRisco = !!(data.debitos || data.gravame || data.leilao || data.roubo_furto || data.recall);
+  const anoModeloNum = parseInt(g("anoModelo", "ano_modelo")) || 0;
+  const idadeVeiculo = anoModeloNum ? new Date().getFullYear() - anoModeloNum : 0;
+  const fatoresComercializacao: { label: string; ok: boolean }[] = [];
+  let scoreComercializacao = 100;
+  if (data.debitos) {
+    if (hasDebitos) { scoreComercializacao -= 12; fatoresComercializacao.push({ label: "Débitos pendentes", ok: false }); }
+    else fatoresComercializacao.push({ label: "Sem débitos", ok: true });
+  }
+  if (data.gravame) {
+    if (hasActiveGravame) { scoreComercializacao -= 25; fatoresComercializacao.push({ label: "Gravame ativo (financiamento)", ok: false }); }
+    else fatoresComercializacao.push({ label: "Sem gravame ativo", ok: true });
+  }
+  if (idadeVeiculo >= 15) { scoreComercializacao -= 12; fatoresComercializacao.push({ label: `Idade do veículo: ${idadeVeiculo} anos`, ok: false }); }
+  else if (idadeVeiculo >= 10) { scoreComercializacao -= 6; fatoresComercializacao.push({ label: `Idade do veículo: ${idadeVeiculo} anos`, ok: true }); }
+  else if (idadeVeiculo > 0) { fatoresComercializacao.push({ label: `Idade do veículo: ${idadeVeiculo} anos`, ok: true }); }
+  scoreComercializacao = Math.max(0, Math.min(100, scoreComercializacao));
+  const verdictComercializacao =
+    scoreComercializacao >= 80 ? { label: "Baixo risco de recusa", color: "#16a34a", bg: "#f0fdf4", border: "#bbf7d0" }
+    : scoreComercializacao >= 55 ? { label: "Risco moderado", color: "#b45309", bg: "#fffbeb", border: "#fde68a" }
+    : { label: "Risco elevado", color: "#dc2626", bg: "#fef2f2", border: "#fecaca" };
 
   return (
     <div style={{ maxWidth: 820, margin: "0 auto" }}>
@@ -517,6 +542,42 @@ export async function ReportContent({ report, consultaName, headerActions }: {
             </SectionBody>
           </div>
 
+          {/* ═══════════════ ANÁLISE DE COMERCIALIZAÇÃO ═══════════════ */}
+          <div style={{ padding: "0 8px" }}>
+            <SectionBar icon={Shield} title="Análise de Comercialização (estimativa)" accent="#0f172a" />
+            <SectionBody>
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 16 }}>
+                <div style={{
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                  width: 110, height: 110, borderRadius: "50%",
+                  border: `6px solid ${verdictComercializacao.border}`, background: verdictComercializacao.bg,
+                }}>
+                  <span style={{ fontSize: 30, fontWeight: 900, color: verdictComercializacao.color, lineHeight: 1 }}>{scoreComercializacao}</span>
+                  <span style={{ fontSize: 10, color: "#94a3b8", fontWeight: 700 }}>/ 100</span>
+                </div>
+                <div style={{ flex: 1, minWidth: 220 }}>
+                  <div style={{ fontSize: 16, fontWeight: 800, color: verdictComercializacao.color, marginBottom: 8 }}>
+                    {verdictComercializacao.label}
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                    {fatoresComercializacao.map((f) => (
+                      <div key={f.label} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#475569" }}>
+                        {f.ok
+                          ? <CheckCircle style={{ width: 14, height: 14, color: "#22c55e", flexShrink: 0 }} />
+                          : <AlertTriangle style={{ width: 14, height: 14, color: "#f59e0b", flexShrink: 0 }} />}
+                        {f.label}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <p style={{ fontSize: 11, color: "#94a3b8", lineHeight: 1.6, marginTop: 14, marginBottom: 0 }}>
+                Indicador estimado de facilidade de revenda, com base nos itens desta consulta e na idade do veículo.
+                {!temModulosRisco && " Para uma análise completa (leilão, sinistro, roubo/furto e débitos), utilize a consulta Premium."}
+              </p>
+            </SectionBody>
+          </div>
+
           {/* ═══════════════ TABELA FIPE (server-side) ═══════════════ */}
           <FipeVariation precos={fipePrecos} />
 
@@ -615,6 +676,40 @@ export async function ReportContent({ report, consultaName, headerActions }: {
           {cachedInsights
             ? <ModelInsightsView insights={cachedInsights} />
             : (modeloStr ? <ModelInsights modelo={modeloStr} /> : null)}
+
+          {/* ═══════════════ REVIEW DO NOSSO BLOG ═══════════════ */}
+          {blogReviews.length > 0 && (
+            <div style={{ padding: "0 8px" }}>
+              <SectionBar icon={FileText} title="Veja no nosso blog" accent="#1e293b" />
+              <SectionBody>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  {blogReviews.map((b) => (
+                    <a
+                      key={b.slug}
+                      href={`/noticias/${b.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: "flex", gap: 12, alignItems: "center",
+                        border: "1px solid #e5e7eb", borderRadius: 8, padding: 10,
+                        textDecoration: "none",
+                      }}
+                    >
+                      {b.imagemUrl && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={b.imagemUrl} alt={b.titulo} style={{ width: 84, height: 60, objectFit: "cover", borderRadius: 6, flexShrink: 0 }} />
+                      )}
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: "#0f172a", lineHeight: 1.4 }}>{b.titulo}</div>
+                        <div style={{ fontSize: 11, color: "#64748b", marginTop: 2, overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>{b.resumo}</div>
+                        <span style={{ fontSize: 11, fontWeight: 700, color: "#FF4D30" }}>Ler matéria →</span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </SectionBody>
+            </div>
+          )}
 
           {/* ═══════════════ COMO VERIFICAR O VEÍCULO ═══════════════ */}
           <div style={{ padding: "0 8px" }}>

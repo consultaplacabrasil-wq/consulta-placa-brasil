@@ -1,13 +1,19 @@
-import { Sparkles, Star } from "lucide-react";
+import { Sparkles, Star, Wrench } from "lucide-react";
 
 interface Quesito {
   nome: string;
   nota: number;
 }
+interface Manutencao {
+  nivel: string;
+  custoMedioAnual: string;
+  resumo: string;
+}
 export interface Insights {
   satisfacao: number;
   quesitos: Quesito[];
   resumo: string;
+  manutencao?: Manutencao;
 }
 
 // Presentacional (sem "use client"): pode ser usado no servidor e no cliente.
@@ -74,6 +80,31 @@ export function ModelInsightsView({ insights }: { insights: Insights | null }) {
         <div style={{ marginTop: 18, padding: "14px 16px", background: "#f8fafc", borderRadius: 8, borderLeft: "4px solid #7c3aed" }}>
           <p style={{ fontSize: 13, color: "#334155", lineHeight: 1.7, margin: 0 }}>{insights.resumo}</p>
         </div>
+
+        {/* Estimativa de manutenção */}
+        {insights.manutencao && (
+          <div style={{ marginTop: 16, border: "1px solid #e5e7eb", borderRadius: 8, overflow: "hidden" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#f1f5f9", padding: "10px 16px" }}>
+              <Wrench style={{ width: 16, height: 16, color: "#0891b2" }} />
+              <span style={{ fontSize: 12, fontWeight: 800, color: "#0f172a", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                Custo de manutenção (estimativa)
+              </span>
+            </div>
+            <div style={{ padding: "14px 16px" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 10 }}>
+                <div style={{ flex: 1, minWidth: 130 }}>
+                  <div style={{ fontSize: 10, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700 }}>Nível</div>
+                  <div style={{ fontSize: 16, fontWeight: 800, color: "#0f172a" }}>{insights.manutencao.nivel}</div>
+                </div>
+                <div style={{ flex: 2, minWidth: 180 }}>
+                  <div style={{ fontSize: 10, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700 }}>Custo médio anual estimado</div>
+                  <div style={{ fontSize: 16, fontWeight: 800, color: "#0f172a" }}>{insights.manutencao.custoMedioAnual}</div>
+                </div>
+              </div>
+              <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.6, margin: 0 }}>{insights.manutencao.resumo}</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
