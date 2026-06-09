@@ -7,9 +7,15 @@ export interface FipePreco {
   combustivel: string;
 }
 
+// FONTE FIPE GRATUITA INDISPONÍVEL:
+// A BrasilAPI (/fipe/preco) depende da API oficial da FIPE, que passou a
+// retornar 403. Mantemos o código pronto, mas desativado para não deixar o
+// relatório lento. Para reativar (ex.: via APIBrasil FIPE), remova o early-return.
+const FIPE_HABILITADO = false;
+
 export async function getFipePrecos(codigo: string): Promise<FipePreco[]> {
   const clean = (codigo || "").trim();
-  if (!clean) return [];
+  if (!clean || !FIPE_HABILITADO) return [];
   try {
     const res = await fetch(
       `https://brasilapi.com.br/api/fipe/preco/v1/${encodeURIComponent(clean)}`,
