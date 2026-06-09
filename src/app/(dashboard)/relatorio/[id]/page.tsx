@@ -1,6 +1,8 @@
 import { redirect, notFound } from "next/navigation";
 import { DownloadPdfButton } from "./download-pdf-button";
 import { ShareButton } from "./share-button";
+import { ModelInsights } from "./model-insights";
+import { FipeVariation } from "./fipe-variation";
 import {
   CheckCircle,
   AlertTriangle,
@@ -18,6 +20,7 @@ import {
   Calendar,
   Globe,
   Users,
+  Star,
   type LucideIcon,
 } from "lucide-react";
 import { auth } from "@/lib/auth";
@@ -269,6 +272,29 @@ export default async function RelatorioPage({ params }: Props) {
   const v = data.veiculo || {};
   const str = (val: unknown) => (val ? String(val) : "");
 
+  // Modelo do veículo (aceita formato camelCase do agregados e snake_case legado)
+  const modeloStr =
+    str(v.marcaModelo) ||
+    str(v.marca_modelo) ||
+    [str(v.marca || v.fabricante), str(v.modelo)].filter(Boolean).join(" ") ||
+    "";
+
+  // Código FIPE (pode vir como array [{codigo}], objeto, string camelCase ou snake_case)
+  function extrairCodigoFipe(val: unknown): string {
+    if (!val) return "";
+    if (typeof val === "string") return val.trim();
+    if (Array.isArray(val) && val.length > 0) {
+      const first = val[0] as Record<string, unknown>;
+      return String(first?.codigo || first?.codigoFipe || "").trim();
+    }
+    if (typeof val === "object") {
+      const o = val as Record<string, unknown>;
+      return String(o.codigo || o.codigoFipe || "").trim();
+    }
+    return "";
+  }
+  const fipeCodigo = extrairCodigoFipe(v.codigoFipe || v.codigo_fipe || v.fipe);
+
   const tipoLabel = report.type === "basic" ? "Consulta Veicular Segura" : report.type === "complete" ? "Consulta Veicular Segura" : "Consulta Veicular Completa";
   const gravameRaw = data.gravame as Record<string, unknown> | undefined;
   const gravameList: Record<string, string | null>[] = Array.isArray(gravameRaw?.gravame) ? (gravameRaw.gravame as Record<string, string | null>[]) : [];
@@ -457,6 +483,16 @@ export default async function RelatorioPage({ params }: Props) {
             </SectionBody>
           </div>
 
+          {/* ═══════════════ TABELA FIPE ═══════════════ */}
+          {fipeCodigo && (
+            <div style={{ padding: "0 8px" }}>
+              <SectionBar icon={Gauge} title="Tabela FIPE e Variação de Preço" accent="#0891b2" />
+              <SectionBody>
+                <FipeVariation codigo={fipeCodigo} />
+              </SectionBody>
+            </div>
+          )}
+
           {/* ═══════════════ DÉBITOS ═══════════════ */}
           {data.debitos && (
             <div style={{ padding: "0 8px" }}>
@@ -547,6 +583,16 @@ export default async function RelatorioPage({ params }: Props) {
 
           {/* ═══════════════ RESTRIÇÕES JUDICIAIS (RENAJUD) ═══════════════ */}
           <GenericSection icon={Lock} title="Restrições Judiciais (Renajud)" accent="#1e293b" data={data.renajud} />
+
+          {/* ═══════════════ AVALIAÇÕES DO MODELO (IA) ═══════════════ */}
+          {modeloStr && (
+            <div style={{ padding: "0 8px" }}>
+              <SectionBar icon={Star} title="Avaliações do Modelo" accent="#7c3aed" />
+              <SectionBody>
+                <ModelInsights modelo={modeloStr} />
+              </SectionBody>
+            </div>
+          )}
 
           {/* ═══════════════ COMO VERIFICAR O VEÍCULO ═══════════════ */}
           <div style={{ padding: "0 8px" }}>
