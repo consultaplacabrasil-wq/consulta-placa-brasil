@@ -265,14 +265,44 @@ export function ReportContent({ report, consultaName, headerActions }: {
     proprietario?: Record<string, unknown>;
     renajud?: Record<string, unknown>;
   };
-  const v = data.veiculo || {};
+  const vRaw = data.veiculo || {};
   const str = (val: unknown) => (val ? String(val) : "");
 
-  // Modelo do veículo (aceita formato camelCase do agregados e snake_case legado)
+  // Achata o shape aninhado da "Agregados Simples" (marca{}, ano{}, estado{})
+  // para chaves planas, mantendo o que já vier plano (Agregados v2).
+  const v: Record<string, unknown> = { ...vRaw };
+  if (v.marca && typeof v.marca === "object") {
+    const m = v.marca as Record<string, unknown>;
+    v.marcaModelo = v.marcaModelo || m.modelo || m.fabricante;
+    v.marca = m.fabricante;
+  }
+  if (v.ano && typeof v.ano === "object") {
+    const a = v.ano as Record<string, unknown>;
+    v.anoFabricacao = v.anoFabricacao || a.fabricacao;
+    v.anoModelo = v.anoModelo || a.modelo;
+  }
+  if (v.estado && typeof v.estado === "object") {
+    const e = v.estado as Record<string, unknown>;
+    v.municipio = v.municipio || e.municipio;
+    v.uf = v.uf || e.uf;
+  }
+
+  // Lê o primeiro campo presente (aceita camelCase do agregados e snake_case legado).
+  // Ignora objetos para evitar "[object Object]".
+  const g = (...keys: string[]): string => {
+    for (const k of keys) {
+      const val = v[k];
+      if (val !== undefined && val !== null && val !== "" && typeof val !== "object") {
+        return String(val);
+      }
+    }
+    return "";
+  };
+
+  // Modelo do veículo
   const modeloStr =
-    str(v.marcaModelo) ||
-    str(v.marca_modelo) ||
-    [str(v.marca || v.fabricante), str(v.modelo)].filter(Boolean).join(" ") ||
+    g("marcaModelo", "marca_modelo") ||
+    [g("marca", "fabricante"), g("modelo")].filter(Boolean).join(" ") ||
     "";
 
   // Código FIPE (pode vir como array [{codigo}], objeto, string camelCase ou snake_case)
@@ -289,7 +319,7 @@ export function ReportContent({ report, consultaName, headerActions }: {
     }
     return "";
   }
-  const fipeCodigo = extrairCodigoFipe(v.codigoFipe || v.codigo_fipe || v.fipe);
+  const fipeCodigo = extrairCodigoFipe(vRaw.codigoFipe || vRaw.codigo_fipe || vRaw.fipe);
 
   const tipoLabel = report.type === "basic" ? "Consulta Veicular Segura" : report.type === "complete" ? "Consulta Veicular Segura" : "Consulta Veicular Completa";
   const gravameRaw = data.gravame as Record<string, unknown> | undefined;
@@ -451,31 +481,32 @@ export function ReportContent({ report, consultaName, headerActions }: {
             <SectionBar icon={Car} title="Dados Originais do Veículo" accent="#FF4D30" />
             <SectionBody>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 32px" }}>
-                <FieldRow icon={Car} label="Placa" value={str(v.placa) || report.plate} />
-                <FieldRow icon={Car} label="Marca / Modelo" value={v.fabricante ? `${v.fabricante} / ${v.modelo || ""}` : str(v.modelo)} />
-                <FieldRow icon={Hash} label="Chassi" value={str(v.chassi)} />
-                <FieldRow icon={Hash} label="Nº Motor" value={str(v.numero_motor)} />
-                <FieldRow icon={Hash} label="RENAVAM" value={str(v.renavam)} />
-                <FieldRow icon={Fuel} label="Combustível" value={str(v.combustivel)} />
-                <FieldRow icon={Palette} label="Cor" value={str(v.cor)} />
-                <FieldRow icon={Car} label="Tipo de Veículo" value={str(v.tipo_veiculo || v.tipo)} />
-                <FieldRow icon={MapPin} label="Município / UF" value={v.cidade ? `${v.cidade} / ${v.uf_jurisdicao || v.uf_faturado || ""}` : str(v.uf_jurisdicao || v.uf_faturado)} />
-                <FieldRow icon={Calendar} label="Ano Fabricação" value={str(v.ano_fabricacao)} />
-                <FieldRow icon={Calendar} label="Ano Modelo" value={str(v.ano_modelo)} />
-                <FieldRow icon={MapPin} label="UF Faturado" value={str(v.uf_faturado)} />
-                <FieldRow icon={Car} label="Espécie" value={str(v.especie)} />
-                <FieldRow icon={Car} label="Categoria" value={str(v.categoria)} />
-                <FieldRow icon={Car} label="Carroceria" value={str(v.tipo_carroceria)} />
-                <FieldRow icon={Gauge} label="Potência" value={v.potencia ? `${v.potencia} CV` : undefined} />
-                <FieldRow icon={Gauge} label="Cilindradas" value={v.cilindradas ? `${v.cilindradas} cc` : undefined} />
-                <FieldRow icon={Users} label="Lotação / Passageiros" value={str(v.quantidade_lugares || v.capacidade_passageiros)} />
-                <FieldRow icon={Globe} label="Nacionalidade" value={str(v.nacionalidade)} />
-                <FieldRow label="Peso Bruto Total" value={v.peso_bruto_total ? `${v.peso_bruto_total} kg` : undefined} />
-                <FieldRow label="Cap. Máx. Tração" value={str(v.capacidade_max_tracao)} />
-                <FieldRow label="Nº Eixos" value={str(v.quantidade_eixo)} />
-                <FieldRow label="Nº Caixa de Câmbio" value={str(v.numero_caixa_cambio)} />
-                <FieldRow label="Carga" value={v.carga ? `${v.carga} kg` : undefined} />
-                <FieldRow label="Nº Carroceria" value={str(v.numero_carroceria)} />
+                <FieldRow icon={Car} label="Placa" value={g("placa") || report.plate} />
+                <FieldRow icon={Car} label="Marca / Modelo" value={g("marcaModelo", "marca_modelo") || [g("marca", "fabricante"), g("modelo")].filter(Boolean).join(" / ")} />
+                <FieldRow icon={Hash} label="Chassi" value={g("chassi")} />
+                <FieldRow icon={Hash} label="Nº Motor" value={g("numMotor", "numero_motor", "numeroMotor")} />
+                <FieldRow icon={Hash} label="RENAVAM" value={g("renavam")} />
+                <FieldRow icon={Fuel} label="Combustível" value={g("combustivel", "codigoCombustivel", "combustivel_descricao")} />
+                <FieldRow icon={Palette} label="Cor" value={g("corVeiculo", "cor")} />
+                <FieldRow icon={Car} label="Tipo de Veículo" value={g("tipoVeiculo", "tipo_veiculo", "tipo")} />
+                <FieldRow icon={MapPin} label="Município / UF" value={[g("municipio", "cidade"), g("uf", "ufJurisdicao", "uf_jurisdicao", "ufFaturado", "uf_faturado")].filter(Boolean).join(" / ")} />
+                <FieldRow icon={Calendar} label="Ano Fabricação" value={g("anoFabricacao", "ano_fabricacao")} />
+                <FieldRow icon={Calendar} label="Ano Modelo" value={g("anoModelo", "ano_modelo")} />
+                <FieldRow icon={Car} label="Espécie" value={g("especieVeiculo", "especie")} />
+                <FieldRow icon={Car} label="Categoria" value={g("categoria")} />
+                <FieldRow icon={Car} label="Carroceria" value={g("tipoCarroceria", "tipo_carroceria")} />
+                <FieldRow icon={Gauge} label="Potência" value={g("potencia") ? `${g("potencia")} CV` : undefined} />
+                <FieldRow icon={Gauge} label="Cilindradas" value={g("cilindradas") ? `${g("cilindradas")} cc` : undefined} />
+                <FieldRow icon={Users} label="Lotação / Passageiros" value={g("capacidadePassageiro", "quantidade_lugares", "capacidade_passageiros")} />
+                <FieldRow icon={Globe} label="Nacionalidade / Procedência" value={g("nacionalidade", "procedencia")} />
+                <FieldRow label="Peso Bruto Total" value={g("pbt", "peso_bruto_total") ? `${g("pbt", "peso_bruto_total")} kg` : undefined} />
+                <FieldRow label="Cap. Máx. Tração" value={g("capMaxTracao", "capacidade_max_tracao")} />
+                <FieldRow label="Nº Eixos" value={g("eixos", "quantidade_eixo")} />
+                <FieldRow label="Caixa de Câmbio" value={g("caixaCambio", "numero_caixa_cambio")} />
+                <FieldRow label="Cap. Carga" value={g("capacidadeCarga", "carga") ? `${g("capacidadeCarga", "carga")} kg` : undefined} />
+                <FieldRow label="Nº Carroceria" value={g("numCarroceria", "numero_carroceria")} />
+                <FieldRow label="Família" value={g("familia")} />
+                <FieldRow label="Cilindros" value={g("cilindros")} />
               </div>
             </SectionBody>
           </div>
