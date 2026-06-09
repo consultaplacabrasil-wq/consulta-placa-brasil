@@ -23,10 +23,14 @@ import {
   Star,
   type LucideIcon,
 } from "lucide-react";
+import type { ReactNode } from "react";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { reports, reportRequests } from "@/lib/db/schema";
 import { eq, and } from "drizzle-orm";
+import { generateReportToken } from "@/lib/report-token";
+
+type ReportRow = typeof reports.$inferSelect;
 
 export const dynamic = "force-dynamic";
 
@@ -245,19 +249,11 @@ function GenericSection({ icon, title, accent, data }: {
    MAIN PAGE
    ───────────────────────────────────────────────────────── */
 
-export default async function RelatorioPage({ params }: Props) {
-  const session = await auth();
-  if (!session?.user?.id) redirect("/login");
-  const { id } = await params;
-
-  let report = await db.select().from(reports).where(eq(reports.id, id)).limit(1).then((r) => r[0]);
-  if (!report) report = await db.select().from(reports).where(eq(reports.requestId, id)).limit(1).then((r) => r[0]);
-  if (!report) notFound();
-
-  const [request] = await db.select().from(reportRequests)
-    .where(and(eq(reportRequests.id, report.requestId), eq(reportRequests.userId, session.user.id))).limit(1);
-  if (!request) notFound();
-
+export function ReportContent({ report, consultaName, headerActions }: {
+  report: ReportRow;
+  consultaName: string | null;
+  headerActions?: ReactNode;
+}) {
   const data = report.data as {
     veiculo?: Record<string, unknown>;
     debitos?: Record<string, unknown>;
@@ -319,10 +315,11 @@ export default async function RelatorioPage({ params }: Props) {
         }
       `}</style>
 
-      <div className="no-print" style={{ display: "flex", justifyContent: "flex-end", gap: 12, marginBottom: 16 }}>
-        <ShareButton plate={report.plate} />
-        <DownloadPdfButton />
-      </div>
+      {headerActions && (
+        <div className="no-print" style={{ display: "flex", justifyContent: "flex-end", gap: 12, marginBottom: 16 }}>
+          {headerActions}
+        </div>
+      )}
 
       <div className="report-root" style={{ fontFamily: "'Segoe UI', -apple-system, sans-serif" }}>
 
@@ -370,7 +367,7 @@ export default async function RelatorioPage({ params }: Props) {
                   {tipoLabel}
                 </div>
                 <div style={{ fontSize: 11, color: "#94a3b8", marginTop: 4 }}>
-                  Gerado em: {dateStr}{request.consultaName ? ` | ${request.consultaName}` : ""}
+                  Gerado em: {dateStr}{consultaName ? ` | ${consultaName}` : ""}
                 </div>
               </div>
             </div>
@@ -655,5 +652,38 @@ export default async function RelatorioPage({ params }: Props) {
         </div>
       </div>
     </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────
+   PÁGINA PRIVADA (dono logado)
+   ───────────────────────────────────────────────────────── */
+export default async function RelatorioPage({ params }: Props) {
+  const session = await auth();
+  if (!session?.user?.id) redirect("/login");
+  const { id } = await params;
+
+  let report = await db.select().from(reports).where(eq(reports.id, id)).limit(1).then((r) => r[0]);
+  if (!report) report = await db.select().from(reports).where(eq(reports.requestId, id)).limit(1).then((r) => r[0]);
+  if (!report) notFound();
+
+  const [request] = await db.select().from(reportRequests)
+    .where(and(eq(reportRequests.id, report.requestId), eq(reportRequests.userId, session.user.id))).limit(1);
+  if (!request) notFound();
+
+  const token = generateReportToken(report.id);
+  const sharePath = `/r/${report.id}/${token}`;
+
+  return (
+    <ReportContent
+      report={report}
+      consultaName={request.consultaName}
+      headerActions={
+        <>
+          <ShareButton plate={report.plate} path={sharePath} />
+          <DownloadPdfButton />
+        </>
+      }
+    />
   );
 }

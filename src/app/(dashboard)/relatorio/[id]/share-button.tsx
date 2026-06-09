@@ -4,13 +4,14 @@ import { useState } from "react";
 import { Share2, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function ShareButton({ plate }: { plate: string }) {
+export function ShareButton({ plate, path }: { plate: string; path?: string }) {
   const [copied, setCopied] = useState(false);
 
   async function handleShare() {
-    const url = typeof window !== "undefined" ? window.location.href : "";
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const url = path ? `${origin}${path}` : (typeof window !== "undefined" ? window.location.href : "");
     const title = `Consulta veicular — placa ${plate}`;
-    const text = `Relatório da placa ${plate} — Consulta Placa Brasil`;
+    const text = `Veja o relatório da placa ${plate} no Consulta Placa Brasil`;
 
     // Web Share API (mobile / navegadores compatíveis)
     if (typeof navigator !== "undefined" && navigator.share) {
