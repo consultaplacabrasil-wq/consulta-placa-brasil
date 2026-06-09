@@ -2,7 +2,10 @@ import { redirect, notFound } from "next/navigation";
 import { DownloadPdfButton } from "./download-pdf-button";
 import { ShareButton } from "./share-button";
 import { ModelInsights } from "./model-insights";
+import { ModelInsightsView } from "./model-insights-view";
 import { FipeVariation } from "./fipe-variation";
+import { getFipePrecos } from "@/lib/fipe";
+import { getCachedInsights } from "@/lib/modelo/insights-cache";
 import {
   CheckCircle,
   AlertTriangle,
@@ -20,7 +23,6 @@ import {
   Calendar,
   Globe,
   Users,
-  Star,
   type LucideIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -249,7 +251,7 @@ function GenericSection({ icon, title, accent, data }: {
    MAIN PAGE
    ───────────────────────────────────────────────────────── */
 
-export function ReportContent({ report, consultaName, headerActions }: {
+export async function ReportContent({ report, consultaName, headerActions }: {
   report: ReportRow;
   consultaName: string | null;
   headerActions?: ReactNode;
@@ -320,6 +322,10 @@ export function ReportContent({ report, consultaName, headerActions }: {
     return "";
   }
   const fipeCodigo = extrairCodigoFipe(vRaw.codigoFipe || vRaw.codigo_fipe || vRaw.fipe);
+
+  // Dados externos renderizados no servidor (garante presença no PDF)
+  const fipePrecos = await getFipePrecos(fipeCodigo);
+  const cachedInsights = await getCachedInsights(modeloStr);
 
   const tipoLabel = report.type === "basic" ? "Consulta Veicular Segura" : report.type === "complete" ? "Consulta Veicular Segura" : "Consulta Veicular Completa";
   const gravameRaw = data.gravame as Record<string, unknown> | undefined;
@@ -511,15 +517,8 @@ export function ReportContent({ report, consultaName, headerActions }: {
             </SectionBody>
           </div>
 
-          {/* ═══════════════ TABELA FIPE ═══════════════ */}
-          {fipeCodigo && (
-            <div style={{ padding: "0 8px" }}>
-              <SectionBar icon={Gauge} title="Tabela FIPE e Variação de Preço" accent="#0891b2" />
-              <SectionBody>
-                <FipeVariation codigo={fipeCodigo} />
-              </SectionBody>
-            </div>
-          )}
+          {/* ═══════════════ TABELA FIPE (server-side) ═══════════════ */}
+          <FipeVariation precos={fipePrecos} />
 
           {/* ═══════════════ DÉBITOS ═══════════════ */}
           {data.debitos && (
@@ -613,14 +612,9 @@ export function ReportContent({ report, consultaName, headerActions }: {
           <GenericSection icon={Lock} title="Restrições Judiciais (Renajud)" accent="#1e293b" data={data.renajud} />
 
           {/* ═══════════════ AVALIAÇÕES DO MODELO (IA) ═══════════════ */}
-          {modeloStr && (
-            <div style={{ padding: "0 8px" }}>
-              <SectionBar icon={Star} title="Avaliações do Modelo" accent="#7c3aed" />
-              <SectionBody>
-                <ModelInsights modelo={modeloStr} />
-              </SectionBody>
-            </div>
-          )}
+          {cachedInsights
+            ? <ModelInsightsView insights={cachedInsights} />
+            : (modeloStr ? <ModelInsights modelo={modeloStr} /> : null)}
 
           {/* ═══════════════ COMO VERIFICAR O VEÍCULO ═══════════════ */}
           <div style={{ padding: "0 8px" }}>

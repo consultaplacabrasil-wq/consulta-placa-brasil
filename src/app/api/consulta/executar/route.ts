@@ -5,6 +5,7 @@ import { eq, and } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { executarConsulta } from "@/lib/apibrasil";
 import { mapReportType } from "@/lib/utils/report-type";
+import { getOrCreateInsights } from "@/lib/modelo/insights-cache";
 
 const PLATE_REGEX = /^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$/;
 
@@ -64,6 +65,20 @@ export async function POST(req: NextRequest) {
 
     // Execute the consultation via APIBrasil
     const resultado = await executarConsulta(formattedPlate, apiService);
+
+    // Gera as avaliações do modelo (IA) em background, já deixando em cache
+    // para o relatório exibir server-side (inclusive no PDF). Não bloqueia.
+    try {
+      const veic = (resultado.veiculo || {}) as Record<string, unknown>;
+      const marcaObj = veic.marca && typeof veic.marca === "object" ? (veic.marca as Record<string, unknown>) : null;
+      const modeloInsights =
+        String(veic.marcaModelo || marcaObj?.modelo || [veic.marca, veic.modelo].filter(Boolean).join(" ") || "").trim();
+      if (modeloInsights) {
+        getOrCreateInsights(modeloInsights).catch(() => {});
+      }
+    } catch {
+      /* não afeta a consulta */
+    }
 
     // Save the report
     const [report] = await db
