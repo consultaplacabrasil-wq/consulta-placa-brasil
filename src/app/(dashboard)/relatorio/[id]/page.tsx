@@ -1,5 +1,6 @@
 import { redirect, notFound } from "next/navigation";
 import { DownloadPdfButton } from "./download-pdf-button";
+import { ShareButton } from "./share-button";
 import {
   CheckCircle,
   AlertTriangle,
@@ -292,7 +293,8 @@ export default async function RelatorioPage({ params }: Props) {
         }
       `}</style>
 
-      <div className="no-print" style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
+      <div className="no-print" style={{ display: "flex", justifyContent: "flex-end", gap: 12, marginBottom: 16 }}>
+        <ShareButton plate={report.plate} />
         <DownloadPdfButton />
       </div>
 
@@ -372,6 +374,44 @@ export default async function RelatorioPage({ params }: Props) {
 
         {/* Content area */}
         <div style={{ background: "#f8fafc", padding: "24px 0", display: "flex", flexDirection: "column", gap: 20 }}>
+
+          {/* ═══════════════ RESUMO DA CONSULTA ═══════════════ */}
+          <div style={{ padding: "0 8px" }}>
+            <SectionBar icon={Shield} title="Resumo da Consulta" accent="#0f172a" />
+            <SectionBody>
+              {(() => {
+                const riscos: string[] = [];
+                if (hasDebitos) riscos.push("Débitos pendentes");
+                if (hasActiveGravame) riscos.push("Gravame ativo (financiamento)");
+                const temRisco = riscos.length > 0;
+                return (
+                  <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 14,
+                    padding: "14px 18px",
+                    borderRadius: 10,
+                    background: temRisco ? "#fffbeb" : "#f0fdf4",
+                    border: `2px solid ${temRisco ? "#fde68a" : "#bbf7d0"}`,
+                  }}>
+                    {temRisco
+                      ? <AlertTriangle style={{ width: 28, height: 28, color: "#f59e0b", flexShrink: 0 }} />
+                      : <CheckCircle style={{ width: 28, height: 28, color: "#22c55e", flexShrink: 0 }} />}
+                    <div>
+                      <div style={{ fontSize: 14, fontWeight: 800, color: temRisco ? "#b45309" : "#16a34a" }}>
+                        {temRisco ? "Atenção: itens que merecem cuidado" : "Nenhum risco identificado nos itens consultados"}
+                      </div>
+                      <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>
+                        {temRisco
+                          ? riscos.join(" · ")
+                          : "Os itens verificados nesta consulta não apresentaram pendências."}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </SectionBody>
+          </div>
 
           {/* ═══════════════ ALERTAS ═══════════════ */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, padding: "0 8px" }}>
@@ -507,6 +547,40 @@ export default async function RelatorioPage({ params }: Props) {
 
           {/* ═══════════════ RESTRIÇÕES JUDICIAIS (RENAJUD) ═══════════════ */}
           <GenericSection icon={Lock} title="Restrições Judiciais (Renajud)" accent="#1e293b" data={data.renajud} />
+
+          {/* ═══════════════ COMO VERIFICAR O VEÍCULO ═══════════════ */}
+          <div style={{ padding: "0 8px" }}>
+            <SectionBar icon={Shield} title="Como verificar o veículo pessoalmente" accent="#0891b2" />
+            <SectionBody>
+              <p style={{ fontSize: 12, color: "#64748b", marginBottom: 14, lineHeight: 1.6 }}>
+                Antes de fechar negócio, confira fisicamente estes pontos para evitar fraudes e confronte com os dados deste relatório:
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {[
+                  { t: "CRLV (documento)", d: "Confira se os dados do documento batem com os do veículo e com esta consulta. No CRLV em papel, a faixa azul (“República Federativa do Brasil”) solta tinta ao ser raspada — sinal de original. Na versão digital, leia o QR Code pelo app oficial do Detran." },
+                  { t: "Placa", d: "Em placas Mercosul, leia o QR Code com o aplicativo oficial e confronte os dados no portal da Senatran. Em placas antigas, verifique se o lacre da placa traseira não está rompido ou danificado." },
+                  { t: "Chassi", d: "Localize o chassi gravado no veículo (cofre do motor, coluna da porta) e compare com o número deste relatório. Qualquer divergência é um forte sinal de adulteração." },
+                  { t: "Número do motor", d: "Compare o número gravado no bloco do motor com o número informado nesta consulta. Eles devem ser idênticos, sem qualquer divergência." },
+                  { t: "Etiquetas de identificação", d: "Verifique se as peças mantêm as etiquetas de fábrica. A ausência pode indicar peças de origem irregular (de veículos roubados ou furtados)." },
+                  { t: "Vidros", d: "Os vidros devem ter a gravação dos últimos dígitos do chassi. Faltas, divergências ou vidros sem gravação merecem atenção." },
+                ].map((item) => (
+                  <div key={item.t} style={{
+                    borderLeft: "4px solid #0891b2",
+                    background: "#f0f9ff",
+                    borderRadius: 6,
+                    padding: "10px 14px",
+                  }}>
+                    <div style={{ fontSize: 12, fontWeight: 800, color: "#0f172a", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>
+                      {item.t}
+                    </div>
+                    <div style={{ fontSize: 12, color: "#475569", lineHeight: 1.6 }}>
+                      {item.d}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </SectionBody>
+          </div>
 
           {/* ═══════════════ OBSERVAÇÕES ═══════════════ */}
           <div style={{ padding: "0 8px" }}>
