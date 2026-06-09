@@ -1,20 +1,43 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { User, Mail, FileText, Lock, Eye, EyeOff, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { User, Mail, FileText, Lock, Eye, EyeOff, CheckCircle, AlertCircle, Loader2, Phone } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
+import { validateCpfCnpj } from "@/lib/utils/document-validator";
 
 interface UserProfile {
   id: string;
   name: string;
   email: string;
   cpfCnpj: string | null;
+  phone: string | null;
   role: string;
   createdAt: string;
+}
+
+function formatCpfCnpjInput(value: string) {
+  const d = value.replace(/\D/g, "");
+  if (d.length <= 11) {
+    return d
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+  }
+  return d
+    .replace(/(\d{2})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d)/, "$1/$2")
+    .replace(/(\d{4})(\d{1,2})$/, "$1-$2");
+}
+
+function formatPhoneInput(value: string) {
+  const d = value.replace(/\D/g, "").slice(0, 11);
+  if (d.length <= 10) return d.replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{4})(\d)/, "$1-$2");
+  return d.replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2");
 }
 
 type MsgType = { type: "success" | "error"; text: string } | null;
@@ -40,6 +63,38 @@ export default function PerfilPage() {
     newPassword: "",
     confirm: "",
   });
+
+  const [docForm, setDocForm] = useState({ cpfCnpj: "", phone: "" });
+  const [savingDoc, setSavingDoc] = useState(false);
+
+  async function handleSaveDocument(e: React.FormEvent) {
+    e.preventDefault();
+    if (!validateCpfCnpj(docForm.cpfCnpj)) {
+      showMsg("error", "CPF ou CNPJ inválido. Verifique os números.");
+      return;
+    }
+    setSavingDoc(true);
+    try {
+      const res = await fetch("/api/user/profile", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update-document",
+          cpfCnpj: docForm.cpfCnpj,
+          phone: docForm.phone,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Erro ao salvar CPF/CNPJ");
+      showMsg("success", "CPF/CNPJ salvo com sucesso!");
+      setProfile((prev) => (prev ? { ...prev, cpfCnpj: data.cpfCnpj, phone: docForm.phone.replace(/\D/g, "") || prev.phone } : prev));
+      setDocForm({ cpfCnpj: "", phone: "" });
+    } catch (err) {
+      showMsg("error", err instanceof Error ? err.message : "Erro ao salvar CPF/CNPJ");
+    } finally {
+      setSavingDoc(false);
+    }
+  }
 
   function showMsg(type: "success" | "error", text: string) {
     setMsg({ type, text });
@@ -140,19 +195,68 @@ export default function PerfilPage() {
                   <Input value={profile?.email || ""} className="pl-10 bg-gray-50" readOnly />
                 </div>
               </div>
-              <div className="space-y-2">
-                <Label className="text-[#0F172A]">CPF/CNPJ</Label>
-                <div className="relative">
-                  <FileText className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  <Input value={formatCpf(profile?.cpfCnpj || null)} className="pl-10 bg-gray-50" readOnly />
-                </div>
-              </div>
-              <div className="flex items-center gap-2 rounded-lg bg-blue-50 border border-blue-100 px-3 py-2">
-                <p className="text-xs text-blue-700">
-                  Membro desde {profile?.createdAt ? new Date(profile.createdAt).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" }) : "—"}.
-                  Para alterar nome, e-mail ou CPF entre em contato com o suporte.
-                </p>
-              </div>
+              {profile?.cpfCnpj ? (
+                <>
+                  <div className="space-y-2">
+                    <Label className="text-[#0F172A]">CPF/CNPJ</Label>
+                    <div className="relative">
+                      <FileText className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Input value={formatCpf(profile?.cpfCnpj || null)} className="pl-10 bg-gray-50" readOnly />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-lg bg-blue-50 border border-blue-100 px-3 py-2">
+                    <p className="text-xs text-blue-700">
+                      Membro desde {profile?.createdAt ? new Date(profile.createdAt).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" }) : "—"}.
+                      Para alterar nome, e-mail ou CPF entre em contato com o suporte.
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <form onSubmit={handleSaveDocument} className="space-y-4 rounded-xl border border-[#FF4D30]/30 bg-[#FFF7F5] p-4">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="h-4 w-4 shrink-0 text-[#FF4D30] mt-0.5" />
+                    <p className="text-sm text-[#0F172A]">
+                      Complete seu <strong>CPF ou CNPJ</strong> para liberar a compra de consultas. (Obrigatório para emissão do pagamento.)
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-[#0F172A]">CPF ou CNPJ <span className="text-[#FF4D30]">*</span></Label>
+                    <div className="relative">
+                      <FileText className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Input
+                        type="text"
+                        placeholder="000.000.000-00"
+                        className="pl-10 bg-white"
+                        value={docForm.cpfCnpj}
+                        onChange={(e) => setDocForm({ ...docForm, cpfCnpj: formatCpfCnpjInput(e.target.value) })}
+                        maxLength={18}
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-[#0F172A]">Telefone / WhatsApp</Label>
+                    <div className="relative">
+                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Input
+                        type="tel"
+                        placeholder="(11) 99999-9999"
+                        className="pl-10 bg-white"
+                        value={docForm.phone}
+                        onChange={(e) => setDocForm({ ...docForm, phone: formatPhoneInput(e.target.value) })}
+                        maxLength={16}
+                      />
+                    </div>
+                  </div>
+                  <Button
+                    type="submit"
+                    className="bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold gap-2"
+                    disabled={savingDoc}
+                  >
+                    {savingDoc ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle className="h-4 w-4" />}
+                    {savingDoc ? "Salvando..." : "Salvar CPF/CNPJ"}
+                  </Button>
+                </form>
+              )}
             </>
           )}
         </CardContent>

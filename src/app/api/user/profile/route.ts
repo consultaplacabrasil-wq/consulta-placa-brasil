@@ -5,6 +5,7 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
+import { validateCpfCnpj } from "@/lib/utils/document-validator";
 import { sendPasswordChangedEmail } from "@/lib/email";
 
 // GET — buscar dados do perfil
@@ -81,6 +82,56 @@ export async function PATCH(req: NextRequest) {
       sendPasswordChangedEmail(user.email, user.name || "Usuário").catch(() => {});
 
       return NextResponse.json({ success: true, message: "Senha alterada com sucesso" });
+    }
+
+    // ── Completar CPF/CNPJ (ex.: contas criadas via login Google) ───
+    if (action === "update-document") {
+      const { cpfCnpj, phone } = body;
+      const cleanDoc = String(cpfCnpj || "").replace(/\D/g, "");
+
+      if (!validateCpfCnpj(cleanDoc)) {
+        return NextResponse.json({ error: "CPF ou CNPJ inválido" }, { status: 400 });
+      }
+
+      // Não permite sobrescrever um documento já preenchido (evita troca indevida)
+      const [current] = await db
+        .select({ cpfCnpj: users.cpfCnpj })
+        .from(users)
+        .where(eq(users.id, session.user.id))
+        .limit(1);
+
+      if (current?.cpfCnpj) {
+        return NextResponse.json(
+          { error: "CPF/CNPJ já cadastrado. Entre em contato com o suporte para alterar." },
+          { status: 400 }
+        );
+      }
+
+      // Impede duplicidade com outra conta
+      const [dup] = await db
+        .select({ id: users.id })
+        .from(users)
+        .where(eq(users.cpfCnpj, cleanDoc))
+        .limit(1);
+
+      if (dup) {
+        return NextResponse.json(
+          { error: "Este CPF/CNPJ já está em uso por outra conta." },
+          { status: 409 }
+        );
+      }
+
+      const cleanPhone = phone ? String(phone).replace(/\D/g, "") : null;
+      await db
+        .update(users)
+        .set({
+          cpfCnpj: cleanDoc,
+          ...(cleanPhone ? { phone: cleanPhone } : {}),
+          updatedAt: new Date(),
+        })
+        .where(eq(users.id, session.user.id));
+
+      return NextResponse.json({ success: true, cpfCnpj: cleanDoc });
     }
 
     return NextResponse.json({ error: "Ação inválida" }, { status: 400 });

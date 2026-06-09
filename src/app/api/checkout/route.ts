@@ -129,6 +129,26 @@ export async function POST(req: NextRequest) {
       isNewUser = true;
     }
 
+    // Captura CPF/telefone no perfil de quem logou sem esses dados (ex.: login Google).
+    // Não sobrescreve dados já existentes.
+    if (session?.user?.id) {
+      try {
+        const [u] = await db
+          .select({ cpfCnpj: users.cpfCnpj, phone: users.phone })
+          .from(users)
+          .where(eq(users.id, userId))
+          .limit(1);
+        const updates: { cpfCnpj?: string; phone?: string } = {};
+        if (!u?.cpfCnpj && cpfCnpj) updates.cpfCnpj = cpfCnpj.replace(/\D/g, "");
+        if (!u?.phone && phone) updates.phone = phone.replace(/\D/g, "");
+        if (Object.keys(updates).length > 0) {
+          await db.update(users).set(updates).where(eq(users.id, userId));
+        }
+      } catch {
+        // não bloqueia a compra se falhar (ex.: CPF já usado por outra conta)
+      }
+    }
+
     // Calculate totals
     const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
