@@ -7,6 +7,7 @@ import { FipeVariation } from "./fipe-variation";
 import type { FipePreco } from "@/lib/fipe";
 import { getCachedInsights } from "@/lib/modelo/insights-cache";
 import { getBlogReviews } from "@/lib/modelo/blog-reviews";
+import { decodeChassi } from "@/lib/chassi";
 import {
   CheckCircle,
   AlertTriangle,
@@ -17,6 +18,7 @@ import {
   Lock,
   Shield,
   Users,
+  Hash,
   type LucideIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -626,15 +628,40 @@ export async function ReportContent({ report, consultaName, headerActions }: {
             const tipoDoc = g("tipoDocFaturado", "tipo_doc_faturado", "tipoDocumentoFaturado");
             const docFat = g("documentoFaturado", "docFaturado", "cnpjFaturado", "documento_faturado");
             const ufFat = g("ufFaturado", "uf_faturado");
+            const comVenda = g("comunicacaoVenda", "comunicacao_venda", "comunicacaoDeVenda", "intencaoVenda");
             if (!ignore(tipoDoc)) rows.push(["Tipo de documento faturado", tipoDoc]);
             if (!ignore(docFat)) rows.push(["Documento faturado", docFat]);
             if (!ignore(ufFat)) rows.push(["UF faturado", ufFat]);
+            if (!ignore(comVenda)) rows.push(["Comunicação de venda", comVenda]);
             if (rows.length === 0) return null;
             return (
               <div style={{ padding: "0 8px" }}>
                 <SectionBar icon={FileText} title="Faturamento" accent="#1e293b" />
                 <SectionBody noPad>
                   <StripedRows rows={rows} />
+                </SectionBody>
+              </div>
+            );
+          })()}
+
+          {/* ═══════════════ VERIFICAÇÃO DE CHASSI ═══════════════ */}
+          {(() => {
+            const dec = decodeChassi(g("chassi"));
+            if (!dec) return null;
+            return (
+              <div style={{ padding: "0 8px" }}>
+                <SectionBar icon={Hash} title="Verificação de Chassi" accent="#0891b2" />
+                <SectionBody noPad>
+                  <StripedRows rows={[
+                    ["Chassi", dec.chassi],
+                    ["Origem (país)", dec.origem],
+                    ["Montadora (WMI)", dec.montadora],
+                    ["Ano-modelo (pelo chassi)", dec.anoModelo],
+                    ["Formato", dec.valido ? "Válido (17 caracteres)" : "Incompleto / mascarado"],
+                  ]} />
+                  <p style={{ fontSize: 11, color: "#94a3b8", lineHeight: 1.6, padding: "10px 20px", margin: 0 }}>
+                    Decodificação automática dos dígitos do chassi (VIN). Compare o ano-modelo e a montadora com os dados oficiais — divergências podem indicar adulteração.
+                  </p>
                 </SectionBody>
               </div>
             );

@@ -74,6 +74,31 @@ export function FipeVariation({ precos }: { precos: FipePreco[] }) {
           )}
         </div>
 
+        {/* Desvalorização no período */}
+        {serie.length > 1 && (() => {
+          const variacaoPeriodo = ((atual.valor - serie[0].valor) / serie[0].valor) * 100;
+          const desvalorizou = variacaoPeriodo < 0;
+          return (
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
+              background: "#f8fafc", border: "1px solid #e5e7eb", borderRadius: 8,
+              padding: "12px 16px", marginBottom: 18,
+            }}>
+              <div>
+                <div style={{ fontSize: 10, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700 }}>
+                  {desvalorizou ? "Desvalorização" : "Valorização"} no período ({serie.length} meses)
+                </div>
+                <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>
+                  De {fmt(serie[0].valor)} para {fmt(atual.valor)}
+                </div>
+              </div>
+              <span style={{ fontSize: 18, fontWeight: 900, color: desvalorizou ? "#dc2626" : "#16a34a" }}>
+                {variacaoPeriodo >= 0 ? "+" : ""}{variacaoPeriodo.toFixed(2)}%
+              </span>
+            </div>
+          );
+        })()}
+
         {/* Gráfico de barras */}
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 8, height: 130, paddingTop: 8 }}>
           {serie.map((s, i) => {
@@ -93,7 +118,7 @@ export function FipeVariation({ precos }: { precos: FipePreco[] }) {
           })}
         </div>
         <p style={{ fontSize: 10, color: "#94a3b8", textAlign: "center", marginTop: 10 }}>
-          Variação da tabela FIPE nos últimos {serie.length} meses · Fonte: FIPE/BrasilAPI
+          Variação da tabela FIPE nos últimos {serie.length} meses · Fonte: Tabela FIPE
         </p>
       </div>
     </div>
