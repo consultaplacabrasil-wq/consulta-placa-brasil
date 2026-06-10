@@ -76,16 +76,34 @@ interface ApiBrasilResponse {
 // ============================================================
 // Fetch genérico de um tipo
 // ============================================================
+// Timeout por chamada: evita que uma API lenta trave a consulta inteira
+// (a consulta Premium dispara várias em paralelo via Promise.allSettled).
+const APIBRASIL_TIMEOUT_MS = 25000;
+
 async function apiBrasilFetch(tipo: string, placa: string): Promise<Record<string, unknown>> {
-  const res = await fetch(`${APIBRASIL_BASE_URL}${CONSULTA_ENDPOINT}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
-    },
-    body: JSON.stringify({ tipo, placa }),
-    cache: "no-store",
-  });
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), APIBRASIL_TIMEOUT_MS);
+
+  let res: Response;
+  try {
+    res = await fetch(`${APIBRASIL_BASE_URL}${CONSULTA_ENDPOINT}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+      },
+      body: JSON.stringify({ tipo, placa }),
+      cache: "no-store",
+      signal: controller.signal,
+    });
+  } catch (err) {
+    if (err instanceof Error && err.name === "AbortError") {
+      throw new Error(`Tempo esgotado na consulta ${tipo}`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
 
   if (!res.ok) {
     const body = (await res.json().catch(() => ({}))) as ApiBrasilResponse;
