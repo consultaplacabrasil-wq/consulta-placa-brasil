@@ -27,6 +27,8 @@ export const CONSULTA_APIS: Record<string, string[]> = {
     "leilao-score",
     "roubo-furto-v2",
     "recall",
+    "proprietario-atual-v2",
+    "renajud",
   ],
 
   // Compatibilidade com dados antigos (consulta_types legadas)
@@ -40,6 +42,8 @@ export const CONSULTA_APIS: Record<string, string[]> = {
     "leilao-score",
     "roubo-furto-v2",
     "recall",
+    "proprietario-atual-v2",
+    "renajud",
   ],
   "agregados-basica": ["agregados-v2"],
   "debitos-v4": ["agregados-v2", "debitos-v4"],

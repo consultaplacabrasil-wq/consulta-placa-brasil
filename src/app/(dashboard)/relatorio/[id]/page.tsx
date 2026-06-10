@@ -189,6 +189,26 @@ function temOcorrencia(value: unknown): boolean {
   return false;
 }
 
+// Extrai a quantidade de proprietários do retorno (estrutura variável)
+function extrairQtdProprietarios(obj: unknown): string {
+  if (!obj || typeof obj !== "object") return "";
+  const o = obj as Record<string, unknown>;
+  for (const [k, v] of Object.entries(o)) {
+    if (/(quant|qtd|total|numero).*propriet|propriet.*(quant|qtd|total)/i.test(k) &&
+        (typeof v === "number" || (typeof v === "string" && /^\d+$/.test(v)))) {
+      return String(v);
+    }
+  }
+  for (const [k, v] of Object.entries(o)) {
+    if (/propriet/i.test(k) && Array.isArray(v) && v.length > 0) return String(v.length);
+    if (v && typeof v === "object") {
+      const nested = extrairQtdProprietarios(v);
+      if (nested) return nested;
+    }
+  }
+  return "";
+}
+
 // Remove marca repetida em sequência (ex.: "FIAT/FIAT/SIENA" → "FIAT/SIENA")
 function dedupeMarcaModelo(s: string): string {
   if (!s) return s;
@@ -531,6 +551,10 @@ export async function ReportContent({ report, consultaName, headerActions }: {
           {(() => {
             const cards: { icon: LucideIcon; label: string; status: string; danger: boolean }[] = [];
             cards.push({ icon: FileText, label: "Dados Cadastrais", status: "Tudo ok", danger: false });
+            if (data.proprietario) {
+              const qtd = extrairQtdProprietarios(data.proprietario);
+              cards.push({ icon: Users, label: "Proprietários", status: qtd || "Consultado", danger: false });
+            }
             if (data.debitos) cards.push({ icon: CreditCard, label: "Débitos", status: hasDebitos ? "Possui problemas" : "Tudo ok", danger: !!hasDebitos });
             if (data.multas) { const p = temOcorrencia(data.multas); cards.push({ icon: AlertTriangle, label: "Multas / Infrações", status: p ? "Possui problemas" : "Tudo ok", danger: p }); }
             if (data.gravame) cards.push({ icon: Lock, label: "Gravame", status: hasActiveGravame ? "Possui problemas" : "Tudo ok", danger: hasActiveGravame });
