@@ -230,7 +230,14 @@ function renderGenericData(value: unknown, depth = 0): React.ReactNode {
 
   // Primitivo
   if (typeof value !== "object") {
-    const display = typeof value === "boolean" ? (value ? "Sim" : "Não") : String(value);
+    let display: string;
+    if (typeof value === "boolean") {
+      display = value ? "Sim" : "Não";
+    } else {
+      const s = String(value).trim();
+      const low = s.toLowerCase();
+      display = low === "true" ? "Sim" : low === "false" ? "Não" : s;
+    }
     return <span style={{ fontSize: 13, color: "#1e293b", fontWeight: 700 }}>{display}</span>;
   }
 
