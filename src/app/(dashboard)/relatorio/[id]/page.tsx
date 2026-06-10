@@ -224,21 +224,21 @@ function dedupeMarcaModelo(s: string): string {
 
 const HIDDEN_KEYS = new Set(["error", "errors", "_erros", "message", "status_code", "tax", "balance", "valor_consulta"]);
 
+// Formata valores primitivos: booleanos e strings "true"/"false" viram "Sim"/"Não"
+function formatPrimitive(v: unknown): string {
+  if (typeof v === "boolean") return v ? "Sim" : "Não";
+  const s = String(v).trim();
+  const low = s.toLowerCase();
+  return low === "true" ? "Sim" : low === "false" ? "Não" : s;
+}
+
 // Renderizador genérico: exibe qualquer objeto/array/valor de forma legível
 function renderGenericData(value: unknown, depth = 0): React.ReactNode {
   if (value === null || value === undefined || value === "") return null;
 
   // Primitivo
   if (typeof value !== "object") {
-    let display: string;
-    if (typeof value === "boolean") {
-      display = value ? "Sim" : "Não";
-    } else {
-      const s = String(value).trim();
-      const low = s.toLowerCase();
-      display = low === "true" ? "Sim" : low === "false" ? "Não" : s;
-    }
-    return <span style={{ fontSize: 13, color: "#1e293b", fontWeight: 700 }}>{display}</span>;
+    return <span style={{ fontSize: 13, color: "#1e293b", fontWeight: 700 }}>{formatPrimitive(value)}</span>;
   }
 
   // Array
@@ -284,7 +284,7 @@ function renderGenericData(value: unknown, depth = 0): React.ReactNode {
             </div>
           );
         }
-        return <FieldRow key={k} label={humanizeLabel(k)} value={String(v)} />;
+        return <FieldRow key={k} label={humanizeLabel(k)} value={formatPrimitive(v)} />;
       })}
     </div>
   );
