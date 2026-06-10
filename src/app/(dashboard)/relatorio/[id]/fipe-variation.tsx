@@ -5,8 +5,16 @@ function fmt(v: number) {
   return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(v);
 }
 
-// "junho de 2026" -> "jun/26"
+// Converte "2026-06" ou "junho de 2026" -> "jun/26"
 function mesCurto(m: string) {
+  const abrev = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+  // Formato "YYYY-MM"
+  const ym = m.match(/^(\d{4})-(\d{2})$/);
+  if (ym) {
+    const idx = parseInt(ym[2], 10) - 1;
+    return `${abrev[idx] || ym[2]}/${ym[1].slice(-2)}`;
+  }
+  // Formato "mês de ano"
   const meses: Record<string, string> = {
     janeiro: "jan", fevereiro: "fev", março: "mar", abril: "abr", maio: "mai", junho: "jun",
     julho: "jul", agosto: "ago", setembro: "set", outubro: "out", novembro: "nov", dezembro: "dez",

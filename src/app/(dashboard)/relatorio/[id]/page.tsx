@@ -4,7 +4,7 @@ import { ShareButton } from "./share-button";
 import { ModelInsights } from "./model-insights";
 import { ModelInsightsView } from "./model-insights-view";
 import { FipeVariation } from "./fipe-variation";
-import { getFipePrecos } from "@/lib/fipe";
+import type { FipePreco } from "@/lib/fipe";
 import { getCachedInsights } from "@/lib/modelo/insights-cache";
 import { getBlogReviews } from "@/lib/modelo/blog-reviews";
 import {
@@ -189,6 +189,33 @@ function temOcorrencia(value: unknown): boolean {
   return false;
 }
 
+// Extrai o histórico de preços FIPE do retorno da APIBrasil (tipo "fipe")
+// Shape: { data: [ { codigoFipe, anoModelo, combustivel, historico: [{mes:"YYYY-MM", valor}] } ] }
+function extrairFipeHistorico(fipe: unknown): FipePreco[] {
+  if (!fipe || typeof fipe !== "object") return [];
+  const arr = (fipe as Record<string, unknown>).data;
+  if (!Array.isArray(arr) || arr.length === 0) return [];
+  const item = arr[0] as Record<string, unknown>;
+  const hist = item.historico;
+  if (!Array.isArray(hist)) return [];
+  const combustivel = String(item.combustivel || "");
+  const anoModelo = Number(item.anoModelo) || 0;
+  const precos = hist
+    .map((h) => {
+      const o = (h || {}) as Record<string, unknown>;
+      return {
+        mesReferencia: String(o.mes || o.mesReferencia || ""),
+        valor: Number(o.valor) || 0,
+        valorTexto: "",
+        anoModelo,
+        combustivel,
+      };
+    })
+    .filter((p) => p.valor > 0 && p.mesReferencia);
+  precos.sort((a, b) => a.mesReferencia.localeCompare(b.mesReferencia));
+  return precos;
+}
+
 // Extrai a quantidade de proprietários do retorno (estrutura variável)
 function extrairQtdProprietarios(obj: unknown): string {
   if (!obj || typeof obj !== "object") return "";
@@ -323,6 +350,7 @@ export async function ReportContent({ report, consultaName, headerActions }: {
     recall?: Record<string, unknown>;
     proprietario?: Record<string, unknown>;
     renajud?: Record<string, unknown>;
+    fipe?: Record<string, unknown>;
   };
   const vRaw = data.veiculo || {};
   const str = (val: unknown) => (val ? String(val) : "");
@@ -365,24 +393,10 @@ export async function ReportContent({ report, consultaName, headerActions }: {
     ""
   );
 
-  // Código FIPE (pode vir como array [{codigo}], objeto, string camelCase ou snake_case)
-  function extrairCodigoFipe(val: unknown): string {
-    if (!val) return "";
-    if (typeof val === "string") return val.trim();
-    if (Array.isArray(val) && val.length > 0) {
-      const first = val[0] as Record<string, unknown>;
-      return String(first?.codigo || first?.codigoFipe || "").trim();
-    }
-    if (typeof val === "object") {
-      const o = val as Record<string, unknown>;
-      return String(o.codigo || o.codigoFipe || "").trim();
-    }
-    return "";
-  }
-  const fipeCodigo = extrairCodigoFipe(vRaw.codigoFipe || vRaw.codigo_fipe || vRaw.fipe);
+  // FIPE: histórico vem da consulta (APIBrasil tipo "fipe"), já no report.data
+  const fipePrecos = extrairFipeHistorico(data.fipe);
 
   // Dados externos renderizados no servidor (garante presença no PDF)
-  const fipePrecos = await getFipePrecos(fipeCodigo);
   const cachedInsights = await getCachedInsights(modeloStr);
   const blogReviews = await getBlogReviews(g("marca", "fabricante"), g("familia") || g("modelo") || modeloStr);
 

@@ -29,6 +29,7 @@ export const CONSULTA_APIS: Record<string, string[]> = {
     "recall",
     "proprietario-atual-v2",
     "renajud",
+    "fipe",
   ],
 
   // Compatibilidade com dados antigos (consulta_types legadas)
@@ -44,6 +45,7 @@ export const CONSULTA_APIS: Record<string, string[]> = {
     "recall",
     "proprietario-atual-v2",
     "renajud",
+    "fipe",
   ],
   "agregados-basica": ["agregados-v2"],
   "debitos-v4": ["agregados-v2", "debitos-v4"],
@@ -64,6 +66,7 @@ const TIPO_TO_KEY: Record<string, string> = {
   recall: "recall",
   "proprietario-atual-v2": "proprietario",
   renajud: "renajud",
+  fipe: "fipe",
 };
 
 // ============================================================
