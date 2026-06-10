@@ -16,13 +16,6 @@ import {
   FileText,
   Lock,
   Shield,
-  Fuel,
-  Palette,
-  Hash,
-  Gauge,
-  MapPin,
-  Calendar,
-  Globe,
   Users,
   type LucideIcon,
 } from "lucide-react";
@@ -72,67 +65,52 @@ function SectionBar({ icon: Icon, title, accent = "#FF4D30" }: { icon: LucideIco
   );
 }
 
-function SectionBody({ children, border = true }: { children: React.ReactNode; border?: boolean }) {
+function SectionBody({ children, border = true, noPad = false }: { children: React.ReactNode; border?: boolean; noPad?: boolean }) {
   return (
     <div style={{
       background: "#fff",
       border: border ? "1px solid #e5e7eb" : "none",
       borderTop: "none",
       borderRadius: "0 0 8px 8px",
-      padding: "20px 24px",
+      padding: noPad ? "0" : "20px 24px",
+      overflow: "hidden",
     }}>
       {children}
     </div>
   );
 }
 
-function FieldRow({ icon: Icon, label, value }: { icon?: LucideIcon; label: string; value: string | number | undefined | null }) {
+// Linha estilo "zebra": rótulo à esquerda, valor à direita, fundo alternado.
+function FieldRow({ label, value, alt }: { icon?: LucideIcon; label: string; value: string | number | undefined | null; alt?: boolean }) {
   if (value === undefined || value === null || value === "") return null;
   return (
     <div style={{
       display: "flex",
-      alignItems: "flex-start",
-      gap: "10px",
-      padding: "10px 0",
-      borderBottom: "1px solid #f1f5f9",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: "16px",
+      padding: "11px 20px",
+      background: alt ? "#f8fafc" : "transparent",
     }}>
-      {Icon && <Icon style={{ width: 14, height: 14, color: "#FF4D30", marginTop: 2, flexShrink: 0 }} />}
-      <div style={{ flex: 1 }}>
-        <span style={{ display: "block", fontSize: "10px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>
-          {label}
-        </span>
-        <span style={{ display: "block", fontSize: "13px", color: "#1e293b", fontWeight: 700, marginTop: 2 }}>
-          {String(value)}
-        </span>
-      </div>
+      <span style={{ fontSize: "11px", color: "#64748b", textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 600, flexShrink: 0 }}>
+        {label}
+      </span>
+      <span style={{ fontSize: "13px", color: "#1e293b", fontWeight: 700, textAlign: "right", minWidth: 0, wordBreak: "break-word" }}>
+        {String(value)}
+      </span>
     </div>
   );
 }
 
-function AlertBadge({ icon: Icon, label, danger }: { icon: LucideIcon; label: string; danger: boolean }) {
+// Renderiza uma lista de pares [label, valor] com zebra (descarta vazios).
+function StripedRows({ rows }: { rows: [string, string | number | null | undefined][] }) {
+  const visible = rows.filter(([, v]) => v !== undefined && v !== null && v !== "");
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "16px 20px",
-      minWidth: 130,
-      borderRadius: 10,
-      background: danger ? "#fef2f2" : "#f0fdf4",
-      border: `2px solid ${danger ? "#fecaca" : "#bbf7d0"}`,
-    }}>
-      <Icon style={{ width: 28, height: 28, color: danger ? "#ef4444" : "#22c55e", marginBottom: 8 }} />
-      <span style={{
-        fontSize: "10px",
-        fontWeight: 800,
-        textTransform: "uppercase",
-        letterSpacing: "0.08em",
-        color: danger ? "#dc2626" : "#16a34a",
-        textAlign: "center",
-        lineHeight: 1.3,
-      }}>{label}</span>
-    </div>
+    <>
+      {visible.map(([l, v], i) => (
+        <FieldRow key={l} label={l} value={v} alt={i % 2 === 1} />
+      ))}
+    </>
   );
 }
 
@@ -291,29 +269,29 @@ function renderGenericData(value: unknown, depth = 0): React.ReactNode {
     );
   }
 
-  // Objeto
+  // Objeto: separa campos simples (zebra) dos aninhados (sub-blocos)
   const entries = Object.entries(value as Record<string, unknown>).filter(
     ([k, v]) => !HIDDEN_KEYS.has(k) && v !== null && v !== undefined && v !== ""
   );
   if (entries.length === 0) return null;
 
+  const primitivos = entries.filter(([, v]) => typeof v !== "object" || v === null);
+  const aninhados = entries.filter(([, v]) => typeof v === "object" && v !== null);
+
   return (
-    <div style={{ display: "grid", gridTemplateColumns: depth === 0 ? "1fr 1fr" : "1fr", gap: "0 24px" }}>
-      {entries.map(([k, v]) => {
-        const isNested = typeof v === "object" && v !== null;
-        if (isNested) {
-          return (
-            <div key={k} style={{ gridColumn: "1 / -1", padding: "8px 0" }}>
-              <span style={{ display: "block", fontSize: 11, color: "#FF4D30", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>
-                {humanizeLabel(k)}
-              </span>
-              {renderGenericData(v, depth + 1)}
-            </div>
-          );
-        }
-        return <FieldRow key={k} label={humanizeLabel(k)} value={formatPrimitive(v)} />;
-      })}
-    </div>
+    <>
+      {primitivos.map(([k, v], i) => (
+        <FieldRow key={k} label={humanizeLabel(k)} value={formatPrimitive(v)} alt={i % 2 === 1} />
+      ))}
+      {aninhados.map(([k, v]) => (
+        <div key={k} style={{ padding: "12px 20px" }}>
+          <span style={{ display: "block", fontSize: 11, color: "#FF4D30", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>
+            {humanizeLabel(k)}
+          </span>
+          {renderGenericData(v, depth + 1)}
+        </div>
+      ))}
+    </>
   );
 }
 
@@ -326,7 +304,7 @@ function GenericSection({ icon, title, accent, data }: {
   return (
     <div style={{ padding: "0 8px" }}>
       <SectionBar icon={icon} title={title} accent={accent} />
-      <SectionBody>{content}</SectionBody>
+      <SectionBody noPad>{content}</SectionBody>
     </div>
   );
 }
@@ -609,35 +587,35 @@ export async function ReportContent({ report, consultaName, headerActions }: {
           {/* ═══════════════ DADOS ORIGINAIS ═══════════════ */}
           <div style={{ padding: "0 8px" }}>
             <SectionBar icon={Car} title="Dados Originais do Veículo" accent="#FF4D30" />
-            <SectionBody>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 32px" }}>
-                <FieldRow icon={Car} label="Placa" value={g("placa") || report.plate} />
-                <FieldRow icon={Car} label="Marca / Modelo" value={dedupeMarcaModelo(g("marcaModelo", "marca_modelo") || [g("marca", "fabricante"), g("modelo")].filter(Boolean).join("/"))} />
-                <FieldRow icon={Hash} label="Chassi" value={g("chassi")} />
-                <FieldRow icon={Hash} label="Nº Motor" value={g("numMotor", "numero_motor", "numeroMotor")} />
-                <FieldRow icon={Hash} label="RENAVAM" value={g("renavam")} />
-                <FieldRow icon={Fuel} label="Combustível" value={g("combustivel", "codigoCombustivel", "combustivel_descricao")} />
-                <FieldRow icon={Palette} label="Cor" value={g("corVeiculo", "cor")} />
-                <FieldRow icon={Car} label="Tipo de Veículo" value={g("tipoVeiculo", "tipo_veiculo", "tipo")} />
-                <FieldRow icon={MapPin} label="Município / UF" value={[g("municipio", "cidade"), g("uf", "ufJurisdicao", "uf_jurisdicao", "ufFaturado", "uf_faturado")].filter(Boolean).join(" / ")} />
-                <FieldRow icon={Calendar} label="Ano Fabricação" value={g("anoFabricacao", "ano_fabricacao")} />
-                <FieldRow icon={Calendar} label="Ano Modelo" value={g("anoModelo", "ano_modelo")} />
-                <FieldRow icon={Car} label="Espécie" value={g("especieVeiculo", "especie")} />
-                <FieldRow icon={Car} label="Categoria" value={g("categoria")} />
-                <FieldRow icon={Car} label="Carroceria" value={g("tipoCarroceria", "tipo_carroceria")} />
-                <FieldRow icon={Gauge} label="Potência" value={g("potencia") ? `${g("potencia")} CV` : undefined} />
-                <FieldRow icon={Gauge} label="Cilindradas" value={g("cilindradas") ? `${g("cilindradas")} cc` : undefined} />
-                <FieldRow icon={Users} label="Lotação / Passageiros" value={g("capacidadePassageiro", "quantidade_lugares", "capacidade_passageiros")} />
-                <FieldRow icon={Globe} label="Nacionalidade / Procedência" value={g("nacionalidade", "procedencia")} />
-                <FieldRow label="Peso Bruto Total" value={g("pbt", "peso_bruto_total") ? `${g("pbt", "peso_bruto_total")} kg` : undefined} />
-                <FieldRow label="Cap. Máx. Tração" value={g("capMaxTracao", "capacidade_max_tracao")} />
-                <FieldRow label="Nº Eixos" value={g("eixos", "quantidade_eixo")} />
-                <FieldRow label="Caixa de Câmbio" value={g("caixaCambio", "numero_caixa_cambio")} />
-                <FieldRow label="Cap. Carga" value={g("capacidadeCarga", "carga") ? `${g("capacidadeCarga", "carga")} kg` : undefined} />
-                <FieldRow label="Nº Carroceria" value={g("numCarroceria", "numero_carroceria")} />
-                <FieldRow label="Família" value={g("familia")} />
-                <FieldRow label="Cilindros" value={g("cilindros")} />
-              </div>
+            <SectionBody noPad>
+              <StripedRows rows={[
+                ["Placa", g("placa") || report.plate],
+                ["Marca / Modelo", dedupeMarcaModelo(g("marcaModelo", "marca_modelo") || [g("marca", "fabricante"), g("modelo")].filter(Boolean).join("/"))],
+                ["Chassi", g("chassi")],
+                ["Nº Motor", g("numMotor", "numero_motor", "numeroMotor")],
+                ["RENAVAM", g("renavam")],
+                ["Combustível", g("combustivel", "codigoCombustivel", "combustivel_descricao")],
+                ["Cor", g("corVeiculo", "cor")],
+                ["Tipo de Veículo", g("tipoVeiculo", "tipo_veiculo", "tipo")],
+                ["Município / UF", [g("municipio", "cidade"), g("uf", "ufJurisdicao", "uf_jurisdicao", "ufFaturado", "uf_faturado")].filter(Boolean).join(" / ")],
+                ["Ano Fabricação", g("anoFabricacao", "ano_fabricacao")],
+                ["Ano Modelo", g("anoModelo", "ano_modelo")],
+                ["Espécie", g("especieVeiculo", "especie")],
+                ["Categoria", g("categoria")],
+                ["Carroceria", g("tipoCarroceria", "tipo_carroceria")],
+                ["Potência", g("potencia") ? `${g("potencia")} CV` : ""],
+                ["Cilindradas", g("cilindradas") ? `${g("cilindradas")} cc` : ""],
+                ["Lotação / Passageiros", g("capacidadePassageiro", "quantidade_lugares", "capacidade_passageiros")],
+                ["Nacionalidade / Procedência", g("nacionalidade", "procedencia")],
+                ["Peso Bruto Total", g("pbt", "peso_bruto_total") ? `${g("pbt", "peso_bruto_total")} kg` : ""],
+                ["Cap. Máx. Tração", g("capMaxTracao", "capacidade_max_tracao")],
+                ["Nº Eixos", g("eixos", "quantidade_eixo")],
+                ["Caixa de Câmbio", g("caixaCambio", "numero_caixa_cambio")],
+                ["Cap. Carga", g("capacidadeCarga", "carga") ? `${g("capacidadeCarga", "carga")} kg` : ""],
+                ["Nº Carroceria", g("numCarroceria", "numero_carroceria")],
+                ["Família", g("familia")],
+                ["Cilindros", g("cilindros")],
+              ]} />
             </SectionBody>
           </div>
 
@@ -655,10 +633,8 @@ export async function ReportContent({ report, consultaName, headerActions }: {
             return (
               <div style={{ padding: "0 8px" }}>
                 <SectionBar icon={FileText} title="Faturamento" accent="#1e293b" />
-                <SectionBody>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 32px" }}>
-                    {rows.map(([l, v]) => <FieldRow key={l} label={l} value={v} />)}
-                  </div>
+                <SectionBody noPad>
+                  <StripedRows rows={rows} />
                 </SectionBody>
               </div>
             );
