@@ -9,8 +9,8 @@ export function modeloCacheKey(modelo: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 80);
-  // v2: inclui estimativa de manutenção (invalida cache antigo)
-  return `model_insight_v2:${slug}`;
+  // v3: inclui ficha técnica, manutenção detalhada e comparativo (invalida cache antigo)
+  return `model_insight_v3:${slug}`;
 }
 
 export async function getCachedInsights(modelo: string): Promise<ModeloInsights | null> {

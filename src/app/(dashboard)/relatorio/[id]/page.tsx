@@ -641,6 +641,29 @@ export async function ReportContent({ report, consultaName, headerActions }: {
             </SectionBody>
           </div>
 
+          {/* ═══════════════ FATURAMENTO ═══════════════ */}
+          {(() => {
+            const ignore = (s: string) => { const x = s.toUpperCase(); return !x || x === "DESCONHECIDO" || x === "NÃO APLICÁVEL" || x === "NAO APLICAVEL" || x === "-"; };
+            const rows: [string, string][] = [];
+            const tipoDoc = g("tipoDocFaturado", "tipo_doc_faturado", "tipoDocumentoFaturado");
+            const docFat = g("documentoFaturado", "docFaturado", "cnpjFaturado", "documento_faturado");
+            const ufFat = g("ufFaturado", "uf_faturado");
+            if (!ignore(tipoDoc)) rows.push(["Tipo de documento faturado", tipoDoc]);
+            if (!ignore(docFat)) rows.push(["Documento faturado", docFat]);
+            if (!ignore(ufFat)) rows.push(["UF faturado", ufFat]);
+            if (rows.length === 0) return null;
+            return (
+              <div style={{ padding: "0 8px" }}>
+                <SectionBar icon={FileText} title="Faturamento" accent="#1e293b" />
+                <SectionBody>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 32px" }}>
+                    {rows.map(([l, v]) => <FieldRow key={l} label={l} value={v} />)}
+                  </div>
+                </SectionBody>
+              </div>
+            );
+          })()}
+
           {/* ═══════════════ ANÁLISE DE COMERCIALIZAÇÃO ═══════════════ */}
           <div style={{ padding: "0 8px" }}>
             <SectionBar icon={Shield} title="Análise de Comercialização (estimativa)" accent="#0f172a" />
@@ -806,6 +829,30 @@ export async function ReportContent({ report, consultaName, headerActions }: {
                     </a>
                   ))}
                 </div>
+              </SectionBody>
+            </div>
+          )}
+
+          {/* ═══════════════ VÍDEOS DE REVIEW (YOUTUBE) ═══════════════ */}
+          {modeloStr && (
+            <div className="no-print" style={{ padding: "0 8px" }}>
+              <SectionBar icon={FileText} title="Vídeos de review do modelo" accent="#1e293b" />
+              <SectionBody>
+                <p style={{ fontSize: 13, color: "#475569", marginTop: 0, marginBottom: 12 }}>
+                  Assista a avaliações e opiniões reais sobre o {dedupeMarcaModelo(modeloStr)} no YouTube.
+                </p>
+                <a
+                  href={`https://www.youtube.com/results?search_query=${encodeURIComponent(modeloStr + " review análise vale a pena")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 8,
+                    background: "#FF0000", color: "#fff", fontSize: 13, fontWeight: 700,
+                    padding: "10px 18px", borderRadius: 8, textDecoration: "none",
+                  }}
+                >
+                  ▶ Ver vídeos no YouTube
+                </a>
               </SectionBody>
             </div>
           )}
