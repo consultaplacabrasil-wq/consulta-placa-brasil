@@ -174,6 +174,19 @@ function humanizeLabel(key: string): string {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+// Remove marca repetida em sequência (ex.: "FIAT/FIAT/SIENA" → "FIAT/SIENA")
+function dedupeMarcaModelo(s: string): string {
+  if (!s) return s;
+  const parts = s.split("/").map((p) => p.trim()).filter(Boolean);
+  const out: string[] = [];
+  for (const p of parts) {
+    if (out.length === 0 || out[out.length - 1].toUpperCase() !== p.toUpperCase()) {
+      out.push(p);
+    }
+  }
+  return out.join("/");
+}
+
 const HIDDEN_KEYS = new Set(["error", "errors", "_erros", "message", "status_code", "tax", "balance", "valor_consulta"]);
 
 // Renderizador genérico: exibe qualquer objeto/array/valor de forma legível
@@ -182,7 +195,8 @@ function renderGenericData(value: unknown, depth = 0): React.ReactNode {
 
   // Primitivo
   if (typeof value !== "object") {
-    return <span style={{ fontSize: 13, color: "#1e293b", fontWeight: 700 }}>{String(value)}</span>;
+    const display = typeof value === "boolean" ? (value ? "Sim" : "Não") : String(value);
+    return <span style={{ fontSize: 13, color: "#1e293b", fontWeight: 700 }}>{display}</span>;
   }
 
   // Array
@@ -303,10 +317,11 @@ export async function ReportContent({ report, consultaName, headerActions }: {
   };
 
   // Modelo do veículo
-  const modeloStr =
+  const modeloStr = dedupeMarcaModelo(
     g("marcaModelo", "marca_modelo") ||
-    [g("marca", "fabricante"), g("modelo")].filter(Boolean).join(" ") ||
-    "";
+    [g("marca", "fabricante"), g("modelo")].filter(Boolean).join("/") ||
+    ""
+  );
 
   // Código FIPE (pode vir como array [{codigo}], objeto, string camelCase ou snake_case)
   function extrairCodigoFipe(val: unknown): string {
@@ -513,7 +528,7 @@ export async function ReportContent({ report, consultaName, headerActions }: {
             <SectionBody>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 32px" }}>
                 <FieldRow icon={Car} label="Placa" value={g("placa") || report.plate} />
-                <FieldRow icon={Car} label="Marca / Modelo" value={g("marcaModelo", "marca_modelo") || [g("marca", "fabricante"), g("modelo")].filter(Boolean).join(" / ")} />
+                <FieldRow icon={Car} label="Marca / Modelo" value={dedupeMarcaModelo(g("marcaModelo", "marca_modelo") || [g("marca", "fabricante"), g("modelo")].filter(Boolean).join("/"))} />
                 <FieldRow icon={Hash} label="Chassi" value={g("chassi")} />
                 <FieldRow icon={Hash} label="Nº Motor" value={g("numMotor", "numero_motor", "numeroMotor")} />
                 <FieldRow icon={Hash} label="RENAVAM" value={g("renavam")} />
@@ -661,7 +676,7 @@ export async function ReportContent({ report, consultaName, headerActions }: {
           <GenericSection icon={AlertTriangle} title="Histórico de Leilão" accent="#7c3aed" data={data.leilao} />
 
           {/* ═══════════════ ROUBO E FURTO ═══════════════ */}
-          <GenericSection icon={Shield} title="Roubo e Furto" accent="#dc2626" data={data.roubo_furto} />
+          <GenericSection icon={Shield} title="Roubo e Furto" accent="#1e293b" data={data.roubo_furto} />
 
           {/* ═══════════════ RECALL ═══════════════ */}
           <GenericSection icon={AlertTriangle} title="Recall do Fabricante" accent="#0891b2" data={data.recall} />
