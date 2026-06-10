@@ -174,6 +174,21 @@ function humanizeLabel(key: string): string {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+// Detecta sinal de ocorrência/pendência num objeto de risco (recursivo, conservador):
+// procura booleano true em chaves como constaOcorrencia, possui*, pendente, ativo, remarcado.
+function temOcorrencia(value: unknown): boolean {
+  if (!value || typeof value !== "object") return false;
+  if (Array.isArray(value)) return value.some(temOcorrencia);
+  for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+    const key = k.toLowerCase();
+    if (typeof v === "boolean" && v === true && /(consta|possui|pendente|ativ|remarc|restric)/.test(key)) {
+      return true;
+    }
+    if (v && typeof v === "object" && temOcorrencia(v)) return true;
+  }
+  return false;
+}
+
 // Remove marca repetida em sequência (ex.: "FIAT/FIAT/SIENA" → "FIAT/SIENA")
 function dedupeMarcaModelo(s: string): string {
   if (!s) return s;
@@ -512,15 +527,39 @@ export async function ReportContent({ report, consultaName, headerActions }: {
             </SectionBody>
           </div>
 
-          {/* ═══════════════ ALERTAS ═══════════════ */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, padding: "0 8px" }}>
-            <AlertBadge icon={FileText} label="Dados Cadastrais" danger={false} />
-            {data.debitos && <AlertBadge icon={CreditCard} label={hasDebitos ? "Possui Débitos" : "Sem Débitos"} danger={!!hasDebitos} />}
-            {data.gravame && <AlertBadge icon={Lock} label={hasActiveGravame ? "Gravame Ativo!" : hasGravame ? "Gravame Baixado" : "Sem Gravame"} danger={hasActiveGravame} />}
-            {data.roubo_furto && <AlertBadge icon={Shield} label="Roubo/Furto" danger={false} />}
-            {data.leilao && <AlertBadge icon={AlertTriangle} label="Leilão" danger={false} />}
-            {data.recall && <AlertBadge icon={AlertTriangle} label="Recall" danger={false} />}
-          </div>
+          {/* ═══════════════ GRADE DE INDICADORES ═══════════════ */}
+          {(() => {
+            const cards: { icon: LucideIcon; label: string; status: string; danger: boolean }[] = [];
+            cards.push({ icon: FileText, label: "Dados Cadastrais", status: "Tudo ok", danger: false });
+            if (data.debitos) cards.push({ icon: CreditCard, label: "Débitos", status: hasDebitos ? "Possui problemas" : "Tudo ok", danger: !!hasDebitos });
+            if (data.multas) { const p = temOcorrencia(data.multas); cards.push({ icon: AlertTriangle, label: "Multas / Infrações", status: p ? "Possui problemas" : "Tudo ok", danger: p }); }
+            if (data.gravame) cards.push({ icon: Lock, label: "Gravame", status: hasActiveGravame ? "Possui problemas" : "Tudo ok", danger: hasActiveGravame });
+            if (data.leilao) { const p = temOcorrencia(data.leilao); cards.push({ icon: AlertTriangle, label: "Leilão", status: p ? "Possui problemas" : "Tudo ok", danger: p }); }
+            if (data.roubo_furto) { const p = temOcorrencia(data.roubo_furto); cards.push({ icon: Shield, label: "Roubo e Furto", status: p ? "Possui problemas" : "Tudo ok", danger: p }); }
+            if (data.recall) { const p = temOcorrencia(data.recall); cards.push({ icon: AlertTriangle, label: "Recall", status: p ? "Fique atento" : "Tudo ok", danger: p }); }
+            if (data.renajud) { const p = temOcorrencia(data.renajud); cards.push({ icon: Lock, label: "Restrições Renajud", status: p ? "Possui problemas" : "Tudo ok", danger: p }); }
+            cards.push({ icon: Shield, label: "Comercialização", status: scoreComercializacao >= 80 ? "Baixo risco" : scoreComercializacao >= 55 ? "Risco moderado" : "Risco elevado", danger: scoreComercializacao < 55 });
+            return (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10, padding: "0 8px" }}>
+                {cards.map((c) => {
+                  const Icon = c.icon;
+                  return (
+                    <div key={c.label} style={{
+                      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                      gap: 6, padding: "14px 10px", borderRadius: 10,
+                      background: c.danger ? "#fef2f2" : "#f0fdf4",
+                      border: `1.5px solid ${c.danger ? "#fecaca" : "#bbf7d0"}`,
+                      textAlign: "center",
+                    }}>
+                      <span style={{ fontSize: 10, fontWeight: 700, color: "#475569", textTransform: "uppercase", letterSpacing: "0.04em", lineHeight: 1.3 }}>{c.label}</span>
+                      <Icon style={{ width: 22, height: 22, color: c.danger ? "#ef4444" : "#22c55e" }} />
+                      <span style={{ fontSize: 11, fontWeight: 800, color: c.danger ? "#dc2626" : "#16a34a" }}>{c.status}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })()}
 
           {/* ═══════════════ DADOS ORIGINAIS ═══════════════ */}
           <div style={{ padding: "0 8px" }}>
