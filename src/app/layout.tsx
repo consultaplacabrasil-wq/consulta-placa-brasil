@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { AnalyticsScripts } from "@/components/layout/analytics-scripts";
+import { CookieConsentLoader } from "@/components/layout/cookie-consent-loader";
 import { AuthProvider } from "@/components/providers/session-provider";
 import "./globals.css";
 
@@ -93,6 +94,7 @@ export default function RootLayout({
         <AuthProvider>
           {children}
           <Toaster />
+          <CookieConsentLoader />
         </AuthProvider>
       </body>
     </html>
