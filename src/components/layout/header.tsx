@@ -54,7 +54,7 @@ export function Header() {
               <Car className="h-5 w-5 text-white" />
             </div>
             <Image
-              src="/logo-header.webp?v=2"
+              src="/logo-header.webp"
               alt="Consulta Placa Brasil"
               width={160}
               height={40}

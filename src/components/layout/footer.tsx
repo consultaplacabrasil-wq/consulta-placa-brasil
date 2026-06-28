@@ -38,7 +38,7 @@ export function Footer() {
                 <Car className="h-5 w-5 text-white" />
               </div>
               <Image
-                src="/logo-footer.webp?v=2"
+                src="/logo-footer.webp"
                 alt="Consulta Placa Brasil"
                 width={160}
                 height={40}
