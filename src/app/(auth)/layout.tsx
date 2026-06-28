@@ -10,7 +10,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <Car className="h-5 w-5 text-white" />
         </div>
         <Image
-          src="/logo-header.webp"
+          src="/logo-header.webp?v=2"
           alt="Consulta Placa Brasil"
           width={160}
           height={40}

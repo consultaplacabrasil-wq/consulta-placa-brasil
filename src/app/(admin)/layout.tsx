@@ -77,7 +77,7 @@ function SidebarContent({
         </div>
         <div>
           <Image
-            src="/logo-footer.webp"
+            src="/logo-footer.webp?v=2"
             alt="Consulta Placa Brasil"
             width={120}
             height={30}

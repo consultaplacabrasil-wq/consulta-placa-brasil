@@ -38,7 +38,7 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
           <Car className="h-5 w-5 text-white" />
         </div>
         <Image
-          src="/logo-header.webp"
+          src="/logo-header.webp?v=2"
           alt="Consulta Placa Brasil"
           width={140}
           height={35}
