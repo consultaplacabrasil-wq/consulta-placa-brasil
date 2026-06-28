@@ -34,9 +34,6 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
         className="flex items-center gap-2 px-6 py-5 border-b border-gray-100"
         onClick={onNavigate}
       >
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FF4D30]">
-          <Car className="h-5 w-5 text-white" />
-        </div>
         <Image
           src="/logo-header.webp"
           alt="Consulta Placa Brasil"

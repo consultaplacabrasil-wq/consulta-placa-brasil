@@ -72,9 +72,6 @@ function SidebarContent({
         className="flex items-center gap-2.5 px-6 py-5 border-b border-white/10"
         onClick={onNavigate}
       >
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FF4D30]">
-          <Car className="h-5 w-5 text-white" />
-        </div>
         <div>
           <Image
             src="/logo-footer.webp"
