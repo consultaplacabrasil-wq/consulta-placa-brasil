@@ -6,6 +6,7 @@ import { db } from "@/lib/db";
 import { users, apiLogs } from "@/lib/db/schema";
 import { eq, and, gte, sql } from "drizzle-orm";
 import { formatarNome } from "@/lib/utils/name-formatter";
+import { verifyToken } from "@/lib/2fa";
 
 const MAX_LOGIN_ATTEMPTS = 5;
 const LOGIN_WINDOW_MS = 15 * 60 * 1000; // 15 minutos
@@ -65,6 +66,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Senha", type: "password" },
+        totp: { label: "Código 2FA", type: "text" },
       },
       async authorize(credentials, request) {
         if (!credentials?.email || !credentials?.password) {
@@ -102,6 +104,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!isValid) {
           await logLoginFailure(ip, email);
           return null;
+        }
+
+        // Autenticação em duas etapas (2FA): se ativa, exige código válido do app
+        if (user.twoFactorEnabled) {
+          const totp = ((credentials.totp as string) || "").trim();
+          if (!totp || !user.twoFactorSecret || !verifyToken(totp, user.twoFactorSecret)) {
+            await logLoginFailure(ip, email);
+            return null;
+          }
         }
 
         return {

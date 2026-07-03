@@ -15,7 +15,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [show2fa, setShow2fa] = useState(false);
+  const [form, setForm] = useState({ email: "", password: "", totp: "" });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -23,14 +24,30 @@ export default function LoginPage() {
     setError("");
 
     try {
+      // 1ª etapa: verifica se este e-mail exige 2FA e, se sim, pede o código
+      if (!show2fa) {
+        const check = await fetch("/api/auth/2fa-required", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: form.email }),
+        });
+        const data = await check.json().catch(() => ({ required: false }));
+        if (data.required) {
+          setShow2fa(true);
+          setIsLoading(false);
+          return;
+        }
+      }
+
       const result = await signIn("credentials", {
         email: form.email,
         password: form.password,
+        totp: form.totp,
         redirect: false,
       });
 
       if (result?.error) {
-        setError("E-mail ou senha incorretos.");
+        setError(show2fa ? "Senha ou código de verificação incorretos." : "E-mail ou senha incorretos.");
         setIsLoading(false);
         return;
       }
@@ -116,6 +133,28 @@ export default function LoginPage() {
             </div>
           </div>
 
+          {show2fa && (
+            <div className="space-y-2">
+              <Label htmlFor="totp" className="text-[#0F172A]">Código de verificação (2FA)</Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  id="totp"
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  placeholder="000000"
+                  className="pl-10 tracking-widest"
+                  value={form.totp}
+                  onChange={(e) => setForm({ ...form, totp: e.target.value })}
+                  autoFocus
+                  required
+                />
+              </div>
+              <p className="text-xs text-gray-500">Digite o código de 6 dígitos do seu app autenticador.</p>
+            </div>
+          )}
+
           {error && (
             <p className="text-sm text-red-500 text-center">{error}</p>
           )}
@@ -125,7 +164,7 @@ export default function LoginPage() {
             className="w-full bg-[#FF4D30] hover:bg-[#E8432A] text-white font-semibold"
             disabled={isLoading}
           >
-            {isLoading ? "Entrando..." : "Entrar"}
+            {isLoading ? "Entrando..." : show2fa ? "Verificar e entrar" : "Entrar"}
           </Button>
         </form>
 
