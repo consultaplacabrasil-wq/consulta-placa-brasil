@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { reportRequests, users, payments, reports } from "@/lib/db/schema";
 import { eq, sql, and, gte, count, or, ilike, desc } from "drizzle-orm";
 import { requireRole } from "@/lib/auth/admin-guard";
+import { encryptPii } from "@/lib/crypto-pii";
 
 export async function GET(req: NextRequest) {
   const { error } = await requireRole("admin", "editor");
@@ -42,13 +43,21 @@ export async function GET(req: NextRequest) {
       totalMonth > 0 ? ((completedMonth / totalMonth) * 100).toFixed(1) : "0.0";
 
     // Build search condition
+    // CPF/CNPJ está cifrado no banco: a busca por documento só funciona com o
+    // número COMPLETO (match exato do valor cifrado), não por parte dele.
+    const digits = search.replace(/\D/g, "");
+    const cpfMatch =
+      digits.length === 11 || digits.length === 14
+        ? eq(users.cpfCnpj, encryptPii(digits) ?? "")
+        : undefined;
+
     const searchConditions = search
       ? or(
           ilike(reportRequests.id, `%${search}%`),
           ilike(reportRequests.plate, `%${search}%`),
           ilike(users.name, `%${search}%`),
           ilike(users.email, `%${search}%`),
-          ilike(users.cpfCnpj, `%${search}%`)
+          ...(cpfMatch ? [cpfMatch] : [])
         )
       : undefined;
 

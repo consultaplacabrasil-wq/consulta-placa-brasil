@@ -11,6 +11,7 @@ import {
 } from "@/lib/asaas";
 import { validateCouponById, computeDiscount } from "@/lib/coupon";
 import { mapReportType } from "@/lib/utils/report-type";
+import { encryptPii } from "@/lib/crypto-pii";
 
 interface CheckoutItem {
   id: string;
@@ -63,6 +64,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // CPF/CNPJ cifrado para armazenar no banco (o valor puro segue indo ao Asaas).
+    const encCpf = encryptPii(cpfCnpj);
+
     // Check session
     const session = await auth();
     let userId: string;
@@ -100,7 +104,7 @@ export async function POST(req: NextRequest) {
       const [existingCpf] = await db
         .select({ id: users.id })
         .from(users)
-        .where(eq(users.cpfCnpj, cpfCnpj))
+        .where(eq(users.cpfCnpj, encCpf ?? ""))
         .limit(1);
 
       if (existingCpf) {
@@ -119,7 +123,7 @@ export async function POST(req: NextRequest) {
         .values({
           name: name.trim(),
           email: email.toLowerCase().trim(),
-          cpfCnpj,
+          cpfCnpj: encCpf,
           password: hashedPassword,
           role: "user",
         })
@@ -139,7 +143,7 @@ export async function POST(req: NextRequest) {
           .where(eq(users.id, userId))
           .limit(1);
         const updates: { cpfCnpj?: string; phone?: string } = {};
-        if (!u?.cpfCnpj && cpfCnpj) updates.cpfCnpj = cpfCnpj.replace(/\D/g, "");
+        if (!u?.cpfCnpj && cpfCnpj) updates.cpfCnpj = encCpf ?? undefined;
         if (!u?.phone && phone) updates.phone = phone.replace(/\D/g, "");
         if (Object.keys(updates).length > 0) {
           await db.update(users).set(updates).where(eq(users.id, userId));

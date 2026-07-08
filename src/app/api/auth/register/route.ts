@@ -6,6 +6,7 @@ import { eq } from "drizzle-orm";
 import { formatarNome, validarNomeCompleto } from "@/lib/utils/name-formatter";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
 import { validateCpfCnpj } from "@/lib/utils/document-validator";
+import { encryptPii } from "@/lib/crypto-pii";
 import { sendWelcomeEmail } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
@@ -55,12 +56,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Verificar CPF/CNPJ duplicado
-    const cleanCpf = cpfCnpj.replace(/\D/g, "");
+    // Verificar CPF/CNPJ duplicado (armazenado cifrado, determinístico)
+    const encCpf = encryptPii(cpfCnpj);
     const [existingCpf] = await db
       .select({ id: users.id })
       .from(users)
-      .where(eq(users.cpfCnpj, cleanCpf))
+      .where(eq(users.cpfCnpj, encCpf ?? ""))
       .limit(1);
 
     if (existingCpf) {
@@ -77,7 +78,7 @@ export async function POST(req: NextRequest) {
       .values({
         name: nomeFormatado,
         email: email.toLowerCase().trim(),
-        cpfCnpj: cleanCpf,
+        cpfCnpj: encCpf,
         phone: phone ? phone.replace(/\D/g, "") : null,
         password: hashedPassword,
         role: "user",

@@ -6,6 +6,7 @@ import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
 import { validateCpfCnpj } from "@/lib/utils/document-validator";
+import { encryptPii, decryptPii } from "@/lib/crypto-pii";
 import { sendPasswordChangedEmail } from "@/lib/email";
 
 // GET — buscar dados do perfil
@@ -32,7 +33,7 @@ export async function GET() {
 
     if (!user) return NextResponse.json({ error: "Usuário não encontrado" }, { status: 404 });
 
-    return NextResponse.json(user);
+    return NextResponse.json({ ...user, cpfCnpj: decryptPii(user.cpfCnpj) });
   } catch {
     return NextResponse.json({ error: "Erro ao buscar perfil" }, { status: 500 });
   }
@@ -111,7 +112,7 @@ export async function PATCH(req: NextRequest) {
       const [dup] = await db
         .select({ id: users.id })
         .from(users)
-        .where(eq(users.cpfCnpj, cleanDoc))
+        .where(eq(users.cpfCnpj, encryptPii(cleanDoc) ?? ""))
         .limit(1);
 
       if (dup) {
@@ -125,7 +126,7 @@ export async function PATCH(req: NextRequest) {
       await db
         .update(users)
         .set({
-          cpfCnpj: cleanDoc,
+          cpfCnpj: encryptPii(cleanDoc),
           ...(cleanPhone ? { phone: cleanPhone } : {}),
           updatedAt: new Date(),
         })

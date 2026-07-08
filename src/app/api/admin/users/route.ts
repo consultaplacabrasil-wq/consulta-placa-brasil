@@ -7,6 +7,7 @@ import { requireRole } from "@/lib/auth/admin-guard";
 import { validatePasswordStrength } from "@/lib/utils/password-validator";
 import { formatarNome } from "@/lib/utils/name-formatter";
 import { logAdminAction } from "@/lib/admin-log";
+import { decryptPii } from "@/lib/crypto-pii";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +30,7 @@ export async function GET() {
       .from(users)
       .orderBy(users.createdAt);
 
-    return NextResponse.json(items);
+    return NextResponse.json(items.map((u) => ({ ...u, cpfCnpj: decryptPii(u.cpfCnpj) })));
   } catch {
     return NextResponse.json({ error: "Erro ao buscar usuários" }, { status: 500 });
   }

@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { users, payments, reportRequests, coupons } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { requireRole } from "@/lib/auth/admin-guard";
+import { decryptPii } from "@/lib/crypto-pii";
 
 export const dynamic = "force-dynamic";
 
@@ -66,7 +67,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
     const totalGasto = pagos.reduce((sum, c) => sum + Number(c.amount), 0);
 
     return NextResponse.json({
-      user,
+      user: { ...user, cpfCnpj: decryptPii(user.cpfCnpj) },
       compras,
       consultas,
       resumo: {
