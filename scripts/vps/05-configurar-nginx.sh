@@ -7,8 +7,8 @@
 
 set -e
 
-DOMAIN="consultaplacaveiculos.com.br"   # <── altere se necessário
-WWW_DOMAIN="www.consultaplacaveiculos.com.br"
+DOMAIN="consultaplacabrasil.com"   # <── altere se necessário
+WWW_DOMAIN="www.consultaplacabrasil.com"
 EMAIL="webpixelbr@gmail.com"            # <── altere para seu e-mail
 APP_PORT=3000
 

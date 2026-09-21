@@ -8,6 +8,8 @@ import type { FipePreco } from "@/lib/fipe";
 import { getCachedInsights } from "@/lib/modelo/insights-cache";
 import { getBlogReviews } from "@/lib/modelo/blog-reviews";
 import { decodeChassi } from "@/lib/chassi";
+import { mascararChassi, mascararMotor } from "@/lib/identificador-veicular";
+import { ConferenciaIdentificador } from "./conferencia-identificador";
 import {
   CheckCircle,
   AlertTriangle,
@@ -27,6 +29,8 @@ import { db } from "@/lib/db";
 import { reports, reportRequests } from "@/lib/db/schema";
 import { eq, and } from "drizzle-orm";
 import { generateReportToken } from "@/lib/report-token";
+import { relatorioExpirado } from "@/lib/retencao";
+import { RelatorioExpirado } from "./relatorio-expirado";
 
 type ReportRow = typeof reports.$inferSelect;
 
@@ -231,6 +235,17 @@ function dedupeMarcaModelo(s: string): string {
 
 const HIDDEN_KEYS = new Set(["error", "errors", "_erros", "message", "status_code", "tax", "balance", "valor_consulta"]);
 
+// Atributos do bloco de roubo e furto excluidos por determinacao da Nota Tecnica
+// SENATRAN 554/2026, itens 4.1.5.3 e 4.1.5.4: identificam o proprio registro
+// policial e a localidade do fato, sem utilidade para a decisao negocial do
+// adquirente. Permanecem visiveis o indicador, a data, o tipo, a descricao da
+// ocorrencia e a UF de jurisdicao.
+// Filtro defensivo: os campos tambem saem do grupo de informacao no Credencia.
+function ocultarRouboFurto(key: string): boolean {
+  const k = key.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  return k.includes("boletim") || k.includes("municipio") || /(^|_)bo(_|$)/.test(k);
+}
+
 // Formata valores primitivos: booleanos e strings "true"/"false" viram "Sim"/"Não"
 function formatPrimitive(v: unknown): string {
   if (typeof v === "boolean") return v ? "Sim" : "Não";
@@ -240,7 +255,7 @@ function formatPrimitive(v: unknown): string {
 }
 
 // Renderizador genérico: exibe qualquer objeto/array/valor de forma legível
-function renderGenericData(value: unknown, depth = 0): React.ReactNode {
+function renderGenericData(value: unknown, depth = 0, hideKey?: (k: string) => boolean): React.ReactNode {
   if (value === null || value === undefined || value === "") return null;
 
   // Primitivo
@@ -264,7 +279,7 @@ function renderGenericData(value: unknown, depth = 0): React.ReactNode {
             <div style={{ fontSize: 10, fontWeight: 800, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>
               Registro {i + 1}
             </div>
-            {renderGenericData(item, depth + 1)}
+            {renderGenericData(item, depth + 1, hideKey)}
           </div>
         ))}
       </div>
@@ -273,7 +288,12 @@ function renderGenericData(value: unknown, depth = 0): React.ReactNode {
 
   // Objeto: separa campos simples (zebra) dos aninhados (sub-blocos)
   const entries = Object.entries(value as Record<string, unknown>).filter(
-    ([k, v]) => !HIDDEN_KEYS.has(k) && v !== null && v !== undefined && v !== ""
+    ([k, v]) =>
+      !HIDDEN_KEYS.has(k) &&
+      !hideKey?.(k) &&
+      v !== null &&
+      v !== undefined &&
+      v !== ""
   );
   if (entries.length === 0) return null;
 
@@ -290,7 +310,7 @@ function renderGenericData(value: unknown, depth = 0): React.ReactNode {
           <span style={{ display: "block", fontSize: 11, color: "#FF4D30", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>
             {humanizeLabel(k)}
           </span>
-          {renderGenericData(v, depth + 1)}
+          {renderGenericData(v, depth + 1, hideKey)}
         </div>
       ))}
     </>
@@ -298,10 +318,11 @@ function renderGenericData(value: unknown, depth = 0): React.ReactNode {
 }
 
 // Seção genérica que só renderiza se houver dados
-function GenericSection({ icon, title, accent, data }: {
+function GenericSection({ icon, title, accent, data, hideKey }: {
   icon: LucideIcon; title: string; accent: string; data: unknown;
+  hideKey?: (k: string) => boolean;
 }) {
-  const content = renderGenericData(data);
+  const content = renderGenericData(data, 0, hideKey);
   if (!content) return null;
   return (
     <div style={{ padding: "0 8px" }}>
@@ -593,8 +614,8 @@ export async function ReportContent({ report, consultaName, headerActions }: {
               <StripedRows rows={[
                 ["Placa", g("placa") || report.plate],
                 ["Marca / Modelo", dedupeMarcaModelo(g("marcaModelo", "marca_modelo") || [g("marca", "fabricante"), g("modelo")].filter(Boolean).join("/"))],
-                ["Chassi", g("chassi")],
-                ["Nº Motor", g("numMotor", "numero_motor", "numeroMotor")],
+                ["Chassi", mascararChassi(g("chassi"))],
+                ["Nº Motor", mascararMotor(g("numMotor", "numero_motor", "numeroMotor"))],
                 ["RENAVAM", g("renavam")],
                 ["Combustível", g("combustivel", "codigoCombustivel", "combustivel_descricao")],
                 ["Cor", g("corVeiculo", "cor")],
@@ -618,6 +639,12 @@ export async function ReportContent({ report, consultaName, headerActions }: {
                 ["Família", g("familia")],
                 ["Cilindros", g("cilindros")],
               ]} />
+              <p style={{ fontSize: 11, color: "#94a3b8", lineHeight: 1.6, padding: "10px 20px", margin: 0 }}>
+                O chassi e o número do motor são exibidos parcialmente mascarados, como medida de
+                proteção contra adulteração e clonagem de identidade veicular. Use a
+                conferência abaixo para confirmar que os números gravados no veículo
+                correspondem ao registro oficial.
+              </p>
             </SectionBody>
           </div>
 
@@ -653,7 +680,7 @@ export async function ReportContent({ report, consultaName, headerActions }: {
                 <SectionBar icon={Hash} title="Verificação de Chassi" accent="#0891b2" />
                 <SectionBody noPad>
                   <StripedRows rows={[
-                    ["Chassi", dec.chassi],
+                    ["Chassi", mascararChassi(dec.chassi)],
                     ["Origem (país)", dec.origem],
                     ["Montadora (WMI)", dec.montadora],
                     ["Ano-modelo (pelo chassi)", dec.anoModelo],
@@ -662,6 +689,30 @@ export async function ReportContent({ report, consultaName, headerActions }: {
                   <p style={{ fontSize: 11, color: "#94a3b8", lineHeight: 1.6, padding: "10px 20px", margin: 0 }}>
                     Decodificação automática dos dígitos do chassi (VIN). Compare o ano-modelo e a montadora com os dados oficiais — divergências podem indicar adulteração.
                   </p>
+                </SectionBody>
+              </div>
+            );
+          })()}
+
+          {/* ═══════════════ CONFERÊNCIA DE IDENTIFICADORES ═══════════════ */}
+          {/* Mecanismo de conferência de correspondência previsto na Nota Técnica
+              SENATRAN 554/2026, item 4.1.4.2: substitui a devolução integral do
+              chassi e do número do motor sem perder a utilidade de conferir o
+              veículo ofertado contra o registro oficial. */}
+          {(() => {
+            const temChassi = Boolean(g("chassi"));
+            const temMotor = Boolean(g("numMotor", "numero_motor", "numeroMotor"));
+            if (!temChassi && !temMotor) return null;
+            return (
+              <div className="no-print" style={{ padding: "0 8px" }}>
+                <SectionBar icon={Hash} title="Conferência de Identificadores" accent="#0066FF" />
+                <SectionBody noPad>
+                  <ConferenciaIdentificador
+                    reportId={report.id}
+                    token={generateReportToken(report.id)}
+                    temChassi={temChassi}
+                    temMotor={temMotor}
+                  />
                 </SectionBody>
               </div>
             );
@@ -756,7 +807,7 @@ export async function ReportContent({ report, consultaName, headerActions }: {
                           <Divider />
                           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 24px", marginTop: 8 }}>
                             <FieldRow label="Placa" value={g.placa} />
-                            <FieldRow label="Chassi" value={g.chassi} />
+                            <FieldRow label="Chassi" value={g.chassi ? mascararChassi(String(g.chassi)) : g.chassi} />
                             <FieldRow label="RENAVAM" value={g.renavam} />
                             <FieldRow label="UF" value={g.ufPlaca || g.uf} />
                             <FieldRow label="Agente Financeiro" value={g.agente} />
@@ -786,7 +837,7 @@ export async function ReportContent({ report, consultaName, headerActions }: {
           <GenericSection icon={AlertTriangle} title="Histórico de Leilão" accent="#7c3aed" data={data.leilao} />
 
           {/* ═══════════════ ROUBO E FURTO ═══════════════ */}
-          <GenericSection icon={Shield} title="Roubo e Furto" accent="#1e293b" data={data.roubo_furto} />
+          <GenericSection icon={Shield} title="Roubo e Furto" accent="#1e293b" data={data.roubo_furto} hideKey={ocultarRouboFurto} />
 
           {/* ═══════════════ RECALL ═══════════════ */}
           <GenericSection icon={AlertTriangle} title="Recall do Fabricante" accent="#0891b2" data={data.recall} />
@@ -871,8 +922,8 @@ export async function ReportContent({ report, consultaName, headerActions }: {
                 {[
                   { t: "CRLV (documento)", d: "Confira se os dados do documento batem com os do veículo e com esta consulta. No CRLV em papel, a faixa azul (“República Federativa do Brasil”) solta tinta ao ser raspada — sinal de original. Na versão digital, leia o QR Code pelo app oficial do Detran." },
                   { t: "Placa", d: "Em placas Mercosul, leia o QR Code com o aplicativo oficial e confronte os dados no portal da Senatran. Em placas antigas, verifique se o lacre da placa traseira não está rompido ou danificado." },
-                  { t: "Chassi", d: "Localize o chassi gravado no veículo (cofre do motor, coluna da porta) e compare com o número deste relatório. Qualquer divergência é um forte sinal de adulteração." },
-                  { t: "Número do motor", d: "Compare o número gravado no bloco do motor com o número informado nesta consulta. Eles devem ser idênticos, sem qualquer divergência." },
+                  { t: "Chassi", d: "Localize o chassi gravado no veículo (cofre do motor, coluna da porta) e informe-o no bloco Conferência de Identificadores deste relatório. Qualquer divergência é um forte sinal de adulteração." },
+                  { t: "Número do motor", d: "Informe o número gravado no bloco do motor na Conferência de Identificadores. Ele deve conferir com o registro oficial, sem qualquer divergência." },
                   { t: "Etiquetas de identificação", d: "Verifique se as peças mantêm as etiquetas de fábrica. A ausência pode indicar peças de origem irregular (de veículos roubados ou furtados)." },
                   { t: "Vidros", d: "Os vidros devem ter a gravação dos últimos dígitos do chassi. Faltas, divergências ou vidros sem gravação merecem atenção." },
                 ].map((item) => (
@@ -939,6 +990,9 @@ export default async function RelatorioPage({ params }: Props) {
   const [request] = await db.select().from(reportRequests)
     .where(and(eq(reportRequests.id, report.requestId), eq(reportRequests.userId, session.user.id))).limit(1);
   if (!request) notFound();
+
+  // Politica de retencao: esgotado o prazo, o relatorio deixa de ser acessivel.
+  if (relatorioExpirado(report)) return <RelatorioExpirado />;
 
   const token = generateReportToken(report.id);
   const sharePath = `/r/${report.id}/${token}`;

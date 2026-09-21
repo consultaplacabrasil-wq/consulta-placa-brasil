@@ -38,6 +38,21 @@ else
   echo "Usuário 'deploy' já existe."
 fi
 
+echo "=== Copiando chave SSH do root para o usuario deploy ==="
+# Sem isto o usuario 'deploy' fica sem forma de login: e criado com
+# --disabled-password e nao herda o authorized_keys automaticamente.
+if [ -f /root/.ssh/authorized_keys ]; then
+  mkdir -p /home/deploy/.ssh
+  cp /root/.ssh/authorized_keys /home/deploy/.ssh/authorized_keys
+  chown -R deploy:deploy /home/deploy/.ssh
+  chmod 700 /home/deploy/.ssh
+  chmod 600 /home/deploy/.ssh/authorized_keys
+  echo "Chave SSH copiada para deploy."
+else
+  echo "AVISO: /root/.ssh/authorized_keys nao encontrado."
+  echo "O usuario 'deploy' ficara sem acesso SSH ate voce adicionar uma chave."
+fi
+
 echo "=== Configurando firewall UFW ==="
 ufw default deny incoming
 ufw default allow outgoing

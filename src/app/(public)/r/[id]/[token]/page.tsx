@@ -4,6 +4,8 @@ import { db } from "@/lib/db";
 import { reports, reportRequests } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { verifyReportToken } from "@/lib/report-token";
+import { relatorioExpirado } from "@/lib/retencao";
+import { RelatorioExpirado } from "@/app/(dashboard)/relatorio/[id]/relatorio-expirado";
 import { ReportContent } from "@/app/(dashboard)/relatorio/[id]/page";
 import { DownloadPdfButton } from "@/app/(dashboard)/relatorio/[id]/download-pdf-button";
 
@@ -23,6 +25,9 @@ export default async function PublicReportPage({ params }: Props) {
 
   const report = await db.select().from(reports).where(eq(reports.id, id)).limit(1).then((r) => r[0]);
   if (!report) notFound();
+
+  // Politica de retencao: vale tambem para o link compartilhado.
+  if (relatorioExpirado(report)) return <RelatorioExpirado />;
 
   const [request] = await db
     .select()

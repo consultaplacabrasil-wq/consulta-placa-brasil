@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { reportRequests, reports } from "@/lib/db/schema";
 import { auth } from "@/lib/auth";
 import { executarConsulta } from "@/lib/apibrasil";
+import { calcularExpiracaoRelatorio } from "@/lib/retencao";
 
 const PLATE_REGEX = /^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$/;
 const ALLOWED_EMAIL = "mfrancadf@gmail.com";
@@ -44,7 +45,7 @@ export async function POST(req: NextRequest) {
         plate: formatted,
         type: "basic",
         data: resultado,
-        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+        expiresAt: calcularExpiracaoRelatorio(),
       })
       .returning();
 

@@ -1,5 +1,14 @@
 #!/bin/bash
 # =============================================================================
+# NAO EXECUTE ESTE SCRIPT.
+#
+# O projeto usa PostgreSQL gerenciado no Neon (regiao sa-east-1, Sao Paulo),
+# configurado pela variavel DATABASE_URL. Nao ha banco local no servidor.
+#
+# Mantido apenas como referencia historica, caso um dia se decida trazer o
+# banco para a propria maquina.
+# =============================================================================
+# =============================================================================
 # FASE 3 — Configurar PostgreSQL
 # Execute como usuário 'deploy'
 # =============================================================================

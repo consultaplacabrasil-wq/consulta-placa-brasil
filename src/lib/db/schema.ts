@@ -46,6 +46,16 @@ export const postStatusEnum = pgEnum("post_status", [
   "inactive",
 ]);
 
+// Finalidade declarada pelo solicitante no momento da consulta.
+// Exigida pela Nota Tecnica SENATRAN 554/2026 (item 3.2.2.5) como salvaguarda
+// do legitimo interesse: cada consulta precisa estar vinculada a um interesse
+// concreto e atual na negociacao do veiculo consultado.
+export const consultaPurposeEnum = pgEnum("consulta_purpose", [
+  "compra",
+  "venda",
+  "negociacao",
+]);
+
 // Users
 export const users = pgTable(
   "users",
@@ -143,6 +153,10 @@ export const reportRequests = pgTable("report_requests", {
   apiService: varchar("api_service", { length: 50 }).default("completa"),
   // Nome da consulta/pacote comprado
   consultaName: varchar("consulta_name", { length: 200 }),
+  // Finalidade declarada pelo solicitante no momento da consulta (salvaguarda LGPD).
+  // Nulo nos registros anteriores a implantacao da declaracao de finalidade.
+  purpose: consultaPurposeEnum("purpose"),
+  purposeDeclaredAt: timestamp("purpose_declared_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -490,6 +504,40 @@ export const adminLogs = pgTable(
   (table) => [
     index("admin_logs_admin_idx").on(table.adminId),
     index("admin_logs_entity_idx").on(table.entity),
+  ]
+);
+
+// Trilha de auditoria individualizada das consultas veiculares.
+// Exigida pela Nota Tecnica SENATRAN 554/2026 (item 3.2.2.5) e mantida a
+// disposicao da SENATRAN e da ANPD, nos termos do art. 10, § 3º, da LGPD.
+//
+// Tabela append-only: registra toda TENTATIVA de consulta, inclusive as
+// bloqueadas, para evidenciar o funcionamento dos controles. Nao deve ser
+// atualizada nem apagada pela aplicacao.
+export const consultaAuditLog = pgTable(
+  "consulta_audit_log",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    userId: text("user_id")
+      .references(() => users.id)
+      .notNull(),
+    requestId: text("request_id").references(() => reportRequests.id),
+    plate: varchar("plate", { length: 10 }),
+    purpose: consultaPurposeEnum("purpose"),
+    // executed | blocked_rate_limit | rejected_purpose | rejected_plate
+    // | rejected_request | failed
+    outcome: varchar("outcome", { length: 40 }).notNull(),
+    detail: text("detail"),
+    ipAddress: varchar("ip_address", { length: 45 }),
+    userAgent: text("user_agent"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [
+    index("consulta_audit_user_idx").on(table.userId),
+    index("consulta_audit_plate_idx").on(table.plate),
+    index("consulta_audit_created_idx").on(table.createdAt),
   ]
 );
 

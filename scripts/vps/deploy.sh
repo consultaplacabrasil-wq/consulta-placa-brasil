@@ -19,7 +19,7 @@ nvm use 20
 cd "$APP_DIR"
 
 echo "=== Baixando atualizações do repositório ==="
-git pull origin main
+git pull origin master
 
 echo "=== Instalando dependências ==="
 pnpm install --frozen-lockfile
@@ -27,8 +27,12 @@ pnpm install --frozen-lockfile
 echo "=== Executando build ==="
 pnpm build
 
-echo "=== Executando migrations ==="
-pnpm drizzle-kit migrate
+# ATENCAO: nao use "drizzle-kit migrate" neste projeto.
+# A pasta drizzle/ esta dessincronizada (o historico sempre usou db:push) e
+# o .gitignore ignora *.sql, entao as migrations geradas nem chegam aqui.
+# Alteracoes de schema sao aplicadas ANTES do deploy, por script explicito:
+#   node scripts/aplicar-salvaguardas-senatran.mjs
+echo "=== Migrations: aplicadas manualmente antes do deploy (ver README do script) ==="
 
 echo "=== Reiniciando aplicação ==="
 pm2 reload "$APP_NAME" --update-env

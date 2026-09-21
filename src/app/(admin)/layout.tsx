@@ -24,6 +24,7 @@ import {
   UserCog,
   Newspaper,
   ScrollText,
+  FileSearch,
 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -51,6 +52,7 @@ const sidebarLinks: SidebarLink[] = [
   { href: "/admin/seo", label: "SEO", icon: Globe, adminOnly: true },
   { href: "/admin/configuracoes", label: "Configurações", icon: Settings, adminOnly: true },
   { href: "/admin/logs", label: "Logs", icon: ScrollText, adminOnly: true },
+  { href: "/admin/auditoria-consultas", label: "Trilha de Auditoria", icon: FileSearch, adminOnly: true },
   { href: "/admin/seguranca", label: "Segurança (2FA)", icon: Shield },
   { href: "/admin/meu-perfil", label: "Meu Perfil", icon: UserCog },
 ];

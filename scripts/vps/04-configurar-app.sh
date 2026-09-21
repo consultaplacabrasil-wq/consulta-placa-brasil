@@ -9,8 +9,10 @@ set -e
 
 # ── Configurações — EDITE ANTES DE EXECUTAR ───────────────────────────────
 APP_DIR="/var/www/consulta-placa-veiculos"
-REPO_URL="https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git"  # <── altere
-DOMAIN="consultaplacaveiculos.com.br"                           # <── altere
+# Acesso por deploy key (chave SSH somente-leitura registrada no repositorio).
+# Evita token embutido na URL, que fica legivel em .git/config e em backups.
+REPO_URL="git@github.com:consultaplacabrasil-wq/consulta-placa-brasil.git"
+DOMAIN="consultaplacabrasil.com"
 # ──────────────────────────────────────────────────────────────────────────
 
 echo "=== Criando diretório da aplicação ==="
@@ -30,41 +32,66 @@ echo "=== Criando arquivo .env ==="
 if [ ! -f "$APP_DIR/.env" ]; then
   cat > "$APP_DIR/.env" <<'ENV'
 # ================================================================
-# PREENCHA TODAS AS VARIÁVEIS ABAIXO COM OS VALORES REAIS
+# PREENCHA COM OS VALORES REAIS — copie do .env.local da máquina
+# de desenvolvimento. NAO gere valores novos para os dois segredos
+# marcados como CRITICO: trocá-los quebra dados já gravados.
 # ================================================================
 
-# Banco de dados (PostgreSQL local — use o DATABASE_URL do passo 3)
-DATABASE_URL=postgresql://consultaplaca_user:SENHA@localhost:5432/consultaplaca
+# ── Banco de dados (Neon, São Paulo — NAO e PostgreSQL local) ──
+DATABASE_URL=
 
-# Next.js
-NEXTAUTH_SECRET=GERE_COM_openssl_rand_-base64_32
-NEXTAUTH_URL=https://consultaplacaveiculos.com.br
+# ── Autenticacao ──
+# CRITICO: o mesmo valor do servidor anterior. E a chave dos links
+# de compartilhamento de relatorio e das sessoes. Valor novo invalida
+# todos os links ja emitidos e derruba todas as sessoes.
+AUTH_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
 
-# Asaas (pagamentos)
-ASAAS_API_KEY=
-ASAAS_ENVIRONMENT=production
+# ── Criptografia de dados pessoais ──
+# CRITICO: o mesmo valor do servidor anterior. Os CPF/CNPJ dos clientes
+# estao cifrados com esta chave. Valor novo torna todos ilegiveis,
+# de forma irreversivel.
+PII_ENCRYPTION_KEY=
 
-# APIBrasil (consulta de veículos)
+# ── Consulta veicular ──
 APIBRASIL_BEARER_TOKEN=
-
-# Infosimples (alternativa de API)
+APIBRASIL_TIPO_GRATIS=agregados-simples
+APIBRASIL_TIPO_GRATIS_FALLBACK=agregados-v2
 INFOSIMPLES_TOKEN=
 
-# OpenAI (IA para notícias)
-OPENAI_API_KEY=
+# ── Pagamentos (Asaas) ──
+ASAAS_WEBHOOK_TOKEN=
 
-# Resend (e-mails)
+# ── E-mail ──
 RESEND_API_KEY=
-RESEND_FROM_EMAIL=noreply@consultaplacaveiculos.com.br
+EMAIL_FROM_VERIFIED=
+ADMIN_EMAIL=
 
-# Vercel Blob (PDFs) — ou remova se usar armazenamento local
+# ── Conteudo e midia ──
 BLOB_READ_WRITE_TOKEN=
+DEEPSEEK_API_KEY=
+PEXELS_API_KEY=
 
-# Ambiente
+# ── Rotinas agendadas ──
+CRON_SECRET=
+
+# ── Salvaguardas SENATRAN (opcionais; ha padroes no codigo) ──
+# Limite de volume de consultas por usuario
+CONSULTA_LIMITE_DIARIO=10
+CONSULTA_LIMITE_MENSAL=30
+# Politica de retencao, em dias
+RETENCAO_RELATORIO_DIAS=30
+RETENCAO_LINK_DIAS=7
+RETENCAO_TRILHA_DIAS=1825
+
+# ── Ambiente ──
 NODE_ENV=production
 ENV
   echo ""
   echo "  ATENÇÃO: Edite o arquivo .env antes de continuar!"
+  echo "  Copie os valores do .env.local — em especial AUTH_SECRET e"
+  echo "  PII_ENCRYPTION_KEY, que NAO podem ser gerados de novo."
   echo "  nano $APP_DIR/.env"
   echo ""
   read -p "  Pressione ENTER após preencher o .env para continuar..."
@@ -84,8 +111,13 @@ pnpm install --frozen-lockfile
 echo "=== Executando build da aplicação ==="
 pnpm build
 
-echo "=== Executando migrations do banco de dados ==="
-pnpm drizzle-kit migrate
+# ATENCAO: nao use "drizzle-kit migrate" neste projeto.
+# A pasta drizzle/ esta dessincronizada (o historico sempre usou db:push) e
+# o .gitignore ignora *.sql, entao as migrations geradas nem chegam aqui.
+# O schema do banco Neon ja esta aplicado e independe deste servidor.
+# Alteracoes de schema sao aplicadas por script explicito, antes do deploy:
+#   node scripts/aplicar-salvaguardas-senatran.mjs
+echo "=== Migrations: nao se aplicam aqui (banco Neon, gerenciado à parte) ==="
 
 echo "=== Iniciando aplicação com PM2 ==="
 cd "$APP_DIR"
