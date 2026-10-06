@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { db } from "@/lib/db";
-import { contactMessages } from "@/lib/db/schema";
+import { contactMessages, apiLogs } from "@/lib/db/schema";
+import { and, eq, gte, sql } from "drizzle-orm";
 
 function getResend() {
   const key = process.env.RESEND_API_KEY;
@@ -23,10 +24,74 @@ function esc(value: unknown): string {
     .replace(/"/g, "&quot;");
 }
 
+// Antispam: o formulário é público, então precisa resistir a robôs sem atrapalhar quem escreve.
+const MIN_FILL_MS = 3000; // ninguém preenche nome, e-mail, assunto e mensagem em menos de 3 s
+const RATE_WINDOW_MS = 60 * 60 * 1000; // 1 hora
+const RATE_MAX = 5; // mensagens por IP, por hora
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// O nginx grava o IP real em X-Real-IP (sobrescreve o que o cliente enviar). O primeiro
+// valor de X-Forwarded-For pode ser forjado pelo visitante, então só serve como último recurso.
+function getIp(request: Request): string {
+  const real = request.headers.get("x-real-ip");
+  if (real) return real.trim();
+  const fwd = request.headers.get("x-forwarded-for");
+  if (fwd) return fwd.split(",").pop()!.trim();
+  return "desconhecido";
+}
+
+async function countRecent(ip: string): Promise<number> {
+  try {
+    const since = new Date(Date.now() - RATE_WINDOW_MS);
+    const rows = await db
+      .select({ count: sql<number>`count(*)::int` })
+      .from(apiLogs)
+      .where(
+        and(
+          eq(apiLogs.endpoint, "contato"),
+          gte(apiLogs.createdAt, since),
+          sql`${apiLogs.requestBody}->>'ip' = ${ip}`
+        )
+      );
+    return rows[0]?.count ?? 0;
+  } catch {
+    return 0; // se o banco falhar, não bloqueia quem escreve de boa-fé
+  }
+}
+
+async function logAttempt(ip: string, statusCode: number, note?: string) {
+  try {
+    await db.insert(apiLogs).values({
+      endpoint: "contato",
+      method: "POST",
+      statusCode,
+      requestBody: { ip },
+      error: note || null,
+    });
+  } catch {
+    /* o registro não pode derrubar o formulário */
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, subject, message } = body;
+    const { name, email, subject, message, website, elapsedMs } = body;
+    const ip = getIp(request);
+
+    // Robôs preenchem todos os campos que enxergam, inclusive o campo isca "website",
+    // que fica invisível para pessoas. Também enviam rápido demais, ou direto à API,
+    // sem passar pelo formulário (e então sem o tempo de preenchimento).
+    // A resposta é de sucesso, para o robô não aprender o que o barrou.
+    const isca = typeof website === "string" && website.trim() !== "";
+    const rapidoDemais = typeof elapsedMs !== "number" || elapsedMs < MIN_FILL_MS;
+    if (isca || rapidoDemais) {
+      await logAttempt(ip, 200, isca ? "bloqueado:isca" : "bloqueado:tempo");
+      return NextResponse.json({
+        success: true,
+        message: "Mensagem enviada com sucesso.",
+      });
+    }
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
@@ -34,6 +99,22 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    if (!EMAIL_REGEX.test(String(email).trim())) {
+      return NextResponse.json(
+        { error: "Informe um e-mail válido." },
+        { status: 400 }
+      );
+    }
+
+    if ((await countRecent(ip)) >= RATE_MAX) {
+      await logAttempt(ip, 429, "limite-por-ip");
+      return NextResponse.json(
+        { error: "Muitas mensagens em pouco tempo. Tente novamente mais tarde." },
+        { status: 429 }
+      );
+    }
+    await logAttempt(ip, 200);
 
     const cleanName = String(name).trim().slice(0, 255);
     const cleanEmail = String(email).trim().slice(0, 255);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,9 @@ export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const [erro, setErro] = useState("");
+  // Antispam: campo isca (invisível para pessoas) e medida do tempo de preenchimento.
+  const [website, setWebsite] = useState("");
+  const inicio = useRef(Date.now());
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,7 +36,11 @@ export function ContactForm() {
       const res = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          website,
+          elapsedMs: Date.now() - inicio.current,
+        }),
       });
 
       if (!res.ok) {
@@ -67,6 +74,7 @@ export function ContactForm() {
           onClick={() => {
             setSubmitted(false);
             setFormData({ name: "", email: "", subject: "", message: "" });
+            inicio.current = Date.now();
           }}
         >
           Enviar nova mensagem
@@ -129,6 +137,23 @@ export function ContactForm() {
           value={formData.message}
           onChange={handleChange}
           required
+        />
+      </div>
+
+      {/* Campo isca: fora da tela, sem foco e sem leitura por leitor de tela. Pessoas não o veem; robôs o preenchem. */}
+      <div
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}
+      >
+        <label htmlFor="website">Não preencha este campo</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
 
