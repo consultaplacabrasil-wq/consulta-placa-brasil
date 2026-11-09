@@ -1,12 +1,13 @@
 #!/bin/bash
 # =============================================================================
-# NAO EXECUTE ESTE SCRIPT.
+# ESTE SCRIPT E NECESSARIO.
 #
-# O projeto usa PostgreSQL gerenciado no Neon (regiao sa-east-1, Sao Paulo),
-# configurado pela variavel DATABASE_URL. Nao ha banco local no servidor.
+# O banco de dados roda no proprio servidor (PostgreSQL local), acessado por
+# DATABASE_URL=postgresql://...@localhost:5432/consultaplaca.
 #
-# Mantido apenas como referencia historica, caso um dia se decida trazer o
-# banco para a propria maquina.
+# Manter aplicacao e banco na mesma maquina, em Sao Paulo, e deliberado:
+# simplifica a declaracao de localizacao dos dados no processo de
+# credenciamento SENATRAN e elimina latencia entre aplicacao e banco.
 # =============================================================================
 # =============================================================================
 # FASE 3 — Configurar PostgreSQL
