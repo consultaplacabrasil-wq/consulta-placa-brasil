@@ -28,7 +28,7 @@ import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { reports, reportRequests } from "@/lib/db/schema";
 import { eq, and } from "drizzle-orm";
-import { generateReportToken } from "@/lib/report-token";
+import { generateReportToken, compartilhamentoPublicoAtivo } from "@/lib/report-token";
 import { relatorioExpirado } from "@/lib/retencao";
 import { RelatorioExpirado } from "./relatorio-expirado";
 
@@ -994,8 +994,11 @@ export default async function RelatorioPage({ params }: Props) {
   // Politica de retencao: esgotado o prazo, o relatorio deixa de ser acessivel.
   if (relatorioExpirado(report)) return <RelatorioExpirado />;
 
-  const token = generateReportToken(report.id);
-  const sharePath = `/r/${report.id}/${token}`;
+  // Botão de compartilhar só aparece se o link público estiver habilitado
+  // (desligado por padrão: contrato SERPRO, cl. 3.1.5).
+  const sharePath = compartilhamentoPublicoAtivo()
+    ? `/r/${report.id}/${generateReportToken(report.id)}`
+    : null;
 
   return (
     <ReportContent
@@ -1003,7 +1006,7 @@ export default async function RelatorioPage({ params }: Props) {
       consultaName={request.consultaName}
       headerActions={
         <>
-          <ShareButton plate={report.plate} path={sharePath} />
+          {sharePath && <ShareButton plate={report.plate} path={sharePath} />}
           <DownloadPdfButton />
         </>
       }

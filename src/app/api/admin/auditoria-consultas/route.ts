@@ -29,6 +29,7 @@ const OFFSET_BR = "-03:00";
 const OUTCOME_LABELS: Record<string, string> = {
   executed: "Executada",
   blocked_rate_limit: "Bloqueada — limite de volume",
+  blocked_global_cap: "Bloqueada — teto global diário",
   rejected_purpose: "Recusada — finalidade não declarada",
   rejected_plate: "Recusada — placa inválida",
   rejected_request: "Recusada — pedido inválido",

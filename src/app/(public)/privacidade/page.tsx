@@ -114,6 +114,9 @@ const defaultContent = `
 <p>6.2 Os relatórios podem conter informações provenientes dessas fontes externas, de acordo com a disponibilidade no momento da consulta.</p>
 <p>6.3 A Consulta Placa Brasil não é responsável pela geração primária, atualização originária, manutenção ou correção dos dados brutos constantes das bases externas consultadas, cabendo tal responsabilidade às respectivas fontes, órgãos, entidades, parceiros ou fornecedores.</p>
 <p>6.4 As informações provenientes de fontes externas são disponibilizadas conforme se encontram disponíveis no momento da geração do relatório, podendo conter divergências, omissões, atrasos de atualização, inconsistências ou alterações posteriores decorrentes das respectivas bases de dados.</p>
+<p>6.5 <strong>Dados de veículos da base nacional (SENATRAN).</strong> Os dados cadastrais de veículos exibidos nos relatórios são provenientes da base do Registro Nacional de Veículos Automotores (RENAVAM), cujo <strong>controlador</strong> é a Secretaria Nacional de Trânsito (SENATRAN), do Ministério dos Transportes. O acesso é feito por meio do serviço Consulta Online Senatran, prestado pelo <strong>Serviço Federal de Processamento de Dados (SERPRO)</strong>, empresa pública federal que atua como <strong>operador</strong> dessa base, por intermédio de credenciamento da Consulta Placa Brasil junto à SENATRAN.</p>
+<p>6.6 <strong>Gestão do consentimento.</strong> Nos casos em que o acesso depende de consentimento do titular, a verificação é realizada por meio de plataforma de gestão de consentimento contratada junto a gestora credenciada (iMonitore), que também pode tratar dados pessoais na qualidade de operadora, conforme as regras da SENATRAN.</p>
+<p>6.7 <strong>Finalidade e limites.</strong> Os dados da base nacional somente são consultados mediante declaração expressa da finalidade pelo usuário (compra, venda ou negociação de veículo), ficam disponíveis apenas a quem realizou a consulta, pelo prazo informado no item 18, e <strong>não são utilizados</strong> para marketing, formação de cadastros, enriquecimento de bases ou qualquer finalidade diversa da declarada.</p>
 
 <h2>7. Como coletamos os dados</h2>
 <p>7.1 Os dados pessoais poderão ser coletados das seguintes formas:</p>
@@ -181,7 +184,7 @@ const defaultContent = `
   <li>provedores de hospedagem, infraestrutura em nuvem, armazenamento, segurança, backup e suporte técnico;</li>
   <li>fornecedores de e-mail, mensageria, atendimento, CRM, chat, WhatsApp corporativo ou ferramentas equivalentes;</li>
   <li>ferramentas antifraude, autenticação, prevenção a chargeback, monitoramento de segurança e análise de risco;</li>
-  <li>fornecedores, parceiros ou fontes externas responsáveis pela disponibilização de dados veiculares;</li>
+  <li>fornecedores, parceiros ou fontes externas responsáveis pela disponibilização de dados veiculares, entre eles o SERPRO (operador da base da SENATRAN) e a gestora de consentimento iMonitore, conforme o item 6;</li>
   <li>prestadores de serviços de tecnologia, manutenção, desenvolvimento, análise de desempenho e melhoria da plataforma;</li>
   <li>assessores jurídicos, contadores, auditores, consultores e prestadores necessários ao cumprimento de obrigações legais ou defesa de direitos;</li>
   <li>órgãos públicos, autoridades administrativas, policiais, judiciais, regulatórias ou de proteção ao consumidor, quando houver obrigação legal, ordem válida, solicitação legítima ou necessidade de exercício regular de direitos;</li>

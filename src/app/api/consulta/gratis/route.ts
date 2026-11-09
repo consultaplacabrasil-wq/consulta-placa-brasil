@@ -77,6 +77,28 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Modo padrão: validação do formato, SEM consulta a base externa. Dados de
+    // veículo de fonte SENATRAN/SERPRO só saem na consulta paga, depois da
+    // declaração de finalidade e da trilha de auditoria; cada chamada ao SERPRO
+    // é cobrada, e a prévia anônima não passaria por nenhuma dessas salvaguardas.
+    // PREVIA_GRATIS_MODO=apibrasil mantém o comportamento anterior (fonte legada).
+    if (process.env.PREVIA_GRATIS_MODO !== "apibrasil") {
+      const mercosul = /^[A-Z]{3}[0-9][A-Z][0-9]{2}$/.test(placa);
+      await log(ip, placa, 200, Date.now() - t0, "previa-formato");
+      return NextResponse.json({
+        veiculo: {
+          placa,
+          formato: mercosul ? "Mercosul" : "Padrão anterior",
+          marcaModelo: null,
+          anoFabricacao: null,
+          anoModelo: null,
+          cor: null,
+          chassi: null,
+          combustivel: null,
+        },
+      });
+    }
+
     const veiculo = await consultaGratis(placa);
 
     // Considera "não encontrado" quando nem marca/modelo veio

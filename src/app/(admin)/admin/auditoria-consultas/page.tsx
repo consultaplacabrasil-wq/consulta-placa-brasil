@@ -34,6 +34,7 @@ interface Stat {
 const OUTCOMES: Record<string, { label: string; color: string }> = {
   executed: { label: "Executada", color: "bg-green-100 text-green-700" },
   blocked_rate_limit: { label: "Limite de volume", color: "bg-amber-100 text-amber-700" },
+  blocked_global_cap: { label: "Teto global diário", color: "bg-amber-100 text-amber-700" },
   rejected_purpose: { label: "Sem finalidade", color: "bg-red-100 text-red-700" },
   rejected_plate: { label: "Placa inválida", color: "bg-gray-100 text-gray-700" },
   rejected_request: { label: "Pedido inválido", color: "bg-gray-100 text-gray-700" },

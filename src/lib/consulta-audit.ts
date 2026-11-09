@@ -28,6 +28,7 @@ export type { ConsultaPurpose } from "@/lib/consulta-purpose";
 export type ConsultaOutcome =
   | "executed"
   | "blocked_rate_limit"
+  | "blocked_global_cap"
   | "rejected_purpose"
   | "rejected_plate"
   | "rejected_request"
@@ -105,6 +106,39 @@ export async function checkConsultaRateLimit(
     return { allowed: true };
   }
 }
+
+/**
+ * Disjuntor global: teto de consultas executadas em 24h somando todos os
+ * usuários. Protege o volume declarado ao SERPRO (o consumo fora do padrão
+ * declarado pode levar à suspensão do serviço) e o custo por transação.
+ * Desativado enquanto CONSULTA_LIMITE_GLOBAL_DIARIO não for definida.
+ */
+export async function checkConsultaGlobalCap(): Promise<{
+  allowed: boolean;
+  used?: number;
+  max?: number;
+}> {
+  const max = Number.parseInt(process.env.CONSULTA_LIMITE_GLOBAL_DIARIO ?? "", 10);
+  if (!Number.isFinite(max) || max <= 0) return { allowed: true };
+  try {
+    const since = new Date(Date.now() - DAY_MS);
+    const rows = await db
+      .select({ count: sql<number>`count(*)::int` })
+      .from(consultaAuditLog)
+      .where(
+        and(eq(consultaAuditLog.outcome, "executed"), gte(consultaAuditLog.createdAt, since))
+      );
+    const used = rows[0]?.count ?? 0;
+    return used >= max ? { allowed: false, used, max } : { allowed: true };
+  } catch (err) {
+    console.error("[consulta-audit] falha ao apurar teto global:", err);
+    return { allowed: true };
+  }
+}
+
+export const MENSAGEM_TETO_GLOBAL =
+  "O serviço atingiu temporariamente o limite de consultas do dia. " +
+  "Seu crédito não foi utilizado. Tente novamente amanhã ou fale com o nosso suporte.";
 
 export function rateLimitMessage(verdict: RateLimitVerdict): string {
   const key = verdict.window ?? "diario";

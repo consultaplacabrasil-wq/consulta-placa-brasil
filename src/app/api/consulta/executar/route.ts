@@ -8,6 +8,8 @@ import { mapReportType } from "@/lib/utils/report-type";
 import { getOrCreateInsights } from "@/lib/modelo/insights-cache";
 import {
   checkConsultaRateLimit,
+  checkConsultaGlobalCap,
+  MENSAGEM_TETO_GLOBAL,
   getClientIp,
   isConsultaPurpose,
   logConsultaAudit,
@@ -127,6 +129,18 @@ export async function POST(req: NextRequest) {
         { error: rateLimitMessage(verdict) },
         { status: 429 }
       );
+    }
+
+    // Disjuntor global (volume declarado ao SERPRO). Também preserva o crédito.
+    const cap = await checkConsultaGlobalCap();
+    if (!cap.allowed) {
+      await audit("blocked_global_cap", {
+        requestId,
+        plate: formattedPlate,
+        purpose,
+        detail: `teto global diário: ${cap.used}/${cap.max}`,
+      });
+      return NextResponse.json({ error: MENSAGEM_TETO_GLOBAL }, { status: 429 });
     }
 
     // Determine which API service to use

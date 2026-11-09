@@ -13,6 +13,7 @@ interface PreviewVeiculo {
   cor: string | null;
   chassi: string | null;
   combustivel: string | null;
+  formato?: string;
 }
 
 function Row({ label, value, alt }: { label: string; value: string | null; alt?: boolean }) {
@@ -104,7 +105,9 @@ export function ConsultaGratisHero() {
       result.anoFabricacao || result.anoModelo
         ? `${result.anoFabricacao || "—"} / ${result.anoModelo || "—"}`
         : null;
+    const soFormato = !result.marcaModelo;
     const rows = [
+      { label: "Formato da placa", value: result.formato ?? null },
       { label: "Marca / Modelo", value: result.marcaModelo },
       { label: "Fabricação / Modelo", value: ano },
       { label: "Cor", value: result.cor },
@@ -147,7 +150,7 @@ export function ConsultaGratisHero() {
             {/* Veículo */}
             <div className="overflow-hidden rounded-xl border border-gray-200">
               <p className="bg-[#0F172A] px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-[#FF4D30]">
-                Veículo
+                Placa
               </p>
               {rows.map((r, i) => (
                 <Row key={r.label} label={r.label} value={r.value} alt={i % 2 === 0} />
@@ -170,8 +173,9 @@ export function ConsultaGratisHero() {
                 </div>
               </div>
               <p className="mt-3 border-t border-[#FF4D30]/10 pt-3 text-xs leading-relaxed text-[#64748B]">
-                Estes são os dados básicos. O histórico completo é liberado na
-                consulta paga.
+                {soFormato
+                  ? "A prévia confirma que a placa é válida. Os dados do veículo e o histórico são liberados na consulta completa, mediante declaração da finalidade da consulta."
+                  : "Estes são os dados básicos. O histórico completo é liberado na consulta paga."}
               </p>
             </div>
           </div>
@@ -290,7 +294,7 @@ export function ConsultaGratisHero() {
         </p>
         <p className="mt-2 flex items-center justify-center gap-1.5 text-center text-xs text-[#94A3B8]">
           <Lock className="h-3.5 w-3.5" />
-          Consulta gratuita · Dados oficiais dos Detrans · Resultado na hora
+          Validação gratuita da placa · Resultado na hora
         </p>
       </form>
     </div>

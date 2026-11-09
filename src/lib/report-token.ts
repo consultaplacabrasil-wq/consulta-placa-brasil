@@ -15,6 +15,22 @@ const SECRET = process.env.AUTH_SECRET || "consulta-placa-brasil-fallback-secret
 
 const DIA_MS = 24 * 60 * 60 * 1000;
 
+/**
+ * Compartilhamento público do relatório (página /r/[id]/[token]).
+ *
+ * DESLIGADO por padrão. A cláusula 3.1.5 do contrato com o SERPRO veda ceder os
+ * dados obtidos a terceiros sem autorização expressa do controlador, e o link
+ * público é justamente uma cessão a quem não fez a consulta nem declarou
+ * finalidade. Só habilite (COMPARTILHAMENTO_PUBLICO=true) após confirmação
+ * escrita do SERPRO/SENATRAN.
+ *
+ * O token continua sendo gerado: a conferência de identificadores usa a mesma
+ * assinatura para autorizar a chamada feita a partir da tela do próprio dono.
+ */
+export function compartilhamentoPublicoAtivo(): boolean {
+  return process.env.COMPARTILHAMENTO_PUBLICO === "true";
+}
+
 function assinar(reportId: string, expSegundos: number): string {
   return crypto
     .createHmac("sha256", SECRET)

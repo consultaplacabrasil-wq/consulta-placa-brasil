@@ -3,7 +3,7 @@ import Link from "next/link";
 import { db } from "@/lib/db";
 import { reports, reportRequests } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
-import { verifyReportToken } from "@/lib/report-token";
+import { verifyReportToken, compartilhamentoPublicoAtivo } from "@/lib/report-token";
 import { relatorioExpirado } from "@/lib/retencao";
 import { RelatorioExpirado } from "@/app/(dashboard)/relatorio/[id]/relatorio-expirado";
 import { ReportContent } from "@/app/(dashboard)/relatorio/[id]/page";
@@ -21,6 +21,9 @@ interface Props {
 
 export default async function PublicReportPage({ params }: Props) {
   const { id, token } = await params;
+  // Cessão a terceiros vedada pelo contrato SERPRO (cl. 3.1.5) enquanto não
+  // houver autorização expressa: ver compartilhamentoPublicoAtivo().
+  if (!compartilhamentoPublicoAtivo()) notFound();
   if (!verifyReportToken(id, token)) notFound();
 
   const report = await db.select().from(reports).where(eq(reports.id, id)).limit(1).then((r) => r[0]);

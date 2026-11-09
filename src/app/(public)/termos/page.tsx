@@ -88,6 +88,7 @@ const defaultContent = `
 <p>7.2 A Consulta Placa Brasil <strong>não se apresenta como órgão público</strong>, autoridade de trânsito, DETRAN, SENATRAN, seguradora, instituição financeira ou entidade oficial, salvo quando expressamente indicado em relação a determinada fonte ou parceira formalmente existente.</p>
 <p>7.3 Quando as informações forem provenientes de bases externas, públicas ou privadas, a responsabilidade pela origem, atualização primária, manutenção e correção dos dados caberá à respectiva fonte, sem prejuízo da responsabilidade da Consulta Placa Brasil por falhas diretamente imputáveis à prestação do serviço.</p>
 <p>7.4 A plataforma poderá alterar, substituir, incluir ou descontinuar fontes de dados, fornecedores ou parceiros, sempre que necessário por razões legais, técnicas, comerciais, operacionais, de segurança ou de disponibilidade.</p>
+<p>7.5 Os dados cadastrais de veículos são obtidos da base nacional da SENATRAN, por meio do serviço Consulta Online Senatran, operado pelo SERPRO, mediante credenciamento da Consulta Placa Brasil. Esses dados são fornecidos ao usuário exclusivamente para a finalidade por ele declarada no momento da consulta, não podendo ser repassados a terceiros, divulgados publicamente nem utilizados para finalidade diversa. Por isso, o relatório é de acesso restrito ao usuário que realizou a consulta, e o compartilhamento do relatório por link público não está disponível.</p>
 
 <h2>8. Uso permitido</h2>
 <p>8.1 O usuário poderá utilizar a plataforma e os relatórios <strong>exclusivamente para finalidades lícitas</strong>, legítimas, proporcionais e compatíveis com a natureza informativa do serviço, tais como:</p>
@@ -186,6 +187,8 @@ const defaultContent = `
   <li>medidas necessárias à prevenção de fraudes, incidentes de segurança ou uso abusivo.</li>
 </ul>
 <p>15.3 Sempre que possível, a Consulta Placa Brasil poderá comunicar manutenções programadas ou interrupções relevantes.</p>
+<p>15.4 Por depender de bases e serviços de terceiros, em especial da base nacional da SENATRAN e dos serviços do SERPRO e da gestora de consentimento, a consulta poderá ficar temporariamente indisponível ou ser limitada por decisão dessas entidades. Quando a consulta contratada não puder ser entregue por esse motivo, o crédito não é consumido e permanece disponível ao usuário, ou o valor é reembolsado nos termos da <a href="/reembolso">Política de Reembolso</a>.</p>
+<p>15.5 Por exigência regulatória, há limites de volume de consultas por usuário e por período, e a Consulta Placa Brasil poderá suspender temporariamente novas consultas ao atingir limites operacionais diários.</p>
 
 <h2>16. Limitação de responsabilidade</h2>
 <p>16.1 A Consulta Placa Brasil responde pela adequada prestação dos serviços que oferece, nos limites da legislação aplicável.</p>
