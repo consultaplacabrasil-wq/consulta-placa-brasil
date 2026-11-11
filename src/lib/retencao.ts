@@ -44,6 +44,15 @@ export const RETENCAO = {
    * (Lei nº 9.873/1999, art. 1º) — a confirmar juridicamente.
    */
   trilhaAuditoriaDias: diasFromEnv("RETENCAO_TRILHA_DIAS", 5 * 365),
+
+  /**
+   * Guarda dos logs técnicos de API (IP e placa da prévia gratuita, limites de
+   * uso). 180 dias acompanha o prazo mínimo de guarda de registros de acesso a
+   * aplicações do art. 15 do Marco Civil da Internet (Lei nº 12.965/2014) — a
+   * confirmar juridicamente. A eliminação é feita por
+   * scripts/eliminacao-dados.mjs, que repete este padrão.
+   */
+  logsApiDias: diasFromEnv("RETENCAO_LOGS_API_DIAS", 180),
 } as const;
 
 /** Momento em que um relatório criado agora deixa de ficar acessível. */
