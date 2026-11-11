@@ -26,7 +26,7 @@ NODE_BIN="$(command -v node)"
 LINHA="30 3 * * * cd $APP_DIR && $NODE_BIN scripts/eliminacao-dados.mjs >> $LOG_DIR/eliminacao-dados.log 2>&1 $MARCA"
 
 # Remove entrada anterior (se houver) e grava a atual.
-( crontab -l 2>/dev/null | grep -v "eliminacao-dados" ; echo "$LINHA" ) | crontab -
+{ crontab -l 2>/dev/null | grep -v "eliminacao-dados" || true; echo "$LINHA"; } | crontab -
 
 echo "Agendado. Crontab atual:"
 crontab -l
